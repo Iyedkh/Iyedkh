@@ -200,17 +200,7 @@ export default function App() {
         }
 
         @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .about-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .about-cards { grid-template-columns: 1fr !important; }
-          .experience-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-          .contact-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .section-label { justify-content: center; }
-          .section-label::before { display: none; }
-          .card { border-radius: 14px; }
-          .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-          nav { padding: 12px 0 !important; }
-          main { padding: 0 16px !important; }
+          .hero-grid { flex-direction: column; }
         }
       `}</style>
 
