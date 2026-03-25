@@ -22,17 +22,23 @@ export default function App() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --bg: #0a0a0c;
-          --bg2: #111116;
-          --bg3: #18181f;
-          --border: rgba(255,255,255,0.07);
+          --bg: #0f0f1a;
+          --bg2: #1a1a2e;
+          --bg3: #242a3e;
+          --border: rgba(255,255,255,0.08);
           --border2: rgba(255,255,255,0.12);
-          --gold: #d4a359;
-          --gold2: #e8bf7a;
-          --gold-dim: rgba(212,163,89,0.12);
-          --text: #f0ede8;
-          --muted: #7a7880;
-          --muted2: #a09da8;
+          --primary: #3b82f6;
+          --primary-dark: #1e40af;
+          --primary-light: #60a5fa;
+          --accent: #8b5cf6;
+          --accent-light: #a78bfa;
+          --accent-dim: rgba(139,92,246,0.12);
+          --success: #10b981;
+          --cyan: #06b6d4;
+          --text: #f1f5f9;
+          --text-secondary: #e2e8f0;
+          --muted: #94a3b8;
+          --muted2: #cbd5e1;
         }
 
         html { scroll-behavior: smooth; }
@@ -44,12 +50,13 @@ export default function App() {
           overflow-x: hidden;
         }
 
-        ::selection { background: rgba(212,163,89,0.35); color: #fff; }
+        ::selection { background: rgba(59,130,246,0.35); color: #fff; }
 
         /* Scrollbar */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
 
         .serif { font-family: 'DM Serif Display', serif; }
         .mono { font-family: 'DM Mono', monospace; }
@@ -65,7 +72,7 @@ export default function App() {
         }
 
         .gold-text {
-          background: linear-gradient(135deg, #d4a359 0%, #e8bf7a 50%, #c49040 100%);
+          background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -74,77 +81,97 @@ export default function App() {
         .card {
           background: var(--bg2);
           border: 1px solid var(--border);
-          border-radius: 16px;
-          transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+          border-radius: 12px;
+          transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
         .card:hover {
-          border-color: rgba(212,163,89,0.25);
-          transform: translateY(-3px);
-          box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+          border-color: rgba(59,130,246,0.3);
+          transform: translateY(-4px);
+          box-shadow: 0 20px 60px rgba(59,130,246,0.1), 0 0 1px rgba(59,130,246,0.2);
         }
 
         .tag {
           font-family: 'DM Mono', monospace;
           font-size: 11px;
-          font-weight: 500;
+          font-weight: 600;
           letter-spacing: 0.04em;
-          padding: 4px 10px;
-          border-radius: 4px;
-          background: var(--gold-dim);
-          color: var(--gold);
-          border: 1px solid rgba(212,163,89,0.2);
+          padding: 6px 12px;
+          border-radius: 6px;
+          background: rgba(59,130,246,0.1);
+          color: var(--primary-light);
+          border: 1px solid rgba(59,130,246,0.25);
+          transition: all 0.2s;
+        }
+        .tag:hover {
+          background: rgba(59,130,246,0.15);
+          border-color: rgba(59,130,246,0.4);
         }
 
         .btn-primary {
-          background: var(--gold);
-          color: #0a0a0c;
+          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+          color: #fff;
           font-weight: 700;
-          font-size: 14px;
-          letter-spacing: 0.02em;
+          font-size: 15px;
+          letter-spacing: 0.03em;
           padding: 12px 28px;
           border-radius: 8px;
           border: none;
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
           display: inline-flex;
           align-items: center;
           gap: 8px;
+          box-shadow: 0 4px 15px rgba(59,130,246,0.3);
         }
-        .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(212,163,89,0.3); }
+        .btn-primary:hover { 
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(59,130,246,0.4);
+        }
+        .btn-primary:active {
+          transform: translateY(0);
+        }
 
         .btn-secondary {
           background: transparent;
           color: var(--text);
           font-weight: 600;
-          font-size: 14px;
+          font-size: 15px;
           padding: 11px 28px;
           border-radius: 8px;
-          border: 1px solid var(--border2);
+          border: 1.5px solid var(--border2);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
           display: inline-flex;
           align-items: center;
           gap: 8px;
         }
-        .btn-secondary:hover { border-color: rgba(212,163,89,0.4); color: var(--gold); }
+        .btn-secondary:hover { 
+          border-color: rgba(59,130,246,0.5);
+          color: var(--primary-light);
+          background: rgba(59,130,246,0.05);
+        }
 
         .section-label {
           font-family: 'DM Mono', monospace;
-          font-size: 11px;
+          font-size: 12px;
           letter-spacing: 0.15em;
           text-transform: uppercase;
-          color: var(--gold);
+          background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
           display: flex;
           align-items: center;
           gap: 8px;
-          margin-bottom: 12px;
+          margin-bottom: 16px;
+          font-weight: 700;
         }
         .section-label::before {
           content: '';
           display: block;
           width: 24px;
-          height: 1px;
-          background: var(--gold);
+          height: 1.5px;
+          background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
         .divider {
@@ -157,17 +184,27 @@ export default function App() {
         input, textarea {
           width: 100%;
           background: var(--bg3);
-          border: 1px solid var(--border);
+          border: 1.5px solid var(--border);
           border-radius: 10px;
           padding: 14px 18px;
           color: var(--text);
           font-family: 'Outfit', sans-serif;
           font-size: 15px;
           outline: none;
-          transition: border-color 0.2s;
+          transition: all 0.3s;
         }
-        input:focus, textarea:focus { border-color: rgba(212,163,89,0.5); }
+        input:focus, textarea:focus { 
+          border-color: rgba(59,130,246,0.5);
+          background: var(--bg3);
+          box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
         input::placeholder, textarea::placeholder { color: var(--muted); }
+        input::-webkit-autofill,
+        input::-webkit-autofill:hover,
+        input::-webkit-autofill:focus {
+          -webkit-box-shadow: 0 0 0 30px var(--bg3) inset !important;
+          -webkit-text-fill-color: var(--text) !important;
+        }
 
         label {
           display: block;
@@ -185,18 +222,19 @@ export default function App() {
           left: 15px;
           top: 24px;
           bottom: 0;
-          width: 1px;
-          background: linear-gradient(to bottom, rgba(212,163,89,0.4), transparent);
+          width: 2px;
+          background: linear-gradient(to bottom, rgba(59,130,246,0.5), transparent);
         }
 
         .dot {
-          width: 10px; height: 10px;
+          width: 12px; 
+          height: 12px;
           border-radius: 50%;
-          background: var(--gold);
+          background: linear-gradient(135deg, var(--primary), var(--accent));
           border: 2px solid var(--bg);
-          box-shadow: 0 0 0 4px rgba(212,163,89,0.15);
+          box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
           flex-shrink: 0;
-          margin-top: 5px;
+          margin-top: 2px;
         }
 
         @media (max-width: 768px) {
@@ -217,7 +255,7 @@ export default function App() {
       {/* Progress Bar */}
       <motion.div
         style={{ width: progressWidth }}
-        className="fixed top-0 left-0 h-0.5 bg-linear-to-r from-[#d4a359] to-[#e8bf7a] z-9999"
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#06b6d4] z-50"
       />
 
       <CursorGlow />

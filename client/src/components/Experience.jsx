@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, History, ExternalLink } from "lucide-react";
+import { GraduationCap, History, ExternalLink, Award, Briefcase } from "lucide-react";
 
 const Experience = () => {
   const experiences = [
@@ -10,6 +10,7 @@ const Experience = () => {
       company: "IT-Grow",
       type: "Internship",
       description: "Designed and built a complete e-learning platform — responsive UI, backend, interactive features, and a progress-tracking dashboard.",
+      icon: Briefcase,
     },
     {
       period: "Sep – Oct 2024",
@@ -18,6 +19,7 @@ const Experience = () => {
       link: "https://egtnavalservices.com",
       type: "Freelance",
       description: "Modern corporate website for a naval services company, optimized to attract new clients.",
+      icon: Briefcase,
     },
     {
       period: "Jun – Aug 2025",
@@ -26,6 +28,7 @@ const Experience = () => {
       link: "https://mssmarttrading.com",
       type: "Freelance",
       description: "Professional business website aligned with brand identity and commercial objectives.",
+      icon: Briefcase,
     },
     {
       period: "Dec 2025 – Jan 2026",
@@ -34,6 +37,7 @@ const Experience = () => {
       link: "https://olivwood.netlify.app",
       type: "Founder",
       description: "Built a custom e-commerce platform with admin dashboard for a small online business.",
+      icon: Briefcase,
     },
     {
       period: "Mar – Apr 2026",
@@ -42,6 +46,7 @@ const Experience = () => {
       link: "https://msequipementsetservices.com",
       type: "Freelance",
       description: "High-performance corporate website to strengthen digital presence and client engagement.",
+      icon: Briefcase,
     },
     {
       period: "Jul – Aug 2026",
@@ -50,13 +55,14 @@ const Experience = () => {
       link:"https://jcdcommerce.com",
       type:"Freelance",
       description: "Modern, responsive corporate website optimized for presentation and client acquisition.",
+      icon: Briefcase,
     }
   ];
 
   const typeColors = {
-    Internship: "#60a5fa",
-    Freelance: "#d4a359",
-    Founder: "#a78bfa",
+    Internship: { bg: "rgba(59,130,246,0.1)", border: "rgba(59,130,246,0.3)", text: "#3b82f6" },
+    Freelance: { bg: "rgba(139,92,246,0.1)", border: "rgba(139,92,246,0.3)", text: "#8b5cf6" },
+    Founder: { bg: "rgba(16,185,129,0.1)", border: "rgba(16,185,129,0.3)", text: "#10b981" },
   };
 
   return (
@@ -64,12 +70,26 @@ const Experience = () => {
       <div className="experience-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
 
         {/* Education */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
           <div className="section-label">
-            <GraduationCap style={{ width: 12, height: 12 }} />
+            <GraduationCap style={{ width: 14, height: 14 }} />
             Education
           </div>
-          <h2 className="serif" style={{ fontSize: 36, marginBottom: 40, fontStyle: "italic" }}>Academic Path</h2>
+          <h2 style={{
+            fontSize: 36,
+            marginBottom: 40,
+            fontWeight: 800,
+            background: "linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}>
+            Academic <span className="gold-text">Path</span>
+          </h2>
 
           <div style={{ position: "relative" }} className="timeline-line">
             {[
@@ -101,32 +121,76 @@ const Experience = () => {
                 style={{ display: "flex", gap: 20, marginBottom: 28 }}
               >
                 <div className="dot" />
-                <div className="card" style={{ padding: 20, flex: 1 }}>
-                  <div className="mono" style={{ fontSize: 10, color: "var(--gold)", letterSpacing: "0.1em", marginBottom: 6 }}>
+                <motion.div
+                  className="card"
+                  whileHover={{ y: -4 }}
+                  style={{
+                    padding: 20,
+                    flex: 1,
+                    border: edu.link ? "1px solid rgba(10,185,181,0.2)" : "1px solid var(--border)",
+                  }}
+                >
+                  <div style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: edu.link ? "#10b981" : "var(--primary-light)",
+                    letterSpacing: "0.1em",
+                    marginBottom: 8,
+                    textTransform: "uppercase",
+                    fontFamily: "DM Mono",
+                  }}>
                     {edu.year}
                   </div>
-                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4 }}>{edu.title}</div>
-                  <div style={{ color: "var(--muted2)", fontSize: 13, marginBottom: edu.link ? 8 : 0 }}>{edu.inst}</div>
+                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 4, color: "var(--text)" }}>{edu.title}</div>
+                  <div style={{ color: "var(--muted2)", fontSize: 13, marginBottom: edu.link ? 12 : 0 }}>{edu.inst}</div>
                   {edu.desc && <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.6 }}>{edu.desc}</div>}
                   {edu.link && (
-                    <a href={edu.link} target="_blank" rel="noopener noreferrer"
-                      style={{ fontSize: 12, color: "var(--gold)", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
-                      View Certificate <ExternalLink style={{ width: 10, height: 10 }} />
-                    </a>
+                    <motion.a
+                      href={edu.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ x: 4 }}
+                      style={{
+                        fontSize: 12,
+                        color: "#10b981",
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 4,
+                        marginTop: 8,
+                        fontWeight: 600,
+                      }}
+                    >
+                      View Certificate <ExternalLink style={{ width: 12, height: 12 }} />
+                    </motion.a>
                   )}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Experience */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
           <div className="section-label">
-            <History style={{ width: 12, height: 12 }} />
+            <History style={{ width: 14, height: 14 }} />
             Experience
           </div>
-          <h2 className="serif" style={{ fontSize: 36, marginBottom: 40, fontStyle: "italic" }}>Work History</h2>
+          <h2 style={{
+            fontSize: 36,
+            marginBottom: 40,
+            fontWeight: 800,
+            background: "linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}>
+            Work <span className="gold-text">History</span>
+          </h2>
 
           <div style={{ position: "relative" }} className="timeline-line">
             {experiences.map((exp, i) => (
@@ -139,34 +203,73 @@ const Experience = () => {
                 style={{ display: "flex", gap: 20, marginBottom: 20 }}
               >
                 <div className="dot" />
-                <div className="card" style={{ padding: 20, flex: 1 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
-                    <span className="mono" style={{ fontSize: 10, color: "var(--gold)", letterSpacing: "0.08em" }}>{exp.period}</span>
+                <motion.div
+                  className="card"
+                  whileHover={{ y: -4 }}
+                  style={{
+                    padding: 20,
+                    flex: 1,
+                    background: typeColors[exp.type].bg,
+                    border: `1px solid ${typeColors[exp.type].border}`,
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
                     <span style={{
-                      fontSize: 10, padding: "2px 8px", borderRadius: 4,
-                      background: `${typeColors[exp.type]}18`,
-                      color: typeColors[exp.type],
-                      fontWeight: 600, fontFamily: "DM Mono",
-                    }}>{exp.type}</span>
+                      fontSize: 11,
+                      color: "var(--primary-light)",
+                      letterSpacing: "0.08em",
+                      fontFamily: "DM Mono",
+                      fontWeight: 600,
+                      textTransform: "uppercase",
+                    }}>
+                      {exp.period}
+                    </span>
+                    <span style={{
+                      fontSize: 10,
+                      padding: "4px 10px",
+                      borderRadius: 6,
+                      background: typeColors[exp.type].bg,
+                      color: typeColors[exp.type].text,
+                      fontWeight: 700,
+                      fontFamily: "DM Mono",
+                      border: `1px solid ${typeColors[exp.type].border}`,
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                    }}>
+                      {exp.type}
+                    </span>
                   </div>
-                  <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 3 }}>{exp.title}</div>
+                  <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 3, color: "var(--text)" }}>{exp.title}</div>
                   {exp.link ? (
-                    <a href={exp.link} target="_blank" rel="noopener noreferrer"
-                      style={{ fontSize: 13, color: "var(--muted2)", textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}
-                      onMouseEnter={e => e.currentTarget.style.color = "var(--gold)"}
-                      onMouseLeave={e => e.currentTarget.style.color = "var(--muted2)"}
+                    <motion.a
+                      href={exp.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ x: 4 }}
+                      style={{
+                        fontSize: 13,
+                        color: typeColors[exp.type].text,
+                        textDecoration: "none",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 4,
+                        fontWeight: 600,
+                        marginBottom: 8,
+                      }}
                     >
-                      {exp.company} <ExternalLink style={{ width: 10, height: 10 }} />
-                    </a>
+                      {exp.company} <ExternalLink style={{ width: 12, height: 12 }} />
+                    </motion.a>
                   ) : (
-                    <div style={{ fontSize: 13, color: "var(--muted2)" }}>{exp.company}</div>
+                    <div style={{ fontSize: 13, color: "var(--text-secondary)", marginBottom: 8, fontWeight: 600 }}>
+                      {exp.company}
+                    </div>
                   )}
-                  <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.6, marginTop: 6 }}>{exp.description}</p>
-                </div>
+                  <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.6 }}>{exp.description}</p>
+                </motion.div>
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

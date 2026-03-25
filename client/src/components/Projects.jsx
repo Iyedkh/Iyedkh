@@ -1,106 +1,289 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Code2 } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Code2, Github } from "lucide-react";
 
 const Projects = () => {
   const projects = [
     {
       title: "MS Smart Trading",
       description: "Responsive business website built to strengthen online presence and align with client branding and commercial goals.",
-      tags: ["MERN Stack"],
+      tags: ["MERN Stack", "Responsive Design", "Business Website"],
+      tagColors: ["#3b82f6", "#8b5cf6", "#06b6d4"],
       url: "https://mssmarttrading.com",
       year: "2025",
+      featured: true,
     },
     {
       title: "EGT Naval Services",
       description: "Corporate website showcasing naval maintenance services with optimized structure to attract new international clients.",
-      tags: ["React", "Tailwind CSS"],
+      tags: ["React", "Tailwind CSS", "Corporate Site"],
+      tagColors: ["#3b82f6", "#06b6d4", "#10b981"],
       url: "https://egtnavalservices.com",
       year: "2024",
+      featured: false,
     },
     {
       title: "JCD Commerce",
       description: "Modern, high-performance corporate website optimized for presentation and client acquisition.",
-      tags: ["React", "Tailwind CSS"],
+      tags: ["React", "Tailwind CSS", "E-commerce Ready"],
+      tagColors: ["#3b82f6", "#06b6d4", "#f59e0b"],
       url: "https://jcdcommerce.com",
       year: "2025",
+      featured: true,
     },
     {
       title: "Oliv'Wood",
       description: "Full e-commerce platform with admin dashboard, product management, order tracking, and responsive UI.",
-      tags: ["MERN Stack", "Tailwind CSS"],
+      tags: ["MERN Stack", "Admin Dashboard", "E-commerce"],
+      tagColors: ["#3b82f6", "#8b5cf6", "#06b6d4"],
       url: "https://olivwood.netlify.app",
       year: "2025",
+      featured: true,
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
     <section id="projects" style={{ paddingBottom: 80 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 56, flexWrap: "wrap", gap: 16 }}>
-        <div>
-          <div className="section-label">Portfolio</div>
-          <h2 className="serif" style={{ fontSize: "clamp(32px, 4vw, 52px)", fontStyle: "italic" }}>
-            Featured <span className="gold-text">Projects</span>
-          </h2>
+      {/* Header */}
+      <div style={{ marginBottom: 64 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 32, flexWrap: "wrap", gap: 16 }}>
+          <div>
+            <div className="section-label">Portfolio Showcase</div>
+            <h2 style={{
+              fontSize: "clamp(32px, 4vw, 52px)",
+              fontWeight: 800,
+              background: "linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>
+              Featured <span className="gold-text">Projects</span>
+            </h2>
+          </div>
+          <a href="#" style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            background: "rgba(59,130,246,0.1)",
+            border: "1px solid rgba(59,130,246,0.2)",
+            color: "var(--primary-light)",
+            padding: "10px 16px",
+            borderRadius: 8,
+            fontWeight: 600,
+            fontSize: 14,
+            textDecoration: "none",
+            transition: "all 0.2s",
+          }}
+          onMouseEnter={e => { e.currentTarget.style.background = "rgba(59,130,246,0.15)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.3)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "rgba(59,130,246,0.1)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.2)"; }}
+          >
+            View All <ArrowUpRight style={{ width: 16, height: 16 }} />
+          </a>
         </div>
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--gold)", fontWeight: 600, fontSize: 14, textDecoration: "none" }}>
-          All Projects <ArrowRight style={{ width: 14, height: 14 }} />
-        </a>
+        <p style={{ color: "var(--muted)", fontSize: 16, maxWidth: 600 }}>
+          Showcasing recent web development and data-driven projects built with modern technologies
+        </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
+      {/* Projects Grid */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: 28,
+        }}
+      >
         {projects.map((p, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            variants={itemVariants}
             className="card"
-            style={{ overflow: "hidden", display: "flex", flexDirection: "column" }}
+            whileHover={{ y: -8 }}
+            style={{
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              border: p.featured ? "1.5px solid rgba(59,130,246,0.3)" : "1px solid var(--border)",
+              position: "relative",
+            }}
           >
-            {/* iframe preview */}
-            <div style={{ height: 200, position: "relative", overflow: "hidden", background: "var(--bg3)" }}>
+            {/* Featured Badge */}
+            {p.featured && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{
+                  position: "absolute",
+                  top: 12,
+                  right: 12,
+                  zIndex: 10,
+                  background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+                  color: "white",
+                  padding: "6px 12px",
+                  borderRadius: 6,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                }}
+              >
+                ⭐ Featured
+              </motion.div>
+            )}
+
+            {/* Preview Section */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              style={{
+                height: 220,
+                position: "relative",
+                overflow: "hidden",
+                background: "var(--bg3)",
+                backgroundColor: "rgba(59,130,246,0.05)",
+              }}
+            >
               <iframe
                 src={p.url}
                 title={p.title}
-                style={{ width: "100%", height: "100%", border: "none", pointerEvents: "none" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  pointerEvents: "none",
+                  opacity: 0.6,
+                }}
                 loading="lazy"
               />
               <div style={{
-                position: "absolute", inset: 0,
-                background: "linear-gradient(to bottom, transparent 50%, var(--bg2))",
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(180deg, transparent 50%, rgba(15,15,26,0.8) 100%)",
               }} />
-              <div style={{ position: "absolute", top: 12, right: 12 }}>
-                <span className="mono" style={{ fontSize: 11, color: "var(--muted)", background: "rgba(10,10,12,0.7)", padding: "4px 8px", borderRadius: 4 }}>
-                  {p.year}
-                </span>
-              </div>
-            </div>
 
+              {/* Year Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  position: "absolute",
+                  top: 12,
+                  left: 12,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  background: "rgba(15,15,26,0.7)",
+                  padding: "6px 12px",
+                  borderRadius: 6,
+                  border: "1px solid rgba(59,130,246,0.2)",
+                  color: "var(--primary-light)",
+                  fontFamily: "DM Mono",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                {p.year}
+              </motion.div>
+            </motion.div>
+
+            {/* Content Section */}
             <div style={{ padding: 24, flex: 1, display: "flex", flexDirection: "column" }}>
-              <div style={{ display: "flex", gap: 6, marginBottom: 12, flexWrap: "wrap" }}>
-                {p.tags.map((t, j) => <span key={j} className="tag">{t}</span>)}
+              {/* Tags */}
+              <div style={{ display: "flex", gap: 8, marginBottom: 14, flexWrap: "wrap" }}>
+                {p.tags.map((t, j) => (
+                  <motion.span
+                    key={j}
+                    whileHover={{ scale: 1.05 }}
+                    className="tag"
+                    style={{
+                      background: `${p.tagColors[j]}20`,
+                      border: `1px solid ${p.tagColors[j]}40`,
+                      color: p.tagColors[j],
+                    }}
+                  >
+                    {t}
+                  </motion.span>
+                ))}
               </div>
-              <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>{p.title}</h3>
-              <p style={{ color: "var(--muted2)", fontSize: 14, lineHeight: 1.7, flex: 1 }}>{p.description}</p>
 
-              <div style={{ display: "flex", gap: 10, marginTop: 20 }}>
-                <a
-                  href={p.url} target="_blank" rel="noopener noreferrer"
+              {/* Title */}
+              <h3 style={{
+                fontSize: 20,
+                fontWeight: 700,
+                marginBottom: 10,
+                color: "var(--text)",
+                lineHeight: 1.3,
+              }}>
+                {p.title}
+              </h3>
+
+              {/* Description */}
+              <p style={{
+                color: "var(--muted2)",
+                fontSize: 14,
+                lineHeight: 1.7,
+                flex: 1,
+                marginBottom: 20,
+              }}>
+                {p.description}
+              </p>
+
+              {/* Action Buttons */}
+              <div style={{ display: "flex", gap: 10 }}>
+                <motion.a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary"
-                  style={{ textDecoration: "none", flex: 1, justifyContent: "center", fontSize: 13 }}
+                  whileHover={{ scale: 1.05 }}
+                  style={{
+                    textDecoration: "none",
+                    flex: 1,
+                    justifyContent: "center",
+                    fontSize: 14,
+                    padding: "10px 16px",
+                  }}
                 >
-                  <ExternalLink style={{ width: 14, height: 14 }} /> Live Demo
-                </a>
-                <button className="btn-secondary" style={{ padding: "10px 14px" }}>
+                  <ExternalLink style={{ width: 16, height: 16 }} />
+                  Live Demo
+                </motion.a>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  className="btn-secondary"
+                  style={{
+                    padding: "10px 14px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                  }}
+                >
                   <Code2 style={{ width: 16, height: 16 }} />
-                </button>
+                </motion.button>
               </div>
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

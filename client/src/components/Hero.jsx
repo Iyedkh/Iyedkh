@@ -1,140 +1,313 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Zap, ArrowRight, Brain } from "lucide-react";
+import { ArrowRight, Brain, Download, Mail } from "lucide-react";
 import Counter from "./Counter";
 import Me from "../assets/Me.jpeg";
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
   return (
-    <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 80 }}>
+    <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 80, paddingBottom: 80 }}>
       <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 64, alignItems: "center", width: "100%", flexWrap: "wrap" }}>
+        {/* Left Content */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
           style={{ maxWidth: 700 }}
         >
-          <div className="section-label">
-            <Zap style={{ width: 12, height: 12 }} />
-            Available for projects
-          </div>
+          {/* Status Badge */}
+          <motion.div
+            variants={itemVariants}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "8px 16px",
+              background: "rgba(16,185,129,0.1)",
+              border: "1px solid rgba(16,185,129,0.3)",
+              borderRadius: "20px",
+              marginBottom: 24,
+              backdropFilter: "blur(10px)",
+            }}
+          >
+            <div style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "#10b981",
+              boxShadow: "0 0 12px #10b981",
+              animation: "pulse 2s infinite",
+            }} />
+            <span style={{ fontSize: 12, fontWeight: 600, color: "#10b981", letterSpacing: "0.05em" }}>
+              AVAILABLE FOR PROJECTS
+            </span>
+          </motion.div>
 
-          <h1 style={{ fontSize: "clamp(42px, 6vw, 82px)", lineHeight: 1.05, fontWeight: 900, marginBottom: 24, letterSpacing: "-0.02em" }}>
-            Web Developer<br />
-            <span className="serif" style={{ fontStyle: "italic", fontSize: "0.95em" }}>& Data Analyst</span>
-          </h1>
+          {/* Main Heading */}
+          <motion.div variants={itemVariants}>
+            <h1 style={{
+              fontSize: "clamp(42px, 6.5vw, 80px)",
+              lineHeight: 1.05,
+              fontWeight: 900,
+              marginBottom: 20,
+              letterSpacing: "-0.02em",
+              background: "linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>
+              Full Stack Developer
+            </h1>
+            <h2 style={{
+              fontSize: "clamp(28px, 4vw, 52px)",
+              lineHeight: 1.2,
+              fontWeight: 700,
+              background: "linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              marginBottom: 24,
+              letterSpacing: "-0.01em",
+            }}>
+              & Data Analyst
+            </h2>
+          </motion.div>
 
-          <p style={{ fontSize: 17, lineHeight: 1.8, color: "var(--muted2)", maxWidth: 560, marginBottom: 40 }}>
-            I design and build scalable web applications while transforming complex data into
-            actionable insights — bridging the gap between elegant code and smart decisions.
-          </p>
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            style={{
+              fontSize: "clamp(15px, 1.8vw, 17px)",
+              lineHeight: 1.8,
+              color: "var(--muted2)",
+              maxWidth: 560,
+              marginBottom: 40,
+              fontWeight: 400,
+            }}
+          >
+            I design and build scalable web applications while transforming complex data into actionable insights — bridging the gap between elegant code and smart decisions.
+          </motion.p>
 
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 56 }}>
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 60 }}
+          >
             <motion.a
-              href="#projects" className="btn-primary"
-              whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              href="#projects"
+              className="btn-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               style={{ textDecoration: "none" }}
             >
-              View Work <ArrowRight style={{ width: 16, height: 16 }} />
+              View My Work <ArrowRight style={{ width: 16, height: 16 }} />
             </motion.a>
             <motion.a
-              href="#contact" className="btn-secondary"
-              whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              href="#contact"
+              className="btn-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               style={{ textDecoration: "none" }}
             >
-              Get in Touch
+              <Mail style={{ width: 16, height: 16 }} /> Get in Touch
             </motion.a>
-          </div>
+            <motion.a
+              href="/CV iyed.pdf"
+              download
+              className="btn-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ textDecoration: "none" }}
+            >
+              <Download style={{ width: 16, height: 16 }} /> Download CV
+            </motion.a>
+          </motion.div>
 
           {/* Stats row */}
-          <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
+          <motion.div
+            variants={itemVariants}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 32 }}
+          >
             {[
-              { value: 2, suffix: "+", label: "Years Experience" },
+              { value: 3, suffix: "+", label: "Years Experience" },
               { value: 5, suffix: "+", label: "Projects Shipped" },
               { value: 3, suffix: "+", label: "Certifications" },
             ].map((s, i) => (
-              <div key={i}>
-                <div className="serif" style={{ fontSize: 36, fontWeight: 400, color: "var(--gold)", lineHeight: 1 }}>
+              <motion.div
+                key={i}
+                whileInView={{ y: 0, opacity: 1 }}
+                initial={{ y: 10, opacity: 0 }}
+                transition={{ delay: 0.5 + i * 0.1 }}
+              >
+                <div style={{
+                  fontSize: "clamp(28px, 3vw, 36px)",
+                  fontWeight: 700,
+                  background: "linear-gradient(135deg, var(--primary-light), var(--accent-light))",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  lineHeight: 1,
+                  marginBottom: 6,
+                }}>
                   <Counter target={s.value} suffix={s.suffix} />
                 </div>
-                <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4, letterSpacing: "0.05em" }}>{s.label}</div>
-              </div>
+                <div style={{
+                  fontSize: 13,
+                  color: "var(--muted)",
+                  letterSpacing: "0.03em",
+                  fontWeight: 500,
+                }}>
+                  {s.label}
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Hero image card */}
+        {/* Right Image Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: "relative", flexShrink: 0 }}
         >
-          {/* Glow */}
+          {/* Gradient Background Blur */}
           <div style={{
-            position: "absolute", inset: -20,
-            background: "radial-gradient(circle at 50% 50%, rgba(212,163,89,0.15), transparent 70%)",
+            position: "absolute", inset: -30,
+            background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15), rgba(6,182,212,0.15))",
             borderRadius: "50%",
-            filter: "blur(20px)",
+            filter: "blur(40px)",
+            animation: "pulse 4s ease-in-out infinite",
           }} />
-          <div style={{
-            position: "relative",
-            width: "clamp(240px, 30vw, 380px)",
-            aspectRatio: "3/4",
-            borderRadius: 20,
-            overflow: "hidden",
-            border: "1px solid var(--border2)",
-            background: "var(--bg2)",
-          }}>
+
+          {/* Image Container */}
+          <motion.div
+            style={{
+              position: "relative",
+              width: "clamp(240px, 30vw, 380px)",
+              aspectRatio: "3/4",
+              borderRadius: 16,
+              overflow: "hidden",
+              border: "1px solid rgba(59,130,246,0.3)",
+              background: "var(--bg2)",
+            }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <img
               src={Me}
               alt="developer workspace"
-              style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.7, filter: "saturate(0.6)" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: 0.8,
+                filter: "saturate(0.7)",
+              }}
               referrerPolicy="no-referrer"
             />
             <div style={{
               position: "absolute", inset: 0,
-              background: "linear-gradient(to top, rgba(10,10,12,0.9) 0%, transparent 50%)",
+              background: "linear-gradient(to top, rgba(15,15,26,0.95) 0%, rgba(15,15,26,0.5) 40%, transparent 70%)",
             }} />
-            <div style={{
-              position: "absolute", bottom: 20, left: 20, right: 20,
-              background: "rgba(10,10,12,0.6)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid var(--border2)",
-              borderRadius: 12, padding: "14px 16px",
-              display: "flex", alignItems: "center", gap: 10,
-            }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 8px #4ade80", animation: "pulse 2s infinite" }} />
-              <span style={{ fontSize: 13, fontWeight: 500 }}>Open to freelance</span>
-            </div>
-            <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }`}</style>
-          </div>
 
-          {/* Floating badge */}
+            {/* Status Badge */}
+            <motion.div
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              style={{
+                position: "absolute",
+                bottom: 20,
+                left: 20,
+                right: 20,
+                background: "rgba(15,15,26,0.7)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(59,130,246,0.2)",
+                borderRadius: 12,
+                padding: "14px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+              }}
+            >
+              <div style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "#10b981",
+                boxShadow: "0 0 8px #10b981",
+                animation: "pulse 2s infinite",
+              }} />
+              <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text)" }}>Open to opportunities</span>
+            </motion.div>
+          </motion.div>
+
+          {/* Floating Badge */}
           <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             style={{
-              position: "absolute", top: 30, left: -24,
-              background: "var(--bg2)", border: "1px solid var(--border2)",
-              borderRadius: 12, padding: "10px 16px",
-              display: "flex", alignItems: "center", gap: 10,
-              boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+              position: "absolute",
+              top: 20,
+              left: -40,
+              background: "var(--bg2)",
+              border: "1px solid rgba(59,130,246,0.2)",
+              borderRadius: 12,
+              padding: "12px 16px",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              boxShadow: "0 8px 32px rgba(59,130,246,0.15)",
+              backdropFilter: "blur(10px)",
             }}
           >
             <div style={{
-              width: 32, height: 32, borderRadius: 8,
-              background: "var(--gold-dim)", display: "flex", alignItems: "center", justifyContent: "center",
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              background: "rgba(139,92,246,0.1)",
+              border: "1px solid rgba(139,92,246,0.3)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}>
-              <Brain style={{ width: 16, height: 16, color: "var(--gold)" }} />
+              <Brain style={{ width: 20, height: 20, color: "var(--accent-light)" }} />
             </div>
             <div>
-              <div style={{ fontSize: 11, color: "var(--muted)", fontFamily: "DM Mono" }}>MERN + AI/BI</div>
-              <div style={{ fontSize: 13, fontWeight: 600, marginTop: 1 }}>Full Stack</div>
+              <div style={{ fontSize: 11, color: "var(--muted)", fontFamily: "DM Mono", fontWeight: 600, letterSpacing: "0.1em" }}>TECH STACK</div>
+              <div style={{ fontSize: 13, fontWeight: 700, marginTop: 2, color: "var(--text)" }}>MERN + BI</div>
             </div>
           </motion.div>
         </motion.div>
       </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+      `}</style>
     </section>
   );
 };

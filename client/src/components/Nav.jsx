@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal, Menu, X } from "lucide-react";
+import { Code2, Menu, X } from "lucide-react";
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,67 +22,133 @@ const Nav = () => {
 
   return (
     <nav style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-      transition: "all 0.3s",
-      background: scrolled ? "rgba(10,10,12,0.85)" : "transparent",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 1000,
+      transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
+      background: scrolled ? "rgba(15,15,26,0.75)" : "transparent",
       backdropFilter: scrolled ? "blur(20px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
-      padding: scrolled ? "14px 0" : "22px 0",
+      borderBottom: scrolled ? "1px solid rgba(59,130,246,0.1)" : "1px solid transparent",
+      padding: scrolled ? "12px 0" : "20px 0",
     }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        padding: "0 24px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}>
+        {/* Logo */}
         <motion.a
           href="#home"
-          initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
-          style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            textDecoration: "none",
+          }}
         >
-          <div style={{
-            width: 36, height: 36, borderRadius: 8,
-            background: "var(--gold-dim)",
-            border: "1px solid rgba(212,163,89,0.3)",
-            display: "flex", alignItems: "center", justifyContent: "center",
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: 5 }}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 10,
+              background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+              border: "1px solid rgba(59,130,246,0.3)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Code2 style={{ width: 20, height: 20, color: "white" }} />
+          </motion.div>
+          <span style={{
+            fontWeight: 800,
+            fontSize: "clamp(18px, 3vw, 24px)",
+            color: "var(--text)",
+            letterSpacing: "-0.02em",
           }}>
-            <Terminal style={{ width: 16, height: 16, color: "var(--gold)" }} />
-          </div>
-          <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: 22, color: "var(--text)" }}>Iyed</span>
+            Iyed
+          </span>
         </motion.a>
 
         {/* Desktop Nav */}
-        <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden-mobile">
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 32,
+        }} className="hidden-mobile">
           {navLinks.map((l, i) => (
             <motion.a
               key={i}
               href={l.href}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.07 }}
+              transition={{ delay: i * 0.06 }}
               style={{
-                color: "var(--muted2)", fontSize: 14, fontWeight: 500,
-                textDecoration: "none", transition: "color 0.2s",
+                color: "var(--muted2)",
+                fontSize: "clamp(13px, 1.5vw, 14px)",
+                fontWeight: 500,
+                textDecoration: "none",
+                transition: "all 0.2s",
+                position: "relative",
               }}
-              onMouseEnter={e => e.target.style.color = "var(--gold)"}
-              onMouseLeave={e => e.target.style.color = "var(--muted2)"}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = "var(--primary-light)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = "var(--muted2)";
+              }}
             >
               {l.name}
             </motion.a>
           ))}
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            style={{ width: 1, height: 24, background: "var(--border)" }}
+          />
+
           <motion.a
             href="#contact"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.45 }}
             className="btn-primary"
-            style={{ textDecoration: "none" }}
+            style={{
+              textDecoration: "none",
+              fontSize: 14,
+              padding: "8px 18px",
+            }}
           >
-            Hire Me
+            Let's Talk
           </motion.a>
         </div>
 
         {/* Mobile toggle */}
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text)", padding: 8 }}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "var(--text)",
+            padding: 8,
+          }}
           className="mobile-only"
         >
-          {menuOpen ? <X /> : <Menu />}
-        </button>
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </motion.button>
       </div>
 
       <style>{`
@@ -90,27 +156,60 @@ const Nav = () => {
         @media (max-width: 767px) { .hidden-mobile { display: none !important; } }
       `}</style>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
             style={{
-              background: "var(--bg)", borderTop: "1px solid var(--border)",
+              background: "linear-gradient(180deg, var(--bg2) 0%, rgba(15,15,26,0.9) 100%)",
+              borderTop: "1px solid var(--border)",
               overflow: "hidden",
+              backdropFilter: "blur(10px)",
             }}
           >
-            <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: 20 }}>
+            <div style={{
+              padding: "24px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+            }}>
               {navLinks.map((l, i) => (
-                <a key={i} href={l.href} onClick={() => setMenuOpen(false)}
-                  style={{ color: "var(--muted2)", fontSize: 18, fontWeight: 500, textDecoration: "none" }}>
+                <motion.a
+                  key={i}
+                  href={l.href}
+                  onClick={() => setMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  style={{
+                    color: "var(--muted2)",
+                    fontSize: 16,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.color = "var(--primary-light)"}
+                  onMouseLeave={e => e.currentTarget.style.color = "var(--muted2)"}
+                >
                   {l.name}
-                </a>
+                </motion.a>
               ))}
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="btn-primary" style={{ textDecoration: "none", justifyContent: "center" }}>
-                Hire Me
-              </a>
+              <motion.a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="btn-primary"
+                whileHover={{ scale: 1.02 }}
+                style={{
+                  textDecoration: "none",
+                  justifyContent: "center",
+                  marginTop: 8,
+                }}
+              >
+                Let's Talk
+              </motion.a>
             </div>
           </motion.div>
         )}
