@@ -25,7 +25,7 @@ const Footer = () => {
           marginBottom: 48,
           paddingBottom: 32,
           borderBottom: "1px solid var(--border)",
-        }}>
+        }} className="footer-grid">
           {/* Logo & Brand */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -37,8 +37,8 @@ const Footer = () => {
               width: 40,
               height: 40,
               borderRadius: 10,
-              background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
-              border: "1px solid rgba(59,130,246,0.3)",
+              background: "linear-gradient(135deg, #d4a574, #8b4789)",
+              border: "1px solid rgba(212,165,116,0.3)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -82,7 +82,7 @@ const Footer = () => {
               textDecoration: "none",
               transition: "all 0.2s",
             }}
-            onMouseEnter={e => e.currentTarget.style.color = "#3b82f6"}
+            onMouseEnter={e => e.currentTarget.style.color = "#d4a574"}
             onMouseLeave={e => e.currentTarget.style.color = "var(--primary-light)"}
             >
               Let's Talk →
@@ -120,8 +120,8 @@ const Footer = () => {
                   transition: "all 0.2s",
                   textDecoration: "none",
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(59,130,246,0.2)"; e.currentTarget.style.color = "#3b82f6"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "rgba(59,130,246,0.1)"; e.currentTarget.style.color = "var(--muted)"; }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,165,116,0.2)"; e.currentTarget.style.color = "#d4a574"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "rgba(212,165,116,0.1)"; e.currentTarget.style.color = "var(--muted)"; }}
               >
                 <s.icon style={{ width: 18, height: 18 }} />
               </motion.a>

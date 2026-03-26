@@ -60,9 +60,9 @@ const Experience = () => {
   ];
 
   const typeColors = {
-    Internship: { bg: "rgba(59,130,246,0.1)", border: "rgba(59,130,246,0.3)", text: "#3b82f6" },
-    Freelance: { bg: "rgba(139,92,246,0.1)", border: "rgba(139,92,246,0.3)", text: "#8b5cf6" },
-    Founder: { bg: "rgba(16,185,129,0.1)", border: "rgba(16,185,129,0.3)", text: "#10b981" },
+    Internship: { bg: "rgba(212,165,116,0.1)", border: "rgba(212,165,116,0.3)", text: "#d4a574" },
+    Freelance: { bg: "rgba(139,71,137,0.1)", border: "rgba(139,71,137,0.3)", text: "#8b4789" },
+    Founder: { bg: "rgba(201,212,224,0.1)", border: "rgba(201,212,224,0.3)", text: "#c9d4e0" },
   };
 
   return (
@@ -133,7 +133,7 @@ const Experience = () => {
                   <div style={{
                     fontSize: 11,
                     fontWeight: 700,
-                    color: edu.link ? "#10b981" : "var(--primary-light)",
+                    color: edu.link ? "#d4a574" : "var(--primary-light)",
                     letterSpacing: "0.1em",
                     marginBottom: 8,
                     textTransform: "uppercase",
@@ -152,7 +152,7 @@ const Experience = () => {
                       whileHover={{ x: 4 }}
                       style={{
                         fontSize: 12,
-                        color: "#10b981",
+                        color: "#d4a574",
                         textDecoration: "none",
                         display: "flex",
                         alignItems: "center",

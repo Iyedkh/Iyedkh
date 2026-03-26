@@ -8,7 +8,7 @@ const Projects = () => {
       title: "MS Smart Trading",
       description: "Responsive business website built to strengthen online presence and align with client branding and commercial goals.",
       tags: ["MERN Stack", "Responsive Design", "Business Website"],
-      tagColors: ["#3b82f6", "#8b5cf6", "#06b6d4"],
+      tagColors: ["#d4a574", "#8b4789", "#c9d4e0"],
       url: "https://mssmarttrading.com",
       year: "2025",
       featured: true,
@@ -17,7 +17,7 @@ const Projects = () => {
       title: "EGT Naval Services",
       description: "Corporate website showcasing naval maintenance services with optimized structure to attract new international clients.",
       tags: ["React", "Tailwind CSS", "Corporate Site"],
-      tagColors: ["#3b82f6", "#06b6d4", "#10b981"],
+      tagColors: ["#d4a574", "#c9d4e0", "#a8b0ba"],
       url: "https://egtnavalservices.com",
       year: "2024",
       featured: false,
@@ -26,7 +26,7 @@ const Projects = () => {
       title: "JCD Commerce",
       description: "Modern, high-performance corporate website optimized for presentation and client acquisition.",
       tags: ["React", "Tailwind CSS", "E-commerce Ready"],
-      tagColors: ["#3b82f6", "#06b6d4", "#f59e0b"],
+      tagColors: ["#d4a574", "#c9d4e0", "#8b4789"],
       url: "https://jcdcommerce.com",
       year: "2025",
       featured: true,
@@ -35,7 +35,7 @@ const Projects = () => {
       title: "Oliv'Wood",
       description: "Full e-commerce platform with admin dashboard, product management, order tracking, and responsive UI.",
       tags: ["MERN Stack", "Admin Dashboard", "E-commerce"],
-      tagColors: ["#3b82f6", "#8b5cf6", "#06b6d4"],
+      tagColors: ["#d4a574", "#8b4789", "#c9d4e0"],
       url: "https://olivwood.netlify.app",
       year: "2025",
       featured: true,
@@ -108,9 +108,10 @@ const Projects = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
+        className="projects-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: 28,
         }}
       >
@@ -139,7 +140,7 @@ const Projects = () => {
                   top: 12,
                   right: 12,
                   zIndex: 10,
-                  background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+                  background: "linear-gradient(135deg, #d4a574, #8b4789)",
                   color: "white",
                   padding: "6px 12px",
                   borderRadius: 6,

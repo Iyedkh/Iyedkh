@@ -4,9 +4,9 @@ import { AtSign, Phone, MapPin, Github, Linkedin, ArrowRight, Send } from "lucid
 
 const Contact = () => {
   const contactInfo = [
-    { icon: AtSign, label: "Email", value: "iyedkhouildi12@gmail.com", color: "#3b82f6" },
-    { icon: Phone, label: "Phone", value: "+216 93 117 612", color: "#8b5cf6" },
-    { icon: MapPin, label: "Location", value: "Bizerte, Tunisia", color: "#06b6d4" },
+    { icon: AtSign, label: "Email", value: "iyedkhouildi12@gmail.com", color: "#d4a574" },
+    { icon: Phone, label: "Phone", value: "+216 93 117 612", color: "#8b4789" },
+    { icon: MapPin, label: "Location", value: "Bizerte, Tunisia", color: "#c9d4e0" },
   ];
 
   const socials = [
@@ -133,7 +133,7 @@ const Contact = () => {
                   textDecoration: "none",
                   color: "var(--muted)",
                   transition: "all 0.2s",
-                  border: "1px solid rgba(59,130,246,0.2)",
+                  border: "1px solid rgba(212,165,116,0.2)",
                 }}
               >
                 <s.icon style={{ width: 20, height: 20 }} />
@@ -153,13 +153,13 @@ const Contact = () => {
           className="card"
           style={{
             padding: 36,
-            background: "linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05))",
-            border: "1px solid rgba(59,130,246,0.15)",
+            background: "linear-gradient(135deg, rgba(212,165,116,0.05), rgba(139,71,137,0.05))",
+            border: "1px solid rgba(212,165,116,0.15)",
           }}
         >
           <form style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {/* Name & Email Row */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div className="contact-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}

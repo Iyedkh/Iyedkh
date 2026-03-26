@@ -4,10 +4,10 @@ import { Briefcase, GraduationCap, Code2, BarChart3, Download, Mail } from "luci
 
 const About = () => {
   const stats = [
-    { icon: Briefcase, title: "Experience", value: "3+ Years", sub: "Building production apps", color: "#3b82f6" },
-    { icon: GraduationCap, title: "Education", value: "BI Degree", sub: "ISG Bizerte", color: "#8b5cf6" },
-    { icon: Code2, title: "Stack", value: "MERN", sub: "React · Node · MongoDB", color: "#06b6d4" },
-    { icon: BarChart3, title: "Analytics", value: "BI Tools", sub: "Power BI · Tableau · Python", color: "#10b981" },
+    { icon: Briefcase, title: "Experience", value: "3+ Years", sub: "Building production apps", color: "#d4a574" },
+    { icon: GraduationCap, title: "Education", value: "BI Degree", sub: "ISG Bizerte", color: "#8b4789" },
+    { icon: Code2, title: "Stack", value: "MERN", sub: "React · Node · MongoDB", color: "#c9d4e0" },
+    { icon: BarChart3, title: "Analytics", value: "BI Tools", sub: "Power BI · Tableau · Python", color: "#a8b0ba" },
   ];
 
   return (

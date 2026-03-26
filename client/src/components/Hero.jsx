@@ -27,7 +27,7 @@ const Hero = () => {
 
   return (
     <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 80, paddingBottom: 80 }}>
-      <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 64, alignItems: "center", width: "100%", flexWrap: "wrap" }}>
+      <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 64, alignItems: "center", width: "100%", flexWrap: "wrap", "@media (max-width: 768px)": { gridTemplateColumns: "1fr" } }}>
         {/* Left Content */}
         <motion.div
           variants={containerVariants}
@@ -43,8 +43,8 @@ const Hero = () => {
               alignItems: "center",
               gap: 10,
               padding: "8px 16px",
-              background: "rgba(16,185,129,0.1)",
-              border: "1px solid rgba(16,185,129,0.3)",
+              background: "rgba(212,165,116,0.1)",
+              border: "1px solid rgba(212,165,116,0.3)",
               borderRadius: "20px",
               marginBottom: 24,
               backdropFilter: "blur(10px)",
@@ -54,11 +54,11 @@ const Hero = () => {
               width: 6,
               height: 6,
               borderRadius: "50%",
-              background: "#10b981",
-              boxShadow: "0 0 12px #10b981",
+              background: "#d4a574",
+              boxShadow: "0 0 12px #d4a574",
               animation: "pulse 2s infinite",
             }} />
-            <span style={{ fontSize: 12, fontWeight: 600, color: "#10b981", letterSpacing: "0.05em" }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: "#d4a574", letterSpacing: "0.05em" }}>
               AVAILABLE FOR PROJECTS
             </span>
           </motion.div>
@@ -82,7 +82,7 @@ const Hero = () => {
               fontSize: "clamp(28px, 4vw, 52px)",
               lineHeight: 1.2,
               fontWeight: 700,
-              background: "linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%)",
+              background: "linear-gradient(135deg, #d4a574 0%, #8b4789 50%, #c9d4e0 100%)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -189,6 +189,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden-mobile"
           style={{ position: "relative", flexShrink: 0 }}
         >
           {/* Gradient Background Blur */}
@@ -255,8 +256,8 @@ const Hero = () => {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                background: "#10b981",
-                boxShadow: "0 0 8px #10b981",
+                background: "#d4a574",
+                boxShadow: "0 0 8px #d4a574",
                 animation: "pulse 2s infinite",
               }} />
               <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text)" }}>Open to opportunities</span>

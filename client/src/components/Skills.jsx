@@ -8,31 +8,31 @@ const Skills = () => {
       category: "Frontend",
       items: ["HTML5","CSS3","JavaScript","TypeScript","React","Next.js","Tailwind CSS","Bootstrap"],
       proficiency: 92,
-      color: "#3b82f6",
+      color: "#d4a574",
     },
     {
       category: "Backend",
       items: ["Node.js","Express.js","REST APIs","Spring Boot","Next.js API Routes"],
       proficiency: 85,
-      color: "#8b5cf6",
+      color: "#8b4789",
     },
     {
       category: "Databases",
       items: ["MongoDB","SQL","PostgreSQL"],
       proficiency: 80,
-      color: "#06b6d4",
+      color: "#c9d4e0",
     },
     {
       category: "Data & BI",
       items: ["Python","Pandas","NumPy","Machine Learning","Power BI","Tableau","Data Visualization","Excel"],
       proficiency: 88,
-      color: "#10b981",
+      color: "#a8b0ba",
     },
     {
       category: "Tools",
       items: ["Git","GitHub"],
       proficiency: 90,
-      color: "#f59e0b",
+      color: "#d4a574",
     },
   ];
 
@@ -162,7 +162,7 @@ const Skills = () => {
             </div>
 
             {/* Skills Items */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: 12 }} className="skills-grid-mobile">
               {group.items.map((skill, i) => (
                 <motion.div
                   key={i}
