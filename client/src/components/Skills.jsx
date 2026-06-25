@@ -7,31 +7,31 @@ const Skills = () => {
     {
       category: "Frontend",
       items: ["HTML5","CSS3","JavaScript","TypeScript","React","Next.js","Tailwind CSS","Bootstrap"],
-      proficiency: 92,
+      proficiency: 100,
       color: "#d4a574",
     },
     {
       category: "Backend",
       items: ["Node.js","Express.js","REST APIs","Spring Boot","Next.js API Routes"],
-      proficiency: 85,
+      proficiency: 100,
       color: "#8b4789",
     },
     {
       category: "Databases",
       items: ["MongoDB","SQL","PostgreSQL"],
-      proficiency: 80,
+      proficiency: 100,
       color: "#c9d4e0",
     },
     {
       category: "Data & BI",
       items: ["Python","Pandas","NumPy","Machine Learning","Power BI","Tableau","Data Visualization","Excel"],
-      proficiency: 88,
+      proficiency: 100,
       color: "#a8b0ba",
     },
     {
       category: "Tools",
       items: ["Git","GitHub"],
-      proficiency: 90,
+      proficiency: 100,
       color: "#d4a574",
     },
   ];
@@ -119,24 +119,7 @@ const Skills = () => {
                   </h3>
                 </div>
 
-                {/* Proficiency Badge */}
-                <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "6px 12px",
-                  background: `rgba(${parseInt(group.color.slice(1,3),16)}, ${parseInt(group.color.slice(3,5),16)}, ${parseInt(group.color.slice(5,7),16)}, 0.1)`,
-                  border: `1px solid rgba(${parseInt(group.color.slice(1,3),16)}, ${parseInt(group.color.slice(3,5),16)}, ${parseInt(group.color.slice(5,7),16)}, 0.3)`,
-                  borderRadius: "20px",
-                }}>
-                  <span style={{
-                    fontSize: 12,
-                    fontWeight: 600,
-                    color: group.color,
-                  }}>
-                    {group.proficiency}%
-                  </span>
-                </div>
+                
               </div>
 
               {/* Progress Bar */}

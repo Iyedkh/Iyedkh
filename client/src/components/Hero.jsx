@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Brain, Download, Mail } from "lucide-react";
 import Counter from "./Counter";
-import Me from "../assets/Me.jpeg";
+import Me from "../assets/Me.png";
 
 const Hero = () => {
   const containerVariants = {
