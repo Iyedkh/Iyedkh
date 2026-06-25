@@ -5,6 +5,7 @@ import { Code2, Menu, X } from "lucide-react";
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -20,6 +21,36 @@ const Nav = () => {
     { name: "Experience", href: "#experience" },
   ];
 
+  useEffect(() => {
+    const sections = navLinks.map(l => l.href.substring(1));
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -55% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
   return (
     <nav style={{
       position: "fixed",
@@ -28,9 +59,9 @@ const Nav = () => {
       right: 0,
       zIndex: 1000,
       transition: "all 0.3s cubic-bezier(0.4,0,0.2,1)",
-      background: scrolled ? "rgba(15,15,26,0.75)" : "transparent",
+      background: scrolled ? "rgba(10,10,10,0.85)" : "transparent",
       backdropFilter: scrolled ? "blur(20px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(59,130,246,0.1)" : "1px solid transparent",
+      borderBottom: scrolled ? "1px solid rgba(212,165,116,0.1)" : "1px solid transparent",
       padding: scrolled ? "12px 0" : "20px 0",
     }}>
       <div style={{
@@ -84,31 +115,50 @@ const Nav = () => {
           alignItems: "center",
           gap: 32,
         }} className="hidden-mobile">
-          {navLinks.map((l, i) => (
-            <motion.a
-              key={i}
-              href={l.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.06 }}
-              style={{
-                color: "var(--muted2)",
-                fontSize: "clamp(13px, 1.5vw, 14px)",
-                fontWeight: 500,
-                textDecoration: "none",
-                transition: "all 0.2s",
-                position: "relative",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = "var(--primary-light)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = "var(--muted2)";
-              }}
-            >
-              {l.name}
-            </motion.a>
-          ))}
+          {navLinks.map((l, i) => {
+            const isActive = activeSection === l.href.substring(1);
+            return (
+              <motion.a
+                key={i}
+                href={l.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06 }}
+                style={{
+                  color: isActive ? "var(--primary-light)" : "var(--muted2)",
+                  fontSize: "clamp(13px, 1.5vw, 14px)",
+                  fontWeight: isActive ? 700 : 500,
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                  position: "relative",
+                  display: "inline-block",
+                  padding: "4px 0",
+                }}
+                onMouseEnter={e => {
+                  if (!isActive) e.currentTarget.style.color = "var(--primary-light)";
+                }}
+                onMouseLeave={e => {
+                  if (!isActive) e.currentTarget.style.color = "var(--muted2)";
+                }}
+              >
+                {l.name}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    style={{
+                      position: "absolute",
+                      bottom: -4,
+                      left: 0,
+                      right: 0,
+                      height: 2,
+                      borderRadius: 1,
+                      background: "linear-gradient(90deg, var(--primary), var(--accent))",
+                    }}
+                  />
+                )}
+              </motion.a>
+            );
+          })}
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -177,26 +227,30 @@ const Nav = () => {
               flexDirection: "column",
               gap: 16,
             }}>
-              {navLinks.map((l, i) => (
-                <motion.a
-                  key={i}
-                  href={l.href}
-                  onClick={() => setMenuOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  style={{
-                    color: "var(--muted2)",
-                    fontSize: 16,
-                    fontWeight: 600,
-                    textDecoration: "none",
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.color = "var(--primary-light)"}
-                  onMouseLeave={e => e.currentTarget.style.color = "var(--muted2)"}
-                >
-                  {l.name}
-                </motion.a>
-              ))}
+              {navLinks.map((l, i) => {
+                const isActive = activeSection === l.href.substring(1);
+                return (
+                  <motion.a
+                    key={i}
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    style={{
+                      color: isActive ? "var(--primary-light)" : "var(--muted2)",
+                      fontSize: 16,
+                      fontWeight: 600,
+                      textDecoration: "none",
+                      borderLeft: isActive ? "2px solid var(--primary)" : "2px solid transparent",
+                      paddingLeft: 12,
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    {l.name}
+                  </motion.a>
+                );
+              })}
               <motion.a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}

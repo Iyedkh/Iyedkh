@@ -1,8 +1,10 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Code2, Github } from "lucide-react";
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("All");
+
   const projects = [
     {
       title: "MS Smart Trading",
@@ -51,11 +53,19 @@ const Projects = () => {
     },
   ];
 
+  const filteredProjects = projects.filter((p) => {
+    if (activeFilter === "All") return true;
+    if (activeFilter === "Featured") return p.featured;
+    if (activeFilter === "MERN Stack") return p.tags.includes("MERN Stack");
+    if (activeFilter === "React & Tailwind") return p.tags.includes("React") || p.tags.includes("Tailwind CSS");
+    return true;
+  });
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
@@ -86,12 +96,12 @@ const Projects = () => {
               Featured <span className="gold-text">Projects</span>
             </h2>
           </div>
-          <a href="#" style={{
+          <a href="https://github.com/Iyedkh" target="_blank" rel="noopener noreferrer" style={{
             display: "inline-flex",
             alignItems: "center",
             gap: 8,
-            background: "rgba(59,130,246,0.1)",
-            border: "1px solid rgba(59,130,246,0.2)",
+            background: "rgba(212,165,116,0.1)",
+            border: "1px solid rgba(212,165,116,0.2)",
             color: "var(--primary-light)",
             padding: "10px 16px",
             borderRadius: 8,
@@ -100,15 +110,44 @@ const Projects = () => {
             textDecoration: "none",
             transition: "all 0.2s",
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = "rgba(59,130,246,0.15)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.3)"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = "rgba(59,130,246,0.1)"; e.currentTarget.style.borderColor = "rgba(59,130,246,0.2)"; }}
+          onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,165,116,0.15)"; e.currentTarget.style.borderColor = "rgba(212,165,116,0.3)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "rgba(212,165,116,0.1)"; e.currentTarget.style.borderColor = "rgba(212,165,116,0.2)"; }}
           >
-            View All <ArrowUpRight style={{ width: 16, height: 16 }} />
+            View All Code <ArrowUpRight style={{ width: 16, height: 16 }} />
           </a>
         </div>
-        <p style={{ color: "var(--muted)", fontSize: 16, maxWidth: 600 }}>
+        <p style={{ color: "var(--muted)", fontSize: 16, maxWidth: 600, marginBottom: 40 }}>
           Showcasing recent web development and data-driven projects built with modern technologies
         </p>
+
+        {/* Filter Buttons */}
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", margin: "16px 0 0 0" }}>
+          {["All", "MERN Stack", "React & Tailwind", "Featured"].map((f) => {
+            const isActive = activeFilter === f;
+            return (
+              <motion.button
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  background: isActive ? "linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%)" : "rgba(212,165,116,0.04)",
+                  color: isActive ? "#fff" : "var(--muted)",
+                  border: isActive ? "none" : "1px solid rgba(212,165,116,0.15)",
+                  padding: "8px 18px",
+                  borderRadius: 8,
+                  fontWeight: 600,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  boxShadow: isActive ? "0 4px 12px rgba(212,165,116,0.15)" : "none",
+                }}
+              >
+                {f}
+              </motion.button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Projects Grid */}
@@ -124,56 +163,74 @@ const Projects = () => {
           gap: 28,
         }}
       >
-        {projects.map((p, i) => (
-          <motion.div
-            key={i}
-            variants={itemVariants}
-            className="card"
-            whileHover={{ y: -8 }}
-            style={{
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              border: p.featured ? "1.5px solid rgba(59,130,246,0.3)" : "1px solid var(--border)",
-              position: "relative",
-            }}
-          >
-            {/* Featured Badge */}
-            {p.featured && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{
-                  position: "absolute",
-                  top: 12,
-                  right: 12,
-                  zIndex: 10,
-                  background: "linear-gradient(135deg, #d4a574, #8b4789)",
-                  color: "white",
-                  padding: "6px 12px",
-                  borderRadius: 6,
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                ⭐ Featured
-              </motion.div>
-            )}
-
-            {/* Preview Section */}
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((p, i) => (
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              layout
+              key={p.title}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+              className="card"
+              whileHover={{ y: -8 }}
               style={{
-                height: 220,
-                position: "relative",
                 overflow: "hidden",
-                background: "var(--bg3)",
-                backgroundColor: "rgba(59,130,246,0.05)",
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                border: p.featured ? "1.5px solid rgba(212,165,116,0.3)" : "1px solid var(--border)",
+                position: "relative",
               }}
             >
+              {/* Featured Badge */}
+              {p.featured && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  style={{
+                    position: "absolute",
+                    top: 12,
+                    right: 12,
+                    zIndex: 10,
+                    background: "linear-gradient(135deg, #d4a574, #8b4789)",
+                    color: "white",
+                    padding: "6px 12px",
+                    borderRadius: 6,
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  ⭐ Featured
+                </motion.div>
+              )}
+
+              {/* Preview Section */}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                style={{
+                  height: 220,
+                  position: "relative",
+                  overflow: "hidden",
+                  background: "var(--bg3)",
+                  backgroundColor: "rgba(212,165,116,0.03)",
+                }}
+              >
+                {/* Browser Controls decoration */}
+                <div style={{
+                  position: "absolute",
+                  top: 12,
+                  left: 12,
+                  display: "flex",
+                  gap: 6,
+                  zIndex: 10,
+                }}>
+                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ff5f56" }} />
+                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ffbd2e" }} />
+                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#27c93f" }} />
+                </div>
               <iframe
                 src={p.url}
                 title={p.title}
@@ -293,6 +350,7 @@ const Projects = () => {
             </div>
           </motion.div>
         ))}
+        </AnimatePresence>
       </motion.div>
     </section>
   );

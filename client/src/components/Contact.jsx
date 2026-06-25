@@ -1,8 +1,21 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { AtSign, Phone, MapPin, Github, Linkedin, ArrowRight, Send } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AtSign, Phone, MapPin, Github, Linkedin, ArrowRight, Send, CheckCircle } from "lucide-react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 4000);
+  };
+
   const contactInfo = [
     { icon: AtSign, label: "Email", value: "iyedkhouildi12@gmail.com", color: "#d4a574" },
     { icon: Phone, label: "Phone", value: "+216 93 117 612", color: "#8b4789" },
@@ -155,86 +168,143 @@ const Contact = () => {
             padding: 36,
             background: "linear-gradient(135deg, rgba(212,165,116,0.05), rgba(139,71,137,0.05))",
             border: "1px solid rgba(212,165,116,0.15)",
+            position: "relative",
+            minHeight: 440,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
           }}
         >
-          <form style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {/* Name & Email Row */}
-            <div className="contact-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
+          <AnimatePresence mode="wait">
+            {!submitted ? (
+              <motion.form
+                key="form"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35 }}
+                onSubmit={handleSubmit}
+                style={{ display: "flex", flexDirection: "column", gap: 20, width: "100%" }}
               >
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  style={{ marginTop: 8 }}
-                />
-              </motion.div>
+                {/* Name & Email Row */}
+                <div className="contact-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.15 }}
+                  >
+                    <label>Full Name</label>
+                    <input
+                      type="text"
+                      placeholder="John Doe"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      style={{ marginTop: 8 }}
+                    />
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <label>Email Address</label>
+                    <input
+                      type="email"
+                      placeholder="john@example.com"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      style={{ marginTop: 8 }}
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Subject */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.25 }}
+                >
+                  <label>Subject</label>
+                  <input
+                    type="text"
+                    placeholder="Project inquiry"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    style={{ marginTop: 8 }}
+                  />
+                </motion.div>
+
+                {/* Message */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <label>Message</label>
+                  <textarea
+                    placeholder="Tell me about your project..."
+                    rows={5}
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    style={{ marginTop: 8, resize: "none" }}
+                  />
+                </motion.div>
+
+                {/* Submit Button */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-primary"
+                  type="submit"
+                  style={{
+                    width: "100%",
+                    justifyContent: "center",
+                    padding: "14px 28px",
+                    fontSize: 15,
+                    marginTop: 8,
+                  }}
+                >
+                  <Send style={{ width: 17, height: 17 }} /> Send Message
+                </motion.button>
+              </motion.form>
+            ) : (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.35 }}
+                style={{
+                  textAlign: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 16,
+                  width: "100%",
+                }}
               >
-                <label>Email Address</label>
-                <input
-                  type="email"
-                  placeholder="john@example.com"
-                  style={{ marginTop: 8 }}
-                />
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                >
+                  <CheckCircle style={{ width: 64, height: 64, color: "#d4a574" }} />
+                </motion.div>
+                <h3 style={{ fontSize: 24, fontWeight: 700, color: "var(--text)" }}>Thank You!</h3>
+                <p style={{ color: "var(--muted2)", fontSize: 15, maxWidth: 320, lineHeight: 1.6 }}>
+                  Your message has been sent successfully. I will get back to you as soon as possible!
+                </p>
               </motion.div>
-            </div>
-
-            {/* Subject */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.25 }}
-            >
-              <label>Subject</label>
-              <input
-                type="text"
-                placeholder="Project inquiry"
-                style={{ marginTop: 8 }}
-              />
-            </motion.div>
-
-            {/* Message */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-            >
-              <label>Message</label>
-              <textarea
-                placeholder="Tell me about your project..."
-                rows={5}
-                style={{ marginTop: 8, resize: "none" }}
-              />
-            </motion.div>
-
-            {/* Submit Button */}
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="btn-primary"
-              type="submit"
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                padding: "14px 28px",
-                fontSize: 15,
-                marginTop: 8,
-              }}
-            >
-              <Send style={{ width: 17, height: 17 }} /> Send Message
-            </motion.button>
-          </form>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
