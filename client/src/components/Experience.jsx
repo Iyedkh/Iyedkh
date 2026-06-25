@@ -31,15 +31,6 @@ const Experience = () => {
       icon: Briefcase,
     },
     {
-      period: "Dec 2025 – Jan 2026",
-      title: "Founder & Web Developer",
-      company: "Oliv'Wood",
-      link: "https://olivwood.netlify.app",
-      type: "Founder",
-      description: "Built a custom e-commerce platform with admin dashboard for a small online business.",
-      icon: Briefcase,
-    },
-    {
       period: "Mar – Apr 2026",
       title: "Freelance Web Developer",
       company: "MS Équipements et Services",
@@ -48,15 +39,25 @@ const Experience = () => {
       description: "High-performance corporate website to strengthen digital presence and client engagement.",
       icon: Briefcase,
     },
+    
     {
-      period: "Jul – Aug 2026",
+      period: "Jan – May 2026",
       title: " Freelance Web developer",
       company: "JCD Commerce",
       link:"https://jcdcommerce.com",
       type:"Freelance",
-      description: "Modern, responsive corporate website optimized for presentation and client acquisition.",
+      description: "High-performance e-commerce platform built with the MERN stack, featuring an intuitive cart, secure checkout, and backend order management.",
       icon: Briefcase,
-    }
+    },
+    {
+      period: "May 2026",
+      title: "Freelance Web Developer",
+      company: "Oliv'Or",
+      link: "https://olivor.tn",
+      type: "Freelance",
+      description: "Modern and responsive vitrine website built using React and Tailwind CSS to showcase premium olive oil products and company heritage.",
+      icon: Briefcase,
+    },
   ];
 
   const typeColors = {
