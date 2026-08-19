@@ -1,34 +1,46 @@
 <div align="center">
 
-# Hi, I'm Iyed 👋
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Hi%2C%20I'm%20Iyed%20%F0%9F%91%8B&fontSize=48&fontColor=fff&animation=fadeIn&fontAlignY=35&desc=Full-Stack%20Dev%20%7C%20Data%20Analyst%20%7C%20Professional%20Bug%20Creator&descAlignY=55&descSize=18" width="100%"/>
 
-### Full-Stack Developer · Data Analyst · Chef de Département IT @ JCD Commerce
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=D4AF37&center=true&vCenter=true&width=600&lines=console.log('Hello+World')+%E2%80%94+every+dev's+first+lie;Turning+coffee+%E2%98%95+into+MERN+stack+apps;Debugging%3A+99%25+staring%2C+1%25+typing;Currently+building+OLIV'OR+%26+TANIT+GOLD+%F0%9F%8C%B4" alt="Typing SVG" />
 
-<em>Building premium digital products — from MERN stack apps to data-driven dashboards.</em>
-
-<br/>
+<br/><br/>
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-000?style=for-the-badge&logo=vercel&logoColor=white)](#)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](#)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](#)
 
+<img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="280"/>
+
 </div>
 
 <br/>
 
-## About Me
+## 🃏 About Me (the honest version)
 
-- 🏢 Chef de Département IT at **JCD Commerce**, Ariana, Tunisia
-- 💻 2+ years across **MERN stack**, RESTful APIs, and full-stack development
-- 📊 Data Analyst experience with **Power BI** and **Python**
-- 🎓 Bachelor's in Business Intelligence — ISG Bizerte, plus GOMYCODE bootcamps in Data Science & Software Development
-- 🚀 Building **TANIT GOLD** (luxury Tunisian dates brand) and **OLIV'OR** (premium olive oil e-commerce), alongside co-founding **Devora**, a web/mobile dev agency
-- 🌍 Actively exploring international opportunities, with a focus on Northern/Baltic Europe
-- 🏋️ When I'm not coding — training with an evidence-based approach to strength & physique
+```javascript
+const iyed = {
+  role: "Chef de Département IT @ JCD Commerce 🇹🇳",
+  code: ["JavaScript", "Python", "SQL"],
+  currentlyBuilding: ["OLIV'OR 🫒", "TANIT GOLD 🌴", "Devora ⚙️"],
+  currentlyFighting: "React re-renders at 2am",
+  education: "BI @ ISG Bizerte + GOMYCODE bootcamps",
+  askMeAbout: ["Power BI dashboards", "V-tapers", "why my last commit says 'fix'"],
+  funFact: "I've said 'it works on my machine' more times than I've said 'good morning'",
+  currentGoal: "Relocating to Northern Europe ❄️ (send Wi-Fi recommendations)"
+};
+```
+
+- 🏢 Building things at **JCD Commerce**, Ariana, Tunisia — official title, unofficial job description: "guy who fixes it"
+- 💻 2+ years of **MERN stack**, RESTful APIs, and convincing bugs to become features
+- 📊 **Power BI** + **Python** — I make numbers look busy in charts
+- 🚀 Running **TANIT GOLD** and **OLIV'OR** on the side, because sleep is a scam anyway
+- 🏋️ Also debugging my own physique — Push/Pull/Legs split, evidence-based, ego-based cheat days
+- 🌍 Actively plotting my escape to Northern/Baltic Europe (Estonia, this is a sign)
 
 <br/>
 
-## Tech Stack
+## 🛠️ Tech Stack (aka my toxic relationships)
 
 <div align="center">
 
@@ -41,6 +53,12 @@
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=flat-square&logo=powerbi&logoColor=black)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+
+<br/>
+
+<img src="https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif" width="260"/>
+
+<sub>me and CSS, every single time</sub>
 
 </div>
 
@@ -79,21 +97,10 @@ Web & mobile development agency delivering vitrine sites, e-commerce, SaaS, and 
 
 <br/>
 
-## GitHub Stats
 
-<div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=dark&hide_border=true&count_private=true" alt="GitHub Stats" width="48%"/>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=dark&hide_border=true" alt="Streak Stats" width="48%"/>
+### 🤝 Let's connect and build something great (or argue about tabs vs spaces)
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=dark&hide_border=true" alt="Top Languages" width="48%"/>
-
-</div>
-
-<br/>
-
-<div align="center">
-
-### Let's connect and build something great.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%"/>
 
 </div>
