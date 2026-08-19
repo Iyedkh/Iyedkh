@@ -45,6 +45,11 @@
     letter-spacing: -0.01em;
   }
 
+  [dir="rtl"], [lang="ar"] {
+    font-family: 'Cairo', var(--font-sans);
+    letter-spacing: 0;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;

@@ -4,8 +4,11 @@ import { ArrowRight, Download, Mail, Sparkles, Code2, Database, BarChart3, Check
 import Counter from "./Counter";
 import Me from "../assets/Me.png";
 import { toast } from "sonner";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Hero = () => {
+  const { t, isRTL } = useLanguage();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -27,8 +30,8 @@ const Hero = () => {
   };
 
   const handleDownloadCV = () => {
-    toast.success("Downloading Curriculum Vitae", {
-      description: "Iyed Khouildi — Full-Stack Developer & Data Analyst",
+    toast.success(t.hero.cvToastTitle, {
+      description: t.hero.cvToastDesc,
       duration: 3500,
     });
   };
@@ -64,17 +67,17 @@ const Hero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span>Available for Projects & Remote Roles</span>
+              <span>{t.hero.statusBadge}</span>
             </div>
           </motion.div>
 
           {/* Editorial Display Heading */}
           <motion.div variants={itemVariants} className="space-y-1 mb-6">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.035em] text-white leading-[1.08]">
-              Full-Stack Developer
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.035em] text-white leading-[1.12]">
+              {t.hero.title1}
             </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] gold-text leading-[1.15]">
-              & Data Analyst
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] gold-text leading-[1.18]">
+              {t.hero.title2}
             </h2>
           </motion.div>
 
@@ -83,7 +86,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-base sm:text-lg text-zinc-300 max-w-xl leading-relaxed mb-8 font-normal"
           >
-            I craft high-performance web applications and transform complex datasets into actionable business intelligence. Merging clean software engineering with analytical precision.
+            {t.hero.description}
           </motion.p>
 
           {/* CTA Cluster */}
@@ -95,8 +98,8 @@ const Hero = () => {
               href="#projects"
               className="btn-apple-primary w-full sm:w-auto justify-center"
             >
-              <span>Explore Projects</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>{t.hero.exploreProjects}</span>
+              <ArrowRight className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
             </a>
 
             <a
@@ -104,7 +107,7 @@ const Hero = () => {
               className="btn-apple-secondary w-full sm:w-auto justify-center"
             >
               <Mail className="w-4 h-4 text-zinc-400" />
-              <span>Contact Me</span>
+              <span>{t.hero.contactMe}</span>
             </a>
 
             <a
@@ -115,7 +118,7 @@ const Hero = () => {
               title="Download Resume PDF"
             >
               <Download className="w-4 h-4 text-[#d4a574]" />
-              <span>Download CV</span>
+              <span>{t.hero.downloadCv}</span>
             </a>
           </motion.div>
 
@@ -129,7 +132,7 @@ const Hero = () => {
                 <Counter target={3} suffix="+" />
               </div>
               <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
-                Years Experience
+                {t.hero.stats.yearsExperience}
               </div>
             </div>
 
@@ -138,7 +141,7 @@ const Hero = () => {
                 <Counter target={5} suffix="+" />
               </div>
               <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
-                Shipped Systems
+                {t.hero.stats.shippedSystems}
               </div>
             </div>
 
@@ -147,7 +150,7 @@ const Hero = () => {
                 <Counter target={3} suffix="+" />
               </div>
               <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
-                Certifications
+                {t.hero.stats.certifications}
               </div>
             </div>
           </motion.div>
@@ -183,10 +186,10 @@ const Hero = () => {
               {/* Top Pill: Location & Degree */}
               <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                 <span className="px-3 py-1 rounded-full text-[11px] font-mono font-medium tracking-wide bg-black/60 backdrop-blur-md border border-white/10 text-zinc-300">
-                  📍 Bizerte, Tunisia
+                  {t.hero.card.location}
                 </span>
                 <span className="px-3 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wide bg-[#d4a574]/20 backdrop-blur-md border border-[#d4a574]/30 text-[#ebd0ad]">
-                  BI Degree
+                  {t.hero.card.degree}
                 </span>
               </div>
 
@@ -197,7 +200,7 @@ const Hero = () => {
                     Iyed Khouildi
                   </span>
                   <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" /> 100% Quality
+                    <CheckCircle2 className="w-3.5 h-3.5" /> {t.hero.card.quality}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
@@ -210,7 +213,7 @@ const Hero = () => {
                     </span>
                   ))}
                   <span className="px-2 py-0.5 rounded-md text-[10px] font-mono text-[#ebd0ad] bg-[#d4a574]/15 border border-[#d4a574]/30">
-                    +4 more
+                    {t.hero.card.more}
                   </span>
                 </div>
               </div>
@@ -220,17 +223,17 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-4 -left-4 sm:-left-6 p-3 rounded-2xl bg-[#111116]/90 border border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-3"
+              className={`absolute -bottom-4 ${isRTL ? "-right-4 sm:-right-6" : "-left-4 sm:-left-6"} p-3 rounded-2xl bg-[#111116]/90 border border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-3`}
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#d4a574]/20 to-[#8b4789]/20 border border-[#d4a574]/30 flex items-center justify-center text-[#ebd0ad]">
                 <Code2 className="w-5 h-5" />
               </div>
               <div>
                 <div className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase">
-                  CORE FOCUS
+                  {t.hero.card.coreFocus}
                 </div>
                 <div className="text-xs font-bold text-white">
-                  MERN + BI Analytics
+                  {t.hero.card.stack}
                 </div>
               </div>
             </motion.div>
@@ -246,7 +249,7 @@ const Hero = () => {
         className="mt-16 pt-8 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4"
       >
         <span className="text-xs font-mono font-semibold tracking-wider text-zinc-500 uppercase">
-          Technology Stack
+          {t.hero.techStack}
         </span>
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {techPills.map((skill) => (
@@ -263,4 +266,5 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Hero;
+

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ArrowUp, Clock, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUp, Clock } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Footer = () => {
+  const { t, isRTL } = useLanguage();
   const [localTime, setLocalTime] = useState("");
   const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const updateTime = () => {
-      // Tunisia is UTC+1 (Africa/Tunis timezone)
       const options = {
         timeZone: "Africa/Tunis",
         hour: "2-digit",
@@ -29,12 +29,12 @@ const Footer = () => {
   };
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.skills, href: "#skills" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.experience, href: "#experience" },
+    { name: t.nav.contact, href: "#contact" },
   ];
 
   const socials = [
@@ -65,20 +65,20 @@ const Footer = () => {
                   Iyed Khouildi
                 </span>
                 <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider">
-                  Full-Stack Developer & Data Analyst
+                  {t.nav.role}
                 </span>
               </div>
             </div>
 
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-sm font-normal">
-              Designing and developing performant digital software with the MERN stack and transforming enterprise datasets into clear analytical insight.
+              {t.footer.bio}
             </p>
 
             {/* Local Time Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-zinc-300">
               <Clock className="w-3.5 h-3.5 text-[#d4a574]" />
-              <span>Bizerte, Tunisia:</span>
-              <span className="text-white font-semibold">{localTime || "Loading..."}</span>
+              <span>{t.footer.locationLabel}</span>
+              <span className="text-white font-semibold" dir="ltr">{localTime || "..."}</span>
               <span className="text-[10px] text-zinc-500">(UTC+1)</span>
             </div>
           </div>
@@ -86,7 +86,7 @@ const Footer = () => {
           {/* Quick Navigation Links */}
           <div className="md:col-span-4 space-y-3">
             <div className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-400">
-              Navigation
+              {t.footer.navigation}
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
               {navLinks.map((link) => (
@@ -102,10 +102,10 @@ const Footer = () => {
           </div>
 
           {/* Social Links & Back-To-Top */}
-          <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between space-y-6">
+          <div className={`md:col-span-3 flex flex-col ${isRTL ? "items-start md:items-start" : "items-start md:items-end"} justify-between space-y-6`}>
             <div className="space-y-3 w-full md:w-auto">
-              <div className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-400 md:text-right">
-                Connect
+              <div className={`text-xs font-mono font-bold uppercase tracking-widest text-zinc-400 ${isRTL ? "md:text-left" : "md:text-right"}`}>
+                {t.footer.connect}
               </div>
               <div className="flex items-center gap-2">
                 {socials.map((s) => (
@@ -126,19 +126,19 @@ const Footer = () => {
             <button
               onClick={scrollToTop}
               className="btn-apple-secondary text-xs py-2 px-3.5 rounded-xl self-start md:self-auto"
-              title="Scroll to top of page"
+              title={t.footer.backToTop}
             >
               <ArrowUp className="w-3.5 h-3.5 text-[#d4a574]" />
-              <span>Back to Top</span>
+              <span>{t.footer.backToTop}</span>
             </button>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-          <p>© {currentYear} Iyed Khouildi. All rights reserved.</p>
+          <p>© {currentYear} Iyed Khouildi. {t.footer.copyright}</p>
           <p className="flex items-center gap-1">
-            Built with React, Tailwind & Framer Motion
+            {t.footer.builtWith}
           </p>
         </div>
       </div>
@@ -146,4 +146,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer;

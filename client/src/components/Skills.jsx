@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Search, Layers, Cpu, Database, BarChart3, Wrench, CheckCircle2 } from "lucide-react";
 import SkillIcon from "./SkillIcon";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t } = useLanguage();
+  const [activeCategoryId, setActiveCategoryId] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const skillCategories = [
     {
-      id: "Frontend",
-      name: "Frontend",
+      id: "frontend",
+      name: t.skills.categories.frontend,
       icon: Layers,
       accent: "#d4a574",
       items: [
@@ -25,8 +27,8 @@ const Skills = () => {
       ],
     },
     {
-      id: "Backend",
-      name: "Backend",
+      id: "backend",
+      name: t.skills.categories.backend,
       icon: Cpu,
       accent: "#8b4789",
       items: [
@@ -38,8 +40,8 @@ const Skills = () => {
       ],
     },
     {
-      id: "Databases",
-      name: "Databases",
+      id: "databases",
+      name: t.skills.categories.databases,
       icon: Database,
       accent: "#c9d4e0",
       items: [
@@ -50,8 +52,8 @@ const Skills = () => {
       ],
     },
     {
-      id: "Data & BI",
-      name: "Data & BI",
+      id: "dataBi",
+      name: t.skills.categories.dataBi,
       icon: BarChart3,
       accent: "#ebd0ad",
       items: [
@@ -65,8 +67,8 @@ const Skills = () => {
       ],
     },
     {
-      id: "Tools",
-      name: "Dev Tools",
+      id: "tools",
+      name: t.skills.categories.tools,
       icon: Wrench,
       accent: "#a1a1aa",
       items: [
@@ -78,18 +80,21 @@ const Skills = () => {
     },
   ];
 
-  const categories = ["All", ...skillCategories.map((c) => c.name)];
+  const categoryTabs = [
+    { id: "all", name: t.skills.categories.all },
+    ...skillCategories.map((c) => ({ id: c.id, name: c.name })),
+  ];
 
   const allSkills = skillCategories.flatMap((c) =>
-    c.items.map((item) => ({ ...item, category: c.name, accent: c.accent }))
+    c.items.map((item) => ({ ...item, categoryId: c.id, categoryName: c.name, accent: c.accent }))
   );
 
   const filteredSkills = allSkills.filter((skill) => {
-    const matchesCategory = activeCategory === "All" || skill.category === activeCategory;
+    const matchesCategory = activeCategoryId === "all" || skill.categoryId === activeCategoryId;
     const matchesSearch =
       skill.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       skill.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      skill.category.toLowerCase().includes(searchQuery.toLowerCase());
+      skill.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -99,13 +104,13 @@ const Skills = () => {
       <div className="flex flex-col items-center text-center mb-12">
         <div className="section-pill mb-4">
           <Sparkles className="w-3.5 h-3.5 text-[#d4a574]" />
-          <span>Technical Expertise</span>
+          <span>{t.skills.pill}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-          Tools & <span className="gold-text">Technologies</span>
+          {t.skills.heading1} <span className="gold-text">{t.skills.headingHighlight}</span>
         </h2>
         <p className="text-base sm:text-lg text-zinc-400 max-w-xl mt-3 font-normal">
-          A balanced technical toolkit spanning modern web engineering, robust backend infrastructure, and data analytics.
+          {t.skills.description}
         </p>
       </div>
 
@@ -113,12 +118,12 @@ const Skills = () => {
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
         {/* Category Pills */}
         <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-[#111116]/90 border border-white/[0.08] backdrop-blur-xl w-full md:w-auto">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat;
+          {categoryTabs.map((cat) => {
+            const isActive = activeCategoryId === cat.id;
             return (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
+                key={cat.id}
+                onClick={() => setActiveCategoryId(cat.id)}
                 className={`relative px-4 py-2 rounded-xl text-xs font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574] ${
                   isActive
                     ? "text-white font-semibold shadow-inner"
@@ -132,7 +137,7 @@ const Skills = () => {
                     className="absolute inset-0 bg-gradient-to-b from-[#d4a574]/25 to-[#d4a574]/10 border border-[#d4a574]/40 rounded-xl"
                   />
                 )}
-                <span className="relative z-10">{cat}</span>
+                <span className="relative z-10">{cat.name}</span>
               </button>
             );
           })}
@@ -143,7 +148,7 @@ const Skills = () => {
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" />
           <input
             type="text"
-            placeholder="Search skill (e.g. React)..."
+            placeholder={t.skills.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="apple-input pl-10 pr-4 py-2 text-xs rounded-xl"
@@ -194,10 +199,10 @@ const Skills = () => {
 
               <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between">
                 <span className="text-[10px] font-mono text-zinc-500 tracking-wider uppercase">
-                  {skill.category}
+                  {skill.categoryName}
                 </span>
                 <span className="text-[10px] text-emerald-400 font-mono flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <CheckCircle2 className="w-3 h-3" /> Verified
+                  <CheckCircle2 className="w-3 h-3" /> {t.skills.verified}
                 </span>
               </div>
             </motion.div>
@@ -214,39 +219,22 @@ const Skills = () => {
         className="mt-12 p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-[#111116] to-[#09090b] border border-white/[0.08] shadow-xl"
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/[0.08]">
-          <div className="space-y-2">
-            <div className="text-[11px] font-mono font-bold tracking-widest text-[#d4a574] uppercase">
-              01 • FULL-STACK ARCHITECTURE
+          {t.skills.matrix.map((item, idx) => (
+            <div key={item.title} className={`space-y-2 ${idx > 0 ? "pt-6 md:pt-0 md:pl-8" : ""}`}>
+              <div className="text-[11px] font-mono font-bold tracking-widest text-[#d4a574] uppercase">
+                {item.tag}
+              </div>
+              <h4 className="text-base font-bold text-white">{item.title}</h4>
+              <p className="text-xs text-zinc-400 leading-relaxed">
+                {item.desc}
+              </p>
             </div>
-            <h4 className="text-base font-bold text-white">End-to-End Modern Apps</h4>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              MERN stack architecture with server-rendered React/Next.js interfaces, secure RESTful Node/Express backends, and optimized MongoDB schemas.
-            </p>
-          </div>
-
-          <div className="space-y-2 pt-6 md:pt-0 md:pl-8">
-            <div className="text-[11px] font-mono font-bold tracking-widest text-[#ebd0ad] uppercase">
-              02 • BUSINESS INTELLIGENCE
-            </div>
-            <h4 className="text-base font-bold text-white">Data Analytics & Insights</h4>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              Transforming multi-source business data into interactive Power BI and Tableau dashboards, with Python data pipelines for statistical modeling.
-            </p>
-          </div>
-
-          <div className="space-y-2 pt-6 md:pt-0 md:pl-8">
-            <div className="text-[11px] font-mono font-bold tracking-widest text-zinc-400 uppercase">
-              03 • CRAFT & RELIABILITY
-            </div>
-            <h4 className="text-base font-bold text-white">Production Quality</h4>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              Strict attention to UI ergonomics, responsive breakpoints, high performance, cross-browser compatibility, and maintainable git workflows.
-            </p>
-          </div>
+          ))}
         </div>
       </motion.div>
     </section>
   );
 };
 
-export default Skills;
+export default Skills;
+

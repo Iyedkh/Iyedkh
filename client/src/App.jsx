@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Toaster } from "sonner";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import CursorGlow from "./components/CursorGlow";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
@@ -11,7 +12,7 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-export default function App() {
+function PortfolioContent() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -33,7 +34,7 @@ export default function App() {
             backdropFilter: "blur(20px)",
             border: "1px solid rgba(255, 255, 255, 0.1)",
             color: "#fafafa",
-            fontFamily: "var(--font-sans)",
+            fontFamily: "inherit",
             borderRadius: "14px",
             boxShadow: "0 20px 40px -15px rgba(0,0,0,0.7)",
           },
@@ -81,4 +82,12 @@ export default function App() {
       <Footer />
     </div>
   );
-}
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <PortfolioContent />
+    </LanguageProvider>
+  );
+}

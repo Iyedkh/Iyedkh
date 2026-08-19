@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Menu, X, Mail, Check, ArrowUpRight, Copy } from "lucide-react";
+import { Menu, X, Mail, Check, ArrowUpRight, Copy } from "lucide-react";
 import { toast } from "sonner";
+import { useLanguage } from "../i18n/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Nav = () => {
+  const { t, isRTL } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -18,16 +21,16 @@ const Nav = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.skills, href: "#skills" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.experience, href: "#experience" },
+    { name: t.nav.contact, href: "#contact" },
   ];
 
   useEffect(() => {
-    const sections = navLinks.map((l) => l.href.substring(1));
+    const sections = ["home", "about", "skills", "projects", "experience", "contact"];
     const observerOptions = {
       root: null,
       rootMargin: "-20% 0px -60% 0px",
@@ -60,7 +63,7 @@ const Nav = () => {
     e.preventDefault();
     navigator.clipboard.writeText(email);
     setCopiedEmail(true);
-    toast.success("Email copied to clipboard", {
+    toast.success(t.nav.emailCopied, {
       description: email,
       duration: 3000,
     });
@@ -71,7 +74,7 @@ const Nav = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-[#09090b]/80 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/40"
+          ? "py-3 bg-[#09090b]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/40"
           : "py-5 bg-transparent border-b border-transparent"
       }`}
     >
@@ -79,12 +82,12 @@ const Nav = () => {
         {/* Brand Monogram */}
         <motion.a
           href="#home"
-          initial={{ opacity: 0, x: -16 }}
+          initial={{ opacity: 0, x: isRTL ? 16 : -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574] rounded-xl p-1"
         >
-          <div className="relative w-9 h-9 rounded-xl bg-gradient-to-b from-white/15 to-white/5 border border-white/10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[#d4a574]/40 shadow-inner">
+          <div className="relative w-9 h-9 rounded-xl bg-gradient-to-b from-white/15 to-white/5 border border-white/10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[#d4a574]/40 shadow-inner shrink-0">
             <span className="font-serif font-bold text-lg text-white group-hover:text-[#ebd0ad] transition-colors">
               I
             </span>
@@ -93,10 +96,10 @@ const Nav = () => {
           <div className="flex flex-col">
             <span className="font-semibold text-sm tracking-tight text-white flex items-center gap-1.5">
               Iyed Khouildi
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" title="Available for work" />
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" title={t.nav.available} />
             </span>
             <span className="font-mono text-[10px] text-zinc-400 tracking-wider uppercase">
-              Full-Stack & BI
+              {t.nav.role}
             </span>
           </div>
         </motion.a>
@@ -104,13 +107,14 @@ const Nav = () => {
         {/* Desktop Navigation Floating Pill Bar */}
         <nav
           aria-label="Main Navigation"
-          className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#111116]/80 border border-white/[0.08] backdrop-blur-xl shadow-lg shadow-black/30"
+          className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#111116]/80 border border-white/[0.08] backdrop-blur-xl shadow-lg shadow-black/30"
         >
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href.substring(1);
+            const sectionId = link.href.substring(1);
+            const isActive = activeSection === sectionId;
             return (
               <a
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574] ${
                   isActive ? "text-white font-semibold" : "text-zinc-400 hover:text-zinc-200"
@@ -131,11 +135,14 @@ const Nav = () => {
 
         {/* Right CTA Group */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Language Switcher */}
+          <LanguageSwitcher />
+
           {/* Quick Copy Email Button */}
           <button
             onClick={handleCopyEmail}
             className="p-2 rounded-xl text-zinc-400 hover:text-[#ebd0ad] bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574]"
-            title="Copy email to clipboard"
+            title={t.nav.emailCopied}
             aria-label="Copy email address"
           >
             {copiedEmail ? (
@@ -150,20 +157,23 @@ const Nav = () => {
             href="#contact"
             className="btn-apple-primary text-xs py-2 px-4 rounded-xl"
           >
-            <span>Let's Talk</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <span>{t.nav.letsTalk}</span>
+            <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
           </a>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-expanded={menuOpen}
-          aria-label="Toggle navigation menu"
-          className="md:hidden p-2 rounded-xl text-zinc-300 hover:text-white bg-white/[0.04] border border-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574]"
-        >
-          {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-label="Toggle navigation menu"
+            className="p-2 rounded-xl text-zinc-300 hover:text-white bg-white/[0.04] border border-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574]"
+          >
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer Overlay */}
@@ -178,13 +188,14 @@ const Nav = () => {
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link, i) => {
-                const isActive = activeSection === link.href.substring(1);
+                const sectionId = link.href.substring(1);
+                const isActive = activeSection === sectionId;
                 return (
                   <motion.a
-                    key={link.name}
+                    key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    initial={{ opacity: 0, x: -12 }}
+                    initial={{ opacity: 0, x: isRTL ? 12 : -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.04 }}
                     className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
@@ -205,7 +216,7 @@ const Nav = () => {
                 >
                   <Mail className="w-3.5 h-3.5 text-[#d4a574]" />
                   <span>{email}</span>
-                  {copiedEmail && <span className="text-emerald-400 font-sans text-[10px] ml-1">(Copied!)</span>}
+                  {copiedEmail && <span className="text-emerald-400 font-sans text-[10px] ml-1">({t.nav.emailCopied})</span>}
                 </button>
 
                 <a
@@ -213,8 +224,8 @@ const Nav = () => {
                   onClick={() => setMenuOpen(false)}
                   className="btn-apple-primary w-full justify-center text-xs py-3 rounded-xl"
                 >
-                  <span>Let's Talk</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                  <span>{t.nav.letsTalk}</span>
+                  <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
                 </a>
               </div>
             </div>
@@ -225,4 +236,5 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Nav;
+
