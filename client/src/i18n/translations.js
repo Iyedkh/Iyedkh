@@ -319,6 +319,33 @@ export const translations = {
       copyright: "All rights reserved.",
       builtWith: "Built with React, Tailwind & Framer Motion",
     },
+    // CV Modal
+    cvModal: {
+      pill: "Curriculum Vitae",
+      title: "Download CV",
+      subtitle: "Select which version you would like to download or preview in browser.",
+      en: {
+        title: "English Version",
+        langBadge: "English",
+        role: "Full-Stack Developer & Data Analyst",
+        size: "PDF • 159 KB",
+        download: "Download PDF",
+        preview: "Preview",
+        fileName: "Iyed_Khouildi_CV_EN.pdf",
+      },
+      fr: {
+        title: "French Version",
+        langBadge: "Français",
+        role: "Développeur Full-Stack & Analyste de Données",
+        size: "PDF • 332 KB",
+        download: "Download PDF",
+        preview: "Preview",
+        fileName: "Iyed_Khouildi_CV_FR.pdf",
+      },
+      downloadToastTitle: "Downloading CV",
+      downloadToastDesc: "Iyed Khouildi — {lang} Version",
+      close: "Close",
+    },
   },
 
   fr: {
@@ -641,6 +668,33 @@ export const translations = {
       copyright: "Tous droits réservés.",
       builtWith: "Développé avec React, Tailwind & Framer Motion",
     },
+    // CV Modal
+    cvModal: {
+      pill: "Curriculum Vitae",
+      title: "Télécharger le CV",
+      subtitle: "Choisissez votre version linguistique souhaitée pour le téléchargement ou l'aperçu dans le navigateur.",
+      en: {
+        title: "Version Anglaise",
+        langBadge: "English",
+        role: "Full-Stack Developer & Data Analyst",
+        size: "PDF • 159 Ko",
+        download: "Télécharger PDF",
+        preview: "Aperçu",
+        fileName: "Iyed_Khouildi_CV_EN.pdf",
+      },
+      fr: {
+        title: "Version Française",
+        langBadge: "Français",
+        role: "Développeur Full-Stack & Analyste de Données",
+        size: "PDF • 332 Ko",
+        download: "Télécharger PDF",
+        preview: "Aperçu",
+        fileName: "Iyed_Khouildi_CV_FR.pdf",
+      },
+      downloadToastTitle: "Téléchargement du CV",
+      downloadToastDesc: "Iyed Khouildi — Version {lang}",
+      close: "Fermer",
+    },
   },
 
   ar: {
@@ -962,6 +1016,33 @@ export const translations = {
       backToTop: "إلى الأعلى",
       copyright: "جميع الحقوق محفوظة.",
       builtWith: "تم التطوير باستخدام React و Tailwind و Framer Motion",
+    },
+    // CV Modal
+    cvModal: {
+      pill: "السيرة الذاتية",
+      title: "تحميل السيرة الذاتية",
+      subtitle: "يرجى اختيار النسخة واللغة المناسبة للتحميل أو المعاينة المباشرة عبر المتصفح.",
+      en: {
+        title: "النسخة الإنجليزية",
+        langBadge: "English",
+        role: "مطور ويب متكامل ومحلل بيانات",
+        size: "PDF • 159 ك.ب",
+        download: "تحميل PDF",
+        preview: "معاينة",
+        fileName: "Iyed_Khouildi_CV_EN.pdf",
+      },
+      fr: {
+        title: "النسخة الفرنسية",
+        langBadge: "Français",
+        role: "مطور ويب متكامل ومحلل بيانات",
+        size: "PDF • 332 ك.ب",
+        download: "تحميل PDF",
+        preview: "معاينة",
+        fileName: "Iyed_Khouildi_CV_FR.pdf",
+      },
+      downloadToastTitle: "جاري تحميل السيرة الذاتية",
+      downloadToastDesc: "إياد خويلدي — النسخة {lang}",
+      close: "إغلاق",
     },
   },
 };

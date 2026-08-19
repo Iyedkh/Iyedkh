@@ -11,9 +11,11 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useCvModal } from "../context/CvModalContext";
 
 const About = () => {
   const { t } = useLanguage();
+  const { openCvModal } = useCvModal();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const email = "iyedkhouildi12@gmail.com";
 
@@ -129,14 +131,15 @@ const About = () => {
             <span>{copiedEmail ? t.about.banner.emailCopied : t.about.banner.copyEmail}</span>
           </button>
 
-          <a
-            href="/CV iyed.pdf"
-            download="CV_Iyed_Khouildi.pdf"
+          <button
+            type="button"
+            onClick={openCvModal}
             className="btn-apple-primary flex-1 sm:flex-initial justify-center"
+            title={t.about.banner.downloadCv}
           >
             <Download className="w-4 h-4" />
             <span>{t.about.banner.downloadCv}</span>
-          </a>
+          </button>
         </div>
       </motion.div>
     </section>

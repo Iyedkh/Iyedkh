@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "./i18n/LanguageContext";
+import { CvModalProvider } from "./context/CvModalContext";
 import CursorGlow from "./components/CursorGlow";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
@@ -11,6 +12,7 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import CvModal from "./components/CvModal";
 
 function PortfolioContent() {
   const { scrollYProgress } = useScroll();
@@ -80,6 +82,9 @@ function PortfolioContent() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Interactive CV Language Selection Modal */}
+      <CvModal />
     </div>
   );
 }
@@ -87,7 +92,9 @@ function PortfolioContent() {
 export default function App() {
   return (
     <LanguageProvider>
-      <PortfolioContent />
+      <CvModalProvider>
+        <PortfolioContent />
+      </CvModalProvider>
     </LanguageProvider>
   );
 }

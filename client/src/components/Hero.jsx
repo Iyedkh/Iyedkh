@@ -5,9 +5,11 @@ import Counter from "./Counter";
 import Me from "../assets/Me.png";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useCvModal } from "../context/CvModalContext";
 
 const Hero = () => {
   const { t, isRTL } = useLanguage();
+  const { openCvModal } = useCvModal();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,13 +29,6 @@ const Hero = () => {
       y: 0,
       transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
     },
-  };
-
-  const handleDownloadCV = () => {
-    toast.success(t.hero.cvToastTitle, {
-      description: t.hero.cvToastDesc,
-      duration: 3500,
-    });
   };
 
   const techPills = [
@@ -110,16 +105,15 @@ const Hero = () => {
               <span>{t.hero.contactMe}</span>
             </a>
 
-            <a
-              href="/CV iyed.pdf"
-              download="CV_Iyed_Khouildi.pdf"
-              onClick={handleDownloadCV}
+            <button
+              type="button"
+              onClick={openCvModal}
               className="btn-apple-secondary w-full sm:w-auto justify-center"
               title="Download Resume PDF"
             >
               <Download className="w-4 h-4 text-[var(--accent-primary)]" />
               <span>{t.hero.downloadCv}</span>
-            </a>
+            </button>
           </motion.div>
 
           {/* Live Metric Counters */}
