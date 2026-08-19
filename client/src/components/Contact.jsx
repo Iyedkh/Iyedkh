@@ -1,314 +1,312 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AtSign, Phone, MapPin, Github, Linkedin, ArrowRight, Send, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Send,
+  CheckCircle2,
+  Copy,
+  Check,
+  Sparkles,
+  ArrowUpRight,
+  MessageSquare,
+} from "lucide-react";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [copiedKey, setCopiedKey] = useState(null);
+
+  const contactItems = [
+    {
+      id: "email",
+      icon: Mail,
+      label: "Direct Email",
+      value: "iyedkhouildi12@gmail.com",
+      action: "copy",
+      accent: "#d4a574",
+    },
+    {
+      id: "phone",
+      icon: Phone,
+      label: "Phone / WhatsApp",
+      value: "+216 93 117 612",
+      action: "copy",
+      accent: "#8b4789",
+    },
+    {
+      id: "location",
+      icon: MapPin,
+      label: "Location",
+      value: "Bizerte, Tunisia (UTC+1)",
+      action: "info",
+      accent: "#ebd0ad",
+    },
+  ];
+
+  const socials = [
+    {
+      name: "GitHub",
+      url: "https://github.com/Iyedkh",
+      handle: "@Iyedkh",
+      icon: Github,
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/iyed-khouildi-453787326/",
+      handle: "Iyed Khouildi",
+      icon: Linkedin,
+    },
+  ];
+
+  const handleCopy = (id, text, label) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(id);
+    toast.success(`${label} copied to clipboard`, {
+      description: text,
+      duration: 3000,
+    });
+    setTimeout(() => setCopiedKey(null), 2500);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
     setSubmitted(true);
+    toast.success("Message dispatched successfully!", {
+      description: `Thank you ${formData.name}. I will get back to you shortly.`,
+      duration: 4500,
+    });
+
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: "", email: "", subject: "", message: "" });
     }, 4000);
   };
 
-  const contactInfo = [
-    { icon: AtSign, label: "Email", value: "iyedkhouildi12@gmail.com", color: "#d4a574" },
-    { icon: Phone, label: "Phone", value: "+216 93 117 612", color: "#8b4789" },
-    { icon: MapPin, label: "Location", value: "Bizerte, Tunisia", color: "#c9d4e0" },
-  ];
-
-  const socials = [
-    { icon: Github, label: "GitHub", link: "https://github.com/Iyedkh" },
-    { icon: Linkedin, label: "LinkedIn", link: "https://www.linkedin.com/in/iyed-khouildi-453787326/" },
-  ];
-
   return (
-    <section id="contact" style={{ paddingBottom: 100 }}>
-      {/* Header */}
-      <div style={{ textAlign: "center", marginBottom: 64 }}>
-        <div className="section-label" style={{ justifyContent: "center" }}>Get In Touch</div>
-        <h2 style={{
-          fontSize: "clamp(32px, 4vw, 52px)",
-          fontWeight: 800,
-          marginBottom: 16,
-          background: "linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%)",
-          backgroundClip: "text",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-        }}>
-          Let's <span className="gold-text">Connect</span>
+    <section id="contact" className="py-16 scroll-mt-24">
+      {/* Section Header */}
+      <div className="flex flex-col items-center text-center mb-16">
+        <div className="section-pill mb-4">
+          <Sparkles className="w-3.5 h-3.5 text-[#d4a574]" />
+          <span>Get In Touch</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          Let's Start a <span className="gold-text">Conversation</span>
         </h2>
-        <p style={{ color: "var(--muted2)", fontSize: 16, maxWidth: 500, margin: "0 auto" }}>
-          Have a project in mind? I'd love to hear from you. Let's create something amazing together.
+        <p className="text-base sm:text-lg text-zinc-400 max-w-xl mt-3 font-normal">
+          Have an upcoming project, freelance inquiry, or full-time opportunity? Reach out directly or send a message below.
         </p>
       </div>
 
-      {/* Contact Grid */}
-      <div className="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 48 }}>
-        {/* Left Info */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left Column: Direct Info Cards & Socials */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          style={{ display: "flex", flexDirection: "column", gap: 16 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 space-y-4"
         >
-          {/* Contact Info Cards */}
-          {contactInfo.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="card"
-              style={{
-                padding: 20,
-                display: "flex",
-                alignItems: "center",
-                gap: 16,
-                background: `linear-gradient(135deg, rgba(${parseInt(item.color.slice(1,3),16)}, ${parseInt(item.color.slice(3,5),16)}, ${parseInt(item.color.slice(5,7),16)}, 0.05), transparent)`,
-                border: `1px solid ${item.color}30`,
-              }}
+          {contactItems.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
+              className={`apple-card p-5 flex items-center justify-between group cursor-pointer transition-all duration-300 ${
+                item.action === "copy" ? "hover:border-[#d4a574]/40" : ""
+              }`}
             >
-              <div style={{
-                width: 48,
-                height: 48,
-                borderRadius: 12,
-                background: `${item.color}20`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                border: `1.5px solid ${item.color}40`,
-              }}>
-                <item.icon style={{ width: 20, height: 20, color: item.color }} />
-              </div>
-              <div>
-                <div style={{
-                  fontSize: 11,
-                  color: "var(--muted)",
-                  marginBottom: 4,
-                  fontFamily: "DM Mono",
-                  letterSpacing: "0.1em",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                }}>
-                  {item.label}
+              <div className="flex items-center gap-4">
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-105"
+                  style={{
+                    backgroundColor: `${item.accent}15`,
+                    borderColor: `${item.accent}30`,
+                    color: item.accent,
+                  }}
+                >
+                  <item.icon className="w-5 h-5" />
                 </div>
-                <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>{item.value}</div>
+                <div>
+                  <div className="text-[11px] font-mono font-bold tracking-widest text-zinc-500 uppercase">
+                    {item.label}
+                  </div>
+                  <div className="text-sm font-semibold text-white group-hover:text-[#ebd0ad] transition-colors mt-0.5">
+                    {item.value}
+                  </div>
+                </div>
               </div>
-            </motion.div>
+
+              {item.action === "copy" && (
+                <button
+                  type="button"
+                  aria-label={`Copy ${item.label}`}
+                  className="p-2 rounded-xl text-zinc-500 group-hover:text-[#ebd0ad] bg-white/[0.03] group-hover:bg-white/[0.08] transition-colors"
+                >
+                  {copiedKey === item.id ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
+              )}
+            </div>
           ))}
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            style={{ marginTop: 12, display: "flex", gap: 12 }}
-          >
-            <h3 style={{
-              fontSize: 12,
-              fontWeight: 700,
-              color: "var(--muted)",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              margin: "auto 0 auto 0",
-              width: "100%",
-            }}>
-              Follow Me
-            </h3>
-          </motion.div>
-
-          <div style={{ display: "flex", gap: 12 }}>
-            {socials.map((s, i) => (
-              <motion.a
-                key={i}
-                href={s.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -4, scale: 1.05 }}
-                className="card"
-                style={{
-                  flex: 1,
-                  padding: "14px 8px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 8,
-                  textDecoration: "none",
-                  color: "var(--muted)",
-                  transition: "all 0.2s",
-                  border: "1px solid rgba(212,165,116,0.2)",
-                }}
-              >
-                <s.icon style={{ width: 20, height: 20 }} />
-                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                  {s.label}
-                </span>
-              </motion.a>
-            ))}
+          {/* Social Profiles */}
+          <div className="apple-card p-5 space-y-3">
+            <div className="text-[11px] font-mono font-bold tracking-widest text-zinc-500 uppercase mb-2">
+              Connect Online
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.06] hover:border-[#d4a574]/40 transition-all flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574]"
+                >
+                  <social.icon className="w-4 h-4 text-zinc-400 group-hover:text-[#ebd0ad] transition-colors" />
+                  <div className="truncate">
+                    <div className="text-xs font-bold text-white tracking-tight">
+                      {social.name}
+                    </div>
+                    <div className="text-[10px] font-mono text-zinc-500 truncate">
+                      {social.handle}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
 
-        {/* Form */}
+        {/* Right Column: Apple-styled Message Form */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="card"
-          style={{
-            padding: 36,
-            background: "linear-gradient(135deg, rgba(212,165,116,0.05), rgba(139,71,137,0.05))",
-            border: "1px solid rgba(212,165,116,0.15)",
-            position: "relative",
-            minHeight: 440,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7"
         >
-          <AnimatePresence mode="wait">
-            {!submitted ? (
-              <motion.form
-                key="form"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.35 }}
-                onSubmit={handleSubmit}
-                style={{ display: "flex", flexDirection: "column", gap: 20, width: "100%" }}
-              >
-                {/* Name & Email Row */}
-                <div className="contact-form-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 }}
-                  >
-                    <label>Full Name</label>
+          <div className="apple-card p-6 sm:p-8 relative min-h-[460px] flex flex-col justify-center">
+            <AnimatePresence mode="wait">
+              {!submitted ? (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.3 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono font-semibold text-zinc-400 uppercase tracking-wider mb-2">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="John Doe"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="apple-input"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono font-semibold text-zinc-400 uppercase tracking-wider mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="john@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="apple-input"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono font-semibold text-zinc-400 uppercase tracking-wider mb-2">
+                      Subject
+                    </label>
                     <input
                       type="text"
-                      placeholder="John Doe"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      style={{ marginTop: 8 }}
+                      placeholder="Project Inquiry / Opportunity"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="apple-input"
                     />
-                  </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="block text-xs font-mono font-semibold text-zinc-400 uppercase tracking-wider">
+                        Your Message *
+                      </label>
+                      <span className="text-[10px] font-mono text-zinc-500">
+                        {formData.message.length} chars
+                      </span>
+                    </div>
+                    <textarea
+                      required
+                      rows={5}
+                      placeholder="Tell me about your project goals, timeline, and requirements..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="apple-input resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn-apple-primary w-full justify-center py-3.5 rounded-xl text-sm font-semibold mt-2"
                   >
-                    <label>Email Address</label>
-                    <input
-                      type="email"
-                      placeholder="john@example.com"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{ marginTop: 8 }}
-                    />
-                  </motion.div>
-                </div>
-
-                {/* Subject */}
+                    <Send className="w-4 h-4" />
+                    <span>Send Message</span>
+                  </button>
+                </motion.form>
+              ) : (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.25 }}
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.94 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col items-center justify-center text-center p-8 space-y-4"
                 >
-                  <label>Subject</label>
-                  <input
-                    type="text"
-                    placeholder="Project inquiry"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    style={{ marginTop: 8 }}
-                  />
+                  <div className="w-16 h-16 rounded-3xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-xl shadow-emerald-500/10">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white tracking-tight">
+                    Message Sent Successfully
+                  </h3>
+                  <p className="text-sm text-zinc-400 max-w-sm leading-relaxed">
+                    Thank you for reaching out. Your message has been received and I will reply within 24 hours.
+                  </p>
                 </motion.div>
-
-                {/* Message */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <label>Message</label>
-                  <textarea
-                    placeholder="Tell me about your project..."
-                    rows={5}
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{ marginTop: 8, resize: "none" }}
-                  />
-                </motion.div>
-
-                {/* Submit Button */}
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-primary"
-                  type="submit"
-                  style={{
-                    width: "100%",
-                    justifyContent: "center",
-                    padding: "14px 28px",
-                    fontSize: 15,
-                    marginTop: 8,
-                  }}
-                >
-                  <Send style={{ width: 17, height: 17 }} /> Send Message
-                </motion.button>
-              </motion.form>
-            ) : (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35 }}
-                style={{
-                  textAlign: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 16,
-                  width: "100%",
-                }}
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                >
-                  <CheckCircle style={{ width: 64, height: 64, color: "#d4a574" }} />
-                </motion.div>
-                <h3 style={{ fontSize: 24, fontWeight: 700, color: "var(--text)" }}>Thank You!</h3>
-                <p style={{ color: "var(--muted2)", fontSize: 15, maxWidth: 320, lineHeight: 1.6 }}>
-                  Your message has been sent successfully. I will get back to you as soon as possible!
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              )}
+            </AnimatePresence>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default Contact;
+export default Contact;

@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Brain, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Sparkles, Code2, Database, BarChart3, CheckCircle2 } from "lucide-react";
 import Counter from "./Counter";
 import Me from "../assets/Me.png";
+import { toast } from "sonner";
 
 const Hero = () => {
   const containerVariants = {
@@ -10,85 +11,69 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 18 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
+  const handleDownloadCV = () => {
+    toast.success("Downloading Curriculum Vitae", {
+      description: "Iyed Khouildi — Full-Stack Developer & Data Analyst",
+      duration: 3500,
+    });
+  };
+
+  const techPills = [
+    "React",
+    "Next.js",
+    "Node.js",
+    "MongoDB",
+    "Python",
+    "Power BI",
+    "TypeScript",
+    "Tailwind CSS",
+  ];
+
   return (
-    <section id="home" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 80, paddingBottom: 80 }}>
-      <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 64, alignItems: "center", width: "100%", flexWrap: "wrap", "@media (max-width: 768px)": { gridTemplateColumns: "1fr" } }}>
-        {/* Left Content */}
+    <section
+      id="home"
+      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        {/* Left Column — Editorial Identity */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          style={{ maxWidth: 700 }}
+          className="lg:col-span-7 flex flex-col items-start z-10"
         >
           {/* Status Badge */}
-          <motion.div
-            variants={itemVariants}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              padding: "8px 16px",
-              background: "rgba(212,165,116,0.1)",
-              border: "1px solid rgba(212,165,116,0.3)",
-              borderRadius: "20px",
-              marginBottom: 24,
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <div style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              background: "#d4a574",
-              boxShadow: "0 0 12px #d4a574",
-              animation: "pulse 2s infinite",
-            }} />
-            <span style={{ fontSize: 12, fontWeight: 600, color: "#d4a574", letterSpacing: "0.05em" }}>
-              AVAILABLE FOR PROJECTS
-            </span>
+          <motion.div variants={itemVariants} className="mb-6">
+            <div className="section-pill flex items-center gap-2.5">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span>Available for Projects & Remote Roles</span>
+            </div>
           </motion.div>
 
-          {/* Main Heading */}
-          <motion.div variants={itemVariants}>
-            <h1 style={{
-              fontSize: "clamp(42px, 6.5vw, 80px)",
-              lineHeight: 1.05,
-              fontWeight: 900,
-              marginBottom: 20,
-              letterSpacing: "-0.02em",
-              background: "linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}>
-              Full Stack Developer
+          {/* Editorial Display Heading */}
+          <motion.div variants={itemVariants} className="space-y-1 mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.035em] text-white leading-[1.08]">
+              Full-Stack Developer
             </h1>
-            <h2 style={{
-              fontSize: "clamp(28px, 4vw, 52px)",
-              lineHeight: 1.2,
-              fontWeight: 700,
-              background: "linear-gradient(135deg, #d4a574 0%, #8b4789 50%, #c9d4e0 100%)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              marginBottom: 24,
-              letterSpacing: "-0.01em",
-            }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] gold-text leading-[1.15]">
               & Data Analyst
             </h2>
           </motion.div>
@@ -96,221 +81,186 @@ const Hero = () => {
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            style={{
-              fontSize: "clamp(15px, 1.8vw, 17px)",
-              lineHeight: 1.8,
-              color: "var(--muted2)",
-              maxWidth: 560,
-              marginBottom: 40,
-              fontWeight: 400,
-            }}
+            className="text-base sm:text-lg text-zinc-300 max-w-xl leading-relaxed mb-8 font-normal"
           >
-            I design and build scalable web applications while transforming complex data into actionable insights — bridging the gap between elegant code and smart decisions.
+            I craft high-performance web applications and transform complex datasets into actionable business intelligence. Merging clean software engineering with analytical precision.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Cluster */}
           <motion.div
             variants={itemVariants}
-            style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 60 }}
+            className="flex flex-wrap items-center gap-3.5 mb-10 w-full sm:w-auto"
           >
-            <motion.a
+            <a
               href="#projects"
-              className="btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{ textDecoration: "none" }}
+              className="btn-apple-primary w-full sm:w-auto justify-center"
             >
-              View My Work <ArrowRight style={{ width: 16, height: 16 }} />
-            </motion.a>
-            <motion.a
+              <span>Explore Projects</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <a
               href="#contact"
-              className="btn-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{ textDecoration: "none" }}
+              className="btn-apple-secondary w-full sm:w-auto justify-center"
             >
-              <Mail style={{ width: 16, height: 16 }} /> Get in Touch
-            </motion.a>
-            <motion.a
+              <Mail className="w-4 h-4 text-zinc-400" />
+              <span>Contact Me</span>
+            </a>
+
+            <a
               href="/CV iyed.pdf"
-              download
-              className="btn-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{ textDecoration: "none" }}
+              download="CV_Iyed_Khouildi.pdf"
+              onClick={handleDownloadCV}
+              className="btn-apple-secondary w-full sm:w-auto justify-center"
+              title="Download Resume PDF"
             >
-              <Download style={{ width: 16, height: 16 }} /> Download CV
-            </motion.a>
+              <Download className="w-4 h-4 text-[#d4a574]" />
+              <span>Download CV</span>
+            </a>
           </motion.div>
 
-          {/* Stats row */}
+          {/* Live Metric Counters */}
           <motion.div
             variants={itemVariants}
-            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 32 }}
+            className="grid grid-cols-3 gap-6 pt-6 border-t border-white/[0.08] w-full max-w-lg"
           >
-            {[
-              { value: 3, suffix: "+", label: "Years Experience" },
-              { value: 5, suffix: "+", label: "Projects Shipped" },
-              { value: 3, suffix: "+", label: "Certifications" },
-            ].map((s, i) => (
-              <motion.div
-                key={i}
-                whileInView={{ y: 0, opacity: 1 }}
-                initial={{ y: 10, opacity: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
-              >
-                <div style={{
-                  fontSize: "clamp(28px, 3vw, 36px)",
-                  fontWeight: 700,
-                  background: "linear-gradient(135deg, var(--primary-light), var(--accent-light))",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  lineHeight: 1,
-                  marginBottom: 6,
-                }}>
-                  <Counter target={s.value} suffix={s.suffix} />
-                </div>
-                <div style={{
-                  fontSize: 13,
-                  color: "var(--muted)",
-                  letterSpacing: "0.03em",
-                  fontWeight: 500,
-                }}>
-                  {s.label}
-                </div>
-              </motion.div>
-            ))}
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-0.5">
+                <Counter target={3} suffix="+" />
+              </div>
+              <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
+                Years Experience
+              </div>
+            </div>
+
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight gold-text flex items-center gap-0.5">
+                <Counter target={5} suffix="+" />
+              </div>
+              <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
+                Shipped Systems
+              </div>
+            </div>
+
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-0.5">
+                <Counter target={3} suffix="+" />
+              </div>
+              <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
+                Certifications
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
-        {/* Right Image Section */}
+        {/* Right Column — Apple Developer Profile Card */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden-mobile"
-          style={{ position: "relative", flexShrink: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 flex justify-center lg:justify-end relative"
         >
-          {/* Gradient Background Blur */}
-          <div style={{
-            position: "absolute", inset: -30,
-            background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15), rgba(6,182,212,0.15))",
-            borderRadius: "50%",
-            filter: "blur(40px)",
-            animation: "pulse 4s ease-in-out infinite",
-          }} />
+          {/* Ambient Glow */}
+          <div
+            aria-hidden="true"
+            className="absolute -inset-4 bg-gradient-to-tr from-[#d4a574]/15 via-[#8b4789]/10 to-blue-500/10 rounded-3xl blur-2xl opacity-70 pointer-events-none"
+          />
 
-          {/* Image Container */}
-          <motion.div
-            style={{
-              position: "relative",
-              width: "clamp(240px, 30vw, 380px)",
-              aspectRatio: "3/4",
-              borderRadius: 16,
-              overflow: "hidden",
-              border: "1px solid rgba(59,130,246,0.3)",
-              background: "var(--bg2)",
-            }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img
-              src={Me}
-              alt="developer workspace"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                opacity: 0.8,
-                filter: "saturate(0.7)",
-              }}
-              referrerPolicy="no-referrer"
-            />
-            <div style={{
-              position: "absolute", inset: 0,
-              background: "linear-gradient(to top, rgba(15,15,26,0.95) 0%, rgba(15,15,26,0.5) 40%, transparent 70%)",
-            }} />
+          {/* Interactive Profile Card */}
+          <div className="relative w-full max-w-sm sm:max-w-md rounded-3xl p-3 bg-gradient-to-b from-white/[0.12] to-white/[0.03] border border-white/10 shadow-2xl backdrop-blur-xl group">
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#111116] border border-white/[0.08]">
+              {/* Photo */}
+              <img
+                src={Me}
+                alt="Iyed Khouildi — Full-Stack Developer & Data Analyst"
+                className="w-full h-full object-cover object-top filter saturate-[0.88] brightness-[0.95] group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="eager"
+              />
 
-            {/* Status Badge */}
+              {/* Gradient Vignette Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent" />
+
+              {/* Top Pill: Location & Degree */}
+              <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-medium tracking-wide bg-black/60 backdrop-blur-md border border-white/10 text-zinc-300">
+                  📍 Bizerte, Tunisia
+                </span>
+                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wide bg-[#d4a574]/20 backdrop-blur-md border border-[#d4a574]/30 text-[#ebd0ad]">
+                  BI Degree
+                </span>
+              </div>
+
+              {/* Bottom Card Summary */}
+              <div className="absolute bottom-3 left-3 right-3 p-4 rounded-xl bg-black/75 backdrop-blur-xl border border-white/10 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-sm text-white tracking-tight">
+                    Iyed Khouildi
+                  </span>
+                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> 100% Quality
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {techPills.slice(0, 4).map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-white/[0.06] text-zinc-300 border border-white/[0.08]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-mono text-[#ebd0ad] bg-[#d4a574]/15 border border-[#d4a574]/30">
+                    +4 more
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Apple Mini Badge: MERN + BI */}
             <motion.div
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              style={{
-                position: "absolute",
-                bottom: 20,
-                left: 20,
-                right: 20,
-                background: "rgba(15,15,26,0.7)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(59,130,246,0.2)",
-                borderRadius: 12,
-                padding: "14px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-4 -left-4 sm:-left-6 p-3 rounded-2xl bg-[#111116]/90 border border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-3"
             >
-              <div style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: "#d4a574",
-                boxShadow: "0 0 8px #d4a574",
-                animation: "pulse 2s infinite",
-              }} />
-              <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text)" }}>Open to opportunities</span>
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#d4a574]/20 to-[#8b4789]/20 border border-[#d4a574]/30 flex items-center justify-center text-[#ebd0ad]">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase">
+                  CORE FOCUS
+                </div>
+                <div className="text-xs font-bold text-white">
+                  MERN + BI Analytics
+                </div>
+              </div>
             </motion.div>
-          </motion.div>
-
-          {/* Floating Badge */}
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-            style={{
-              position: "absolute",
-              top: 20,
-              left: -40,
-              background: "var(--bg2)",
-              border: "1px solid rgba(59,130,246,0.2)",
-              borderRadius: 12,
-              padding: "12px 16px",
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              boxShadow: "0 8px 32px rgba(59,130,246,0.15)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <div style={{
-              width: 40,
-              height: 40,
-              borderRadius: 10,
-              background: "rgba(139,92,246,0.1)",
-              border: "1px solid rgba(139,92,246,0.3)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <Brain style={{ width: 20, height: 20, color: "var(--accent-light)" }} />
-            </div>
-            <div>
-              <div style={{ fontSize: 11, color: "var(--muted)", fontFamily: "DM Mono", fontWeight: 600, letterSpacing: "0.1em" }}>TECH STACK</div>
-              <div style={{ fontSize: 13, fontWeight: 700, marginTop: 2, color: "var(--text)" }}>MERN + BI</div>
-            </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-        }
-      `}</style>
+      {/* Tech Stack Ribbon */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+        className="mt-16 pt-8 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4"
+      >
+        <span className="text-xs font-mono font-semibold tracking-wider text-zinc-500 uppercase">
+          Technology Stack
+        </span>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          {techPills.map((skill) => (
+            <span
+              key={skill}
+              className="px-3 py-1 rounded-lg text-xs font-medium text-zinc-300 bg-white/[0.03] border border-white/[0.06] hover:border-[#d4a574]/40 hover:text-white transition-colors"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 };
 
-export default Hero;
+export default Hero;

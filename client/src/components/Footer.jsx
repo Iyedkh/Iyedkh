@@ -1,175 +1,149 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUp, Clock, Heart } from "lucide-react";
 
 const Footer = () => {
+  const [localTime, setLocalTime] = useState("");
   const currentYear = new Date().getFullYear();
 
+  useEffect(() => {
+    const updateTime = () => {
+      // Tunisia is UTC+1 (Africa/Tunis timezone)
+      const options = {
+        timeZone: "Africa/Tunis",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      };
+      setLocalTime(new Intl.DateTimeFormat("en-US", options).format(new Date()));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Experience", href: "#experience" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  const socials = [
+    { icon: Github, label: "GitHub", url: "https://github.com/Iyedkh" },
+    { icon: Linkedin, label: "LinkedIn", url: "https://www.linkedin.com/in/iyed-khouildi-453787326/" },
+    { icon: Mail, label: "Email", url: "mailto:iyedkhouildi12@gmail.com" },
+  ];
+
   return (
-    <footer style={{
-      borderTop: "1px solid var(--border)",
-      background: "linear-gradient(180deg, var(--bg2) 0%, rgba(15,15,26,0.5) 100%)",
-      padding: "48px 24px",
-      backdropFilter: "blur(10px)",
-    }}>
-      <div style={{
-        maxWidth: 1200,
-        margin: "0 auto",
-      }}>
-        {/* Top Section */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
-          gap: 48,
-          alignItems: "center",
-          marginBottom: 48,
-          paddingBottom: 32,
-          borderBottom: "1px solid var(--border)",
-        }} className="footer-grid">
-          {/* Logo & Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{ display: "flex", alignItems: "center", gap: 12 }}
-          >
-            <div style={{
-              width: 40,
-              height: 40,
-              borderRadius: 10,
-              background: "linear-gradient(135deg, #d4a574, #8b4789)",
-              border: "1px solid rgba(212,165,116,0.3)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}>
-              <span style={{
-                fontSize: 20,
-                fontWeight: 800,
-                color: "white",
-                letterSpacing: "-0.02em",
-              }}>
-                I
-              </span>
-            </div>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: 18, color: "var(--text)" }}>Iyed</div>
-              <div style={{ fontSize: 11, color: "var(--muted)", fontFamily: "DM Mono", letterSpacing: "0.1em" }}>
-                DEVELOPER
+    <footer className="relative mt-24 border-t border-white/[0.08] bg-[#09090b] text-zinc-400">
+      {/* Background ambient lighting */}
+      <div
+        aria-hidden="true"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-[#d4a574]/30 to-transparent"
+      />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        {/* Top Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/[0.06] items-start">
+          {/* Brand & Bio */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-b from-white/15 to-white/5 border border-white/10 flex items-center justify-center shadow-inner">
+                <span className="font-serif font-bold text-xl text-white">I</span>
+              </div>
+              <div>
+                <span className="font-bold text-base text-white tracking-tight block">
+                  Iyed Khouildi
+                </span>
+                <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                  Full-Stack Developer & Data Analyst
+                </span>
               </div>
             </div>
-          </motion.div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            style={{
-              textAlign: "center",
-              padding: "16px 24px",
-              background: "linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1))",
-              borderRadius: 12,
-              border: "1px solid rgba(59,130,246,0.2)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <div style={{ fontSize: 12, color: "var(--muted)", marginBottom: 4, fontFamily: "DM Mono" }}>Got a project?</div>
-            <a href="#contact" style={{
-              fontSize: 14,
-              fontWeight: 700,
-              color: "var(--primary-light)",
-              textDecoration: "none",
-              transition: "all 0.2s",
-            }}
-            onMouseEnter={e => e.currentTarget.style.color = "#d4a574"}
-            onMouseLeave={e => e.currentTarget.style.color = "var(--primary-light)"}
+            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-sm font-normal">
+              Designing and developing performant digital software with the MERN stack and transforming enterprise datasets into clear analytical insight.
+            </p>
+
+            {/* Local Time Pill */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-zinc-300">
+              <Clock className="w-3.5 h-3.5 text-[#d4a574]" />
+              <span>Bizerte, Tunisia:</span>
+              <span className="text-white font-semibold">{localTime || "Loading..."}</span>
+              <span className="text-[10px] text-zinc-500">(UTC+1)</span>
+            </div>
+          </div>
+
+          {/* Quick Navigation Links */}
+          <div className="md:col-span-4 space-y-3">
+            <div className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-400">
+              Navigation
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="py-1 text-zinc-400 hover:text-white transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#d4a574]"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Social Links & Back-To-Top */}
+          <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between space-y-6">
+            <div className="space-y-3 w-full md:w-auto">
+              <div className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-400 md:text-right">
+                Connect
+              </div>
+              <div className="flex items-center gap-2">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="p-2.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.08] hover:border-[#d4a574]/40 text-zinc-400 hover:text-[#ebd0ad] transition-all duration-200"
+                  >
+                    <s.icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <button
+              onClick={scrollToTop}
+              className="btn-apple-secondary text-xs py-2 px-3.5 rounded-xl self-start md:self-auto"
+              title="Scroll to top of page"
             >
-              Let's Talk →
-            </a>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}
-          >
-            {[
-              { icon: Github, label: "GitHub", link: "https://github.com/Iyedkh" },
-              { icon: Linkedin, label: "LinkedIn", link: "https://www.linkedin.com/in/iyed-khouildi-453787326/" },
-              { icon: Mail, label: "Email", link: "mailto:iyedkhouildi12@gmail.com" },
-            ].map((s, i) => (
-              <motion.a
-                key={i}
-                href={s.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -4, scale: 1.1 }}
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 10,
-                  background: "rgba(59,130,246,0.1)",
-                  border: "1px solid rgba(59,130,246,0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--muted)",
-                  transition: "all 0.2s",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={e => { e.currentTarget.style.background = "rgba(212,165,116,0.2)"; e.currentTarget.style.color = "#d4a574"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "rgba(212,165,116,0.1)"; e.currentTarget.style.color = "var(--muted)"; }}
-              >
-                <s.icon style={{ width: 18, height: 18 }} />
-              </motion.a>
-            ))}
-          </motion.div>
+              <ArrowUp className="w-3.5 h-3.5 text-[#d4a574]" />
+              <span>Back to Top</span>
+            </button>
+          </div>
         </div>
 
-        {/* Bottom Section */}
-        <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 16,
-          fontSize: 13,
-          color: "var(--muted)",
-        }}>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            © {currentYear} Iyed Khouildi — Built with <Heart style={{ width: 14, height: 14, display: "inline", color: "#ef4444" }} /> and clean code.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{ display: "flex", gap: 24, fontSize: 12 }}
-          >
-            <a href="#" style={{ color: "var(--muted)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.color = "var(--primary-light)"}
-              onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
-            >
-              Privacy Policy
-            </a>
-            <a href="#" style={{ color: "var(--muted)", textDecoration: "none", transition: "color 0.2s" }}
-              onMouseEnter={e => e.currentTarget.style.color = "var(--primary-light)"}
-              onMouseLeave={e => e.currentTarget.style.color = "var(--muted)"}
-            >
-              Terms of Service
-            </a>
-          </motion.div>
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+          <p>© {currentYear} Iyed Khouildi. All rights reserved.</p>
+          <p className="flex items-center gap-1">
+            Built with React, Tailwind & Framer Motion
+          </p>
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
+export default Footer;

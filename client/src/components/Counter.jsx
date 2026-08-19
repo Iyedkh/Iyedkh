@@ -6,25 +6,40 @@ const Counter = ({ target, suffix = "" }) => {
   const started = useRef(false);
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true;
-        let start = 0;
-        const step = target / 40;
-        const timer = setInterval(() => {
-          start += step;
-          if (start >= target) {
-            setCount(target);
-            clearInterval(timer);
-          } else setCount(Math.floor(start));
-        }, 35);
-      }
-    });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const duration = 1400; // ms
+          const startTime = performance.now();
+
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Apple-style ease-out cubic curve
+            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+            const currentCount = Math.round(easeOutProgress * target);
+
+            setCount(currentCount);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCount(target);
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
   }, [target]);
 
   return <span ref={ref}>{count}{suffix}</span>;
 };
 
-export default Counter;
+export default Counter;
