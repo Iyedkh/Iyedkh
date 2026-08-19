@@ -97,40 +97,7 @@ Web & mobile development agency delivering vitrine sites, e-commerce, SaaS, and 
 
 <br/>
 
-## 📊 GitHub Stats (proof I actually code, sometimes)
 
-<div align="center">
-
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="GitHub Stats" width="48%"/>
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=radical&hide_border=true" alt="Streak Stats" width="48%"/>
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=radical&hide_border=true" alt="Top Languages" width="48%"/>
-
-<br/><br/>
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=YOUR_USERNAME&theme=react-dark&hide_border=true" width="90%"/>
-
-<br/><br/>
-
-🐍 <b>Contribution Snake:</b>
-<img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_USERNAME/output/github-contribution-grid-snake.svg" width="90%"/>
-<sub>(set up via GitHub Actions — instructions below ⬇️)</sub>
-
-</div>
-
-<br/>
-
-## 🎲 Random Dev Wisdom
-
-> "It's not a bug, it's an undocumented feature." — every developer, ever, including me
-
-<br/>
-
-<div align="center">
-
-<img src="https://komarev.com/ghpvc/?username=YOUR_USERNAME&label=Profile+Views&color=D4AF37&style=flat-square" alt="Profile Views"/>
-
-<br/><br/>
 
 ### 🤝 Let's connect and build something great (or argue about tabs vs spaces)
 
