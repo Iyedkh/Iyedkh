@@ -74,7 +74,7 @@ const Nav = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-[#09090b]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl shadow-black/40"
+          ? "py-3 bg-[var(--bg-primary)]/90 backdrop-blur-2xl border-b border-[var(--border)] shadow-xl"
           : "py-5 bg-transparent border-b border-transparent"
       }`}
     >
@@ -85,20 +85,20 @@ const Nav = () => {
           initial={{ opacity: 0, x: isRTL ? 16 : -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574] rounded-xl p-1"
+          className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] rounded-xl p-1"
         >
-          <div className="relative w-9 h-9 rounded-xl bg-gradient-to-b from-white/15 to-white/5 border border-white/10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[#d4a574]/40 shadow-inner shrink-0">
-            <span className="font-serif font-bold text-lg text-white group-hover:text-[#ebd0ad] transition-colors">
+          <div className="relative w-9 h-9 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[var(--accent-primary)] shrink-0">
+            <span className="font-serif font-bold text-lg text-[var(--text-primary)] group-hover:text-[var(--accent-primary-hover)] transition-colors">
               I
             </span>
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#d4a574]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
           <div className="flex flex-col">
-            <span className="font-semibold text-sm tracking-tight text-white flex items-center gap-1.5">
+            <span className="font-semibold text-sm tracking-tight text-[var(--text-primary)] flex items-center gap-1.5">
               Iyed Khouildi
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" title={t.nav.available} />
+              {/* Sage status indicator dot */}
+              <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent-secondary)] shadow-[0_0_8px_rgba(107,143,113,0.6)]" title={t.nav.available} />
             </span>
-            <span className="font-mono text-[10px] text-zinc-400 tracking-wider uppercase">
+            <span className="font-mono text-[10px] text-[var(--text-secondary)] tracking-wider uppercase">
               {t.nav.role}
             </span>
           </div>
@@ -107,7 +107,7 @@ const Nav = () => {
         {/* Desktop Navigation Floating Pill Bar */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#111116]/80 border border-white/[0.08] backdrop-blur-xl shadow-lg shadow-black/30"
+          className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] backdrop-blur-xl"
         >
           {navLinks.map((link) => {
             const sectionId = link.href.substring(1);
@@ -116,15 +116,15 @@ const Nav = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574] ${
-                  isActive ? "text-white font-semibold" : "text-zinc-400 hover:text-zinc-200"
+                className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] ${
+                  isActive ? "text-[var(--text-primary)] font-semibold" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-gradient-to-b from-white/15 to-white/5 border border-white/10 rounded-full shadow-inner"
+                    className="absolute inset-0 bg-[var(--accent-primary-dim)] border border-[var(--accent-primary)] rounded-full"
                   />
                 )}
                 <span className="relative z-10">{link.name}</span>
@@ -141,12 +141,12 @@ const Nav = () => {
           {/* Quick Copy Email Button */}
           <button
             onClick={handleCopyEmail}
-            className="p-2 rounded-xl text-zinc-400 hover:text-[#ebd0ad] bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574]"
+            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-primary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
             title={t.nav.emailCopied}
             aria-label="Copy email address"
           >
             {copiedEmail ? (
-              <Check className="w-4 h-4 text-emerald-400" />
+              <Check className="w-4 h-4 text-[var(--accent-secondary)]" />
             ) : (
               <Copy className="w-4 h-4" />
             )}
@@ -169,7 +169,7 @@ const Nav = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Toggle navigation menu"
-            className="p-2 rounded-xl text-zinc-300 hover:text-white bg-white/[0.04] border border-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a574]"
+            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] border border-[var(--border)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -184,7 +184,7 @@ const Nav = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden bg-[#0e0e12]/95 backdrop-blur-2xl border-b border-white/[0.08] px-6 py-6 shadow-2xl"
+            className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border)] px-6 py-6 shadow-2xl"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link, i) => {
@@ -200,8 +200,8 @@ const Nav = () => {
                     transition={{ delay: i * 0.04 }}
                     className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
-                        ? "bg-[#d4a574]/15 text-[#ebd0ad] border border-[#d4a574]/30"
-                        : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"
+                        ? "bg-[var(--accent-primary-dim)] text-[var(--text-primary)] border border-[var(--accent-primary)]"
+                        : "text-[var(--text-secondary)] hover:bg-[var(--bg-surface-elevated)] hover:text-[var(--text-primary)]"
                     }`}
                   >
                     {link.name}
@@ -209,14 +209,14 @@ const Nav = () => {
                 );
               })}
 
-              <div className="pt-4 mt-2 border-t border-white/[0.08] flex flex-col gap-3">
+              <div className="pt-4 mt-2 border-t border-[var(--border)] flex flex-col gap-3">
                 <button
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-mono text-zinc-300 bg-white/[0.03] border border-white/[0.08] hover:border-[#d4a574]/40 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-primary)] transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[#d4a574]" />
-                  <span>{email}</span>
-                  {copiedEmail && <span className="text-emerald-400 font-sans text-[10px] ml-1">({t.nav.emailCopied})</span>}
+                  <Mail className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
+                  <span className="text-[var(--text-primary)]">{email}</span>
+                  {copiedEmail && <span className="text-[var(--accent-secondary)] font-sans text-[10px] ml-1">({t.nav.emailCopied})</span>}
                 </button>
 
                 <a

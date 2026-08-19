@@ -14,11 +14,11 @@ const LanguageSwitcher = ({ className = "" }) => {
 
   return (
     <div
-      className={`inline-flex items-center p-1 rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl ${className}`}
+      className={`inline-flex items-center p-1 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] backdrop-blur-xl ${className}`}
       role="group"
       aria-label="Language Selector"
     >
-      <div className="px-1.5 text-zinc-500 hidden sm:flex items-center">
+      <div className="px-1.5 text-[var(--text-secondary)] hidden sm:flex items-center">
         <Globe className="w-3.5 h-3.5" />
       </div>
 
@@ -30,15 +30,15 @@ const LanguageSwitcher = ({ className = "" }) => {
             onClick={() => setLang(l.code)}
             title={l.title}
             aria-pressed={isActive}
-            className={`relative px-2.5 py-1 text-[11px] font-mono font-semibold transition-colors duration-200 rounded-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-[#d4a574] ${
-              isActive ? "text-white font-bold" : "text-zinc-400 hover:text-zinc-200"
+            className={`relative px-2.5 py-1 text-[11px] font-mono font-semibold transition-colors duration-200 rounded-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-primary)] ${
+              isActive ? "text-[var(--text-primary)] font-bold" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             }`}
           >
             {isActive && (
               <motion.div
                 layoutId="activeLangIndicator"
                 transition={{ type: "spring", stiffness: 450, damping: 30 }}
-                className="absolute inset-0 bg-[#d4a574]/25 border border-[#d4a574]/40 rounded-lg shadow-sm"
+                className="absolute inset-0 bg-[var(--accent-primary-dim)] border border-[var(--accent-primary)] rounded-lg shadow-sm"
               />
             )}
             <span className="relative z-10">{l.label}</span>

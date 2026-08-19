@@ -64,8 +64,8 @@ const Hero = () => {
           <motion.div variants={itemVariants} className="mb-6">
             <div className="section-pill flex items-center gap-2.5">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-secondary)] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-secondary)]" />
               </span>
               <span>{t.hero.statusBadge}</span>
             </div>
@@ -73,10 +73,10 @@ const Hero = () => {
 
           {/* Editorial Display Heading */}
           <motion.div variants={itemVariants} className="space-y-1 mb-6">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.035em] text-white leading-[1.12]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-[-0.035em] text-[var(--text-primary)] leading-[1.12]">
               {t.hero.title1}
             </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] gold-text leading-[1.18]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] bronze-text leading-[1.18]">
               {t.hero.title2}
             </h2>
           </motion.div>
@@ -84,7 +84,7 @@ const Hero = () => {
           {/* Description */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg text-zinc-300 max-w-xl leading-relaxed mb-8 font-normal"
+            className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl leading-relaxed mb-8 font-normal"
           >
             {t.hero.description}
           </motion.p>
@@ -106,7 +106,7 @@ const Hero = () => {
               href="#contact"
               className="btn-apple-secondary w-full sm:w-auto justify-center"
             >
-              <Mail className="w-4 h-4 text-zinc-400" />
+              <Mail className="w-4 h-4 text-[var(--text-secondary)]" />
               <span>{t.hero.contactMe}</span>
             </a>
 
@@ -117,7 +117,7 @@ const Hero = () => {
               className="btn-apple-secondary w-full sm:w-auto justify-center"
               title="Download Resume PDF"
             >
-              <Download className="w-4 h-4 text-[#d4a574]" />
+              <Download className="w-4 h-4 text-[var(--accent-primary)]" />
               <span>{t.hero.downloadCv}</span>
             </a>
           </motion.div>
@@ -125,31 +125,31 @@ const Hero = () => {
           {/* Live Metric Counters */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-3 gap-6 pt-6 border-t border-white/[0.08] w-full max-w-lg"
+            className="grid grid-cols-3 gap-6 pt-6 border-t border-[var(--border)] w-full max-w-lg"
           >
             <div>
-              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-0.5">
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] flex items-center gap-0.5">
                 <Counter target={3} suffix="+" />
               </div>
-              <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
+              <div className="text-xs text-[var(--text-secondary)] font-mono tracking-wide mt-1">
                 {t.hero.stats.yearsExperience}
               </div>
             </div>
 
             <div>
-              <div className="text-2xl sm:text-3xl font-bold tracking-tight gold-text flex items-center gap-0.5">
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight bronze-text flex items-center gap-0.5">
                 <Counter target={5} suffix="+" />
               </div>
-              <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
+              <div className="text-xs text-[var(--text-secondary)] font-mono tracking-wide mt-1">
                 {t.hero.stats.shippedSystems}
               </div>
             </div>
 
             <div>
-              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-0.5">
+              <div className="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] flex items-center gap-0.5">
                 <Counter target={3} suffix="+" />
               </div>
-              <div className="text-xs text-zinc-400 font-mono tracking-wide mt-1">
+              <div className="text-xs text-[var(--text-secondary)] font-mono tracking-wide mt-1">
                 {t.hero.stats.certifications}
               </div>
             </div>
@@ -163,15 +163,9 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 flex justify-center lg:justify-end relative"
         >
-          {/* Ambient Glow */}
-          <div
-            aria-hidden="true"
-            className="absolute -inset-4 bg-gradient-to-tr from-[#d4a574]/15 via-[#8b4789]/10 to-blue-500/10 rounded-3xl blur-2xl opacity-70 pointer-events-none"
-          />
-
           {/* Interactive Profile Card */}
-          <div className="relative w-full max-w-sm sm:max-w-md rounded-3xl p-3 bg-gradient-to-b from-white/[0.12] to-white/[0.03] border border-white/10 shadow-2xl backdrop-blur-xl group">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#111116] border border-white/[0.08]">
+          <div className="relative w-full max-w-sm sm:max-w-md rounded-3xl p-3 bg-[var(--bg-surface)] border border-[var(--border)] shadow-xl group">
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-[var(--bg-primary)] border border-[var(--border)]">
               {/* Photo */}
               <img
                 src={Me}
@@ -181,25 +175,25 @@ const Hero = () => {
               />
 
               {/* Gradient Vignette Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/30 to-transparent" />
 
               {/* Top Pill: Location & Degree */}
               <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-medium tracking-wide bg-black/60 backdrop-blur-md border border-white/10 text-zinc-300">
+                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-medium tracking-wide bg-[var(--bg-primary)]/80 border border-[var(--border)] text-[var(--text-primary)]">
                   {t.hero.card.location}
                 </span>
-                <span className="px-3 py-1 rounded-full text-[11px] font-mono font-semibold tracking-wide bg-[#d4a574]/20 backdrop-blur-md border border-[#d4a574]/30 text-[#ebd0ad]">
+                <span className="tech-pill text-[10px]">
                   {t.hero.card.degree}
                 </span>
               </div>
 
               {/* Bottom Card Summary */}
-              <div className="absolute bottom-3 left-3 right-3 p-4 rounded-xl bg-black/75 backdrop-blur-xl border border-white/10 space-y-2">
+              <div className="absolute bottom-3 left-3 right-3 p-4 rounded-xl bg-[var(--bg-surface)]/90 backdrop-blur-xl border border-[var(--border)] space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-sm text-white tracking-tight">
+                  <span className="font-bold text-sm text-[var(--text-primary)] tracking-tight">
                     Iyed Khouildi
                   </span>
-                  <span className="text-[11px] font-mono text-emerald-400 flex items-center gap-1">
+                  <span className="text-[11px] font-mono text-[var(--accent-secondary)] flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" /> {t.hero.card.quality}
                   </span>
                 </div>
@@ -207,12 +201,12 @@ const Hero = () => {
                   {techPills.slice(0, 4).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-0.5 rounded-md text-[10px] font-mono font-medium bg-white/[0.06] text-zinc-300 border border-white/[0.08]"
+                      className="tech-pill text-[10px] py-0.5 px-2"
                     >
                       {tech}
                     </span>
                   ))}
-                  <span className="px-2 py-0.5 rounded-md text-[10px] font-mono text-[#ebd0ad] bg-[#d4a574]/15 border border-[#d4a574]/30">
+                  <span className="tech-pill text-[10px] py-0.5 px-2 text-[var(--accent-secondary)]">
                     {t.hero.card.more}
                   </span>
                 </div>
@@ -223,16 +217,16 @@ const Hero = () => {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className={`absolute -bottom-4 ${isRTL ? "-right-4 sm:-right-6" : "-left-4 sm:-left-6"} p-3 rounded-2xl bg-[#111116]/90 border border-white/15 backdrop-blur-xl shadow-xl flex items-center gap-3`}
+              className={`absolute -bottom-4 ${isRTL ? "-right-4 sm:-right-6" : "-left-4 sm:-left-6"} p-3 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-xl flex items-center gap-3`}
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#d4a574]/20 to-[#8b4789]/20 border border-[#d4a574]/30 flex items-center justify-center text-[#ebd0ad]">
+              <div className="w-10 h-10 rounded-xl bg-[var(--accent-secondary-dim)] border border-[var(--accent-secondary-border)] flex items-center justify-center text-[var(--accent-secondary)]">
                 <Code2 className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-[10px] font-mono font-bold tracking-widest text-zinc-400 uppercase">
+                <div className="text-[10px] font-mono font-bold tracking-widest text-[var(--text-secondary)] uppercase">
                   {t.hero.card.coreFocus}
                 </div>
-                <div className="text-xs font-bold text-white">
+                <div className="text-xs font-bold text-[var(--text-primary)]">
                   {t.hero.card.stack}
                 </div>
               </div>
@@ -246,16 +240,16 @@ const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="mt-16 pt-8 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4"
+        className="mt-16 pt-8 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-4"
       >
-        <span className="text-xs font-mono font-semibold tracking-wider text-zinc-500 uppercase">
+        <span className="text-xs font-mono font-semibold tracking-wider text-[var(--text-secondary)] uppercase">
           {t.hero.techStack}
         </span>
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {techPills.map((skill) => (
             <span
               key={skill}
-              className="px-3 py-1 rounded-lg text-xs font-medium text-zinc-300 bg-white/[0.03] border border-white/[0.06] hover:border-[#d4a574]/40 hover:text-white transition-colors"
+              className="tech-pill text-xs py-1 px-3"
             >
               {skill}
             </span>

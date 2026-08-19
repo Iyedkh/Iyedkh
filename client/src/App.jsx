@@ -21,7 +21,7 @@ function PortfolioContent() {
   });
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-[#fafafa] relative selection:bg-[#d4a574]/30 selection:text-white">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative selection:bg-[#C08A4E]/30 selection:text-[#F2EDE4]">
       {/* Toast Notification Provider */}
       <Toaster
         position="bottom-right"
@@ -30,13 +30,13 @@ function PortfolioContent() {
         closeButton
         toastOptions={{
           style: {
-            background: "rgba(18, 18, 24, 0.95)",
+            background: "var(--bg-surface)",
             backdropFilter: "blur(20px)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            color: "#fafafa",
+            border: "1px solid var(--border-strong)",
+            color: "var(--text-primary)",
             fontFamily: "inherit",
             borderRadius: "14px",
-            boxShadow: "0 20px 40px -15px rgba(0,0,0,0.7)",
+            boxShadow: "0 20px 40px -15px rgba(0,0,0,0.5)",
           },
         }}
       />
@@ -44,7 +44,7 @@ function PortfolioContent() {
       {/* Apple-style Smooth Scroll Progress Bar */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#d4a574] via-[#8b4789] to-[#ebd0ad] origin-left z-50 shadow-[0_0_10px_rgba(212,165,116,0.5)]"
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-[var(--accent-primary)] origin-left z-50 shadow-[0_0_10px_rgba(192,138,78,0.4)]"
       />
 
       {/* GPU-Accelerated Cursor Glow */}

@@ -28,7 +28,7 @@ const CursorGlow = () => {
         y: springY,
         width: 500,
         height: 500,
-        background: "radial-gradient(circle, rgba(212,165,116,0.06) 0%, rgba(139,71,137,0.03) 40%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(192,138,78,0.05) 0%, rgba(107,143,113,0.02) 40%, transparent 70%)",
         borderRadius: "50%",
         willChange: "transform",
       }}
