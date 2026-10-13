@@ -2,30 +2,47 @@
 
 @layer base {
   :root {
-    /* COLOR TOKENS */
-    --bg-primary: #14120F;       /* page background – deep warm charcoal */
-    --bg-surface: #1E1B17;       /* cards, nav, modals, elevated panels */
-    --text-primary: #F2EDE4;     /* headings, body copy – warm off-white */
-    --text-secondary: #A8A093;   /* captions, meta text, muted labels */
-    --accent-primary: #C08A4E;   /* bronze – CTAs, links, buttons, active states */
-    --accent-secondary: #6B8F71; /* sage – tags, code highlights, status indicators, chart accents */
+    /* 
+      CORE PALETTE TOKENS: Grounded in Engineering Craft & Data Telemetry
+      - Deep obsidian canvas, blueprint architectural lines, radiant amber & precision data teal
+    */
+    --bg-primary: #0A0D14;          /* Deep obsidian canvas */
+    --bg-surface: #121824;          /* Surface panel fill */
+    --bg-surface-elevated: #182233; /* Raised element background */
+    --bg-surface-glass: rgba(18, 24, 36, 0.75);
 
-    /* Derived/utility tokens */
-    --border: rgba(242, 237, 228, 0.1);       /* hairline borders on dark surfaces */
-    --border-strong: rgba(242, 237, 228, 0.18);
-    --accent-primary-hover: #D49A5E;           /* lighten bronze ~10% for hover */
-    --accent-secondary-hover: #7CA282;         /* lighten sage ~10% for hover */
+    --text-primary: #F8FAFC;        /* High-contrast crisp white */
+    --text-secondary: #94A3B8;      /* Slate secondary text */
+    --text-muted: #64748B;          /* Muted metadata text */
 
-    /* Derived helpers */
-    --bg-surface-elevated: #26221D;
-    --accent-primary-dim: rgba(192, 138, 78, 0.12);
-    --accent-primary-glow: rgba(192, 138, 78, 0.25);
-    --accent-secondary-dim: rgba(107, 143, 113, 0.12);
-    --accent-secondary-border: rgba(107, 143, 113, 0.28);
+    --accent-amber: #F59E0B;        /* Engineering amber / craft */
+    --accent-amber-hover: #FBBF24;
+    --accent-amber-dim: rgba(245, 158, 11, 0.12);
+    --accent-amber-glow: rgba(245, 158, 11, 0.28);
 
-    --font-sans: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-serif: 'DM Serif Display', Georgia, serif;
-    --font-mono: 'JetBrains Mono', 'DM Mono', monospace;
+    --accent-teal: #14B8A6;         /* Data intelligence teal / precision */
+    --accent-teal-hover: #2DD4BF;
+    --accent-teal-dim: rgba(20, 184, 166, 0.12);
+    --accent-teal-border: rgba(20, 184, 166, 0.28);
+
+    /* Backwards compatibility aliases */
+    --accent-primary: var(--accent-amber);
+    --accent-primary-hover: var(--accent-amber-hover);
+    --accent-primary-dim: var(--accent-amber-dim);
+    --accent-primary-glow: var(--accent-amber-glow);
+    --accent-secondary: var(--accent-teal);
+    --accent-secondary-hover: var(--accent-teal-hover);
+    --accent-secondary-dim: var(--accent-teal-dim);
+    --accent-secondary-border: var(--accent-teal-border);
+
+    /* Precision Hairlines */
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --border-focus: rgba(245, 158, 11, 0.45);
+
+    /* Typography */
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   }
 
   html {
@@ -39,7 +56,7 @@
     color: var(--text-primary);
     font-family: var(--font-sans);
     overflow-x: hidden;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
 
   [dir="rtl"], [lang="ar"] {
@@ -47,7 +64,7 @@
     letter-spacing: 0;
   }
 
-  /* Custom scrollbar */
+  /* Custom precision scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -56,107 +73,107 @@
     background: var(--bg-primary);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--bg-surface);
+    background: var(--bg-surface-elevated);
     border: 1px solid var(--border);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
+    background: var(--accent-amber);
   }
 }
 
-/* Typography tokens */
-.font-serif {
-  font-family: var(--font-serif);
-}
-.font-mono {
-  font-family: var(--font-mono);
-}
-
 /* Glassmorphism & Surface Styles */
-.apple-glass {
-  background: rgba(30, 27, 23, 0.88);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+.console-glass, .apple-glass {
+  background: var(--bg-surface-glass);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
   border: 1px solid var(--border);
 }
 
-.apple-card {
+.console-card, .apple-card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 20px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.apple-card:hover {
+.console-card::before, .apple-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.console-card:hover, .apple-card:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
 }
 
-/* Bronze Gradient Text & Highlights */
-.bronze-text {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 60%, var(--accent-primary-hover) 100%);
+.console-card:hover::before, .apple-card:hover::before {
+  opacity: 1;
+}
+
+/* Dynamic Gradient Highlights */
+.amber-gradient-text, .bronze-text, .gold-text {
+  background: linear-gradient(135deg, #FFF 10%, #F59E0B 75%, #FBBF24 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gold-text {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 60%, var(--accent-primary-hover) 100%);
+.teal-gradient-text {
+  background: linear-gradient(135deg, #FFF 10%, #14B8A6 75%, #2DD4BF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* Accessible Links */
-a.link-accessible {
-  color: var(--accent-primary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-a.link-accessible:hover {
-  color: var(--accent-primary-hover);
 }
 
 /* Button System */
-.btn-apple-primary {
-  background-color: var(--accent-primary);
-  color: var(--bg-primary);
+.btn-primary-action, .btn-apple-primary {
+  background: linear-gradient(135deg, var(--accent-amber) 0%, #D97706 100%);
+  color: #0A0D14;
   font-weight: 600;
   font-size: 14px;
   letter-spacing: -0.01em;
   padding: 10px 22px;
   border-radius: 12px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(192, 138, 78, 0.2);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
 
-.btn-apple-primary:hover {
-  background-color: var(--accent-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(192, 138, 78, 0.35);
+.btn-primary-action:hover, .btn-apple-primary:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
+  filter: brightness(1.08);
 }
 
-.btn-apple-primary:active {
+.btn-primary-action:active, .btn-apple-primary:active {
   transform: translateY(0);
 }
 
-.btn-apple-secondary {
-  background: transparent;
+.btn-secondary-action, .btn-apple-secondary {
+  background: rgba(255, 255, 255, 0.04);
   color: var(--text-primary);
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.01em;
   padding: 10px 22px;
   border-radius: 12px;
-  border: 1px solid var(--border-strong);
+  border: 1px solid var(--border);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -167,34 +184,53 @@ a.link-accessible:hover {
   text-decoration: none;
 }
 
-.btn-apple-secondary:hover {
-  background: rgba(242, 237, 228, 0.05);
-  border-color: var(--accent-primary);
-  color: var(--text-primary);
-  transform: translateY(-1px);
+.btn-secondary-action:hover, .btn-apple-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1.5px);
 }
 
-.btn-apple-secondary:active {
+.btn-secondary-action:active, .btn-apple-secondary:active {
   transform: translateY(0);
 }
 
-/* Technical Stack Pill (Sage Accent) */
+/* Telemetry Pills */
+.telemetry-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-teal);
+  background: var(--accent-teal-dim);
+  border: 1px solid var(--accent-teal-border);
+  padding: 3px 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
 .tech-pill {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  color: var(--text-primary);
-  background: var(--accent-secondary-dim);
-  border: 1px solid var(--accent-secondary-border);
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
   padding: 4px 10px;
   border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition: all 0.2s ease;
 }
+
 .tech-pill:hover {
-  border-color: var(--accent-secondary);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.07);
 }
 
-/* Section Header Badges */
 .section-pill {
   display: inline-flex;
   align-items: center;
@@ -202,27 +238,25 @@ a.link-accessible:hover {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  background: var(--accent-primary-dim);
-  border: 1px solid var(--border-strong);
-  padding: 6px 14px;
+  color: var(--accent-amber);
+  background: var(--accent-amber-dim);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  padding: 5px 14px;
   border-radius: 9999px;
 }
 
-/* Section Divider */
+/* Hairline Section Divider */
 .apple-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border-strong) 50%, var(--border) 80%, transparent);
-  margin: 72px 0;
+  background: linear-gradient(90deg, transparent, var(--border) 25%, var(--border-strong) 50%, var(--border) 75%, transparent);
+  margin: 64px 0;
 }
 
-/* Form Inputs */
+/* Input Fields */
 .apple-input {
   width: 100%;
-  background: var(--bg-surface);
+  background: rgba(18, 24, 36, 0.85);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 13px 18px;
@@ -234,16 +268,22 @@ a.link-accessible:hover {
 }
 
 .apple-input:focus {
-  border-color: var(--accent-primary);
-  background: var(--bg-surface-elevated);
-  box-shadow: 0 0 0 3px var(--accent-primary-dim);
+  border-color: var(--accent-amber);
+  background: #182233;
+  box-shadow: 0 0 0 3px var(--accent-amber-dim);
 }
 
 .apple-input::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
-/* Reduced Motion */
+/* Dot grid background pattern */
+.bg-grid-subtle {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

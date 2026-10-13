@@ -5,7 +5,6 @@ import {
   Download,
   ExternalLink,
   X,
-  Sparkles,
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -45,9 +44,9 @@ const CvModal = () => {
       data: t.cvModal.en,
       fileUrl: "/Iyed_Khouildi_CV_EN.pdf",
       fileName: "Iyed_Khouildi_CV_EN.pdf",
-      accentColor: "var(--accent-primary)",
-      accentDim: "var(--accent-primary-dim)",
-      accentBorder: "var(--accent-primary)",
+      accentColor: "var(--accent-amber)",
+      accentDim: "var(--accent-amber-dim)",
+      accentBorder: "var(--border-focus)",
       isHighlighted: true,
     },
     {
@@ -56,9 +55,9 @@ const CvModal = () => {
       data: t.cvModal.fr,
       fileUrl: "/Iyed_Khouildi_CV_FR.pdf",
       fileName: "Iyed_Khouildi_CV_FR.pdf",
-      accentColor: "var(--accent-secondary)",
-      accentDim: "var(--accent-secondary-dim)",
-      accentBorder: "var(--accent-secondary-border)",
+      accentColor: "var(--accent-teal)",
+      accentDim: "var(--accent-teal-dim)",
+      accentBorder: "var(--accent-teal-border)",
       isHighlighted: false,
     },
   ];
@@ -74,7 +73,7 @@ const CvModal = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={closeCvModal}
-            className="fixed inset-0 bg-black/75 backdrop-blur-md"
+            className="fixed inset-0 bg-black/80 backdrop-blur-md"
             aria-hidden="true"
           />
 
@@ -92,7 +91,7 @@ const CvModal = () => {
             {/* Ambient Top Glow */}
             <div
               aria-hidden="true"
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-[var(--accent-primary)] opacity-10 blur-3xl pointer-events-none"
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-[var(--accent-amber)] opacity-10 blur-3xl pointer-events-none"
             />
 
             {/* Close Button */}
@@ -101,15 +100,15 @@ const CvModal = () => {
               aria-label={t.cvModal.close}
               className={`absolute top-5 ${
                 isRTL ? "left-5" : "right-5"
-              } p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-transparent hover:border-[var(--border)] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]`}
+              } p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-transparent hover:border-[var(--border)] transition-all focus:outline-none`}
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Header */}
             <div className="flex flex-col items-start mb-6">
-              <div className="section-pill mb-3 inline-flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-primary)] border border-[var(--border)] text-xs text-[var(--accent-amber)] font-mono mb-3">
+                <FileText className="w-3.5 h-3.5" />
                 <span>{t.cvModal.pill}</span>
               </div>
               <h3
@@ -128,7 +127,7 @@ const CvModal = () => {
               {cvOptions.map((opt) => (
                 <div
                   key={opt.key}
-                  className="p-4 sm:p-5 rounded-2xl bg-[var(--bg-primary)]/70 hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--border-strong)] transition-all duration-200 group flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  className="p-4 sm:p-5 rounded-2xl bg-[var(--bg-primary)]/80 hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--border-strong)] transition-all duration-200 group flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                 >
                   {/* Left info */}
                   <div className="flex items-start gap-3.5">
@@ -148,7 +147,7 @@ const CvModal = () => {
                         <span className="text-base font-bold text-[var(--text-primary)] tracking-tight">
                           {opt.data.title}
                         </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-medium bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-secondary)]">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-mono bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-secondary)]">
                           <span>{opt.flag}</span>
                           <span>{opt.data.langBadge}</span>
                         </span>
@@ -158,7 +157,7 @@ const CvModal = () => {
                         {opt.data.role}
                       </p>
 
-                      <div className="text-[11px] font-mono text-[var(--text-secondary)] opacity-80 pt-0.5">
+                      <div className="text-[11px] font-mono text-[var(--text-muted)] pt-0.5">
                         {opt.data.size}
                       </div>
                     </div>
@@ -166,24 +165,22 @@ const CvModal = () => {
 
                   {/* Right Actions */}
                   <div className="flex items-center gap-2 self-end sm:self-center shrink-0 w-full sm:w-auto pt-2 sm:pt-0 border-t border-[var(--border)] sm:border-t-0">
-                    {/* Preview button */}
                     <a
                       href={opt.fileUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-apple-secondary text-xs py-2 px-3 rounded-xl flex-1 sm:flex-initial justify-center"
+                      className="btn-secondary-action text-xs py-2 px-3 rounded-xl flex-1 sm:flex-initial justify-center"
                       title={opt.data.preview}
                     >
                       <ExternalLink className="w-3.5 h-3.5 text-[var(--text-secondary)]" />
                       <span>{opt.data.preview}</span>
                     </a>
 
-                    {/* Download button */}
                     <a
                       href={opt.fileUrl}
                       download={opt.fileName}
                       onClick={() => handleDownload(opt.key, opt.fileName)}
-                      className="btn-apple-primary text-xs py-2 px-3.5 rounded-xl flex-1 sm:flex-initial justify-center"
+                      className="btn-primary-action text-xs py-2 px-3.5 rounded-xl flex-1 sm:flex-initial justify-center"
                       title={opt.data.download}
                     >
                       <Download className="w-3.5 h-3.5" />
@@ -196,9 +193,9 @@ const CvModal = () => {
 
             {/* Footer Note */}
             <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between text-xs text-[var(--text-secondary)]">
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-secondary)]" />
-                <span>Updated & Verified PDF</span>
+              <span className="flex items-center gap-1.5 font-mono text-[11px]">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-teal)]" />
+                <span>Verified PDF • Ready for Download</span>
               </span>
               <button
                 onClick={closeCvModal}

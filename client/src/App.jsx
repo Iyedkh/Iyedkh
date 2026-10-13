@@ -23,7 +23,7 @@ function PortfolioContent() {
   });
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative selection:bg-[#C08A4E]/30 selection:text-[#F2EDE4]">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative selection:bg-[var(--accent-amber-dim)] selection:text-[var(--text-primary)]">
       {/* Toast Notification Provider */}
       <Toaster
         position="bottom-right"
@@ -38,15 +38,15 @@ function PortfolioContent() {
             color: "var(--text-primary)",
             fontFamily: "inherit",
             borderRadius: "14px",
-            boxShadow: "0 20px 40px -15px rgba(0,0,0,0.5)",
+            boxShadow: "0 20px 40px -15px rgba(0,0,0,0.6)",
           },
         }}
       />
 
-      {/* Apple-style Smooth Scroll Progress Bar */}
+      {/* Physics-smooth scroll progress indicator */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2.5px] bg-[var(--accent-primary)] origin-left z-50 shadow-[0_0_10px_rgba(192,138,78,0.4)]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)] to-[var(--accent-teal)] origin-left z-50 shadow-[0_0_12px_rgba(245,158,11,0.5)]"
       />
 
       {/* GPU-Accelerated Cursor Glow */}

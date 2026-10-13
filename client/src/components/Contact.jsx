@@ -10,7 +10,7 @@ import {
   CheckCircle2,
   Copy,
   Check,
-  Sparkles,
+  MessageSquare,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -28,8 +28,8 @@ const Contact = () => {
       label: t.contact.labels.email,
       value: "iyedkhouildi12@gmail.com",
       action: "copy",
-      accent: "var(--accent-primary)",
-      isSage: false,
+      accent: "var(--accent-amber)",
+      isTeal: false,
     },
     {
       id: "phone",
@@ -37,8 +37,8 @@ const Contact = () => {
       label: t.contact.labels.phone,
       value: "+216 93 117 612",
       action: "copy",
-      accent: "var(--accent-secondary)",
-      isSage: true,
+      accent: "var(--accent-teal)",
+      isTeal: true,
     },
     {
       id: "location",
@@ -46,8 +46,8 @@ const Contact = () => {
       label: t.contact.labels.location,
       value: t.contact.labels.locationValue,
       action: "info",
-      accent: "var(--accent-primary)",
-      isSage: false,
+      accent: "var(--accent-amber)",
+      isTeal: false,
     },
   ];
 
@@ -97,15 +97,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 scroll-mt-24">
+    <section id="contact" className="py-20 scroll-mt-24">
       {/* Section Header */}
-      <div className="flex flex-col items-center text-center mb-16">
-        <div className="section-pill mb-4">
-          <Sparkles className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
+      <div className="flex flex-col items-start mb-16">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs text-[var(--accent-amber)] font-mono mb-4">
+          <MessageSquare className="w-3.5 h-3.5" />
           <span>{t.contact.pill}</span>
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)] leading-tight">
-          {t.contact.heading1} <span className="bronze-text">{t.contact.headingHighlight}</span>
+          {t.contact.heading1} <span className="amber-gradient-text">{t.contact.headingHighlight}</span>
         </h2>
         <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl mt-3 font-normal">
           {t.contact.description}
@@ -118,33 +118,32 @@ const Contact = () => {
           initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-5 space-y-4"
         >
           {contactItems.map((item) => (
             <div
               key={item.id}
               onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
-              className={`apple-card p-5 flex items-center justify-between group cursor-pointer transition-all duration-300 ${
-                item.action === "copy" ? "hover:border-[var(--accent-primary)]" : ""
+              className={`console-card p-5 flex items-center justify-between group cursor-pointer transition-all duration-300 ${
+                item.action === "copy" ? "hover:border-[var(--accent-amber)]" : ""
               }`}
             >
               <div className="flex items-center gap-4">
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-105"
-                  style={{
-                    backgroundColor: item.isSage ? "var(--accent-secondary-dim)" : "var(--accent-primary-dim)",
-                    borderColor: item.isSage ? "var(--accent-secondary-border)" : "var(--border-strong)",
-                    color: item.accent,
-                  }}
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-105 ${
+                    item.isTeal
+                      ? "bg-[var(--accent-teal-dim)] border-[var(--accent-teal-border)] text-[var(--accent-teal)]"
+                      : "bg-[var(--accent-amber-dim)] border-[var(--border-focus)] text-[var(--accent-amber)]"
+                  }`}
                 >
                   <item.icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-mono font-bold tracking-widest text-[var(--text-secondary)] uppercase">
+                  <div className="text-[11px] font-mono text-[var(--text-secondary)] uppercase">
                     {item.label}
                   </div>
-                  <div className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-primary-hover)] transition-colors mt-0.5" dir="ltr">
+                  <div className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-amber-hover)] transition-colors mt-0.5" dir="ltr">
                     {item.value}
                   </div>
                 </div>
@@ -157,7 +156,7 @@ const Contact = () => {
                   className="p-2 rounded-xl text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] bg-[var(--bg-primary)] group-hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] transition-colors"
                 >
                   {copiedKey === item.id ? (
-                    <Check className="w-4 h-4 text-[var(--accent-secondary)]" />
+                    <Check className="w-4 h-4 text-[var(--accent-teal)]" />
                   ) : (
                     <Copy className="w-4 h-4" />
                   )}
@@ -167,8 +166,8 @@ const Contact = () => {
           ))}
 
           {/* Social Profiles */}
-          <div className="apple-card p-5 space-y-3">
-            <div className="text-[11px] font-mono font-bold tracking-widest text-[var(--text-secondary)] uppercase mb-2">
+          <div className="console-card p-5 space-y-3">
+            <div className="text-[11px] font-mono text-[var(--text-secondary)] uppercase mb-2">
               {t.contact.labels.connectOnline}
             </div>
             <div className="grid grid-cols-2 gap-3">
@@ -178,14 +177,14 @@ const Contact = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-primary)] border border-[var(--border)] hover:border-[var(--accent-primary)] transition-all flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+                  className="p-3 rounded-xl bg-[var(--bg-primary)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-all flex items-center gap-3 group focus:outline-none"
                 >
                   <social.icon className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors" />
                   <div className="truncate">
-                    <div className="text-xs font-bold text-[var(--text-primary)] tracking-tight">
+                    <div className="text-xs font-bold text-[var(--text-primary)] tracking-tight font-mono">
                       {social.name}
                     </div>
-                    <div className="text-[10px] font-mono text-[var(--text-secondary)] truncate" dir="ltr">
+                    <div className="text-[10px] font-mono text-[var(--text-muted)] truncate" dir="ltr">
                       {social.handle}
                     </div>
                   </div>
@@ -200,24 +199,24 @@ const Contact = () => {
           initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7"
         >
-          <div className="apple-card p-6 sm:p-8 relative min-h-[460px] flex flex-col justify-center">
+          <div className="console-card p-6 sm:p-8 relative min-h-[460px] flex flex-col justify-center">
             <AnimatePresence mode="wait">
               {!submitted ? (
                 <motion.form
                   key="form"
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
                   onSubmit={handleSubmit}
                   className="space-y-4"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                         {t.contact.form.nameLabel}
                       </label>
                       <input
@@ -231,7 +230,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                      <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                         {t.contact.form.emailLabel}
                       </label>
                       <input
@@ -240,14 +239,14 @@ const Contact = () => {
                         placeholder={t.contact.form.emailPlaceholder}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="apple-input"
+                        className="apple-input font-mono text-xs"
                         dir="ltr"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                       {t.contact.form.subjectLabel}
                     </label>
                     <input
@@ -261,10 +260,10 @@ const Contact = () => {
 
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <label className="block text-xs font-mono font-semibold text-[var(--text-secondary)] uppercase tracking-wider">
+                      <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider">
                         {t.contact.form.messageLabel}
                       </label>
-                      <span className="text-[10px] font-mono text-[var(--text-secondary)]">
+                      <span className="text-[10px] font-mono text-[var(--text-muted)]">
                         {formData.message.length} {t.contact.form.chars}
                       </span>
                     </div>
@@ -280,7 +279,7 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="btn-apple-primary w-full justify-center py-3.5 rounded-xl text-sm font-semibold mt-2"
+                    className="btn-primary-action w-full justify-center py-3.5 rounded-xl text-sm font-semibold mt-2"
                   >
                     <Send className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
                     <span>{t.contact.form.sendBtn}</span>
@@ -295,7 +294,7 @@ const Contact = () => {
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col items-center justify-center text-center p-8 space-y-4"
                 >
-                  <div className="w-16 h-16 rounded-3xl bg-[var(--accent-secondary-dim)] border border-[var(--accent-secondary-border)] flex items-center justify-center text-[var(--accent-secondary)]">
+                  <div className="w-16 h-16 rounded-3xl bg-[var(--accent-teal-dim)] border border-[var(--accent-teal-border)] flex items-center justify-center text-[var(--accent-teal)]">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">

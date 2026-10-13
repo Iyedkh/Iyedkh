@@ -85,18 +85,17 @@ const Nav = () => {
           initial={{ opacity: 0, x: isRTL ? 16 : -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] rounded-xl p-1"
+          className="flex items-center gap-3 group focus:outline-none rounded-xl p-1"
         >
-          <div className="relative w-9 h-9 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[var(--accent-primary)] shrink-0">
-            <span className="font-serif font-bold text-lg text-[var(--text-primary)] group-hover:text-[var(--accent-primary-hover)] transition-colors">
-              I
+          <div className="relative w-9 h-9 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[var(--accent-amber)] shrink-0">
+            <span className="font-mono font-bold text-lg text-[var(--accent-amber)] transition-colors">
+              IK
             </span>
           </div>
           <div className="flex flex-col">
             <span className="font-semibold text-sm tracking-tight text-[var(--text-primary)] flex items-center gap-1.5">
               Iyed Khouildi
-              {/* Sage status indicator dot */}
-              <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent-secondary)] shadow-[0_0_8px_rgba(107,143,113,0.6)]" title={t.nav.available} />
+              <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent-teal)] shadow-[0_0_8px_rgba(20,184,166,0.6)]" title={t.nav.available} />
             </span>
             <span className="font-mono text-[10px] text-[var(--text-secondary)] tracking-wider uppercase">
               {t.nav.role}
@@ -116,7 +115,7 @@ const Nav = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] ${
+                className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none ${
                   isActive ? "text-[var(--text-primary)] font-semibold" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 }`}
               >
@@ -124,7 +123,7 @@ const Nav = () => {
                   <motion.div
                     layoutId="activeNavIndicator"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[var(--accent-primary-dim)] border border-[var(--accent-primary)] rounded-full"
+                    className="absolute inset-0 bg-[var(--accent-amber-dim)] border border-[var(--border-focus)] rounded-full"
                   />
                 )}
                 <span className="relative z-10">{link.name}</span>
@@ -135,18 +134,17 @@ const Nav = () => {
 
         {/* Right CTA Group */}
         <div className="hidden md:flex items-center gap-3">
-          {/* Language Switcher */}
           <LanguageSwitcher />
 
           {/* Quick Copy Email Button */}
           <button
             onClick={handleCopyEmail}
-            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-primary)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-all duration-200 focus:outline-none"
             title={t.nav.emailCopied}
             aria-label="Copy email address"
           >
             {copiedEmail ? (
-              <Check className="w-4 h-4 text-[var(--accent-secondary)]" />
+              <Check className="w-4 h-4 text-[var(--accent-teal)]" />
             ) : (
               <Copy className="w-4 h-4" />
             )}
@@ -155,10 +153,10 @@ const Nav = () => {
           {/* Let's Talk CTA */}
           <a
             href="#contact"
-            className="btn-apple-primary text-xs py-2 px-4 rounded-xl"
+            className="btn-primary-action text-xs py-2 px-4 rounded-xl group"
           >
             <span>{t.nav.letsTalk}</span>
-            <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
+            <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
           </a>
         </div>
 
@@ -169,7 +167,7 @@ const Nav = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Toggle navigation menu"
-            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] border border-[var(--border)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]"
+            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] border border-[var(--border)] focus:outline-none"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -200,7 +198,7 @@ const Nav = () => {
                     transition={{ delay: i * 0.04 }}
                     className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
-                        ? "bg-[var(--accent-primary-dim)] text-[var(--text-primary)] border border-[var(--accent-primary)]"
+                        ? "bg-[var(--accent-amber-dim)] text-[var(--accent-amber)] border border-[var(--border-focus)]"
                         : "text-[var(--text-secondary)] hover:bg-[var(--bg-surface-elevated)] hover:text-[var(--text-primary)]"
                     }`}
                   >
@@ -212,17 +210,17 @@ const Nav = () => {
               <div className="pt-4 mt-2 border-t border-[var(--border)] flex flex-col gap-3">
                 <button
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-primary)] transition-colors"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-primary)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-colors"
                 >
-                  <Mail className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
+                  <Mail className="w-3.5 h-3.5 text-[var(--accent-amber)]" />
                   <span className="text-[var(--text-primary)]">{email}</span>
-                  {copiedEmail && <span className="text-[var(--accent-secondary)] font-sans text-[10px] ml-1">({t.nav.emailCopied})</span>}
+                  {copiedEmail && <span className="text-[var(--accent-teal)] font-sans text-[10px] ml-1">({t.nav.emailCopied})</span>}
                 </button>
 
                 <a
                   href="#contact"
                   onClick={() => setMenuOpen(false)}
-                  className="btn-apple-primary w-full justify-center text-xs py-3 rounded-xl"
+                  className="btn-primary-action w-full justify-center text-xs py-3 rounded-xl"
                 >
                   <span>{t.nav.letsTalk}</span>
                   <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
@@ -237,4 +235,3 @@ const Nav = () => {
 };
 
 export default Nav;
-

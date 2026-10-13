@@ -5,9 +5,9 @@ const CursorGlow = () => {
   const mouseX = useMotionValue(-500);
   const mouseY = useMotionValue(-500);
 
-  // Apple-grade smooth spring physics for ambient cursor follower
-  const springX = useSpring(mouseX, { damping: 28, stiffness: 200 });
-  const springY = useSpring(mouseY, { damping: 28, stiffness: 200 });
+  // Smooth spring physics for ambient cursor follower
+  const springX = useSpring(mouseX, { damping: 30, stiffness: 180 });
+  const springY = useSpring(mouseY, { damping: 30, stiffness: 180 });
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -28,7 +28,7 @@ const CursorGlow = () => {
         y: springY,
         width: 500,
         height: 500,
-        background: "radial-gradient(circle, rgba(192,138,78,0.05) 0%, rgba(107,143,113,0.02) 40%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, rgba(20, 184, 166, 0.03) 40%, transparent 70%)",
         borderRadius: "50%",
         willChange: "transform",
       }}
@@ -36,4 +36,4 @@ const CursorGlow = () => {
   );
 };
 
-export default CursorGlow;
+export default CursorGlow;
