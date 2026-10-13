@@ -1,475 +1,211 @@
 <div align="center">
 
-<!-- HERO -->
+<!-- JAPANDI × KYOTO AESTHETIC HERO BANNER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:171714,40:262522,80:786F63,100:E8A1B0&height=220&section=header&text=IYED%20KHOUILDI&fontSize=50&fontColor=F5F0E7&fontAlignY=38&desc=%E5%8C%A0%20%C2%B7%20Full%20Stack%20Developer%20%26%20Data%20Architect%20%C2%B7%20Precision%20Craft&descAlignY=62&descSize=16" width="100%"/>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=240&section=header&text=Iyed%20Khouildi&fontSize=55&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Full-Stack%20Developer%20%7C%20Data%20Analyst%20%7C%20Builder&descAlignY=55&descSize=19" width="100%"/>
+<br/>
 
-<br>
+<!-- EDITORIAL TYPING ANIMATION -->
+<img src="https://readme-typing-svg.demolab.com?font=Cormorant+Garamond&weight=600&size=21&pause=1200&color=E8A1B0&center=true&vCenter=true&width=860&height=60&lines=Crafting+digital+experiences+with+precision.;Merging+engineering+discipline%2C+data%2C+and+Japanese+minimalism.;Architect+behind+CARTHAGEOS+%E2%80%94+Modular+SaaS+ERP.;Full+Stack+Engineering+%C2%B7+Business+Intelligence+%C2%B7+Data+Pipelines.;Kyoto+Spirit+%C2%B7+Modern+Architecture." />
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&pause=1000&color=D4AF37&center=true&vCenter=true&width=850&height=70&lines=Full-Stack+Developer+%F0%9F%92%BB;Data+Analyst+%F0%9F%93%8A;Building+MERN+Applications+%F0%9F%9A%80;Turning+Ideas+Into+Products+%F0%9F%92%A1;Building+OLIV'OR+%F0%9F%AB%92+%26+TANIT+GOLD+%F0%9F%8C%B4;Debugging+is+just+another+word+for+learning+%F0%9F%98%82" />
+<br/>
 
-<br><br>
-
-<a href="#">
-<img src="https://img.shields.io/badge/🌐%20Portfolio-D4AF37?style=for-the-badge&logoColor=black"/>
+<!-- JAPANDI STATUS PILLS & BADGES -->
+<a href="https://github.com/Iyedkh">
+  <img src="https://img.shields.io/badge/%E5%8C%A0%20TAKUMI-Precision%20Craft-262522?style=for-the-badge&labelColor=171714&color=E8A1B0"/>
 </a>
-<a href="#">
-<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+<a href="https://github.com/Iyedkh">
+  <img src="https://img.shields.io/badge/STATUS-Available%20for%20Architecture-262522?style=for-the-badge&labelColor=171714&color=78836A"/>
 </a>
-<a href="mailto:your-email@example.com">
-<img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+<a href="https://linkedin.com/in/iyed-khouildi-453787326/">
+  <img src="https://img.shields.io/badge/LinkedIn-Iyed%20Khouildi-262522?style=for-the-badge&logo=linkedin&logoColor=F5F0E7&labelColor=171714&color=AD8B59"/>
+</a>
+<a href="mailto:iyedkhouildi12@gmail.com">
+  <img src="https://img.shields.io/badge/Email-Direct%20Inquiry-262522?style=for-the-badge&logo=gmail&logoColor=F5F0E7&labelColor=171714&color=C24545"/>
 </a>
 
-<br><br>
+<br/><br/>
 
-<img src="https://komarev.com/ghpvc/?username=YOUR_USERNAME&style=for-the-badge&color=D4AF37&label=PROFILE+VIEWS"/>
-
-</div>
-
----
-
-# 👋 Hey, I'm Iyed
-
-I'm a **Full-Stack Developer and Data Analyst from Tunisia 🇹🇳** focused on building modern web applications, data-driven systems, and digital products.
-
-I enjoy working at the intersection of:
-
-**Software Engineering × Data × Business × Product**
-
-My goal isn't simply to write code.
-
-> **I want to turn ideas into products that actually work.**
-
----
-
-## 🧑‍💻 What I Do
-
-<div align="center">
-
-| 💻 Full-Stack Development |     📊 Data & BI    | 🚀 Product Building |
-| :-----------------------: | :-----------------: | :-----------------: |
-|     MERN applications     | Power BI dashboards |    Business ideas   |
-|         REST APIs         |   Python analytics  |      E-commerce     |
-|       Authentication      |         SQL         |       Branding      |
-|   MongoDB architectures   |  Data visualization |   Product strategy  |
-|       Responsive UIs      |  Reporting systems  |   Digital products  |
+<img src="https://komarev.com/ghpvc/?username=Iyedkh&style=for-the-badge&color=262522&label=VISITOR%20TELEMETRY&labelColor=171714"/>
 
 </div>
 
----
-
-# 🏢 Professional Experience
-
-### 💼 IT Department — JCD Commerce 🇹🇳
-
-**Chef de Département IT**
-
-Working across software, infrastructure, data and digital operations.
-
-#### What I work on:
-
-* 🖥️ Internal IT systems
-* 🌐 Web applications
-* 📊 Business intelligence & reporting
-* 🗄️ Database management
-* 🔧 Technical troubleshooting
-* ⚙️ Process optimization
-* 🔐 IT infrastructure
-* 📈 Data analysis and visualization
-* 🤝 Supporting business teams with technology
-
-> Official title: **IT Department Manager**
-> Unofficial title: **"Why isn't this working?" specialist.**
+<br/>
 
 ---
 
-# 🚀 Currently Building
+### 道 · PHILOSOPHY & ART DIRECTION
 
-<div align="center">
+> *"In the spirit of **Wabi-Sabi** (侘寂) and Japanese architectural discipline, software is not merely a collection of features — it is an information ecosystem stripped of superfluous noise until only what is functional, intuitive, and ergonomically refined remains."*
 
-### 🫒 OLIV'OR
+I am **Iyed Khouildi**, a Full-Stack Software Engineer and Data Analyst based in Bizerte, Tunisia (UTC+1). My academic grounding in **Business Intelligence at ISG Bizerte**, combined with intensive dual bootcamps in **Data Science** and **Software Development**, enables me to bridge rigorous backend engineering with quantitative decision intelligence.
 
-**Premium Tunisian Olive Oil**
-
-Building a complete digital ecosystem around a premium Tunisian olive oil brand.
-
-**Focus**
-
-`E-Commerce` `React` `Node.js` `MongoDB` `Branding` `B2B` `Export`
-
----
-
-### 🌴 TANIT GOLD
-
-**Premium Tunisian Deglet Nour Dates**
-
-A luxury dates brand inspired by **Tunisian and Carthaginian heritage**.
-
-Working across:
-
-`Brand Strategy` `Packaging` `E-Commerce` `Business Strategy` `Investor Pitch` `Product Development`
-
----
-
-### ⚙️ DEVORA
-
-**Digital Development Agency**
-
-A development initiative focused on delivering:
-
-* 🌐 Vitrine websites
-* 🛒 E-commerce platforms
-* 📱 Mobile applications
-* 💻 SaaS products
-* 🧠 Business solutions
-
-**Stack**
-
-`React` `Node.js` `Express` `MongoDB` `REST APIs`
-
-</div>
-
----
-
-# 🧠 My Development Philosophy
-
-```javascript
-const developer = {
-    mindset: "Build > Talk",
-
-    philosophy: [
-        "Understand the problem",
-        "Design the solution",
-        "Build the product",
-        "Test everything",
-        "Fix what breaks",
-        "Ship it",
-        "Improve it"
-    ],
-
-    favoriteStack: "MERN",
-
-    debuggingStrategy: [
-        "Read the error",
-        "Google the error",
-        "Question life choices",
-        "Fix the bug",
-        "Create another bug",
-        "Repeat"
-    ]
-};
-```
-
----
-
-# 🛠️ Technology Stack
-
-### 💻 Frontend
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=html,css,js,react,tailwind,figma" />
-
-</div>
-
----
-
-### ⚙️ Backend
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,python,java" />
-
-</div>
-
----
-
-### 📊 Data & Analytics
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=python,mysql,postgres" />
-
-<br><br>
-
-<img src="https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black"/>
-<img src="https://img.shields.io/badge/SQL-336791?style=for-the-badge&logo=postgresql&logoColor=white"/>
-<img src="https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white"/>
-
-</div>
-
----
-
-### 🔧 Tools & Workflow
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=git,github,vscode,postman,docker,linux" />
-
-</div>
-
----
-
-# 📊 Data & Business Intelligence
-
-One of my strongest interests is connecting **technology with business decisions**.
-
-I work with:
+<br/>
 
 ```text
-Data
- │
- ├── SQL
- │
- ├── Python
- │
- ├── Power BI
- │
- └── Business Intelligence
-          │
-          ▼
-    Insights & Decisions
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│   01. FULL-STACK ARCHITECTURE    React 19 · Node.js · Express · REST APIs    │
+│   02. BUSINESS INTELLIGENCE      Power BI · Python · SQL · Tabular Models    │
+│   03. DATABASE & STORAGE         MongoDB Aggregations · PostgreSQL · ACID    │
+│   04. CRAFT & WABI-SABI UX       Editorial Layouts · Japanese Minimalist UI  │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 📈 Things I Build
-
-* Interactive Power BI dashboards
-* KPI reporting systems
-* Business analytics
-* Data cleaning pipelines
-* SQL queries
-* Performance reports
-* Data visualization
-* Automated reporting concepts
-
-> I don't just make charts.
-> **I try to make the numbers tell a story.**
+<br/>
 
 ---
 
-# 📚 Featured Projects
+### 作 · FLAGSHIP ARCHITECTURE & HIGHLIGHTS
 
-### 🫒 OLIV'OR
+<table>
+  <tr>
+    <td width="55%" valign="top">
+      <h3>🏛️ CARTHAGEOS — Modular SaaS ERP Platform</h3>
+      <p><b>Flagship Enterprise Architecture (2026)</b></p>
+      <p>Comprehensive multi-tenant cloud ERP platform engineered for corporate operations, financial ledgers, inventory turnover, multi-warehouse stock control, and automated invoicing with scalable role-based security.</p>
+      <ul>
+        <li><b>Stack:</b> React 19, Node.js, Express, MongoDB Aggregations, Tailwind CSS, REST APIs</li>
+        <li><b>Role:</b> Founder & Lead Architect</li>
+        <li><b>Key Impact:</b> Real-time state synchronization & sub-second query latency</li>
+      </ul>
+      <p>
+        <a href="https://github.com/Iyedkh"><b>Explore Repository →</b></a>
+      </p>
+    </td>
+    <td width="45%" valign="top">
+      <br/>
+      <pre>
+// CARTHAGEOS TELEMETRY
+❯ Subsystems: 48 REST Services
+❯ Multi-tenant Core: Initialized
+❯ Ledger DB: MongoDB Aggregates
+❯ Inventory Engine: Dynamic Reorder
+✓ Status: All Systems Operational</pre>
+    </td>
+  </tr>
+</table>
 
-**Premium Tunisian Olive Oil E-Commerce**
+<br/>
 
-A luxury digital commerce platform designed around Tunisian olive oil.
+### 🎋 SELECTED COMMERCIAL & OPEN WORKS
 
-**Role**
+| Project | Focus / Domain | Architectural Deliverable | Primary Stack |
+| :--- | :--- | :--- | :--- |
+| **StockMaster** | Inventory Intelligence | Real-time stock turnover tracking & automated reorder alerts | `React` · `Node.js` · `Power BI` · `MongoDB` |
+| **Tanit Gold** | Precious Metals Commerce | Dynamic live metal pricing calculator & catalog admin suite | `MERN Stack` · `Express` · `JWT Auth` |
+| **Oliv'Or** | Mediterranean Export Vitrine | High-resolution WebP international brand showcase | `React` · `Tailwind CSS` · `Editorial UI` |
+| **MS Smart Trading** | International Trade Platform | Commercial lead capture engine (+140% client acquisition) | `MERN` · `Responsive UI` · `REST APIs` |
+| **JCD Commerce** | Full-Stack E-Commerce | Secure checkout, persistent carts & admin inventory portals | `React` · `Node.js` · `MongoDB` |
+| **EGT Naval Services** | Maritime Engineering | Structured naval repair catalog converting global marine fleets | `React` · `Tailwind` · `Maritime Corporate` |
 
-Full-Stack Developer · Product Builder · Digital Strategy
-
-**Technologies**
-
-`React` `Tailwind CSS` `Node.js` `Express` `MongoDB`
-
-**Focus**
-
-* Premium product presentation
-* E-commerce architecture
-* Product catalog
-* Responsive UI
-* Brand identity
-* B2B/export positioning
-
----
-
-### 🌴 TANIT GOLD
-
-**Luxury Tunisian Dates Brand**
-
-A premium Deglet Nour dates brand inspired by **Carthaginian heritage, Tunisian culture and luxury gifting**.
-
-**Role**
-
-Founder · Product Development · Brand Strategy · Technology
-
-**Focus**
-
-* Brand identity
-* Luxury packaging
-* Collector editions
-* Investor presentation
-* Business strategy
-* E-commerce
-* Product development
+<br/>
 
 ---
 
-### ⚙️ DEVORA
-
-**Web & Mobile Development Agency**
-
-A digital development initiative focused on helping businesses transform ideas into digital products.
-
-**Services**
-
-```text
-🌐 Websites
-🛒 E-Commerce
-📱 Mobile Apps
-⚙️ SaaS
-📊 Business Systems
-🤖 AI-powered Solutions
-```
-
----
-
-# 🧪 Other Things I've Built
+### 技 · TECHNICAL DISCIPLINE & TOOLING
 
 <div align="center">
 
-| Project              | Description                    | Stack                  |
-| -------------------- | ------------------------------ | ---------------------- |
-| 🎓 E-LEAR            | MERN-based e-learning platform | React · Node · MongoDB |
-| 🏥 Hospital System   | Full-stack management platform | Spring Boot            |
-| 📊 BI Dashboards     | Business analytics & reporting | Power BI · SQL         |
-| 🛒 E-Commerce Apps   | Product & order management     | MERN                   |
-| 🌐 Business Websites | Responsive company websites    | React · Tailwind       |
+#### 💻 Frontend Architecture & Editorial Design
+<img src="https://skillicons.dev/icons?i=react,ts,js,html,css,tailwind,vite,figma&theme=dark" />
+
+<br/>
+
+#### ⚙️ Backend, Systems & Scalable APIs
+<img src="https://skillicons.dev/icons?i=nodejs,express,mongodb,postgres,mysql&theme=dark" />
+
+<br/>
+
+#### 📊 Business Intelligence & Quantitative Analytics
+<img src="https://skillicons.dev/icons?i=python,postman,git,github,docker,linux&theme=dark" />
+
+<br/>
+
+<img src="https://img.shields.io/badge/Power%20BI-DAX%20%26%20Telemetry-171714?style=for-the-badge&logo=powerbi&logoColor=F5F0E7&color=AD8B59"/>
+<img src="https://img.shields.io/badge/Python-Pandas%20%26%20NumPy-171714?style=for-the-badge&logo=python&logoColor=F5F0E7&color=78836A"/>
+<img src="https://img.shields.io/badge/SQL-Relational%20Modeling-171714?style=for-the-badge&logo=postgresql&logoColor=F5F0E7&color=262522"/>
+<img src="https://img.shields.io/badge/ISG%20Bizerte-BI%20Degree-171714?style=for-the-badge&labelColor=262522&color=E8A1B0"/>
 
 </div>
 
+<br/>
+
 ---
 
-# 📈 GitHub Activity
+### 方 · METHODOLOGY & DELIVERY PROCESS
+
+```text
+  01. DISCOVER          02. ARCHITECT         03. CRAFT             04. ITERATE
+  Contextual Mapping    System Modeling       Precision Code        Analytics & Growth
+ ┌────────────────┐    ┌────────────────┐    ┌────────────────┐    ┌────────────────┐
+ │ Deconstruct    │───►│ Clean state &  │───►│ Strict typing, │───►│ Telemetry,     │
+ │ user friction  │    │ DB schemas     │    │ ergonomic UX   │    │ query latency  │
+ └────────────────┘    └────────────────┘    └────────────────┘    └────────────────┘
+```
+
+1. **Understand the problem:** Deconstruct operational requirements and user friction before writing a single line of code.
+2. **Design the architecture:** Establish clean state boundaries, normalized schemas, and RESTful contract endpoints.
+3. **Build with precision:** Implement with strict typing, clean separation of concerns, and resilient error recovery.
+4. **Measure, improve, and iterate:** Inspect query latency, user engagement drop-offs, and analytics telemetry to harden production code.
+
+<br/>
+
+---
+
+### 歴 · TRAJECTORY & VERIFIED CREDENTIALS
+
+* **2021 – 2024:** **Bachelor's Degree in Business Intelligence** — *Higher Institute of Management (ISG Bizerte)*
+* **Certified 2024:** **Data Science & Analytics Bootcamp** — *GOMYCODE (Python, Pandas, ML)*
+* **Certified 2024:** **Full-Stack Web Development Bootcamp** — *GOMYCODE (MERN Architecture)*
+* **Production & Freelance:** Delivered enterprise systems for JCD Commerce, Oliv'Or, MS Smart Trading, and MS Équipements.
+
+<br/>
+
+---
+
+### 📈 TELEMETRY & GITHUB ACTIVITY
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=transparent&hide_border=true&title_color=D4AF37&icon_color=D4AF37&text_color=ffffff&bg_color=00000000" height="180"/>
+<img src="https://github-readme-stats.vercel.app/api?username=Iyedkh&show_icons=true&theme=transparent&hide_border=true&title_color=E8A1B0&icon_color=AD8B59&text_color=262522&bg_color=00000000" height="175"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Iyedkh&layout=compact&theme=transparent&hide_border=true&title_color=E8A1B0&text_color=262522&bg_color=00000000" height="175"/>
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=transparent&hide_border=true&title_color=D4AF37&text_color=ffffff&bg_color=00000000" height="180"/>
+<br/><br/>
 
-<br><br>
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=transparent&hide_border=true&ring=D4AF37&fire=D4AF37&currStreakLabel=D4AF37" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=Iyedkh&theme=transparent&hide_border=true&ring=E8A1B0&fire=AD8B59&currStreakLabel=262522&sideLabels=786F63" />
 
 </div>
 
+<br/>
+
 ---
 
-# 🐍 Contribution Journey
+### 縁 · DIALOGUE & COLLABORATION
+
+I am always interested in discussing **Full-Time Engineering Positions**, **SaaS Product Architecture**, and **Business Intelligence Pipelines**.
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_USERNAME/output/github-contribution-grid-snake.svg" width="100%"/>
-
-</div>
-
----
-
-# 🎯 2026 Goals
-
-```text
-2026 ROADMAP
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-[████████████████░░░░] Build production-grade products
-
-[██████████████░░░░░░] Launch OLIV'OR
-
-[██████████████░░░░░░] Launch TANIT GOLD
-
-[████████████░░░░░░░░] Grow DEVORA
-
-[██████████░░░░░░░░░░] Master advanced system architecture
-
-[████████░░░░░░░░░░░░] Improve DevOps & Cloud
-
-[██████░░░░░░░░░░░░░░] Build AI-powered systems
-
-[████░░░░░░░░░░░░░░░░] Expand internationally 🌍
-```
-
----
-
-# 🌍 Where I'm Going
-
-I'm currently focused on building products and expanding my professional experience internationally.
-
-### Long-term direction
-
-**Tunisia 🇹🇳 → Northern / Baltic Europe 🇪🇺**
-
-Interested in opportunities around:
-
-* Software Engineering
-* Full-Stack Development
-* Data Analytics
-* Business Intelligence
-* Product Development
-* AI & Automation
-* SaaS
-
----
-
-# ⚡ Currently Learning
-
-```text
-Advanced React
-       ↓
-System Architecture
-       ↓
-DevOps & Cloud
-       ↓
-Advanced Databases
-       ↓
-AI Integration
-       ↓
-Scalable SaaS Architecture
-```
-
----
-
-# ☕ Developer Status
-
-<div align="center">
-
-```text
-┌─────────────────────────────────────────┐
-│                                         │
-│   ☕ Coffee          ████████████  98%   │
-│   💻 Coding         ███████████  92%    │
-│   🐛 Bugs           ██████████  87%     │
-│   😴 Sleep          ██ 18%               │
-│   🚀 Ideas          ████████████  99%   │
-│                                         │
-└─────────────────────────────────────────┘
-```
-
-<br>
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&pause=1500&color=D4AF37&center=true&vCenter=true&width=700&lines=Building+is+better+than+waiting.;Ideas+are+cheap.+Execution+is+everything.;One+commit+at+a+time.;Sometimes+the+bug+is+the+feature.;Ship.+Learn.+Improve.+Repeat." />
-
-</div>
-
----
-
-# 🤝 Let's Connect
-
-I'm always interested in:
-
-**💼 Opportunities · 🤝 Collaborations · 🚀 Startups · 💡 Product Ideas · 🌍 International Projects**
-
-<div align="center">
-
-<a href="#">
-<img src="https://img.shields.io/badge/Portfolio-D4AF37?style=for-the-badge&logo=vercel&logoColor=black"/>
+<a href="https://linkedin.com/in/iyed-khouildi-453787326/">
+  <img src="https://img.shields.io/badge/LinkedIn-Connect%20Professionally-171714?style=for-the-badge&logo=linkedin&logoColor=F5F0E7&color=AD8B59"/>
+</a>
+&nbsp;
+<a href="mailto:iyedkhouildi12@gmail.com">
+  <img src="https://img.shields.io/badge/Direct%20Email-iyedkhouildi12%40gmail.com-171714?style=for-the-badge&logo=gmail&logoColor=F5F0E7&color=C24545"/>
+</a>
+&nbsp;
+<a href="https://github.com/Iyedkh">
+  <img src="https://img.shields.io/badge/GitHub-@Iyedkh-171714?style=for-the-badge&logo=github&logoColor=F5F0E7&color=262522"/>
 </a>
 
-<a href="#">
-<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-</a>
+<br/><br/>
 
-<a href="mailto:your-email@example.com">
-<img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
-</a>
+*Designed with Japanese Japandi Minimalist Art Direction (和風 × 北欧) · Kyoto Spirit · Precision Craft*
 
-<br><br>
+<br/>
 
-**"Build something worth remembering."**
-
-<br>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:E8A1B0,30:AD8B59,70:262522,100:171714&height=110&section=footer" width="100%"/>
 
 </div>
