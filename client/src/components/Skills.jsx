@@ -1,225 +1,282 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Layers, Cpu, Database, BarChart3, Wrench, CheckCircle2, Terminal } from "lucide-react";
-import SkillIcon from "./SkillIcon";
+import {
+  Layers,
+  Cpu,
+  Database,
+  BarChart3,
+  Wrench,
+  Search,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const Skills = () => {
-  const { t, isRTL } = useLanguage();
-  const [activeCategoryId, setActiveCategoryId] = useState("all");
+  const { t } = useLanguage();
+  const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const skillCategories = [
     {
       id: "frontend",
-      name: t.skills.categories.frontend,
+      name: t.skills?.categories?.frontend || "Frontend",
+      fullName: "Frontend Architecture",
+      kanji: "表",
       icon: Layers,
       items: [
-        { name: "React", level: "Core Stack", description: "Hooks, Context, Performance, Component Design" },
-        { name: "Next.js", level: "Advanced", description: "App Router, SSR, SSG, Server Components" },
-        { name: "TypeScript", level: "Proficient", description: "Type Safety, Interfaces, Generics" },
-        { name: "JavaScript", level: "Core Stack", description: "ES6+, Async/Await, DOM manipulation" },
-        { name: "Tailwind CSS", level: "Core Stack", description: "Modern responsive utilities, Design systems" },
-        { name: "HTML5", level: "Core Stack", description: "Semantic markup, SEO ergonomics" },
-        { name: "CSS3", level: "Core Stack", description: "Animations, Flexbox, CSS Grid, Glassmorphism" },
-        { name: "Bootstrap", level: "Proficient", description: "Rapid prototyping & grid layouts" },
+        { name: "React 19", role: "Component architecture, hooks, state machines, performance" },
+        { name: "JavaScript (ES6+)", role: "Async patterns, functional programming, DOM APIs" },
+        { name: "React Native", role: "Cross-platform mobile application development" },
+        { name: "Tailwind CSS", role: "Design systems, fluid utility tokens, responsive layouts" },
+        { name: "HTML5 / Semantic Web", role: "Accessibility (a11y), clean DOM structure, SEO" },
+        { name: "CSS3 / Modern Layouts", role: "Fluid CSS Grid, Flexbox, wabi-sabi animation" },
       ],
     },
     {
       id: "backend",
-      name: t.skills.categories.backend,
+      name: t.skills?.categories?.backend || "Backend",
+      fullName: "Backend & Systems",
+      kanji: "裏",
       icon: Cpu,
       items: [
-        { name: "Node.js", level: "Core Stack", description: "Asynchronous runtime, Event loop, Backend engines" },
-        { name: "Express.js", level: "Core Stack", description: "Middleware, Routing, JWT Auth, REST APIs" },
-        { name: "REST APIs", level: "Core Stack", description: "Scalable endpoint architecture, CRUD, Validation" },
-        { name: "Spring Boot", level: "Proficient", description: "Java backend microservices & enterprise logic" },
-        { name: "Next.js API Routes", level: "Advanced", description: "Serverless endpoints & API middleware" },
+        { name: "Node.js", role: "Asynchronous I/O, event-driven runtime, scalable backends" },
+        { name: "Express.js", role: "RESTful architecture, custom middleware, API routes" },
+        { name: "REST APIs", role: "Contract design, rate-limiting, error handling, validation" },
+        { name: "Authentication", role: "JWT, bcrypt hashing, session guards, RBAC permissions" },
+        { name: "API Integration", role: "Third-party payment gateways, webhooks, multi-tenant connectors" },
       ],
     },
     {
-      id: "databases",
-      name: t.skills.categories.databases,
+      id: "database",
+      name: t.skills?.categories?.databases || "Databases",
+      fullName: "Databases & Modeling",
+      kanji: "基",
       icon: Database,
       items: [
-        { name: "MongoDB", level: "Core Stack", description: "Mongoose ORM, Aggregations, Document modeling" },
-        { name: "PostgreSQL", level: "Proficient", description: "Relational queries, Foreign keys, Indexing" },
-        { name: "SQL", level: "Core Stack", description: "Complex joins, Subqueries, Stored procedures" },
-        { name: "Database Design", level: "Advanced", description: "Normalization, Schema optimization, Security" },
+        { name: "MongoDB", role: "Mongoose ODM, aggregation pipelines, document indexing" },
+        { name: "SQL (PostgreSQL / MySQL)", role: "Relational modeling, complex joins, subqueries, ACID" },
+        { name: "Database Modeling", role: "Normalization, indexing strategies, audit logging" },
       ],
     },
     {
-      id: "dataBi",
-      name: t.skills.categories.dataBi,
+      id: "dataAnalytics",
+      name: t.skills?.categories?.dataBi || "Data & BI",
+      fullName: "Data & Business Intelligence",
+      kanji: "知",
       icon: BarChart3,
       items: [
-        { name: "Python", level: "Core Stack", description: "Scripting, Data analysis, Machine learning" },
-        { name: "Pandas", level: "Advanced", description: "Data manipulation, Cleansing, Time-series analysis" },
-        { name: "NumPy", level: "Advanced", description: "Numerical operations, Matrix calculations" },
-        { name: "Power BI", level: "Core Stack", description: "DAX formulas, Interactive KPI dashboards, Modeling" },
-        { name: "Tableau", level: "Proficient", description: "Visual analytics, Business reporting" },
-        { name: "Machine Learning", level: "Proficient", description: "Scikit-Learn, Predictive modeling, Regression" },
-        { name: "Excel", level: "Advanced", description: "Pivot tables, Advanced formulas, Data audits" },
+        { name: "Power BI", role: "DAX formulas, dimensional modeling, KPI dashboards" },
+        { name: "Python", role: "Data wrangling, analytical scripting, statistical automation" },
+        { name: "Pandas & NumPy", role: "Tabular data cleansing, transformations, time-series" },
+        { name: "SQL Analytics", role: "Analytical aggregations, cohorts, revenue attribution" },
+        { name: "Data Visualization", role: "Executive telemetry, trend detection, interactive reporting" },
+        { name: "Business Intelligence", role: "ISG Bizerte degree foundation, statistical decision-making" },
       ],
     },
     {
       id: "tools",
-      name: t.skills.categories.tools,
+      name: t.skills?.categories?.tools || "Workflow",
+      fullName: "Tools & Workflow",
+      kanji: "器",
       icon: Wrench,
       items: [
-        { name: "Git", level: "Core Stack", description: "Branching, Merging, Version control workflows" },
-        { name: "GitHub", level: "Core Stack", description: "CI/CD, Collaborative pull requests, Repositories" },
-        { name: "Vite", level: "Advanced", description: "Fast frontend tooling & build pipelines" },
-        { name: "Postman", level: "Advanced", description: "API testing, Collections, Documentation" },
+        { name: "Git", role: "Branching strategies, semantic commits, rebase workflows" },
+        { name: "GitHub", role: "Collaborative code reviews, pull requests, CI/CD" },
+        { name: "Vite", role: "Fast modern bundler configuration & asset pipelines" },
+        { name: "Postman", role: "Endpoint testing, environment staging, documentation" },
       ],
     },
   ];
 
-  const categoryTabs = [
-    { id: "all", name: t.skills.categories.all },
-    ...skillCategories.map((c) => ({ id: c.id, name: c.name })),
-  ];
-
   const allSkills = skillCategories.flatMap((c) =>
-    c.items.map((item) => ({ ...item, categoryId: c.id, categoryName: c.name }))
+    c.items.map((item) => ({ ...item, categoryId: c.id, categoryName: c.fullName }))
   );
 
-  const filteredSkills = allSkills.filter((skill) => {
-    const matchesCategory = activeCategoryId === "all" || skill.categoryId === activeCategoryId;
+  const categoryTabs = [
+    {
+      id: "all",
+      name: t.skills?.categories?.all || "All Stack",
+      fullName: "All Capabilities",
+      kanji: "全",
+      icon: Sparkles,
+      count: allSkills.length,
+    },
+    ...skillCategories.map((c) => ({
+      id: c.id,
+      name: c.name,
+      fullName: c.fullName,
+      kanji: c.kanji,
+      icon: c.icon,
+      count: c.items.length,
+    })),
+  ];
+
+  const filteredSkills = allSkills.filter((s) => {
+    const matchesTab = activeTab === "all" || s.categoryId === activeTab;
     const matchesSearch =
-      skill.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      skill.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      skill.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+      s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      s.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesTab && matchesSearch;
   });
 
   return (
-    <section id="skills" className="py-20 scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col items-start mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs text-[var(--accent-teal)] font-mono mb-4">
-          <Cpu className="w-3.5 h-3.5" />
-          <span>{t.skills.pill}</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)] leading-tight">
-          {t.skills.heading1} <span className="teal-gradient-text">{t.skills.headingHighlight}</span>
-        </h2>
-        <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl mt-3 font-normal">
-          {t.skills.description}
-        </p>
-      </div>
-
-      {/* Filter and Search Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)] backdrop-blur-xl w-full md:w-auto">
-          {categoryTabs.map((cat) => {
-            const isActive = activeCategoryId === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategoryId(cat.id)}
-                className={`relative px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all duration-200 focus:outline-none ${
-                  isActive
-                    ? "text-[var(--text-primary)] font-semibold shadow-inner"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeCategoryIndicator"
-                    transition={{ type: "spring", stiffness: 350, damping: 28 }}
-                    className="absolute inset-0 bg-[var(--accent-teal-dim)] border border-[var(--accent-teal-border)] rounded-xl"
-                  />
-                )}
-                <span className="relative z-10">{cat.name}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search Input */}
-        <div className="relative w-full md:w-64">
-          <Search className={`absolute ${isRTL ? "right-3.5" : "left-3.5"} top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-secondary)] pointer-events-none`} />
-          <input
-            type="text"
-            placeholder={t.skills.searchPlaceholder}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className={`apple-input ${isRTL ? "pr-10 pl-4" : "pl-10 pr-4"} py-2 text-xs rounded-xl font-mono`}
-          />
-        </div>
-      </div>
-
-      {/* Skills Grid */}
-      <motion.div
-        layout
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-      >
-        <AnimatePresence mode="popLayout">
-          {filteredSkills.map((skill) => (
-            <motion.div
-              layout
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="console-card p-5 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-start justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-105 bg-[var(--accent-teal-dim)] border-[var(--accent-teal-border)] text-[var(--accent-teal)]">
-                    <SkillIcon name={skill.name} className="w-5 h-5" />
-                  </div>
-                  <span className="tech-pill text-[10px] py-0.5 px-2">
-                    {skill.level}
-                  </span>
-                </div>
-
-                <h3 className="font-bold text-base text-[var(--text-primary)] tracking-tight group-hover:text-[var(--accent-teal-hover)] transition-colors mb-1 font-mono">
-                  {skill.name}
-                </h3>
-                <p className="text-xs text-[var(--text-secondary)] leading-relaxed font-normal">
-                  {skill.description}
-                </p>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-[var(--border)] flex items-center justify-between">
-                <span className="text-[10px] font-mono text-[var(--text-secondary)] uppercase">
-                  {skill.categoryName}
-                </span>
-                <span className="text-[10px] text-[var(--accent-teal)] font-mono flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <CheckCircle2 className="w-3 h-3" /> {t.skills.verified}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* Technical Overview Matrix */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.55 }}
-        className="mt-12 p-6 sm:p-8 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)]"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-[var(--border)]">
-          {t.skills.matrix.map((item, idx) => (
-            <div key={item.title} className={`space-y-2 ${idx > 0 ? (isRTL ? "pt-6 md:pt-0 md:pr-8" : "pt-6 md:pt-0 md:pl-8") : ""}`}>
-              <div className="text-[11px] font-mono font-medium tracking-wider text-[var(--accent-amber)]">
-                {item.tag}
-              </div>
-              <h4 className="text-base font-bold text-[var(--text-primary)]">{item.title}</h4>
-              <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                {item.desc}
+    <section id="skills" className="py-28 sm:py-32 scroll-mt-20 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Section Header */}
+        <div className="mb-14 sm:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="hanko-stamp">技</span>
+            <div className="japandi-pill">
+              <span>{t.skills?.pill || "04 / Technical Discipline & Tools"}</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <div className="lg:col-span-8">
+              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
+                {t.skills?.heading1 || "Architectural"}{" "}
+                <span className="editorial-accent">
+                  {t.skills?.headingHighlight || "capabilities"}
+                </span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-4 pb-2">
+              <p className="text-sm font-mono text-[#786F63] tracking-wide uppercase">
+                {t.skills?.description || "Zero arbitrary percentages. Verified production tools."}
               </p>
             </div>
-          ))}
+          </div>
+          <div className="katana-divider my-8" />
         </div>
-      </motion.div>
+
+        {/* Category Tabs & Filter Bar */}
+        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-5 mb-10 sm:mb-12">
+          {/* Scrollable / Responsive Japandi Tab Strip */}
+          <div className="relative">
+            <div
+              role="tablist"
+              aria-label="Skill categories"
+              className="flex items-center gap-1.5 p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#E9E0D2]/75 border border-[#262522]/10 backdrop-blur-md overflow-x-auto no-scrollbar shadow-[0_4px_20px_-8px_rgba(38,37,34,0.06)]"
+            >
+              {categoryTabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                const IconComponent = tab.icon;
+
+                return (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    id={`tab-${tab.id}`}
+                    aria-selected={isActive}
+                    aria-controls="skills-panel"
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-all duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A1B0] ${
+                      isActive
+                        ? "text-[#262522] font-semibold"
+                        : "text-[#786F63] hover:text-[#262522] hover:bg-[#E9E0D2]/50"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeSkillTabPill"
+                        transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                        className="absolute inset-0 bg-[#F5F0E7] border border-[#262522]/12 shadow-[0_2px_8px_rgba(38,37,34,0.08)] rounded-xl sm:rounded-full -z-0"
+                      />
+                    )}
+
+                    <IconComponent
+                      className={`relative z-10 w-3.5 h-3.5 transition-colors ${
+                        isActive ? "text-[#C24545]" : "text-[#9E9486] group-hover:text-[#262522]"
+                      }`}
+                    />
+
+                    <span className="relative z-10">{tab.name}</span>
+
+                    <span
+                      className={`relative z-10 text-[10px] font-mono px-1.5 py-0.2 rounded-full transition-colors ${
+                        isActive
+                          ? "bg-[#E8A1B0]/25 text-[#9A6672] font-bold"
+                          : "bg-[#262522]/5 text-[#9E9486] group-hover:bg-[#262522]/10"
+                      }`}
+                    >
+                      {tab.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Search Box with Search Clear button */}
+          <div className="relative w-full xl:w-72">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#786F63] pointer-events-none" />
+            <input
+              type="text"
+              placeholder={t.skills?.searchPlaceholder || "Search skill (e.g. React)..."}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="japandi-input pl-10 pr-10 py-2.5 text-xs rounded-full font-mono shadow-sm"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                aria-label="Clear search query"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#786F63] hover:text-[#262522] bg-[#E9E0D2] px-1.5 py-0.5 rounded-full"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Skills Grid */}
+        <motion.div
+          id="skills-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map((skill) => (
+              <motion.div
+                layout
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.25 }}
+                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#E8A1B0]"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-[#262522]/10">
+                    <span className="text-[10px] font-mono text-[#AD8B59] uppercase tracking-wider font-semibold">
+                      {skill.categoryName}
+                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E8A1B0]" />
+                  </div>
+
+                  <h3 className="font-editorial text-2xl font-normal text-[#262522] group-hover:text-[#E8A1B0] transition-colors mb-1.5">
+                    {skill.name}
+                  </h3>
+
+                  <p className="text-xs text-[#786F63] font-sans leading-relaxed">
+                    {skill.role}
+                  </p>
+                </div>
+
+                <div className="mt-5 pt-3 border-t border-[#262522]/10 flex items-center justify-between text-[10px] font-mono text-[#9E9486]">
+                  <span>{t.skills?.verified || "Verified Stack"}</span>
+                  <span className="text-[#78836A] flex items-center gap-1 font-medium">
+                    <CheckCircle2 className="w-3 h-3 text-[#E8A1B0]" /> Production Ready
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
     </section>
   );
 };

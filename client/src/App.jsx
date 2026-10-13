@@ -1,81 +1,123 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { CvModalProvider } from "./context/CvModalContext";
-import CursorGlow from "./components/CursorGlow";
+
+import IntroLoader from "./components/IntroLoader";
+import CustomCursor from "./components/CustomCursor";
+import SakuraCanvas from "./components/SakuraCanvas";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Skills from "./components/Skills";
 import Projects from "./components/Projects";
+import Skills from "./components/Skills";
 import Experience from "./components/Experience";
+import Approach from "./components/Approach";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import CvModal from "./components/CvModal";
 
 function PortfolioContent() {
+  const [introFinished, setIntroFinished] = useState(() => {
+    try {
+      return sessionStorage.getItem("iyed_intro_viewed") === "true";
+    } catch {
+      return false;
+    }
+  });
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   });
 
+  const handleIntroComplete = () => {
+    setIntroFinished(true);
+    try {
+      sessionStorage.setItem("iyed_intro_viewed", "true");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] relative selection:bg-[var(--accent-amber-dim)] selection:text-[var(--text-primary)]">
+    <div className="min-h-screen bg-[#F5F0E7] text-[#262522] relative selection:bg-[#E8A1B0]/30 selection:text-[#262522] overflow-x-hidden">
       {/* Toast Notification Provider */}
       <Toaster
         position="bottom-right"
-        theme="dark"
+        theme="light"
         richColors
         closeButton
         toastOptions={{
           style: {
-            background: "var(--bg-surface)",
-            backdropFilter: "blur(20px)",
-            border: "1px solid var(--border-strong)",
-            color: "var(--text-primary)",
-            fontFamily: "inherit",
-            borderRadius: "14px",
-            boxShadow: "0 20px 40px -15px rgba(0,0,0,0.6)",
+            background: "#F5F0E7",
+            border: "1px solid rgba(38, 37, 34, 0.15)",
+            color: "#262522",
+            fontFamily: "var(--font-sans)",
+            borderRadius: "16px",
+            boxShadow: "0 16px 36px -12px rgba(38, 37, 34, 0.12)",
           },
         }}
       />
 
-      {/* Physics-smooth scroll progress indicator */}
+      {/* First-visit Intro Loading Experience */}
+      {!introFinished && <IntroLoader onComplete={handleIntroComplete} />}
+
+      {/* Interactive 60fps Sakura Cherry Blossom Petal Particle System */}
+      <SakuraCanvas />
+
+      {/* Japanese Japandi Scroll Progress Bar with Sakura Accent */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-amber)] to-[var(--accent-teal)] origin-left z-50 shadow-[0_0_12px_rgba(245,158,11,0.5)]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#262522] via-[#AD8B59] to-[#E8A1B0] origin-left z-50 pointer-events-none"
       />
 
-      {/* GPU-Accelerated Cursor Glow */}
-      <CursorGlow />
+      {/* Desktop Custom Follower Cursor */}
+      <CustomCursor />
 
-      {/* Navigation */}
+      {/* Minimal Floating Navigation */}
       <Nav />
 
-      {/* Main Content Container */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      {/* Main Experience Layout */}
+      <main className="relative z-10">
         <Hero />
 
-        <div className="apple-divider" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="katana-divider" />
+        </div>
 
         <About />
 
-        <div className="apple-divider" />
-
-        <Skills />
-
-        <div className="apple-divider" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="katana-divider" />
+        </div>
 
         <Projects />
 
-        <div className="apple-divider" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="katana-divider" />
+        </div>
+
+        <Skills />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="katana-divider" />
+        </div>
 
         <Experience />
 
-        <div className="apple-divider" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="katana-divider" />
+        </div>
+
+        <Approach />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="katana-divider" />
+        </div>
 
         <Contact />
       </main>

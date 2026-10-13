@@ -1,19 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Code2,
-  BarChart3,
-  GraduationCap,
-  Sparkles,
-  Download,
-  Check,
-  Copy,
-  Terminal,
-  Compass,
-} from "lucide-react";
+import { Download, Copy, Check, Compass, ShieldCheck, Database, Layers } from "lucide-react";
 import { toast } from "sonner";
+import Me from "../assets/Me.png";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useCvModal } from "../context/CvModalContext";
+import Magnetic from "./Magnetic";
 
 const About = () => {
   const { t } = useLanguage();
@@ -25,127 +17,190 @@ const About = () => {
     e.preventDefault();
     navigator.clipboard.writeText(email);
     setCopiedEmail(true);
-    toast.success(t.nav.emailCopied, {
+    toast.success(t.nav?.emailCopied || "Email copied to clipboard", {
       description: email,
       duration: 3000,
     });
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const cardIcons = [Code2, BarChart3, GraduationCap, Compass];
+  const principleIcons = [Layers, Database, Compass, ShieldCheck];
 
   return (
-    <section id="about" className="py-20 scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col items-start mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs text-[var(--accent-amber)] font-mono mb-4">
-          <Terminal className="w-3.5 h-3.5" />
-          <span>{t.about.pill}</span>
+    <section id="about" className="py-28 sm:py-32 scroll-mt-20 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Editorial Section Header */}
+        <div className="mb-14 sm:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="hanko-stamp">道</span>
+            <div className="japandi-pill">
+              <span>{t.about?.pill || "02 / Philosophy & Biography"}</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <div className="lg:col-span-8">
+              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-[1.1] tracking-[-0.02em]">
+                {t.about?.heading1 || "Building at the intersection of"}{" "}
+                <span className="editorial-accent">
+                  {t.about?.headingHighlight || "code, data & design"}
+                </span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-4 pb-2">
+              <p className="text-sm font-mono text-[#786F63] tracking-wide uppercase">
+                Iyed Khouildi • ISG Bizerte Business Intelligence Graduate
+              </p>
+            </div>
+          </div>
+          <div className="katana-divider my-8" />
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)] leading-tight">
-          {t.about.heading1} <br className="hidden sm:inline" />
-          <span className="amber-gradient-text">{t.about.headingHighlight}</span>.
-        </h2>
-        <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mt-4 leading-relaxed font-normal">
-          {t.about.description}
-        </p>
-      </div>
 
-      {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
-        {t.about.cards.map((card, i) => {
-          const Icon = cardIcons[i] || Code2;
-          const isTeal = i % 2 === 1;
-          return (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="console-card p-6 sm:p-8 flex flex-col justify-between group"
-            >
-              <div>
-                {/* Header: Icon & Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-105 ${
-                      isTeal
-                        ? "bg-[var(--accent-teal-dim)] border-[var(--accent-teal-border)] text-[var(--accent-teal)]"
-                        : "bg-[var(--accent-amber-dim)] border-[var(--border-focus)] text-[var(--accent-amber)]"
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <span className="text-[11px] font-mono font-medium text-[var(--text-secondary)] px-3 py-1 rounded-md bg-[var(--bg-primary)] border border-[var(--border)]">
-                    {card.badge}
-                  </span>
-                </div>
-
-                {/* Title & Description */}
-                <h3 className="text-xl font-bold text-[var(--text-primary)] tracking-tight mb-2.5 group-hover:text-[var(--accent-amber-hover)] transition-colors">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal mb-6">
-                  {card.description}
-                </p>
-              </div>
-
-              {/* Bottom Highlight Pill */}
-              <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between">
-                <span className="text-xs font-mono text-[var(--text-primary)] font-medium">
-                  {card.highlight}
-                </span>
-                <div
-                  className={`w-2 h-2 rounded-full transition-opacity opacity-60 group-hover:opacity-100 ${
-                    isTeal ? "bg-[var(--accent-teal)]" : "bg-[var(--accent-amber)]"
-                  }`}
+        {/* Editorial Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
+          {/* Left Column: Authentic Portrait with Organic Arch Framing */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div className="relative w-full max-w-sm">
+              {/* Japandi Arch Frame */}
+              <div className="relative aspect-[3/4] japandi-arch overflow-hidden bg-[#E9E0D2] border border-[#262522]/15 shadow-sm group">
+                <img
+                  src={Me}
+                  alt="Iyed Khouildi — Full Stack Developer & Data Analyst"
+                  className="w-full h-full object-cover object-top filter grayscale contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading="lazy"
                 />
+                {/* Rice Paper Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#262522]/80 via-transparent to-transparent opacity-80" />
+
+                {/* Bottom Details Pill */}
+                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-[#F5F0E7]/90 backdrop-blur-md border border-[#262522]/10 text-xs font-mono">
+                  <div className="flex items-center justify-between text-[#262522] font-medium">
+                    <span>Iyed Khouildi</span>
+                    <span className="text-[#E8A1B0]">• Verified</span>
+                  </div>
+                  <div className="text-[11px] text-[#786F63] mt-0.5">
+                    📍 Bizerte, Tunisia • BI Degree &amp; Dual Bootcamp
+                  </div>
+                </div>
               </div>
-            </motion.div>
-          );
-        })}
+
+              {/* Decorative Japanese Character Stamp */}
+              <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-[#E8A1B0] text-[#262522] flex items-center justify-center font-editorial text-sm shadow-sm select-none border border-[#262522]/20 font-bold">
+                匠
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Biography & Narrative */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-4 text-base sm:text-lg text-[#786F63] font-sans leading-relaxed">
+              <p>
+                {t.about?.description ||
+                  "Based in Bizerte, Tunisia, I am a developer and data analyst who bridges engineering capability with statistical thinking to deliver scalable, intelligent software."}
+              </p>
+              <p>
+                My academic grounding in <strong className="text-[#262522] font-medium">Business Intelligence at ISG Bizerte</strong> taught me to view every digital product as an information ecosystem. Rather than writing software in isolation, I structure data flows, analyze user behaviors, and design systems built to perform reliably at scale.
+              </p>
+              <p>
+                As the architect behind <strong className="text-[#E8A1B0] font-medium">CARTHAGEOS</strong> (a modular SaaS ERP platform), I channel this multidisciplinary perspective into enterprise software: turning operational complexity into calm, dependable digital architecture.
+              </p>
+            </div>
+
+            {/* Quick Metrics / Foundation Points */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4">
+              <div className="p-3.5 rounded-xl bg-[#E9E0D2]/60 border border-[#262522]/10">
+                <div className="text-xl font-editorial font-medium text-[#262522]">3+ Years</div>
+                <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mt-0.5">
+                  {t.hero?.stats?.yearsExperience || "Software Engineering"}
+                </div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#E9E0D2]/60 border border-[#262522]/10">
+                <div className="text-xl font-editorial font-medium text-[#E8A1B0]">ISG Bizerte</div>
+                <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mt-0.5">
+                  {t.hero?.card?.degree || "BI Degree"}
+                </div>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[#E9E0D2]/60 border border-[#262522]/10 col-span-2 sm:col-span-1">
+                <div className="text-xl font-editorial font-medium text-[#78836A]">Dual Bootcamp</div>
+                <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mt-0.5">
+                  Full Stack &amp; Data
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 4 Core Cards / Pillars Grid */}
+        <div className="mb-20">
+          <div className="text-xs font-mono text-[#786F63] uppercase tracking-[0.2em] mb-6">
+            Guiding Principles &amp; Competencies
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {t.about?.cards?.map((card, idx) => {
+              const Icon = principleIcons[idx % principleIcons.length];
+              return (
+                <div
+                  key={card.title}
+                  className="japandi-card p-6 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-mono text-xs text-[#E8A1B0] font-semibold">
+                        {card.badge || `0${idx + 1}`}
+                      </span>
+                      <Icon className="w-4 h-4 text-[#786F63] group-hover:text-[#262522] transition-colors" />
+                    </div>
+                    <h3 className="font-editorial text-xl font-medium text-[#262522] mb-2 leading-snug">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs text-[#786F63] leading-relaxed font-sans mb-3">
+                      {card.description}
+                    </p>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-mono text-[#AD8B59] uppercase tracking-wider pt-2 border-t border-[#262522]/10">
+                      {card.highlight}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Action Callout Banner */}
+        <div className="p-8 sm:p-10 rounded-2xl bg-[#E9E0D2] border border-[#262522]/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="space-y-1">
+            <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-[#262522]">
+              {t.about?.banner?.title || "Interested in collaborating or exploring architecture?"}
+            </h3>
+            <p className="text-xs sm:text-sm text-[#786F63] font-sans">
+              {t.about?.banner?.text ||
+                "Available for full-time engineering roles, freelance builds, and SaaS architecture contracts."}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+            <button
+              onClick={handleCopyEmail}
+              className="btn-japandi-secondary text-xs py-2.5 px-5 rounded-full flex-1 sm:flex-initial justify-center"
+            >
+              {copiedEmail ? <Check className="w-3.5 h-3.5 text-[#E8A1B0]" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copiedEmail ? t.about?.banner?.emailCopied || "Email Copied" : t.about?.banner?.copyEmail || "Copy Email"}</span>
+            </button>
+
+            <Magnetic strength={0.25}>
+              <button
+                type="button"
+                onClick={openCvModal}
+                className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full flex-1 sm:flex-initial justify-center"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>{t.about?.banner?.downloadCv || "Download CV"}</span>
+              </button>
+            </Magnetic>
+          </div>
+        </div>
       </div>
-
-      {/* Action Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.55 }}
-        className="p-6 sm:p-8 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl"
-      >
-        <div className="space-y-1">
-          <h4 className="text-lg font-bold text-[var(--text-primary)]">{t.about.banner.title}</h4>
-          <p className="text-sm text-[var(--text-secondary)]">
-            {t.about.banner.text}
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-          <button
-            onClick={handleCopyEmail}
-            className="btn-secondary-action flex-1 sm:flex-initial justify-center"
-          >
-            {copiedEmail ? (
-              <Check className="w-4 h-4 text-[var(--accent-teal)]" />
-            ) : (
-              <Copy className="w-4 h-4 text-[var(--text-secondary)]" />
-            )}
-            <span>{copiedEmail ? t.about.banner.emailCopied : t.about.banner.copyEmail}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={openCvModal}
-            className="btn-primary-action flex-1 sm:flex-initial justify-center"
-            title={t.about.banner.downloadCv}
-          >
-            <Download className="w-4 h-4" />
-            <span>{t.about.banner.downloadCv}</span>
-          </button>
-        </div>
-      </motion.div>
     </section>
   );
 };

@@ -3,60 +3,67 @@
 @layer base {
   :root {
     /* 
-      CORE PALETTE TOKENS: Grounded in Engineering Craft & Data Telemetry
-      - Deep obsidian canvas, blueprint architectural lines, radiant amber & precision data teal
+      JAPANDI × JAPANESE AESTHETICS COLOR PALETTE:
+      - Warm rice paper: #F5F0E7
+      - Soft cream: #E9E0D2
+      - Sakura pink: #E8A1B0
+      - Pale blossom: #F4CCD5
+      - Charcoal ink: #262522
+      - Deep sumi black: #171714
+      - Muted bamboo green: #78836A
+      - Natural wood: #9B7457
+      - Antique metallic accent: #AD8B59
     */
-    --bg-primary: #0A0D14;          /* Deep obsidian canvas */
-    --bg-surface: #121824;          /* Surface panel fill */
-    --bg-surface-elevated: #182233; /* Raised element background */
-    --bg-surface-glass: rgba(18, 24, 36, 0.75);
+    --bg-rice-paper: #F5F0E7;       /* Main canvas background */
+    --bg-soft-cream: #E9E0D2;       /* Secondary card & panel surface */
+    --bg-cream-elevated: #EDE5D8;   /* Elevated tactile surface */
+    --border-sand: rgba(38, 37, 34, 0.12);
+    --border-sand-strong: rgba(38, 37, 34, 0.24);
 
-    --text-primary: #F8FAFC;        /* High-contrast crisp white */
-    --text-secondary: #94A3B8;      /* Slate secondary text */
-    --text-muted: #64748B;          /* Muted metadata text */
+    --text-charcoal: #262522;       /* Primary typography */
+    --text-taupe: #786F63;          /* Secondary body text */
+    --text-muted: #9E9486;          /* Muted metadata */
 
-    --accent-amber: #F59E0B;        /* Engineering amber / craft */
-    --accent-amber-hover: #FBBF24;
-    --accent-amber-dim: rgba(245, 158, 11, 0.12);
-    --accent-amber-glow: rgba(245, 158, 11, 0.28);
+    --sakura-pink: #E8A1B0;         /* Signature cherry blossom accent */
+    --sakura-pale: #F4CCD5;         /* Soft blossom glow */
+    --sakura-dim: rgba(232, 161, 176, 0.15);
+    --sakura-border: rgba(232, 161, 176, 0.35);
 
-    --accent-teal: #14B8A6;         /* Data intelligence teal / precision */
-    --accent-teal-hover: #2DD4BF;
-    --accent-teal-dim: rgba(20, 184, 166, 0.12);
-    --accent-teal-border: rgba(20, 184, 166, 0.28);
+    --sumi-black: #171714;          /* Deep ink black for contrast */
+    --bamboo-green: #78836A;        /* Muted bamboo green */
+    --natural-wood: #9B7457;        /* Natural cedar / wood tone */
+    --antique-gold: #AD8B59;        /* Katana brass / metallic accent */
 
     /* Backwards compatibility aliases */
-    --accent-primary: var(--accent-amber);
-    --accent-primary-hover: var(--accent-amber-hover);
-    --accent-primary-dim: var(--accent-amber-dim);
-    --accent-primary-glow: var(--accent-amber-glow);
-    --accent-secondary: var(--accent-teal);
-    --accent-secondary-hover: var(--accent-teal-hover);
-    --accent-secondary-dim: var(--accent-teal-dim);
-    --accent-secondary-border: var(--accent-teal-border);
-
-    /* Precision Hairlines */
-    --border: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.16);
-    --border-focus: rgba(245, 158, 11, 0.45);
+    --bg-primary: var(--bg-rice-paper);
+    --bg-surface: var(--bg-soft-cream);
+    --bg-surface-elevated: var(--bg-cream-elevated);
+    --text-primary: var(--text-charcoal);
+    --text-secondary: var(--text-taupe);
+    --accent-primary: var(--text-charcoal);
+    --accent-secondary: var(--sakura-pink);
+    --border: var(--border-sand);
+    --border-strong: var(--border-sand-strong);
 
     /* Typography */
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-editorial: 'Cormorant Garamond', 'DM Serif Display', Georgia, serif;
+    --font-sans: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   }
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
-    background-color: var(--bg-primary);
+    color-scheme: light;
+    background-color: var(--bg-rice-paper);
   }
 
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: var(--bg-rice-paper);
+    color: var(--text-charcoal);
     font-family: var(--font-sans);
     overflow-x: hidden;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.012em;
+    position: relative;
   }
 
   [dir="rtl"], [lang="ar"] {
@@ -64,223 +71,218 @@
     letter-spacing: 0;
   }
 
-  /* Custom precision scrollbar */
+  /* Refined Japandi scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--bg-primary);
+    background: var(--bg-rice-paper);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--bg-surface-elevated);
-    border: 1px solid var(--border);
+    background: var(--bg-soft-cream);
     border-radius: 9999px;
+    border: 1px solid var(--border-sand);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-amber);
+    background: var(--sakura-pink);
   }
 }
 
-/* Glassmorphism & Surface Styles */
-.console-glass, .apple-glass {
-  background: var(--bg-surface-glass);
-  backdrop-filter: blur(20px) saturate(170%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%);
-  border: 1px solid var(--border);
+/* Typography Utility Classes */
+.font-editorial {
+  font-family: var(--font-editorial);
 }
 
-.console-card, .apple-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Washi Paper Grain Texture */
+.washi-grain {
+  background-image: radial-gradient(rgba(38, 37, 34, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Shoji Grid Screen Pattern */
+.shoji-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(38, 37, 34, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(38, 37, 34, 0.04) 1px, transparent 1px);
+}
+
+/* Subtle Architectural Cards & Surfaces */
+.japandi-card, .console-card, .apple-card {
+  background-color: var(--bg-soft-cream);
+  border: 1px solid var(--border-sand);
   border-radius: 20px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.japandi-card:hover, .console-card:hover, .apple-card:hover {
+  border-color: rgba(232, 161, 176, 0.5);
+  box-shadow: 0 16px 36px -12px rgba(38, 37, 34, 0.08), 0 0 20px -8px rgba(232, 161, 176, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Katana Blade Divider with glint */
+.katana-divider, .japandi-divider, .apple-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-sand) 15%, #AD8B59 50%, var(--border-sand) 85%, transparent);
+  margin: 64px 0;
+  position: relative;
+}
+
+.katana-divider::after, .japandi-divider::after, .apple-divider::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 5px;
+  background: radial-gradient(circle, #AD8B59 0%, transparent 70%);
+  opacity: 0.8;
+}
+
+/* Button System: Restrained, tactile, organic */
+.btn-japandi-primary, .btn-primary-action, .btn-apple-primary {
+  background-color: var(--text-charcoal);
+  color: var(--bg-rice-paper);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+  padding: 11px 24px;
+  border-radius: 9999px;
+  border: 1px solid var(--text-charcoal);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
   position: relative;
   overflow: hidden;
 }
 
-.console-card::before, .apple-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
+.btn-japandi-primary:hover, .btn-primary-action:hover, .btn-apple-primary:hover {
+  background-color: var(--sumi-black);
+  border-color: var(--sakura-pink);
+  color: var(--bg-rice-paper);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px -6px rgba(232, 161, 176, 0.35);
 }
 
-.console-card:hover, .apple-card:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+.btn-japandi-primary:active, .btn-primary-action:active, .btn-apple-primary:active {
+  transform: translateY(0);
 }
 
-.console-card:hover::before, .apple-card:hover::before {
-  opacity: 1;
-}
-
-/* Dynamic Gradient Highlights */
-.amber-gradient-text, .bronze-text, .gold-text {
-  background: linear-gradient(135deg, #FFF 10%, #F59E0B 75%, #FBBF24 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.teal-gradient-text {
-  background: linear-gradient(135deg, #FFF 10%, #14B8A6 75%, #2DD4BF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Button System */
-.btn-primary-action, .btn-apple-primary {
-  background: linear-gradient(135deg, var(--accent-amber) 0%, #D97706 100%);
-  color: #0A0D14;
-  font-weight: 600;
-  font-size: 14px;
+.btn-japandi-secondary, .btn-secondary-action, .btn-apple-secondary {
+  background-color: transparent;
+  color: var(--text-charcoal);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13.5px;
   letter-spacing: -0.01em;
-  padding: 10px 22px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 11px 24px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-sand-strong);
   display: inline-flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
 
-.btn-primary-action:hover, .btn-apple-primary:hover {
+.btn-japandi-secondary:hover, .btn-secondary-action:hover, .btn-apple-secondary:hover {
+  background-color: var(--bg-soft-cream);
+  border-color: var(--sakura-pink);
+  color: var(--text-charcoal);
   transform: translateY(-1.5px);
-  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
-  filter: brightness(1.08);
 }
 
-.btn-primary-action:active, .btn-apple-primary:active {
+.btn-japandi-secondary:active, .btn-secondary-action:active, .btn-apple-secondary:active {
   transform: translateY(0);
 }
 
-.btn-secondary-action, .btn-apple-secondary {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-primary);
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: -0.01em;
-  padding: 10px 22px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
+/* Wabi-sabi status pill */
+.japandi-pill, .telemetry-pill, .tech-pill, .section-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-taupe);
+  background-color: var(--bg-soft-cream);
+  border: 1px solid var(--border-sand);
+  padding: 5px 14px;
+  border-radius: 9999px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
-}
-
-.btn-secondary-action:hover, .btn-apple-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-1.5px);
-}
-
-.btn-secondary-action:active, .btn-apple-secondary:active {
-  transform: translateY(0);
-}
-
-/* Telemetry Pills */
-.telemetry-pill {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--accent-teal);
-  background: var(--accent-teal-dim);
-  border: 1px solid var(--accent-teal-border);
-  padding: 3px 10px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
-
-.tech-pill {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
   transition: all 0.2s ease;
 }
 
 .tech-pill:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.07);
+  background-color: var(--sakura-dim);
+  border-color: var(--sakura-pink);
+  color: var(--text-charcoal);
 }
 
-.section-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent-amber);
-  background: var(--accent-amber-dim);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  padding: 5px 14px;
-  border-radius: 9999px;
-}
-
-/* Hairline Section Divider */
-.apple-divider {
+/* Inputs */
+.apple-input, .japandi-input {
   width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border) 25%, var(--border-strong) 50%, var(--border) 75%, transparent);
-  margin: 64px 0;
-}
-
-/* Input Fields */
-.apple-input {
-  width: 100%;
-  background: rgba(18, 24, 36, 0.85);
-  border: 1px solid var(--border);
+  background-color: var(--bg-soft-cream);
+  border: 1px solid var(--border-sand);
   border-radius: 12px;
   padding: 13px 18px;
-  color: var(--text-primary);
+  color: var(--text-charcoal);
   font-family: var(--font-sans);
   font-size: 14px;
   outline: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.apple-input:focus {
-  border-color: var(--accent-amber);
-  background: #182233;
-  box-shadow: 0 0 0 3px var(--accent-amber-dim);
+.apple-input:focus, .japandi-input:focus {
+  border-color: var(--sakura-pink);
+  background-color: #FFF;
+  box-shadow: 0 0 0 3px rgba(232, 161, 176, 0.2);
 }
 
-.apple-input::placeholder {
+.apple-input::placeholder, .japandi-input::placeholder {
   color: var(--text-muted);
 }
 
-/* Dot grid background pattern */
-.bg-grid-subtle {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+/* Red Seal Stamp (Hanko) */
+.hanko-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid #C24545;
+  color: #C24545;
+  font-family: var(--font-editorial);
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 4px;
+  line-height: 1;
+  background-color: rgba(194, 69, 69, 0.04);
+  user-select: none;
+}
+
+/* Editorial Title Accent */
+.editorial-accent {
+  font-style: italic;
+  font-family: var(--font-editorial);
+  color: var(--sakura-pink);
 }
 
 /* Reduced Motion Override */

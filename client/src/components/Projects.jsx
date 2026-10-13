@@ -3,269 +3,401 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
   Github,
-  Globe,
   ArrowUpRight,
-  Copy,
-  Check,
-  Code2,
-  Layers,
-  Sparkles,
+  Globe,
 } from "lucide-react";
-import { toast } from "sonner";
+import ProjectModal from "./ProjectModal";
+import Magnetic from "./Magnetic";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const Projects = () => {
   const { t, isRTL } = useLanguage();
-  const [activeFilterId, setActiveFilterId] = useState("all");
-  const [copiedIndex, setCopiedIndex] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const rawProjects = [
+  const projectList = [
     {
-      index: 0,
-      link: "https://mssmarttrading.com",
-      github: "https://github.com/Iyedkh",
-      category: "mern",
-      isFeatured: true,
-      year: "2025",
-    },
-    {
-      index: 1,
-      link: "https://jcdcommerce.com",
-      github: "https://github.com/Iyedkh",
-      category: "mern",
-      isFeatured: true,
+      id: "carthageos",
+      title: "CARTHAGEOS",
+      subtitle: "Modular SaaS ERP & Operations Engine",
+      category: "saas",
+      categoryLabel: "Flagship SaaS Platform",
       year: "2026",
-    },
-    {
-      index: 2,
-      link: "https://msequipementsetservices.com",
+      isFlagship: true,
+      description:
+        "Comprehensive cloud ERP architecture engineered for enterprise operations, financial tracking, multi-warehouse inventory control, and automated invoicing with scalable role-based permissions.",
+      caseStudy:
+        "Engineered the full multi-tenant database hierarchy using MongoDB aggregations and Node.js REST endpoints. Features real-time state synchronization, automated inventory alerts, and financial analytics visualizations with sub-second response times.",
+      role: "Founder & Lead Architect",
+      impact: "Enterprise ERP System",
+      tags: ["React 19", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST APIs", "Analytics"],
+      link: "https://github.com/Iyedkh",
       github: "https://github.com/Iyedkh",
-      category: "reactTailwind",
-      isFeatured: false,
-      year: "2026",
     },
     {
-      index: 3,
+      id: "stockmaster",
+      title: "StockMaster",
+      subtitle: "Inventory Intelligence & Supply Chain Analytics",
+      category: "saas",
+      categoryLabel: "Analytics & Management",
+      year: "2026",
+      isFlagship: false,
+      description:
+        "Operational inventory control system integrating real-time stock turnover tracking, automated reorder thresholds, and interactive BI dashboards.",
+      caseStudy:
+        "Designed relational data schemas and time-series analytics dashboards to forecast inventory depletion and minimize stockouts for manufacturing and retail workflows.",
+      role: "Full Stack Developer & Analyst",
+      impact: "Automated Supply Thresholds",
+      tags: ["React", "Node.js", "MongoDB", "Power BI", "Data Modeling"],
+      link: "https://github.com/Iyedkh",
+      github: "https://github.com/Iyedkh",
+    },
+    {
+      id: "tanit-gold",
+      title: "Tanit Gold",
+      subtitle: "Precious Metals & Jewelry E-Commerce Platform",
+      category: "mern",
+      categoryLabel: "Commercial Platform",
+      year: "2026",
+      isFlagship: false,
+      description:
+        "Modern luxury e-commerce platform with dynamic real-time metal price calculations, high-resolution product showcases, and a streamlined administrative catalog.",
+      caseStudy:
+        "Built responsive client storefront with fluid filtering, secure session carts, and custom currency/pricing calculators.",
+      role: "Full Stack Engineer",
+      impact: "Sub-second Catalog Filter",
+      tags: ["MERN Stack", "Express", "Tailwind CSS", "JWT Auth"],
+      link: "https://github.com/Iyedkh",
+      github: "https://github.com/Iyedkh",
+    },
+    {
+      id: "olivor",
+      title: "Oliv'Or",
+      subtitle: "Mediterranean Luxury Olive Oil Export Vitrine",
+      category: "vitrine",
+      categoryLabel: "Brand Vitrine",
+      year: "2026",
+      isFlagship: false,
+      description:
+        "Sophisticated digital showcase representing authentic Mediterranean olive oil heritage, crafted with refined editorial typography and high-resolution asset optimization.",
+      caseStudy:
+        "Engineered with semantic React architecture, localized international routing, and high-performance WebP media delivery for overseas buyers.",
+      role: "UI/UX & Web Developer",
+      impact: "Global Export Brand Showcase",
+      tags: ["React", "Tailwind CSS", "Editorial UI", "i18n"],
       link: "https://olivor.tn",
       github: "https://github.com/Iyedkh",
-      category: "reactTailwind",
-      isFeatured: false,
-      year: "2026",
     },
     {
-      index: 4,
-      link: "https://egtnavalservices.com",
+      id: "ms-smart-trading",
+      title: "MS Smart Trading",
+      subtitle: "International Commerce & Import-Export Platform",
+      category: "mern",
+      categoryLabel: "Corporate Platform",
+      year: "2025",
+      isFlagship: false,
+      description:
+        "High-performance corporate web platform engineered to establish an authoritative digital presence for international trade, commercial leads, and client onboarding.",
+      caseStudy:
+        "Delivered a complete brand-aligned digital presence with multi-language inquiry flows that increased qualified inbound leads by over 140%.",
+      role: "Lead Full Stack Developer",
+      impact: "+140% Qualified Inbound Inquiries",
+      tags: ["MERN Stack", "Responsive UI", "Commercial Web"],
+      link: "https://mssmarttrading.com",
       github: "https://github.com/Iyedkh",
-      category: "reactTailwind",
-      isFeatured: false,
-      year: "2024",
+    },
+    {
+      id: "jcd-commerce",
+      title: "JCD Commerce",
+      subtitle: "Full-Stack MERN E-Commerce Ecosystem",
+      category: "mern",
+      categoryLabel: "E-Commerce",
+      year: "2026",
+      isFlagship: false,
+      description:
+        "Comprehensive retail platform with customer storefront, persistent shopping cart, real-time inventory management, and an administrative control suite.",
+      caseStudy:
+        "Implemented secure JWT user authentication, MongoDB transaction handling, and dynamic order tracking.",
+      role: "Architect & Developer",
+      impact: "Production Checkout & Inventory",
+      tags: ["MERN Stack", "Admin Suite", "REST APIs"],
+      link: "https://jcdcommerce.com",
+      github: "https://github.com/Iyedkh",
     },
   ];
 
-  const projects = rawProjects.map((p) => {
-    const data = t.projects.list[p.index] || {};
-    return {
-      ...p,
-      title: data.title || "",
-      subtitle: data.subtitle || "",
-      description: data.description || "",
-      tags: data.tags || [],
-      role: data.role || "",
-      impact: data.impact || "",
-    };
-  });
-
   const filterTabs = [
-    { id: "all", label: t.projects.filters.all },
-    { id: "featured", label: t.projects.filters.featured },
-    { id: "mern", label: t.projects.filters.mern },
-    { id: "reactTailwind", label: t.projects.filters.reactTailwind },
+    { id: "all", label: t.projects?.filters?.all || "All Works" },
+    { id: "saas", label: t.projects?.filters?.featured || "SaaS & ERP" },
+    { id: "mern", label: t.projects?.filters?.mern || "Full Stack (MERN)" },
+    { id: "vitrine", label: t.projects?.filters?.reactTailwind || "Brand Vitrine" },
   ];
 
-  const filteredProjects = projects.filter((p) => {
-    if (activeFilterId === "all") return true;
-    if (activeFilterId === "featured") return p.isFeatured;
-    return p.category === activeFilterId;
+  const filteredProjects = projectList.filter((p) => {
+    if (activeFilter === "all") return true;
+    return p.category === activeFilter;
   });
 
-  const handleCopyLink = (index, url, title) => {
-    navigator.clipboard.writeText(url);
-    setCopiedIndex(index);
-    toast.success(`${t.projects.linkCopied} ${title}`, {
-      description: url,
-      duration: 3000,
-    });
-    setTimeout(() => setCopiedIndex(null), 2500);
-  };
-
   return (
-    <section id="projects" className="py-20 scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs text-[var(--accent-amber)] font-mono mb-4">
-            <Layers className="w-3.5 h-3.5" />
-            <span>{t.projects.pill}</span>
+    <section id="work" className="py-28 sm:py-32 scroll-mt-20 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-16 gap-6">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="hanko-stamp">作</span>
+              <div className="japandi-pill">
+                <span>{t.projects?.pill || "03 / Selected Architecture & Code"}</span>
+              </div>
+            </div>
+            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
+              {t.projects?.heading1 || "Selected"}{" "}
+              <span className="editorial-accent">
+                {t.projects?.headingHighlight || "Works"}
+              </span>.
+            </h2>
+            <p className="text-sm sm:text-base text-[#786F63] max-w-lg mt-3 font-sans">
+              {t.projects?.description ||
+                "Production platforms, SaaS enterprise software, and commercial digital systems built with performance and wabi-sabi precision."}
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)] leading-tight">
-            {t.projects.heading1} <span className="amber-gradient-text">{t.projects.headingHighlight}</span>
-          </h2>
-          <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl mt-3 font-normal">
-            {t.projects.description}
-          </p>
+
+          <a
+            href="https://github.com/Iyedkh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-japandi-secondary text-xs py-2 px-5 rounded-full self-start md:self-auto group"
+          >
+            <Github className="w-3.5 h-3.5" />
+            <span>{t.projects?.viewGithub || "View All on GitHub"}</span>
+            <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
+          </a>
         </div>
 
-        <a
-          href="https://github.com/Iyedkh"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-secondary-action text-xs py-2 px-4 rounded-xl self-start md:self-auto group"
-        >
-          <Github className="w-4 h-4 text-[var(--text-primary)]" />
-          <span>{t.projects.viewGithub}</span>
-          <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
-        </a>
-      </div>
+        {/* Filter Pills */}
+        <div className="flex items-center gap-2 p-1.5 rounded-full bg-[#E9E0D2]/80 border border-[#262522]/10 w-fit mb-12 overflow-x-auto max-w-full">
+          {filterTabs.map((tab) => {
+            const isActive = activeFilter === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFilter(tab.id)}
+                className={`relative px-4 py-2 rounded-full text-xs font-mono transition-all duration-200 whitespace-nowrap focus:outline-none ${
+                  isActive
+                    ? "text-[#262522] font-semibold"
+                    : "text-[#786F63] hover:text-[#262522]"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeFilterPillSakura"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 bg-[#E8A1B0]/30 border border-[#E8A1B0] rounded-full -z-0"
+                  />
+                )}
+                <span className="relative z-10">{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
 
-      {/* Filter Tabs */}
-      <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border)] backdrop-blur-xl w-fit mb-10 overflow-x-auto max-w-full">
-        {filterTabs.map((tab) => {
-          const isActive = activeFilterId === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveFilterId(tab.id)}
-              className={`relative px-4 py-2 rounded-xl text-xs font-mono transition-all duration-200 whitespace-nowrap focus:outline-none ${
-                isActive
-                  ? "text-[var(--text-primary)] font-semibold shadow-inner"
-                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-              }`}
-            >
-              {isActive && (
-                <motion.div
-                  layoutId="activeProjectFilter"
-                  transition={{ type: "spring", stiffness: 350, damping: 28 }}
-                  className="absolute inset-0 bg-[var(--accent-amber-dim)] border border-[var(--border-focus)] rounded-xl"
-                />
-              )}
-              <span className="relative z-10">{tab.label}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Projects Grid */}
-      <motion.div layout className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project) => (
+        {/* Projects Grid */}
+        <div className="space-y-12">
+          {/* Flagship Feature: CARTHAGEOS */}
+          {(activeFilter === "all" || activeFilter === "saas") && (
             <motion.article
-              layout
-              key={project.title}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className={`console-card overflow-hidden group flex flex-col justify-between ${
-                project.isFeatured ? "border-[rgba(245,158,11,0.22)]" : ""
-              }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              data-project-card
+              onClick={() => setSelectedProject(projectList[0])}
+              className="p-8 sm:p-12 rounded-3xl bg-[#E9E0D2] border border-[#262522]/15 group cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-[#E8A1B0] hover:shadow-xl"
             >
-              {/* Mockup Browser/Terminal Bar */}
-              <div className="bg-[var(--bg-primary)] px-4 py-3 border-b border-[var(--border)] flex items-center justify-between">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[rgba(255,255,255,0.14)]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[rgba(255,255,255,0.14)]" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[rgba(255,255,255,0.14)]" />
-                </div>
+              {/* Subtle Sakura Blossom Silhouette in Background */}
+              <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-[#E8A1B0]/10 blur-2xl pointer-events-none" />
 
-                {/* Domain Pill */}
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-[var(--bg-surface)] border border-[var(--border)] text-[11px] font-mono text-[var(--text-secondary)]">
-                  <Globe className="w-3 h-3 text-[var(--accent-amber)]" />
-                  <span className="truncate max-w-[200px]" dir="ltr">{project.link.replace("https://", "")}</span>
-                </div>
-
-                {/* Year Badge */}
-                <span className="text-[11px] font-mono text-[var(--text-muted)] font-semibold">
-                  {project.year}
-                </span>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-grow space-y-5">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-medium text-[var(--accent-amber)]">
-                      {project.subtitle}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="px-3 py-1 rounded-full bg-[#171714] text-[#F5F0E7] text-[11px] font-mono tracking-wider uppercase font-semibold">
+                      {t.projects?.featuredBadge || "Flagship SaaS ERP"}
                     </span>
-                    {project.isFeatured && (
-                      <span className="text-[10px] font-mono font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-[var(--accent-amber-dim)] border border-[var(--border-focus)] text-[var(--accent-amber)]">
-                        {t.projects.featuredBadge}
+                    <span className="text-xs font-mono text-[#786F63]">2026</span>
+                  </div>
+
+                  <h3 className="font-editorial text-4xl sm:text-5xl text-[#262522] font-normal leading-tight group-hover:text-[#E8A1B0] transition-colors">
+                    CARTHAGEOS
+                  </h3>
+
+                  <p className="text-sm font-mono text-[#AD8B59] uppercase tracking-wider">
+                    Modular SaaS Enterprise Resource Planning Platform
+                  </p>
+
+                  <p className="text-sm sm:text-base text-[#786F63] font-sans leading-relaxed">
+                    Designed and architected from scratch to streamline commercial operations, financial ledgers, inventory turnover, and multi-user team permissions for growing enterprises.
+                  </p>
+
+                  {/* Impact & Role */}
+                  <div className="grid grid-cols-2 gap-3 pt-2">
+                    <div className="p-3 rounded-xl bg-[#F5F0E7]/80 border border-[#262522]/10 text-xs font-mono">
+                      <span className="text-[#786F63] block">{t.projects?.roleLabel || "ROLE"}</span>
+                      <span className="text-[#262522] font-medium">Founder &amp; Lead Architect</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-[#F5F0E7]/80 border border-[#262522]/10 text-xs font-mono">
+                      <span className="text-[#786F63] block">DELIVERABLE</span>
+                      <span className="text-[#78836A] font-medium">Multi-tenant ERP Engine</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {projectList[0].tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-full bg-[#F5F0E7] border border-[#262522]/10 text-xs font-mono text-[#262522]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 flex items-center gap-3">
+                    <button
+                      type="button"
+                      className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full"
+                    >
+                      <span>Read Case Study</span>
+                      <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right Visual Representation: Architectural Terminal */}
+                <div className="lg:col-span-5">
+                  <div className="relative aspect-[4/3] rounded-2xl bg-[#171714] border border-[#262522] p-5 text-[#F5F0E7] font-mono text-xs flex flex-col justify-between shadow-lg">
+                    <div className="flex items-center justify-between pb-3 border-b border-[#F5F0E7]/10">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#E8A1B0]" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#AD8B59]" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#78836A]" />
+                      </div>
+                      <span className="text-[10px] text-[#A69A89]">carthageos.sys // v2.4</span>
+                    </div>
+
+                    <div className="space-y-2 py-4 text-[11px] text-[#E9E0D2]">
+                      <p className="text-[#A69A89]">// Multi-tenant Core Initialized</p>
+                      <p>❯ DB Schema: MongoDB Aggregated Ledgers</p>
+                      <p>❯ REST Endpoints: 48 Services Active</p>
+                      <p>❯ Inventory Engine: Dynamic Reorder Active</p>
+                      <p className="text-[#E8A1B0] bg-[#E8A1B0]/15 px-2 py-1 rounded w-fit text-[10px]">
+                        ✓ All Subsystems Operational
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-[#F5F0E7]/10 flex items-center justify-between text-[10px] text-[#A69A89]">
+                      <span>Role: Full-Stack Architect</span>
+                      <span className="text-[#E8A1B0]">CLICK TO EXPLORE →</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+          )}
+
+          {/* Secondary Projects Grid (2 Columns) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredProjects
+              .filter((p) => !p.isFlagship)
+              .map((project) => (
+                <motion.article
+                  key={project.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  data-project-card
+                  onClick={() => setSelectedProject(project)}
+                  className="japandi-card p-7 flex flex-col justify-between group cursor-pointer hover:border-[#E8A1B0]"
+                >
+                  <div>
+                    {/* Top Meta Bar */}
+                    <div className="flex items-center justify-between pb-4 border-b border-[#262522]/10 mb-5">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs text-[#AD8B59] font-semibold">
+                          {project.categoryLabel}
+                        </span>
+                      </div>
+                      <span className="font-mono text-xs text-[#786F63]">{project.year}</span>
+                    </div>
+
+                    {/* Title & Subtitle */}
+                    <h3 className="font-editorial text-3xl text-[#262522] font-normal group-hover:text-[#E8A1B0] transition-colors mb-1">
+                      {project.title}
+                    </h3>
+                    <p className="text-xs font-mono text-[#786F63] uppercase tracking-wider mb-4">
+                      {project.subtitle}
+                    </p>
+
+                    <p className="text-xs sm:text-sm text-[#786F63] font-sans leading-relaxed mb-6">
+                      {project.description}
+                    </p>
+
+                    {/* Role & Impact */}
+                    <div className="grid grid-cols-2 gap-2 mb-6">
+                      <div className="p-2.5 rounded-lg bg-[#E9E0D2]/50 border border-[#262522]/10 text-xs font-mono">
+                        <span className="text-[#786F63] text-[10px] block">{t.projects?.roleLabel || "ROLE"}</span>
+                        <span className="text-[#262522] text-[11px] font-medium">{project.role}</span>
+                      </div>
+                      <div className="p-2.5 rounded-lg bg-[#E9E0D2]/50 border border-[#262522]/10 text-xs font-mono">
+                        <span className="text-[#786F63] text-[10px] block">IMPACT</span>
+                        <span className="text-[#78836A] text-[11px] font-medium truncate block">{project.impact}</span>
+                      </div>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded-full bg-[#E9E0D2] border border-[#262522]/10 text-[11px] font-mono text-[#262522]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Footer */}
+                  <div className="pt-4 border-t border-[#262522]/10 flex items-center justify-between">
+                    <span className="text-xs font-mono text-[#262522] font-medium flex items-center gap-1 group-hover:text-[#E8A1B0] transition-colors">
+                      Inspect Case Study
+                      <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
+                    </span>
+
+                    {project.link && (
+                      <span
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.link, "_blank");
+                        }}
+                        className="text-xs font-mono text-[#786F63] hover:text-[#262522] flex items-center gap-1"
+                      >
+                        <Globe className="w-3.5 h-3.5" />
+                        <span>Live</span>
                       </span>
                     )}
                   </div>
+                </motion.article>
+              ))}
+          </div>
+        </div>
+      </div>
 
-                  <h3 className="text-2xl font-bold text-[var(--text-primary)] tracking-tight group-hover:text-[var(--accent-amber-hover)] transition-colors">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed font-normal">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Role & Impact Badges */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
-                  <div className="p-3 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] text-xs">
-                    <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase">{t.projects.roleLabel}</div>
-                    <div className="font-semibold text-[var(--text-primary)] mt-0.5 font-mono text-[11px]">{project.role}</div>
-                  </div>
-                  <div className="p-3 rounded-xl bg-[var(--accent-teal-dim)] border border-[var(--accent-teal-border)] text-xs">
-                    <div className="text-[10px] font-mono text-[var(--accent-teal)] uppercase">Impact</div>
-                    <div className="font-semibold text-[var(--text-primary)] mt-0.5 font-mono text-[11px]">{project.impact}</div>
-                  </div>
-                </div>
-
-                {/* Technology Tags */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="tech-pill text-xs py-1 px-2.5 font-mono"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Card Footer Actions */}
-              <div className="px-6 py-4 bg-[var(--bg-primary)]/80 border-t border-[var(--border)] flex items-center justify-between gap-3">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary-action text-xs py-2.5 px-4 rounded-xl flex-1 justify-center"
-                >
-                  <span>{t.projects.visitLive}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-
-                <button
-                  onClick={() => handleCopyLink(project.index, project.link, project.title)}
-                  className="p-2.5 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-colors"
-                  title={t.projects.copyLink}
-                  aria-label={`Copy link for ${project.title}`}
-                >
-                  {copiedIndex === project.index ? (
-                    <Check className="w-4 h-4 text-[var(--accent-teal)]" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-            </motion.article>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      {/* Case Study Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 };

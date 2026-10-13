@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, ArrowUp, Clock } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import Magnetic from "./Magnetic";
 
 const Footer = () => {
-  const { t, isRTL } = useLanguage();
+  const { t } = useLanguage();
   const [localTime, setLocalTime] = useState("");
   const currentYear = new Date().getFullYear();
 
@@ -29,71 +30,80 @@ const Footer = () => {
   };
 
   const navLinks = [
-    { name: t.nav.home, href: "#home" },
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.skills, href: "#skills" },
-    { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.experience, href: "#experience" },
-    { name: t.nav.contact, href: "#contact" },
+    { name: t.nav?.home || "Home", href: "#home" },
+    { name: t.nav?.about || "About", href: "#about" },
+    { name: t.nav?.projects || "Work", href: "#work" },
+    { name: t.nav?.skills || "Skills", href: "#skills" },
+    { name: t.nav?.experience || "Experience", href: "#experience" },
+    { name: t.nav?.approach || "Approach", href: "#approach" },
+    { name: t.nav?.contact || "Contact", href: "#contact" },
   ];
 
   const socials = [
-    { icon: Github, label: "GitHub", url: "https://github.com/Iyedkh" },
-    { icon: Linkedin, label: "LinkedIn", url: "https://www.linkedin.com/in/iyed-khouildi-453787326/" },
-    { icon: Mail, label: "Email", url: "mailto:iyedkhouildi12@gmail.com" },
+    { label: "GitHub", url: "https://github.com/Iyedkh", icon: Github },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/iyed-khouildi-453787326/", icon: Linkedin },
+    { label: "Email", url: "mailto:iyedkhouildi12@gmail.com", icon: Mail },
   ];
 
   return (
-    <footer className="relative mt-24 border-t border-[var(--border)] bg-[var(--bg-primary)] text-[var(--text-secondary)]">
-      {/* Background ambient hairline */}
-      <div
-        aria-hidden="true"
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-[var(--border-strong)] to-transparent"
-      />
+    <footer className="relative border-t border-[#262522]/15 bg-[#E9E0D2]/50 text-[#786F63] washi-grain overflow-hidden">
+      {/* Background Subtle Sakura Blossom Silhouette in Footer */}
+      <svg
+        width="260"
+        height="260"
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute -bottom-16 -right-16 opacity-[0.06] pointer-events-none select-none text-[#262522]"
+      >
+        <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="2" />
+        <circle cx="50" cy="20" r="16" fill="currentColor" />
+        <circle cx="78" cy="40" r="16" fill="currentColor" />
+        <circle cx="68" cy="75" r="16" fill="currentColor" />
+        <circle cx="32" cy="75" r="16" fill="currentColor" />
+        <circle cx="22" cy="40" r="16" fill="currentColor" />
+      </svg>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[var(--border)] items-start">
-          {/* Brand & Bio */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start pb-16 border-b border-[#262522]/10">
+          {/* Brand Identity & Vision */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center shadow-inner">
-                <span className="font-serif font-bold text-xl text-[var(--text-primary)]">I</span>
-              </div>
-              <div>
-                <span className="font-bold text-base text-[var(--text-primary)] tracking-tight block">
-                  Iyed Khouildi
+              <span className="hanko-stamp">匠</span>
+              <div className="flex flex-col">
+                <span className="font-editorial text-xl font-medium tracking-[0.08em] text-[#262522]">
+                  IYED KHOUILDI
                 </span>
-                <span className="font-mono text-xs text-[var(--text-secondary)] uppercase tracking-wider">
-                  {t.nav.role}
+                <span className="font-mono text-[9.5px] uppercase tracking-widest text-[#786F63]">
+                  {t.nav?.role || "Full Stack & BI Architect"}
                 </span>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm font-normal">
-              {t.footer.bio}
+            <p className="text-xs sm:text-sm text-[#786F63] leading-relaxed max-w-sm font-sans">
+              {t.footer?.bio ||
+                "Crafting calm, resilient software systems and business intelligence architectures inspired by Scandinavian simplicity, Kyoto sakura aesthetics, and Japanese samurai precision."}
             </p>
 
-            {/* Local Time Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-mono text-[var(--text-secondary)]">
-              <Clock className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
-              <span>{t.footer.locationLabel}</span>
-              <span className="text-[var(--text-primary)] font-semibold" dir="ltr">{localTime || "..."}</span>
-              <span className="text-[10px] text-[var(--text-secondary)]">(UTC+1)</span>
+            {/* Local Tunis Time */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F5F0E7] border border-[#262522]/10 text-xs font-mono text-[#786F63]">
+              <Clock className="w-3.5 h-3.5 text-[#E8A1B0]" />
+              <span>{t.footer?.locationLabel || "Tunis (UTC+1):"}</span>
+              <span className="text-[#262522] font-semibold" dir="ltr">{localTime || "12:00:00"}</span>
             </div>
           </div>
 
           {/* Quick Navigation Links */}
           <div className="md:col-span-4 space-y-3">
-            <div className="text-xs font-mono font-bold uppercase tracking-widest text-[var(--text-primary)]">
-              {t.footer.navigation}
+            <div className="text-xs font-mono font-medium uppercase tracking-[0.2em] text-[#262522]">
+              {t.footer?.navigation || "Index Navigation"}
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs font-mono">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--accent-primary)]"
+                  className="py-1 text-[#786F63] hover:text-[#262522] transition-colors"
                 >
                   {link.name}
                 </a>
@@ -101,11 +111,11 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Social Links & Back-To-Top */}
-          <div className={`md:col-span-3 flex flex-col ${isRTL ? "items-start md:items-start" : "items-start md:items-end"} justify-between space-y-6`}>
+          {/* Socials & Back To Top */}
+          <div className="md:col-span-3 flex flex-col items-start md:items-end justify-between space-y-6">
             <div className="space-y-3 w-full md:w-auto">
-              <div className={`text-xs font-mono font-bold uppercase tracking-widest text-[var(--text-primary)] ${isRTL ? "md:text-left" : "md:text-right"}`}>
-                {t.footer.connect}
+              <div className="text-xs font-mono font-medium uppercase tracking-[0.2em] text-[#262522] md:text-right">
+                {t.footer?.connect || "Connect"}
               </div>
               <div className="flex items-center gap-2">
                 {socials.map((s) => (
@@ -115,7 +125,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="p-2.5 rounded-xl bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all duration-200"
+                    className="p-2.5 rounded-full bg-[#F5F0E7] hover:bg-[#E8A1B0]/20 border border-[#262522]/10 text-[#786F63] hover:text-[#262522] transition-colors"
                   >
                     <s.icon className="w-4 h-4" />
                   </a>
@@ -123,22 +133,25 @@ const Footer = () => {
               </div>
             </div>
 
-            <button
-              onClick={scrollToTop}
-              className="btn-apple-secondary text-xs py-2 px-3.5 rounded-xl self-start md:self-auto"
-              title={t.footer.backToTop}
-            >
-              <ArrowUp className="w-3.5 h-3.5 text-[var(--accent-primary)]" />
-              <span>{t.footer.backToTop}</span>
-            </button>
+            <Magnetic strength={0.3}>
+              <button
+                onClick={scrollToTop}
+                className="btn-japandi-secondary text-xs py-2 px-4 rounded-full flex items-center gap-2"
+                title="Back to Top"
+              >
+                <ArrowUp className="w-3.5 h-3.5 text-[#E8A1B0]" />
+                <span>{t.footer?.backToTop || "Top [Scroll]"}</span>
+              </button>
+            </Magnetic>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-secondary)]">
-          <p>© {currentYear} Iyed Khouildi. {t.footer.copyright}</p>
-          <p className="flex items-center gap-1">
-            {t.footer.builtWith}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#9E9486]">
+          <p>© {currentYear} Iyed Khouildi. {t.footer?.copyright || "All rights reserved."}</p>
+          <p className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#E8A1B0]" />
+            <span>{t.footer?.builtWith || "Designed with Japanese Japandi Aesthetics • React & Vite"}</span>
           </p>
         </div>
       </div>

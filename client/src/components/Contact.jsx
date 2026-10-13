@@ -10,13 +10,16 @@ import {
   CheckCircle2,
   Copy,
   Check,
-  MessageSquare,
+  Download,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
+import { useCvModal } from "../context/CvModalContext";
+import Magnetic from "./Magnetic";
 
 const Contact = () => {
   const { t, isRTL } = useLanguage();
+  const { openCvModal } = useCvModal();
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [copiedKey, setCopiedKey] = useState(null);
@@ -25,29 +28,23 @@ const Contact = () => {
     {
       id: "email",
       icon: Mail,
-      label: t.contact.labels.email,
+      label: t.contact?.labels?.email || "Direct Email",
       value: "iyedkhouildi12@gmail.com",
       action: "copy",
-      accent: "var(--accent-amber)",
-      isTeal: false,
     },
     {
       id: "phone",
       icon: Phone,
-      label: t.contact.labels.phone,
+      label: t.contact?.labels?.phone || "Phone / WhatsApp",
       value: "+216 93 117 612",
       action: "copy",
-      accent: "var(--accent-teal)",
-      isTeal: true,
     },
     {
       id: "location",
       icon: MapPin,
-      label: t.contact.labels.location,
-      value: t.contact.labels.locationValue,
+      label: t.contact?.labels?.location || "Location",
+      value: t.contact?.labels?.locationValue || "Bizerte, Tunisia (UTC+1)",
       action: "info",
-      accent: "var(--accent-amber)",
-      isTeal: false,
     },
   ];
 
@@ -69,7 +66,7 @@ const Contact = () => {
   const handleCopy = (id, text, label) => {
     navigator.clipboard.writeText(text);
     setCopiedKey(id);
-    toast.success(`${label} ${t.contact.labels.copied}`, {
+    toast.success(`${label} ${t.contact?.labels?.copied || "copied to clipboard"}`, {
       description: text,
       duration: 3000,
     });
@@ -79,14 +76,17 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      toast.error(t.contact.form.validationError);
+      toast.error(t.contact?.form?.validationError || "Please fill in all required fields.");
       return;
     }
 
     setSubmitted(true);
-    const desc = t.contact.form.successToastDesc.replace("{name}", formData.name);
-    toast.success(t.contact.form.successToast, {
-      description: desc,
+    const toastDesc = (t.contact?.form?.successToastDesc || "Thank you {name}. I will get back to you shortly.").replace(
+      "{name}",
+      formData.name
+    );
+    toast.success(t.contact?.form?.successToast || "Message dispatched successfully!", {
+      description: toastDesc,
       duration: 4500,
     });
 
@@ -97,217 +97,228 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 scroll-mt-24">
-      {/* Section Header */}
-      <div className="flex flex-col items-start mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs text-[var(--accent-amber)] font-mono mb-4">
-          <MessageSquare className="w-3.5 h-3.5" />
-          <span>{t.contact.pill}</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text-primary)] leading-tight">
-          {t.contact.heading1} <span className="amber-gradient-text">{t.contact.headingHighlight}</span>
-        </h2>
-        <p className="text-base sm:text-lg text-[var(--text-secondary)] max-w-xl mt-3 font-normal">
-          {t.contact.description}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Direct Info Cards & Socials */}
-        <motion.div
-          initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 space-y-4"
-        >
-          {contactItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
-              className={`console-card p-5 flex items-center justify-between group cursor-pointer transition-all duration-300 ${
-                item.action === "copy" ? "hover:border-[var(--accent-amber)]" : ""
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                <div
-                  className={`w-11 h-11 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:scale-105 ${
-                    item.isTeal
-                      ? "bg-[var(--accent-teal-dim)] border-[var(--accent-teal-border)] text-[var(--accent-teal)]"
-                      : "bg-[var(--accent-amber-dim)] border-[var(--border-focus)] text-[var(--accent-amber)]"
-                  }`}
-                >
-                  <item.icon className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-mono text-[var(--text-secondary)] uppercase">
-                    {item.label}
-                  </div>
-                  <div className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-amber-hover)] transition-colors mt-0.5" dir="ltr">
-                    {item.value}
-                  </div>
-                </div>
-              </div>
-
-              {item.action === "copy" && (
-                <button
-                  type="button"
-                  aria-label={`Copy ${item.label}`}
-                  className="p-2 rounded-xl text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] bg-[var(--bg-primary)] group-hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] transition-colors"
-                >
-                  {copiedKey === item.id ? (
-                    <Check className="w-4 h-4 text-[var(--accent-teal)]" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              )}
-            </div>
-          ))}
-
-          {/* Social Profiles */}
-          <div className="console-card p-5 space-y-3">
-            <div className="text-[11px] font-mono text-[var(--text-secondary)] uppercase mb-2">
-              {t.contact.labels.connectOnline}
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {socials.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-[var(--bg-primary)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-all flex items-center gap-3 group focus:outline-none"
-                >
-                  <social.icon className="w-4 h-4 text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors" />
-                  <div className="truncate">
-                    <div className="text-xs font-bold text-[var(--text-primary)] tracking-tight font-mono">
-                      {social.name}
-                    </div>
-                    <div className="text-[10px] font-mono text-[var(--text-muted)] truncate" dir="ltr">
-                      {social.handle}
-                    </div>
-                  </div>
-                </a>
-              ))}
+    <section id="contact" className="py-28 sm:py-32 scroll-mt-20 relative">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Editorial Section Header */}
+        <div className="mb-14 sm:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="hanko-stamp">縁</span>
+            <div className="japandi-pill">
+              <span>{t.contact?.pill || "07 / Direct Dialogue"}</span>
             </div>
           </div>
-        </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            <div className="lg:col-span-8">
+              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
+                {t.contact?.heading1 || "Let's Start a"}{" "}
+                <span className="editorial-accent">
+                  {t.contact?.headingHighlight || "Conversation"}
+                </span>.
+              </h2>
+            </div>
+            <div className="lg:col-span-4 pb-2">
+              <p className="text-sm sm:text-base text-[#786F63] font-sans leading-relaxed">
+                {t.contact?.description ||
+                  "Have an upcoming project, freelance inquiry, or full-time opportunity? Reach out directly or send a message below."}
+              </p>
+            </div>
+          </div>
+          <div className="katana-divider my-8" />
+        </div>
 
-        {/* Right Column: Message Form */}
-        <motion.div
-          initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7"
-        >
-          <div className="console-card p-6 sm:p-8 relative min-h-[460px] flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              {!submitted ? (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25 }}
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
+        {/* Contact Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column: Direct Info Cards & Quick Actions */}
+          <div className="lg:col-span-5 space-y-4">
+            {contactItems.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
+                className={`japandi-card p-5 flex items-center justify-between group ${
+                  item.action === "copy" ? "cursor-pointer hover:border-[#E8A1B0]" : ""
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#E9E0D2] border border-[#262522]/15 flex items-center justify-center text-[#262522] transition-transform duration-300 group-hover:scale-105 group-hover:border-[#E8A1B0]">
+                    <item.icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-mono text-[#786F63] uppercase tracking-wider">
+                      {item.label}
+                    </div>
+                    <div className="text-sm font-medium text-[#262522] group-hover:text-[#E8A1B0] transition-colors mt-0.5" dir="ltr">
+                      {item.value}
+                    </div>
+                  </div>
+                </div>
+
+                {item.action === "copy" && (
+                  <div className="text-[#786F63] group-hover:text-[#262522] transition-colors p-2">
+                    {copiedKey === item.id ? (
+                      <Check className="w-4 h-4 text-[#E8A1B0]" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Social Channels Card */}
+            <div className="japandi-card p-5">
+              <div className="text-[10px] font-mono text-[#786F63] uppercase tracking-wider mb-3">
+                {t.contact?.labels?.connectOnline || "Connect Online"}
+              </div>
+              <div className="flex flex-col gap-2">
+                {socials.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-2 rounded-xl hover:bg-[#E9E0D2] transition-colors group text-xs font-mono"
+                  >
+                    <div className="flex items-center gap-2.5 text-[#262522]">
+                      <social.icon className="w-4 h-4 text-[#786F63] group-hover:text-[#262522]" />
+                      <span>{social.name}</span>
+                    </div>
+                    <span className="text-[#786F63] group-hover:text-[#262522] transition-colors">
+                      {social.handle} →
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Curriculum Vitae Modal Trigger */}
+            <div className="p-5 rounded-2xl bg-[#E9E0D2] border border-[#262522]/15 flex items-center justify-between">
+              <div>
+                <span className="font-editorial text-lg text-[#262522] block">
+                  {t.cvModal?.pill || "Curriculum Vitae"}
+                </span>
+                <span className="text-xs font-mono text-[#786F63]">EN &amp; FR PDF Formats</span>
+              </div>
+              <Magnetic strength={0.25}>
+                <button
+                  type="button"
+                  onClick={openCvModal}
+                  className="btn-japandi-primary text-xs py-2 px-5 rounded-full"
                 >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Download className="w-3.5 h-3.5" />
+                  <span>{t.hero?.downloadCv || "Download CV"}</span>
+                </button>
+              </Magnetic>
+            </div>
+          </div>
+
+          {/* Right Column: Clean Wabi-Sabi Message Form */}
+          <div className="lg:col-span-7">
+            <div className="japandi-card p-6 sm:p-8 min-h-[460px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                {!submitted ? (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                          {t.contact?.form?.nameLabel || "Your Name *"}
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder={t.contact?.form?.namePlaceholder || "John Doe"}
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="japandi-input"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                          {t.contact?.form?.emailLabel || "Email Address *"}
+                        </label>
+                        <input
+                          type="email"
+                          required
+                          placeholder={t.contact?.form?.emailPlaceholder || "john@company.com"}
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="japandi-input font-mono text-xs"
+                          dir="ltr"
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-                        {t.contact.form.nameLabel}
+                      <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                        {t.contact?.form?.subjectLabel || "Subject"}
                       </label>
                       <input
                         type="text"
-                        required
-                        placeholder={t.contact.form.namePlaceholder}
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="apple-input"
+                        placeholder={t.contact?.form?.subjectPlaceholder || "Project Inquiry / Opportunity"}
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        className="japandi-input"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-                        {t.contact.form.emailLabel}
+                      <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                        {t.contact?.form?.messageLabel || "Your Message *"}
                       </label>
-                      <input
-                        type="email"
+                      <textarea
                         required
-                        placeholder={t.contact.form.emailPlaceholder}
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="apple-input font-mono text-xs"
-                        dir="ltr"
+                        rows={5}
+                        placeholder={
+                          t.contact?.form?.messagePlaceholder ||
+                          "Tell me about your project goals, timeline, and requirements..."
+                        }
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="japandi-input resize-none"
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-                      {t.contact.form.subjectLabel}
-                    </label>
-                    <input
-                      type="text"
-                      placeholder={t.contact.form.subjectPlaceholder}
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="apple-input"
-                    />
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <label className="block text-xs font-mono text-[var(--text-secondary)] uppercase tracking-wider">
-                        {t.contact.form.messageLabel}
-                      </label>
-                      <span className="text-[10px] font-mono text-[var(--text-muted)]">
-                        {formData.message.length} {t.contact.form.chars}
-                      </span>
-                    </div>
-                    <textarea
-                      required
-                      rows={5}
-                      placeholder={t.contact.form.messagePlaceholder}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="apple-input resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn-primary-action w-full justify-center py-3.5 rounded-xl text-sm font-semibold mt-2"
+                    <Magnetic strength={0.25} className="w-full">
+                      <button
+                        type="submit"
+                        className="btn-japandi-primary w-full justify-center py-3.5 rounded-full text-sm font-medium mt-2"
+                      >
+                        <Send className="w-4 h-4" />
+                        <span>{t.contact?.form?.sendBtn || "Send Message"}</span>
+                      </button>
+                    </Magnetic>
+                  </motion.form>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="flex flex-col items-center justify-center text-center p-8 space-y-4"
                   >
-                    <Send className={`w-4 h-4 ${isRTL ? "rotate-180" : ""}`} />
-                    <span>{t.contact.form.sendBtn}</span>
-                  </button>
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.94 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center justify-center text-center p-8 space-y-4"
-                >
-                  <div className="w-16 h-16 rounded-3xl bg-[var(--accent-teal-dim)] border border-[var(--accent-teal-border)] flex items-center justify-center text-[var(--accent-teal)]">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
-                    {t.contact.form.successTitle}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] max-w-sm leading-relaxed">
-                    {t.contact.form.successDesc}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <div className="w-16 h-16 rounded-full bg-[#171714] text-[#E8A1B0] flex items-center justify-center border border-[#E8A1B0]">
+                      <CheckCircle2 className="w-8 h-8" />
+                    </div>
+                    <h3 className="font-editorial text-3xl font-normal text-[#262522]">
+                      {t.contact?.form?.successTitle || "Message Sent Successfully"}
+                    </h3>
+                    <p className="text-sm text-[#786F63] max-w-sm leading-relaxed font-sans">
+                      {t.contact?.form?.successDesc ||
+                        "Thank you for reaching out. Your message has been received and I will reply within 24 hours."}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

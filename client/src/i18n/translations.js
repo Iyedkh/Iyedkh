@@ -7,6 +7,7 @@ export const translations = {
       skills: "Skills",
       projects: "Projects",
       experience: "Experience",
+      approach: "Approach",
       contact: "Contact",
       role: "Full-Stack & BI",
       available: "Available for work",
@@ -276,6 +277,40 @@ export const translations = {
         },
       ],
     },
+    // Approach
+    approach: {
+      pill: "06 / Methodology & Process",
+      heading1: "How I approach",
+      headingHighlight: "software & data",
+      description: "A structured four-phase delivery cycle from idea to production.",
+      phase: "Phase",
+      steps: [
+        {
+          number: "01",
+          title: "Understand the problem",
+          subtitle: "Contextual Discovery & Constraint Mapping",
+          desc: "Deconstruct business requirements and user friction before writing a line of code. Map data models, user flows, edge cases, and architectural constraints.",
+        },
+        {
+          number: "02",
+          title: "Design the architecture",
+          subtitle: "System Modeling & Component Hierarchy",
+          desc: "Establish clean state boundaries, normalized databases, RESTful endpoint schemas, and modular component contracts. Ensure maintainability before execution.",
+        },
+        {
+          number: "03",
+          title: "Build with precision",
+          subtitle: "Full-Stack Implementation & Ergonomics",
+          desc: "Develop with strict typing, clean separation of concerns, ergonomic microinteractions, responsive breakpoints, and resilient error recovery.",
+        },
+        {
+          number: "04",
+          title: "Measure, improve, and iterate",
+          subtitle: "Analytics & Production Hardening",
+          desc: "Inspect real-world telemetry, query latency, user engagement drop-offs, and data pipelines to continuously refine speed and product value.",
+        },
+      ],
+    },
     // Contact
     contact: {
       pill: "Get In Touch",
@@ -356,6 +391,7 @@ export const translations = {
       skills: "Compétences",
       projects: "Projets",
       experience: "Parcours",
+      approach: "Démarche",
       contact: "Contact",
       role: "Full-Stack & BI",
       available: "Disponible pour projets",
@@ -625,6 +661,40 @@ export const translations = {
         },
       ],
     },
+    // Approach
+    approach: {
+      pill: "06 / Démarche & Processus",
+      heading1: "Ma démarche",
+      headingHighlight: "logiciel & données",
+      description: "Un cycle de livraison structuré en quatre phases, de l'idée à la production.",
+      phase: "Phase",
+      steps: [
+        {
+          number: "01",
+          title: "Comprendre le problème",
+          subtitle: "Découverte contextuelle & Contraintes",
+          desc: "Déconstruire les besoins métier et les frictions utilisateurs avant toute ligne de code. Cartographier flux et modèles de données.",
+        },
+        {
+          number: "02",
+          title: "Concevoir l'architecture",
+          subtitle: "Modélisation système & Hiérarchie",
+          desc: "Établir des frontières d'état claires, des bases normalisées, des contrats d'API RESTful et des composants modulaires.",
+        },
+        {
+          number: "03",
+          title: "Développer avec précision",
+          subtitle: "Implémentation Full-Stack & Ergonomie",
+          desc: "Développer avec un typage strict, une séparation nette des responsabilités, des micro-interactions soignées et une gestion résiliente des erreurs.",
+        },
+        {
+          number: "04",
+          title: "Mesurer, optimiser & itérer",
+          subtitle: "Télémétrie & Mise en production robuste",
+          desc: "Analyser la télémétrie réelle, la latence des requêtes et les indicateurs d'usage pour continuellement optimiser la valeur produit.",
+        },
+      ],
+    },
     // Contact
     contact: {
       pill: "Me Joindre",
@@ -705,6 +775,7 @@ export const translations = {
       skills: "المهارات",
       projects: "المشاريع",
       experience: "المسار المهني",
+      approach: "المنهجية",
       contact: "تواصل معي",
       role: "تطوير الويب & ذكاء الأعمال",
       available: "متاح للمشاريع الجديدة",
@@ -971,6 +1042,40 @@ export const translations = {
           type: "شهادة مهنية معتمدة",
           description:
             "تدريب عملي على بنية تطبيقات الويب الحديثة باستخدام React و Node.js و Express و MongoDB.",
+        },
+      ],
+    },
+    // Approach
+    approach: {
+      pill: "06 / المنهجية والخطوات",
+      heading1: "كيف أطور",
+      headingHighlight: "البرمجيات والبيانات",
+      description: "دورة تطوير منظمة من أربع مراحل تبدأ من الفكرة إلى بيئة التشغيل الفعلية.",
+      phase: "المرحلة",
+      steps: [
+        {
+          number: "01",
+          title: "فهم جوهر المشكلة",
+          subtitle: "استكشاف السياق وتحديد المتطلبات",
+          desc: "تحليل متطلبات العمل ومشاكل المستخدمين قبل كتابة سطر برمجي واحد، ورسم نماذج البيانات والحالات الخاصة.",
+        },
+        {
+          number: "02",
+          title: "تصميم البنية الهندسية",
+          subtitle: "نمذجة النظام وهيكل المكونات",
+          desc: "تأسيس حدود واضحة لإدارة الحالة، قواعد بيانات منظمة، واجهات RESTful، ومكونات معيارية قابلة لإعادة الاستخدام.",
+        },
+        {
+          number: "03",
+          title: "بناء الكود بدقة متناهية",
+          subtitle: "تطوير متكامل واهتمام بالتفاصيل",
+          desc: "كتابة شيفرات برمجية دقيقة، وفصل منظم للمسؤوليات، وتفاعلات سلسة وتجاوب كامل مع مختلف الشاشات.",
+        },
+        {
+          number: "04",
+          title: "القياس، التحسين والتطوير",
+          subtitle: "تحليل الأداء والتطوير المستمر",
+          desc: "فحص سرعة استجابة الاستعلامات وسلوك المستخدمين ومؤشرات الأداء لتحسين كفاءة المنتج باستمرار.",
         },
       ],
     },

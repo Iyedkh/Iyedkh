@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Mail, Check, ArrowUpRight, Copy } from "lucide-react";
+import { Menu, X, ArrowUpRight, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
+import Magnetic from "./Magnetic";
 
 const Nav = () => {
   const { t, isRTL } = useLanguage();
@@ -21,19 +22,20 @@ const Nav = () => {
   }, []);
 
   const navLinks = [
-    { name: t.nav.home, href: "#home" },
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.skills, href: "#skills" },
-    { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.experience, href: "#experience" },
-    { name: t.nav.contact, href: "#contact" },
+    { name: t.nav?.home || "Home", href: "#home" },
+    { name: t.nav?.about || "About", href: "#about" },
+    { name: t.nav?.projects || "Work", href: "#work" },
+    { name: t.nav?.skills || "Skills", href: "#skills" },
+    { name: t.nav?.experience || "Experience", href: "#experience" },
+    { name: t.nav?.approach || "Approach", href: "#approach" },
+    { name: t.nav?.contact || "Contact", href: "#contact" },
   ];
 
   useEffect(() => {
-    const sections = ["home", "about", "skills", "projects", "experience", "contact"];
+    const sections = ["home", "about", "work", "skills", "experience", "approach", "contact"];
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px",
+      rootMargin: "-25% 0px -55% 0px",
       threshold: 0,
     };
 
@@ -63,7 +65,7 @@ const Nav = () => {
     e.preventDefault();
     navigator.clipboard.writeText(email);
     setCopiedEmail(true);
-    toast.success(t.nav.emailCopied, {
+    toast.success("Email copied to clipboard", {
       description: email,
       duration: 3000,
     });
@@ -74,39 +76,48 @@ const Nav = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 bg-[var(--bg-primary)]/90 backdrop-blur-2xl border-b border-[var(--border)] shadow-xl"
-          : "py-5 bg-transparent border-b border-transparent"
+          ? "py-3 sm:py-3.5 bg-[#F5F0E7]/90 backdrop-blur-xl border-b border-[#262522]/10 shadow-[0_8px_30px_-12px_rgba(38,37,34,0.06)]"
+          : "py-5 sm:py-6 lg:py-7 bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Brand Monogram */}
-        <motion.a
-          href="#home"
-          initial={{ opacity: 0, x: isRTL ? 16 : -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-3 group focus:outline-none rounded-xl p-1"
-        >
-          <div className="relative w-9 h-9 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105 group-hover:border-[var(--accent-amber)] shrink-0">
-            <span className="font-mono font-bold text-lg text-[var(--accent-amber)] transition-colors">
-              IK
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-sm tracking-tight text-[var(--text-primary)] flex items-center gap-1.5">
-              Iyed Khouildi
-              <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent-teal)] shadow-[0_0_8px_rgba(20,184,166,0.6)]" title={t.nav.available} />
-            </span>
-            <span className="font-mono text-[10px] text-[var(--text-secondary)] tracking-wider uppercase">
-              {t.nav.role}
-            </span>
-          </div>
-        </motion.a>
+      <div className="w-full mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
+        
+        {/* ========================================= */}
+        {/* BRAND IDENTITY (Monogram & Subtitle)      */}
+        {/* ========================================= */}
+        <Magnetic strength={0.2}>
+          <a
+            href="#home"
+            className="flex items-center gap-3.5 group focus:outline-none rounded-xl p-1"
+          >
+            {/* Red Hanko Artisan Stamp */}
+            <div className="relative w-9 h-9 rounded-xl border border-[#C24545]/30 flex items-center justify-center bg-[#C24545]/5 transition-all duration-300 group-hover:border-[#C24545] group-hover:bg-[#C24545]/10 group-hover:scale-105 shadow-sm">
+              <span className="font-editorial text-base font-bold text-[#C24545] leading-none">
+                匠
+              </span>
+            </div>
 
-        {/* Desktop Navigation Floating Pill Bar */}
+            <div className="flex flex-col">
+              <span className="font-editorial text-lg sm:text-xl font-medium tracking-[0.06em] text-[#262522] flex items-center gap-2">
+                IYED KHOUILDI
+                <span
+                  className="inline-block w-2 h-2 rounded-full bg-[#E8A1B0] animate-pulse"
+                  title="Available for select projects"
+                />
+              </span>
+              <span className="font-mono text-[9.5px] text-[#786F63] tracking-[0.16em] uppercase">
+                Full Stack &amp; Data Architect
+              </span>
+            </div>
+          </a>
+        </Magnetic>
+
+        {/* ========================================= */}
+        {/* DESKTOP FLOATING PILL NAVIGATION          */}
+        {/* ========================================= */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] backdrop-blur-xl"
+          className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E9E0D2]/75 border border-[#262522]/10 backdrop-blur-md shadow-[0_4px_20px_-8px_rgba(38,37,34,0.08)]"
         >
           {navLinks.map((link) => {
             const sectionId = link.href.substring(1);
@@ -115,76 +126,91 @@ const Nav = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 rounded-full focus:outline-none ${
-                  isActive ? "text-[var(--text-primary)] font-semibold" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                className={`relative px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E8A1B0] ${
+                  isActive
+                    ? "text-[#262522] font-semibold"
+                    : "text-[#786F63] hover:text-[#262522]"
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeNavIndicator"
+                    layoutId="activeNavIndicatorSakura"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[var(--accent-amber-dim)] border border-[var(--border-focus)] rounded-full"
+                    className="absolute inset-0 bg-[#F5F0E7] border border-[#262522]/15 shadow-sm rounded-full -z-0"
                   />
                 )}
-                <span className="relative z-10">{link.name}</span>
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {link.name}
+                  {isActive && (
+                    <span className="w-1 h-1 rounded-full bg-[#E8A1B0]" />
+                  )}
+                </span>
               </a>
             );
           })}
         </nav>
 
-        {/* Right CTA Group */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* ========================================= */}
+        {/* RIGHT ACTION GROUP (Lang, Email, CTA)     */}
+        {/* ========================================= */}
+        <div className="hidden md:flex items-center gap-3.5">
           <LanguageSwitcher />
 
-          {/* Quick Copy Email Button */}
+          {/* Quick Copy Email with Tooltip Visual */}
           <button
             onClick={handleCopyEmail}
-            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-all duration-200 focus:outline-none"
-            title={t.nav.emailCopied}
-            aria-label="Copy email address"
+            className="p-2.5 rounded-full text-[#786F63] hover:text-[#262522] bg-[#E9E0D2]/60 hover:bg-[#E9E0D2] border border-[#262522]/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E8A1B0]"
+            title="Copy email address"
+            aria-label="Copy email"
           >
             {copiedEmail ? (
-              <Check className="w-4 h-4 text-[var(--accent-teal)]" />
+              <Check className="w-4 h-4 text-[#E8A1B0]" />
             ) : (
               <Copy className="w-4 h-4" />
             )}
           </button>
 
-          {/* Let's Talk CTA */}
-          <a
-            href="#contact"
-            className="btn-primary-action text-xs py-2 px-4 rounded-xl group"
-          >
-            <span>{t.nav.letsTalk}</span>
-            <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
-          </a>
+          {/* Magnetic Let's Talk CTA */}
+          <Magnetic strength={0.25}>
+            <a
+              href="#contact"
+              className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full shadow-sm hover:shadow-[0_8px_20px_-6px_rgba(232,161,176,0.4)]"
+            >
+              <span>{t.nav?.letsTalk || "Let's Talk"}</span>
+              <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
+            </a>
+          </Magnetic>
         </div>
 
-        {/* Mobile Controls */}
-        <div className="flex items-center gap-2 md:hidden">
+        {/* ========================================= */}
+        {/* MOBILE MENU CONTROLS                      */}
+        {/* ========================================= */}
+        <div className="flex items-center gap-2.5 lg:hidden">
           <LanguageSwitcher />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Toggle navigation menu"
-            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] bg-[var(--bg-surface)] border border-[var(--border)] focus:outline-none"
+            className="p-2.5 rounded-full text-[#262522] bg-[#E9E0D2] border border-[#262522]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A1B0]"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Overlay */}
+      {/* ========================================= */}
+      {/* SHOJI-INSPIRED MOBILE DRAWER             */}
+      {/* ========================================= */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden bg-[var(--bg-surface)] border-b border-[var(--border)] px-6 py-6 shadow-2xl"
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden bg-[#F5F0E7]/98 backdrop-blur-2xl border-b border-[#262522]/10 px-6 py-6 shadow-2xl shoji-grid"
           >
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 max-w-md mx-auto">
               {navLinks.map((link, i) => {
                 const sectionId = link.href.substring(1);
                 const isActive = activeSection === sectionId;
@@ -193,36 +219,28 @@ const Nav = () => {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    initial={{ opacity: 0, x: isRTL ? 12 : -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.04 }}
-                    className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.035 }}
+                    className={`px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all flex items-center justify-between ${
                       isActive
-                        ? "bg-[var(--accent-amber-dim)] text-[var(--accent-amber)] border border-[var(--border-focus)]"
-                        : "text-[var(--text-secondary)] hover:bg-[var(--bg-surface-elevated)] hover:text-[var(--text-primary)]"
+                        ? "bg-[#E8A1B0]/20 text-[#262522] border border-[#E8A1B0]/60 font-semibold"
+                        : "text-[#786F63] hover:bg-[#E9E0D2] hover:text-[#262522]"
                     }`}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#E8A1B0]" />}
                   </motion.a>
                 );
               })}
 
-              <div className="pt-4 mt-2 border-t border-[var(--border)] flex flex-col gap-3">
-                <button
-                  onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-mono text-[var(--text-secondary)] bg-[var(--bg-primary)] border border-[var(--border)] hover:border-[var(--accent-amber)] transition-colors"
-                >
-                  <Mail className="w-3.5 h-3.5 text-[var(--accent-amber)]" />
-                  <span className="text-[var(--text-primary)]">{email}</span>
-                  {copiedEmail && <span className="text-[var(--accent-teal)] font-sans text-[10px] ml-1">({t.nav.emailCopied})</span>}
-                </button>
-
+              <div className="pt-4 mt-3 border-t border-[#262522]/10 flex flex-col gap-3">
                 <a
                   href="#contact"
                   onClick={() => setMenuOpen(false)}
-                  className="btn-primary-action w-full justify-center text-xs py-3 rounded-xl"
+                  className="btn-japandi-primary w-full justify-center text-xs py-3 rounded-full"
                 >
-                  <span>{t.nav.letsTalk}</span>
+                  <span>{t.nav?.letsTalk || "Let's Talk"}</span>
                   <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
                 </a>
               </div>
