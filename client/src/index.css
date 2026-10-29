@@ -3,47 +3,55 @@
 @layer base {
   :root {
     /* 
-      JAPANDI × JAPANESE AESTHETICS COLOR PALETTE:
-      - Warm rice paper: #F5F0E7
-      - Soft cream: #E9E0D2
-      - Sakura pink: #E8A1B0
-      - Pale blossom: #F4CCD5
-      - Charcoal ink: #262522
-      - Deep sumi black: #171714
-      - Muted bamboo green: #78836A
-      - Natural wood: #9B7457
-      - Antique metallic accent: #AD8B59
+      AUTHENTIC JAPANDI × JAPANESE DENTŌ-IRO PALETTE:
+      - Torinoko Washi (warm unbleached paper): #F6F2EB
+      - Shiracha (soft natural clay cream): #EBE3D5
+      - Hada-iro (tactile elevated surface): #E4DAC9
+      - Sumi ink (charcoal soot black): #22211E
+      - Kuro-cha (deep ink shadow): #151412
+      - Sakura-nezumi (muted ash cherry blossom): #D48D9B
+      - Usukō (pale petal mist): #F3D9DF
+      - Kogane / Antique gold leaf: #A68550
+      - Rikyū-cha (Kyoto tea master green): #6B785D
+      - Sugi / Natural cedar wood: #8C6747
     */
-    --bg-rice-paper: #F5F0E7;       /* Main canvas background */
-    --bg-soft-cream: #E9E0D2;       /* Secondary card & panel surface */
-    --bg-cream-elevated: #EDE5D8;   /* Elevated tactile surface */
-    --border-sand: rgba(38, 37, 34, 0.12);
-    --border-sand-strong: rgba(38, 37, 34, 0.24);
+    --bg-rice-paper: #F6F2EB;
+    --bg-soft-cream: #EBE3D5;
+    --bg-cream-elevated: #E4DAC9;
+    --border-sand: rgba(34, 33, 30, 0.10);
+    --border-sand-strong: rgba(34, 33, 30, 0.20);
 
-    --text-charcoal: #262522;       /* Primary typography */
-    --text-taupe: #786F63;          /* Secondary body text */
-    --text-muted: #9E9486;          /* Muted metadata */
+    --text-charcoal: #22211E;
+    --text-taupe: #726A5F;
+    --text-muted: #9C9385;
 
-    --sakura-pink: #E8A1B0;         /* Signature cherry blossom accent */
-    --sakura-pale: #F4CCD5;         /* Soft blossom glow */
-    --sakura-dim: rgba(232, 161, 176, 0.15);
-    --sakura-border: rgba(232, 161, 176, 0.35);
+    --sakura-pink: #D48D9B;
+    --sakura-pale: #F3D9DF;
+    --sakura-dim: rgba(212, 141, 155, 0.12);
+    --sakura-border: rgba(212, 141, 155, 0.35);
 
-    --sumi-black: #171714;          /* Deep ink black for contrast */
-    --bamboo-green: #78836A;        /* Muted bamboo green */
-    --natural-wood: #9B7457;        /* Natural cedar / wood tone */
-    --antique-gold: #AD8B59;        /* Katana brass / metallic accent */
+    --sumi-black: #151412;
+    --bamboo-green: #6B785D;
+    --natural-wood: #8C6747;
+    --antique-gold: #A68550;
 
-    /* Backwards compatibility aliases */
+    /* Semantic Compatibility Tokens */
     --bg-primary: var(--bg-rice-paper);
     --bg-surface: var(--bg-soft-cream);
     --bg-surface-elevated: var(--bg-cream-elevated);
     --text-primary: var(--text-charcoal);
     --text-secondary: var(--text-taupe);
     --accent-primary: var(--text-charcoal);
+    --accent-primary-dim: rgba(34, 33, 30, 0.08);
     --accent-secondary: var(--sakura-pink);
+    --accent-amber: var(--antique-gold);
+    --accent-amber-dim: rgba(166, 133, 80, 0.12);
+    --accent-teal: var(--bamboo-green);
+    --accent-teal-dim: rgba(107, 120, 93, 0.12);
+    --accent-teal-border: rgba(107, 120, 93, 0.3);
     --border: var(--border-sand);
     --border-strong: var(--border-sand-strong);
+    --border-focus: var(--sakura-border);
 
     /* Typography */
     --font-editorial: 'Cormorant Garamond', 'DM Serif Display', Georgia, serif;
@@ -102,41 +110,54 @@
   font-family: var(--font-mono);
 }
 
-/* Washi Paper Grain Texture */
+/* Washi Paper Grain Texture with organic mulberry fibers */
 .washi-grain {
-  background-image: radial-gradient(rgba(38, 37, 34, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Shoji Grid Screen Pattern */
-.shoji-grid {
-  background-size: 40px 40px;
+  background-color: var(--bg-rice-paper);
   background-image: 
-    linear-gradient(to right, rgba(38, 37, 34, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(38, 37, 34, 0.04) 1px, transparent 1px);
+    radial-gradient(rgba(34, 33, 30, 0.035) 1px, transparent 1px),
+    radial-gradient(rgba(166, 133, 80, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px, 36px 36px;
+  background-position: 0 0, 12px 18px;
 }
 
-/* Subtle Architectural Cards & Surfaces */
+/* Shoji Grid Screen Pattern - understated architectural grid */
+.shoji-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(34, 33, 30, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 33, 30, 0.03) 1px, transparent 1px);
+}
+
+/* Tactile Architectural Cards & Surfaces: Wabi-sabi calmness */
 .japandi-card, .console-card, .apple-card {
   background-color: var(--bg-soft-cream);
   border: 1px solid var(--border-sand);
   border-radius: 20px;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  box-shadow: 0 2px 8px -2px rgba(34, 33, 30, 0.03);
 }
 
 .japandi-card:hover, .console-card:hover, .apple-card:hover {
-  border-color: rgba(232, 161, 176, 0.5);
-  box-shadow: 0 16px 36px -12px rgba(38, 37, 34, 0.08), 0 0 20px -8px rgba(232, 161, 176, 0.2);
+  border-color: rgba(212, 141, 155, 0.45);
+  background-color: var(--bg-cream-elevated);
+  box-shadow: 0 14px 32px -8px rgba(34, 33, 30, 0.07), 0 2px 6px -1px rgba(34, 33, 30, 0.04);
   transform: translateY(-2px);
 }
 
-/* Katana Blade Divider with glint */
+/* Authentic Japanese Joinery / Fude Brush Line Divider */
 .katana-divider, .japandi-divider, .apple-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-sand) 15%, #AD8B59 50%, var(--border-sand) 85%, transparent);
-  margin: 64px 0;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(34, 33, 30, 0.08) 18%, 
+    rgba(166, 133, 80, 0.35) 50%, 
+    rgba(34, 33, 30, 0.08) 82%, 
+    transparent 100%
+  );
+  margin: 72px 0;
   position: relative;
 }
 
@@ -146,10 +167,9 @@
   top: -2px;
   left: 50%;
   transform: translateX(-50%);
-  width: 24px;
+  width: 18px;
   height: 5px;
-  background: radial-gradient(circle, #AD8B59 0%, transparent 70%);
-  opacity: 0.8;
+  background: radial-gradient(circle, rgba(166, 133, 80, 0.6) 0%, transparent 70%);
 }
 
 /* Button System: Restrained, tactile, organic */
@@ -178,7 +198,7 @@
   border-color: var(--sakura-pink);
   color: var(--bg-rice-paper);
   transform: translateY(-1.5px);
-  box-shadow: 0 8px 24px -6px rgba(232, 161, 176, 0.35);
+  box-shadow: 0 8px 20px -6px rgba(34, 33, 30, 0.25);
 }
 
 .btn-japandi-primary:active, .btn-primary-action:active, .btn-apple-primary:active {
@@ -204,7 +224,7 @@
 }
 
 .btn-japandi-secondary:hover, .btn-secondary-action:hover, .btn-apple-secondary:hover {
-  background-color: var(--bg-soft-cream);
+  background-color: var(--bg-cream-elevated);
   border-color: var(--sakura-pink);
   color: var(--text-charcoal);
   transform: translateY(-1.5px);

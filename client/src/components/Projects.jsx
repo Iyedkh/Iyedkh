@@ -272,31 +272,50 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Right Visual Representation: Architectural Terminal */}
+                {/* Right Visual Representation: Japandi Architectural Blueprint Spec Sheet */}
                 <div className="lg:col-span-5">
-                  <div className="relative aspect-[4/3] rounded-2xl bg-[#171714] border border-[#262522] p-5 text-[#F5F0E7] font-mono text-xs flex flex-col justify-between shadow-lg">
-                    <div className="flex items-center justify-between pb-3 border-b border-[#F5F0E7]/10">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#E8A1B0]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#AD8B59]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#78836A]" />
+                  <div className="relative aspect-[4/3] rounded-2xl bg-[#F6F2EB] border border-[#22211E]/15 p-5 text-[#22211E] font-mono text-xs flex flex-col justify-between shadow-[0_4px_20px_-4px_rgba(34,33,30,0.06)] washi-grain">
+                    {/* Architectural Header */}
+                    <div className="flex items-center justify-between pb-3 border-b border-[#22211E]/10">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#A68550]" />
+                        <span className="text-[10.5px] font-semibold text-[#22211E] tracking-wider uppercase">
+                          CARTHAGEOS.SYS
+                        </span>
                       </div>
-                      <span className="text-[10px] text-[#A69A89]">carthageos.sys // v2.4</span>
+                      <span className="text-[9.5px] text-[#726A5F] uppercase tracking-widest">
+                        SPEC 2.4 · ERP CORE
+                      </span>
                     </div>
 
-                    <div className="space-y-2 py-4 text-[11px] text-[#E9E0D2]">
-                      <p className="text-[#A69A89]">// Multi-tenant Core Initialized</p>
-                      <p>❯ DB Schema: MongoDB Aggregated Ledgers</p>
-                      <p>❯ REST Endpoints: 48 Services Active</p>
-                      <p>❯ Inventory Engine: Dynamic Reorder Active</p>
-                      <p className="text-[#E8A1B0] bg-[#E8A1B0]/15 px-2 py-1 rounded w-fit text-[10px]">
-                        ✓ All Subsystems Operational
-                      </p>
+                    {/* Architectural Schematics & Metrics */}
+                    <div className="space-y-2.5 py-4 text-[11px] text-[#726A5F]">
+                      <div className="flex items-center justify-between pb-1 border-b border-[#22211E]/5">
+                        <span className="text-[#9C9385]">SCHEMA TOPOLOGY</span>
+                        <span className="text-[#22211E] font-medium">MongoDB Aggregated Ledgers</span>
+                      </div>
+                      <div className="flex items-center justify-between pb-1 border-b border-[#22211E]/5">
+                        <span className="text-[#9C9385]">REST SERVICES</span>
+                        <span className="text-[#22211E] font-medium">48 Modular Endpoints</span>
+                      </div>
+                      <div className="flex items-center justify-between pb-1 border-b border-[#22211E]/5">
+                        <span className="text-[#9C9385]">INVENTORY ENGINE</span>
+                        <span className="text-[#22211E] font-medium">Predictive Auto-Reorder</span>
+                      </div>
+                      <div className="pt-1 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#6B785D]/10 text-[#6B785D] text-[10px] font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#6B785D]" /> Sub-second Latency
+                        </span>
+                        <span className="text-[10px] text-[#A68550]">Multi-tenant Guard</span>
+                      </div>
                     </div>
 
-                    <div className="pt-3 border-t border-[#F5F0E7]/10 flex items-center justify-between text-[10px] text-[#A69A89]">
-                      <span>Role: Full-Stack Architect</span>
-                      <span className="text-[#E8A1B0]">CLICK TO EXPLORE →</span>
+                    {/* Blueprint Footer */}
+                    <div className="pt-3 border-t border-[#22211E]/10 flex items-center justify-between text-[10px] text-[#726A5F]">
+                      <span className="uppercase tracking-wider">Architect: Iyed Khouildi</span>
+                      <span className="text-[#D48D9B] font-medium flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                        EXPLORE BLUEPRINT →
+                      </span>
                     </div>
                   </div>
                 </div>

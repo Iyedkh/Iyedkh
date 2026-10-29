@@ -82,8 +82,8 @@ const Hero = () => {
                 </span>
                 <div className="japandi-pill" role="status">
                   <span aria-hidden="true" className="relative flex h-2 w-2 shrink-0">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E8A1B0] opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#E8A1B0]" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D48D9B] opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D48D9B]" />
                   </span>
                   <span>{t.hero?.statusBadge || "Available for Select Projects & Architecture"}</span>
                 </div>
@@ -92,7 +92,7 @@ const Hero = () => {
               {/* Editorial Title with disciplined line breaks */}
               <h1
                 id="hero-title"
-                className="mb-6 font-editorial text-[2.75rem] font-normal leading-[1.05] tracking-[-0.035em] text-[#262522] sm:mb-7 sm:text-6xl md:text-7xl lg:text-[4.75rem]"
+                className="mb-6 font-editorial text-[2.75rem] font-normal leading-[1.05] tracking-[-0.035em] text-[#22211E] sm:mb-7 sm:text-6xl md:text-7xl lg:text-[4.75rem]"
               >
                 <span className="block overflow-hidden pb-1">
                   <motion.span variants={lineReveal} className="block">
@@ -105,7 +105,7 @@ const Hero = () => {
                   </motion.span>
                 </span>
                 <span className="block overflow-hidden pb-2">
-                  <motion.span variants={lineReveal} className="block italic text-[#E8A1B0]">
+                  <motion.span variants={lineReveal} className="block italic text-[#D48D9B]">
                     with precision.
                   </motion.span>
                 </span>
@@ -114,9 +114,9 @@ const Hero = () => {
               {/* Concise, elegant bio */}
               <motion.p
                 variants={fadeUp}
-                className="mb-8 max-w-[34rem] text-base leading-relaxed text-[#6B6358] sm:text-lg sm:leading-relaxed"
+                className="mb-8 max-w-[34rem] text-base leading-relaxed text-[#726A5F] sm:text-lg sm:leading-relaxed"
               >
-                I&apos;m <strong className="font-semibold text-[#262522]">Iyed Khouildi</strong>, a Full
+                I&apos;m <strong className="font-semibold text-[#22211E]">Iyed Khouildi</strong>, a Full
                 Stack Developer &amp; Data Analyst merging engineering discipline, business
                 intelligence, and Japanese architectural minimalism into resilient, calm software.
               </motion.p>
@@ -124,8 +124,8 @@ const Hero = () => {
               {/* Expertise tags */}
               <motion.div variants={fadeUp} className="mb-8 w-full max-w-xl sm:mb-10">
                 <div className="mb-3 flex items-center gap-2">
-                  <span className="h-px w-4 bg-[#AD8B59]" />
-                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#786F63]">
+                  <span className="h-px w-4 bg-[#A68550]" />
+                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#726A5F]">
                     {t.hero?.techStack || "Core Expertise"}
                   </p>
                 </div>
@@ -133,7 +133,7 @@ const Hero = () => {
                   {STACK.map((item) => (
                     <li
                       key={item}
-                      className="rounded-full border border-[#262522]/12 bg-[#F5F0E7]/80 px-3.5 py-1.5 text-[11px] font-mono tracking-wide text-[#625B51] shadow-[0_1px_2px_rgba(38,37,34,0.04)] transition-colors hover:border-[#E8A1B0]/60 sm:text-xs"
+                      className="rounded-full border border-[#22211E]/10 bg-[#F6F2EB]/90 px-3.5 py-1.5 text-[11px] font-mono tracking-wide text-[#726A5F] shadow-[0_1px_2px_rgba(34,33,30,0.03)] transition-colors hover:border-[#D48D9B]/60 sm:text-xs"
                     >
                       {item}
                     </li>
@@ -149,7 +149,7 @@ const Hero = () => {
                 <Magnetic strength={0.2}>
                   <a
                     href="#work"
-                    className="btn-japandi-primary group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8A1B0] sm:px-7"
+                    className="btn-japandi-primary group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D48D9B] sm:px-7"
                   >
                     <span>{t.hero?.exploreProjects || "Explore My Work"}</span>
                     <ArrowUpRight
@@ -164,7 +164,7 @@ const Hero = () => {
                 <Magnetic strength={0.2}>
                   <a
                     href="#contact"
-                    className="btn-japandi-secondary inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8A1B0] sm:px-7"
+                    className="btn-japandi-secondary inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D48D9B] sm:px-7"
                   >
                     <span>{t.hero?.contactMe || "Let's Talk"}</span>
                   </a>
@@ -174,9 +174,9 @@ const Hero = () => {
                   <button
                     type="button"
                     onClick={openCvModal}
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#262522]/10 bg-[#E9E0D2]/50 px-5 py-3 text-sm font-sans text-[#625B51] transition-all hover:border-[#E8A1B0]/50 hover:bg-[#E9E0D2]/80 hover:text-[#262522] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#E8A1B0]"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#22211E]/10 bg-[#EBE3D5]/60 px-5 py-3 text-sm font-sans text-[#726A5F] transition-all hover:border-[#D48D9B]/50 hover:bg-[#EBE3D5] hover:text-[#22211E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D48D9B]"
                   >
-                    <FileText className="h-4 w-4 text-[#AD8B59]" />
+                    <FileText className="h-4 w-4 text-[#A68550]" />
                     <span>{t.hero?.downloadCv || "Curriculum Vitae"}</span>
                   </button>
                 </Magnetic>

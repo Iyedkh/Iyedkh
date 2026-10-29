@@ -38,7 +38,7 @@ const LanguageSwitcher = ({ className = "" }) => {
               <motion.div
                 layoutId="activeLangIndicator"
                 transition={{ type: "spring", stiffness: 450, damping: 30 }}
-                className="absolute inset-0 bg-[var(--accent-primary-dim)] border border-[var(--accent-primary)] rounded-lg shadow-sm"
+                className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/12 shadow-sm rounded-lg"
               />
             )}
             <span className="relative z-10">{l.label}</span>

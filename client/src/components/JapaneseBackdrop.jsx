@@ -40,8 +40,8 @@ const JapaneseBackdrop = () => {
       </svg>
 
       {/* 2. Soft Japandi Ambient Morning Aura / Enso Light */}
-      <div className="absolute top-16 right-1/4 w-80 h-80 rounded-full bg-gradient-to-br from-[#E8A1B0]/15 via-[#AD8B59]/10 to-transparent blur-3xl" />
-      <div className="absolute top-36 right-12 w-96 h-96 rounded-full bg-[#E9E0D2]/40 blur-2xl" />
+      <div className="absolute top-16 right-1/4 w-80 h-80 rounded-full bg-gradient-to-br from-[#D48D9B]/10 via-[#A68550]/08 to-transparent blur-3xl" />
+      <div className="absolute top-36 right-12 w-96 h-96 rounded-full bg-[#EBE3D5]/40 blur-2xl" />
 
       {/* 3. Subtle Asanoha Geometry Watermark (Sacrual Japandi Motif in corner) */}
       <svg
@@ -134,14 +134,14 @@ const JapaneseBackdrop = () => {
                 rx={b.r * 0.48}
                 ry={b.r * 0.32}
                 transform={`rotate(${angle})`}
-                fill="#F4CCD5"
+                fill="#F3D9DF"
                 opacity="0.85"
               />
             ))}
             {/* Petal Core Highlight */}
-            <circle cx="0" cy="0" r={b.r * 0.32} fill="#E8A1B0" opacity="0.9" />
+            <circle cx="0" cy="0" r={b.r * 0.32} fill="#D48D9B" opacity="0.9" />
             {/* Stamen Pistil */}
-            <circle cx="0" cy="0" r={b.r * 0.14} fill="#AD8B59" />
+            <circle cx="0" cy="0" r={b.r * 0.14} fill="#A68550" />
           </g>
         ))}
       </svg>

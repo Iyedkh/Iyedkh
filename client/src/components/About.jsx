@@ -61,7 +61,7 @@ const About = () => {
           <div className="lg:col-span-5 flex flex-col items-center">
             <div className="relative w-full max-w-sm">
               {/* Japandi Arch Frame */}
-              <div className="relative aspect-[3/4] japandi-arch overflow-hidden bg-[#E9E0D2] border border-[#262522]/15 shadow-sm group">
+              <div className="relative aspect-[3/4] japandi-arch overflow-hidden bg-[#EBE3D5] border border-[#22211E]/15 shadow-sm group">
                 <img
                   src={Me}
                   alt="Iyed Khouildi — Full Stack Developer & Data Analyst"
@@ -69,22 +69,22 @@ const About = () => {
                   loading="lazy"
                 />
                 {/* Rice Paper Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#262522]/80 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#22211E]/80 via-transparent to-transparent opacity-80" />
 
                 {/* Bottom Details Pill */}
-                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-[#F5F0E7]/90 backdrop-blur-md border border-[#262522]/10 text-xs font-mono">
-                  <div className="flex items-center justify-between text-[#262522] font-medium">
+                <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-[#F6F2EB]/92 backdrop-blur-md border border-[#22211E]/10 text-xs font-mono">
+                  <div className="flex items-center justify-between text-[#22211E] font-medium">
                     <span>Iyed Khouildi</span>
-                    <span className="text-[#E8A1B0]">• Verified</span>
+                    <span className="text-[#D48D9B]">• Verified</span>
                   </div>
-                  <div className="text-[11px] text-[#786F63] mt-0.5">
+                  <div className="text-[11px] text-[#726A5F] mt-0.5">
                     📍 Bizerte, Tunisia • BI Degree &amp; Dual Bootcamp
                   </div>
                 </div>
               </div>
 
               {/* Decorative Japanese Character Stamp */}
-              <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-[#E8A1B0] text-[#262522] flex items-center justify-center font-editorial text-sm shadow-sm select-none border border-[#262522]/20 font-bold">
+              <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-[#D48D9B] text-[#22211E] flex items-center justify-center font-editorial text-sm shadow-sm select-none border border-[#22211E]/20 font-bold">
                 匠
               </div>
             </div>
@@ -92,36 +92,36 @@ const About = () => {
 
           {/* Right Column: Biography & Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-4 text-base sm:text-lg text-[#786F63] font-sans leading-relaxed">
+            <div className="space-y-4 text-base sm:text-lg text-[#726A5F] font-sans leading-relaxed">
               <p>
                 {t.about?.description ||
                   "Based in Bizerte, Tunisia, I am a developer and data analyst who bridges engineering capability with statistical thinking to deliver scalable, intelligent software."}
               </p>
               <p>
-                My academic grounding in <strong className="text-[#262522] font-medium">Business Intelligence at ISG Bizerte</strong> taught me to view every digital product as an information ecosystem. Rather than writing software in isolation, I structure data flows, analyze user behaviors, and design systems built to perform reliably at scale.
+                My academic grounding in <strong className="text-[#22211E] font-medium">Business Intelligence at ISG Bizerte</strong> taught me to view every digital product as an information ecosystem. Rather than writing software in isolation, I structure data flows, analyze user behaviors, and design systems built to perform reliably at scale.
               </p>
               <p>
-                As the architect behind <strong className="text-[#E8A1B0] font-medium">CARTHAGEOS</strong> (a modular SaaS ERP platform), I channel this multidisciplinary perspective into enterprise software: turning operational complexity into calm, dependable digital architecture.
+                As the architect behind <strong className="text-[#D48D9B] font-medium">CARTHAGEOS</strong> (a modular SaaS ERP platform), I channel this multidisciplinary perspective into enterprise software: turning operational complexity into calm, dependable digital architecture.
               </p>
             </div>
 
             {/* Quick Metrics / Foundation Points */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4">
-              <div className="p-3.5 rounded-xl bg-[#E9E0D2]/60 border border-[#262522]/10">
-                <div className="text-xl font-editorial font-medium text-[#262522]">3+ Years</div>
-                <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mt-0.5">
+              <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10">
+                <div className="text-xl font-editorial font-medium text-[#22211E]">3+ Years</div>
+                <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   {t.hero?.stats?.yearsExperience || "Software Engineering"}
                 </div>
               </div>
-              <div className="p-3.5 rounded-xl bg-[#E9E0D2]/60 border border-[#262522]/10">
-                <div className="text-xl font-editorial font-medium text-[#E8A1B0]">ISG Bizerte</div>
-                <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mt-0.5">
+              <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10">
+                <div className="text-xl font-editorial font-medium text-[#A68550]">ISG Bizerte</div>
+                <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   {t.hero?.card?.degree || "BI Degree"}
                 </div>
               </div>
-              <div className="p-3.5 rounded-xl bg-[#E9E0D2]/60 border border-[#262522]/10 col-span-2 sm:col-span-1">
-                <div className="text-xl font-editorial font-medium text-[#78836A]">Dual Bootcamp</div>
-                <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mt-0.5">
+              <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10 col-span-2 sm:col-span-1">
+                <div className="text-xl font-editorial font-medium text-[#6B785D]">Dual Bootcamp</div>
+                <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   Full Stack &amp; Data
                 </div>
               </div>
@@ -144,20 +144,20 @@ const About = () => {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-xs text-[#E8A1B0] font-semibold">
+                      <span className="font-mono text-xs text-[#D48D9B] font-semibold">
                         {card.badge || `0${idx + 1}`}
                       </span>
-                      <Icon className="w-4 h-4 text-[#786F63] group-hover:text-[#262522] transition-colors" />
+                      <Icon className="w-4 h-4 text-[#726A5F] group-hover:text-[#22211E] transition-colors" />
                     </div>
-                    <h3 className="font-editorial text-xl font-medium text-[#262522] mb-2 leading-snug">
+                    <h3 className="font-editorial text-xl font-medium text-[#22211E] mb-2 leading-snug">
                       {card.title}
                     </h3>
-                    <p className="text-xs text-[#786F63] leading-relaxed font-sans mb-3">
+                    <p className="text-xs text-[#726A5F] leading-relaxed font-sans mb-3">
                       {card.description}
                     </p>
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#AD8B59] uppercase tracking-wider pt-2 border-t border-[#262522]/10">
+                    <div className="text-[10px] font-mono text-[#A68550] uppercase tracking-wider pt-2 border-t border-[#22211E]/10">
                       {card.highlight}
                     </div>
                   </div>
@@ -168,12 +168,12 @@ const About = () => {
         </div>
 
         {/* Action Callout Banner */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-[#E9E0D2] border border-[#262522]/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <div className="p-8 sm:p-10 rounded-2xl bg-[#EBE3D5] border border-[#22211E]/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="space-y-1">
-            <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-[#262522]">
+            <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-[#22211E]">
               {t.about?.banner?.title || "Interested in collaborating or exploring architecture?"}
             </h3>
-            <p className="text-xs sm:text-sm text-[#786F63] font-sans">
+            <p className="text-xs sm:text-sm text-[#726A5F] font-sans">
               {t.about?.banner?.text ||
                 "Available for full-time engineering roles, freelance builds, and SaaS architecture contracts."}
             </p>
@@ -184,7 +184,7 @@ const About = () => {
               onClick={handleCopyEmail}
               className="btn-japandi-secondary text-xs py-2.5 px-5 rounded-full flex-1 sm:flex-initial justify-center"
             >
-              {copiedEmail ? <Check className="w-3.5 h-3.5 text-[#E8A1B0]" /> : <Copy className="w-3.5 h-3.5" />}
+              {copiedEmail ? <Check className="w-3.5 h-3.5 text-[#D48D9B]" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copiedEmail ? t.about?.banner?.emailCopied || "Email Copied" : t.about?.banner?.copyEmail || "Copy Email"}</span>
             </button>
 

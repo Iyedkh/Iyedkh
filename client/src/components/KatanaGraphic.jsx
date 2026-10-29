@@ -146,8 +146,8 @@ const KatanaGraphic = ({ className = "" }) => {
             {/* Hamon Wave (Yakiba) Soft Linear Texture */}
             <linearGradient id="hamonFrost" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FAFAF8" stopOpacity="0.9" />
-              <stop offset="50%" stopColor="#F4CCD5" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#E8A1B0" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#F3D9DF" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#D48D9B" stopOpacity="0.3" />
             </linearGradient>
 
             {/* Moving Gleam Gradient along the edge */}
@@ -448,7 +448,7 @@ const KatanaGraphic = ({ className = "" }) => {
           >
             <path
               d="M0 -6 C3 -3 4 1 0 5 C-4 1 -3 -3 0 -6 Z"
-              fill="#E8A1B0"
+              fill="#D48D9B"
               opacity="0.85"
             />
           </motion.g>
@@ -461,9 +461,9 @@ const KatanaGraphic = ({ className = "" }) => {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="absolute -bottom-8 flex flex-col items-center gap-1.5 pointer-events-none"
         >
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#E9E0D2]/80 backdrop-blur-sm border border-[#262522]/10 shadow-sm">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBE3D5]/80 backdrop-blur-sm border border-[#22211E]/10 shadow-sm">
             <span className="hanko-stamp text-[10px] w-5 h-5">匠</span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-[#786F63]">
+            <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-[#726A5F]">
               刀 · PRECISION CRAFT
             </span>
           </div>

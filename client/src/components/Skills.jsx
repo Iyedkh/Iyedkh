@@ -157,7 +157,7 @@ const Skills = () => {
             <div
               role="tablist"
               aria-label="Skill categories"
-              className="flex items-center gap-1.5 p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#E9E0D2]/75 border border-[#262522]/10 backdrop-blur-md overflow-x-auto no-scrollbar shadow-[0_4px_20px_-8px_rgba(38,37,34,0.06)]"
+              className="flex items-center gap-1.5 p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#EBE3D5]/80 border border-[#22211E]/10 backdrop-blur-md overflow-x-auto no-scrollbar shadow-[0_4px_20px_-8px_rgba(34,33,30,0.05)]"
             >
               {categoryTabs.map((tab) => {
                 const isActive = activeTab === tab.id;
@@ -171,23 +171,23 @@ const Skills = () => {
                     aria-selected={isActive}
                     aria-controls="skills-panel"
                     onClick={() => setActiveTab(tab.id)}
-                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-all duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A1B0] ${
+                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-all duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D48D9B] ${
                       isActive
-                        ? "text-[#262522] font-semibold"
-                        : "text-[#786F63] hover:text-[#262522] hover:bg-[#E9E0D2]/50"
+                        ? "text-[#22211E] font-semibold"
+                        : "text-[#726A5F] hover:text-[#22211E] hover:bg-[#EBE3D5]/50"
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeSkillTabPill"
                         transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                        className="absolute inset-0 bg-[#F5F0E7] border border-[#262522]/12 shadow-[0_2px_8px_rgba(38,37,34,0.08)] rounded-xl sm:rounded-full -z-0"
+                        className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/12 shadow-[0_2px_8px_rgba(34,33,30,0.06)] rounded-xl sm:rounded-full -z-0"
                       />
                     )}
 
                     <IconComponent
                       className={`relative z-10 w-3.5 h-3.5 transition-colors ${
-                        isActive ? "text-[#C24545]" : "text-[#9E9486] group-hover:text-[#262522]"
+                        isActive ? "text-[#C24545]" : "text-[#9C9385] group-hover:text-[#22211E]"
                       }`}
                     />
 
@@ -196,8 +196,8 @@ const Skills = () => {
                     <span
                       className={`relative z-10 text-[10px] font-mono px-1.5 py-0.2 rounded-full transition-colors ${
                         isActive
-                          ? "bg-[#E8A1B0]/25 text-[#9A6672] font-bold"
-                          : "bg-[#262522]/5 text-[#9E9486] group-hover:bg-[#262522]/10"
+                          ? "bg-[#D48D9B]/20 text-[#8C4A57] font-bold"
+                          : "bg-[#22211E]/5 text-[#9C9385] group-hover:bg-[#22211E]/10"
                       }`}
                     >
                       {tab.count}
@@ -247,29 +247,29 @@ const Skills = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
-                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#E8A1B0]"
+                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#D48D9B]"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-[#262522]/10">
-                    <span className="text-[10px] font-mono text-[#AD8B59] uppercase tracking-wider font-semibold">
+                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-[#22211E]/10">
+                    <span className="text-[10px] font-mono text-[#A68550] uppercase tracking-wider font-semibold">
                       {skill.categoryName}
                     </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E8A1B0]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B]" />
                   </div>
 
-                  <h3 className="font-editorial text-2xl font-normal text-[#262522] group-hover:text-[#E8A1B0] transition-colors mb-1.5">
+                  <h3 className="font-editorial text-2xl font-normal text-[#22211E] group-hover:text-[#D48D9B] transition-colors mb-1.5">
                     {skill.name}
                   </h3>
 
-                  <p className="text-xs text-[#786F63] font-sans leading-relaxed">
+                  <p className="text-xs text-[#726A5F] font-sans leading-relaxed">
                     {skill.role}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-[#262522]/10 flex items-center justify-between text-[10px] font-mono text-[#9E9486]">
+                <div className="mt-5 pt-3 border-t border-[#22211E]/10 flex items-center justify-between text-[10px] font-mono text-[#9C9385]">
                   <span>{t.skills?.verified || "Verified Stack"}</span>
-                  <span className="text-[#78836A] flex items-center gap-1 font-medium">
-                    <CheckCircle2 className="w-3 h-3 text-[#E8A1B0]" /> Production Ready
+                  <span className="text-[#6B785D] flex items-center gap-1 font-medium">
+                    <CheckCircle2 className="w-3 h-3 text-[#D48D9B]" /> Production Ready
                   </span>
                 </div>
               </motion.div>

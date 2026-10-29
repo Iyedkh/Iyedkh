@@ -39,10 +39,10 @@ const IntroLoader = ({ onComplete }) => {
             clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
             transition: { duration: 0.75, ease: [0.77, 0, 0.175, 1] },
           }}
-          className="fixed inset-0 z-[200] bg-[#F5F0E7] flex flex-col items-center justify-center select-none overflow-hidden washi-grain"
+          className="fixed inset-0 z-[200] bg-[#F6F2EB] flex flex-col items-center justify-center select-none overflow-hidden washi-grain"
         >
           {/* Subtle Ambient Washi Grid */}
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#E9E0D2]/50 pointer-events-none" />
+          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#EBE3D5]/50 pointer-events-none" />
 
           {/* Central Architectural & Katana Composition */}
           <div className="relative flex flex-col items-center justify-center z-10">
@@ -59,7 +59,7 @@ const IntroLoader = ({ onComplete }) => {
                 cx="50"
                 cy="50"
                 r="38"
-                stroke="#262522"
+                stroke="#22211E"
                 strokeWidth="2"
                 strokeDasharray="239"
                 strokeDashoffset="239"
@@ -73,7 +73,7 @@ const IntroLoader = ({ onComplete }) => {
                 cx="50"
                 cy="50"
                 r="5"
-                fill="#E8A1B0"
+                fill="#D48D9B"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.6, duration: 0.4 }}
@@ -85,7 +85,7 @@ const IntroLoader = ({ onComplete }) => {
               initial={{ scaleX: 0 }}
               animate={stage !== "drawing" ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="w-48 h-[1.5px] bg-gradient-to-r from-transparent via-[#AD8B59] to-transparent mb-5 origin-center"
+              className="w-48 h-[1.5px] bg-gradient-to-r from-transparent via-[#A68550] to-transparent mb-5 origin-center"
             />
 
             {/* Sequential Typography Reveal */}
@@ -104,7 +104,7 @@ const IntroLoader = ({ onComplete }) => {
                     delay: idx * 0.035,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="font-editorial text-2xl sm:text-3xl font-medium tracking-[0.22em] text-[#262522]"
+                  className="font-editorial text-2xl sm:text-3xl font-medium tracking-[0.22em] text-[#22211E]"
                 >
                   {letter === " " ? "\u00A0" : letter}
                 </motion.span>
@@ -116,7 +116,7 @@ const IntroLoader = ({ onComplete }) => {
               initial={{ opacity: 0 }}
               animate={stage === "letters" || stage === "exit" ? { opacity: 0.75 } : { opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="text-[11px] font-mono tracking-[0.24em] uppercase text-[#786F63] mt-3"
+              className="text-[11px] font-mono tracking-[0.24em] uppercase text-[#726A5F] mt-3"
             >
               Full Stack & Data Architecture
             </motion.p>
@@ -126,7 +126,7 @@ const IntroLoader = ({ onComplete }) => {
           <button
             type="button"
             onClick={onComplete}
-            className="absolute bottom-8 right-8 text-[11px] font-mono tracking-widest text-[#9E9486] hover:text-[#262522] uppercase transition-colors"
+            className="absolute bottom-8 right-8 text-[11px] font-mono tracking-widest text-[#9C9385] hover:text-[#22211E] uppercase transition-colors"
           >
             Skip [Esc]
           </button>

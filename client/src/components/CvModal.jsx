@@ -73,7 +73,7 @@ const CvModal = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={closeCvModal}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 bg-[#151412]/60 backdrop-blur-md"
             aria-hidden="true"
           />
 
@@ -86,12 +86,12 @@ const CvModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 16 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-xl rounded-3xl bg-[var(--bg-surface)] border border-[var(--border-strong)] shadow-2xl p-6 sm:p-8 z-10 overflow-hidden"
+            className="relative w-full max-w-xl rounded-3xl bg-[var(--bg-rice-paper)] border border-[var(--border-sand-strong)] shadow-2xl p-6 sm:p-8 z-10 overflow-hidden washi-grain"
           >
-            {/* Ambient Top Glow */}
+            {/* Ambient Subtle Sun Aura */}
             <div
               aria-hidden="true"
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-[var(--accent-amber)] opacity-10 blur-3xl pointer-events-none"
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-28 bg-[var(--antique-gold)] opacity-[0.06] blur-3xl pointer-events-none"
             />
 
             {/* Close Button */}
@@ -100,24 +100,24 @@ const CvModal = () => {
               aria-label={t.cvModal.close}
               className={`absolute top-5 ${
                 isRTL ? "left-5" : "right-5"
-              } p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-elevated)] border border-transparent hover:border-[var(--border)] transition-all focus:outline-none`}
+              } p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-soft-cream)] border border-transparent hover:border-[var(--border-sand)] transition-all focus:outline-none`}
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Header */}
             <div className="flex flex-col items-start mb-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-primary)] border border-[var(--border)] text-xs text-[var(--accent-amber)] font-mono mb-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-soft-cream)] border border-[var(--border-sand)] text-xs text-[var(--antique-gold)] font-mono mb-3">
                 <FileText className="w-3.5 h-3.5" />
                 <span>{t.cvModal.pill}</span>
               </div>
               <h3
                 id="cv-modal-title"
-                className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--text-primary)]"
+                className="font-editorial text-3xl sm:text-4xl font-normal text-[var(--text-primary)] tracking-tight"
               >
                 {t.cvModal.title}
               </h3>
-              <p className="text-sm text-[var(--text-secondary)] mt-1.5 leading-relaxed font-normal">
+              <p className="text-sm text-[var(--text-secondary)] mt-1.5 leading-relaxed font-sans">
                 {t.cvModal.subtitle}
               </p>
             </div>

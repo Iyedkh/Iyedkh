@@ -140,36 +140,36 @@ const Experience = () => {
               </div>
             </div>
 
-            <div className={`relative ${isRTL ? "pr-6 border-r" : "pl-6 border-l"} border-[#262522]/15 space-y-8`}>
+            <div className={`relative ${isRTL ? "pr-6 border-r" : "pl-6 border-l"} border-[#22211E]/12 space-y-8`}>
               {workItems.map((job) => (
                 <div key={job.company + job.period} className="relative group">
                   {/* Timeline Dot with Sakura Ring */}
                   <div
                     className={`absolute ${
                       isRTL ? "-right-[31px]" : "-left-[31px]"
-                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F5F0E7] border-2 border-[#262522] group-hover:border-[#E8A1B0] group-hover:bg-[#E8A1B0] transition-colors`}
+                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F6F2EB] border-2 border-[#22211E] group-hover:border-[#D48D9B] group-hover:bg-[#D48D9B] transition-colors`}
                   />
 
-                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#E8A1B0] transition-all">
+                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#D48D9B] transition-all">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#786F63]">
-                        <Calendar className="w-3.5 h-3.5 text-[#E8A1B0]" />
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#726A5F]">
+                        <Calendar className="w-3.5 h-3.5 text-[#D48D9B]" />
                         <span>{job.period}</span>
                       </div>
-                      <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-[#E9E0D2] text-[#262522]">
+                      <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-[#EBE3D5] text-[#22211E]">
                         {job.type}
                       </span>
                     </div>
 
-                    <h4 className="font-editorial text-xl font-medium text-[#262522] group-hover:text-[#E8A1B0] transition-colors">
+                    <h4 className="font-editorial text-xl font-medium text-[#22211E] group-hover:text-[#D48D9B] transition-colors">
                       {job.title}
                     </h4>
 
-                    <div className="text-xs font-mono font-medium text-[#AD8B59]">
+                    <div className="text-xs font-mono font-medium text-[#A68550]">
                       {job.company}
                     </div>
 
-                    <p className="text-xs text-[#786F63] font-sans leading-relaxed pt-1">
+                    <p className="text-xs text-[#726A5F] font-sans leading-relaxed pt-1">
                       {job.description}
                     </p>
                   </div>
@@ -180,50 +180,50 @@ const Experience = () => {
 
           {/* Education & Credentials */}
           <div className="space-y-8">
-            <div className="flex items-center gap-3 pb-3 border-b border-[#262522]/15">
-              <div className="w-8 h-8 rounded-full bg-[#E9E0D2] border border-[#262522]/20 flex items-center justify-center text-[#262522]">
+            <div className="flex items-center gap-3 pb-3 border-b border-[#22211E]/12">
+              <div className="w-8 h-8 rounded-full bg-[#EBE3D5] border border-[#22211E]/15 flex items-center justify-center text-[#22211E]">
                 <GraduationCap className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="font-editorial text-2xl font-normal text-[#262522]">
+                <h3 className="font-editorial text-2xl font-normal text-[#22211E]">
                   {t.experience?.educationHistory || "Education & Credentials"}
                 </h3>
-                <p className="text-[10.5px] font-mono text-[#786F63] uppercase tracking-wider">
+                <p className="text-[10.5px] font-mono text-[#726A5F] uppercase tracking-wider">
                   {t.experience?.educationSub || "Academic Degree & Professional Bootcamps"}
                 </p>
               </div>
             </div>
 
-            <div className={`relative ${isRTL ? "pr-6 border-r" : "pl-6 border-l"} border-[#262522]/15 space-y-8`}>
+            <div className={`relative ${isRTL ? "pr-6 border-r" : "pl-6 border-l"} border-[#22211E]/12 space-y-8`}>
               {educationItems.map((edu) => (
                 <div key={edu.title} className="relative group">
                   {/* Timeline Dot */}
                   <div
                     className={`absolute ${
                       isRTL ? "-right-[31px]" : "-left-[31px]"
-                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F5F0E7] border-2 border-[#78836A] group-hover:bg-[#78836A] transition-colors`}
+                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F6F2EB] border-2 border-[#6B785D] group-hover:bg-[#6B785D] transition-colors`}
                   />
 
-                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#78836A] transition-all">
+                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#6B785D] transition-all">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#786F63]">
-                        <Award className="w-3.5 h-3.5 text-[#78836A]" />
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-[#726A5F]">
+                        <Award className="w-3.5 h-3.5 text-[#6B785D]" />
                         <span>{edu.period}</span>
                       </div>
-                      <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-[#E9E0D2] text-[#78836A] font-medium">
+                      <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-[#EBE3D5] text-[#6B785D] font-medium">
                         {edu.type}
                       </span>
                     </div>
 
-                    <h4 className="font-editorial text-xl font-medium text-[#262522] group-hover:text-[#78836A] transition-colors">
+                    <h4 className="font-editorial text-xl font-medium text-[#22211E] group-hover:text-[#6B785D] transition-colors">
                       {edu.title}
                     </h4>
 
-                    <div className="text-xs font-mono font-medium text-[#786F63]">
+                    <div className="text-xs font-mono font-medium text-[#726A5F]">
                       {edu.institution}
                     </div>
 
-                    <p className="text-xs text-[#786F63] font-sans leading-relaxed pt-1">
+                    <p className="text-xs text-[#726A5F] font-sans leading-relaxed pt-1">
                       {edu.description}
                     </p>
 
@@ -233,7 +233,7 @@ const Experience = () => {
                           href={credentialLinks[edu.institution]}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-mono text-[#78836A] hover:underline"
+                          className="inline-flex items-center gap-1 text-[11px] font-mono text-[#6B785D] hover:underline"
                         >
                           <span>{t.experience?.verifyCert || "Verify Institution"}</span>
                           <ExternalLink className="w-3 h-3" />

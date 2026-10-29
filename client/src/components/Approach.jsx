@@ -77,32 +77,32 @@ const Approach = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#E8A1B0]"
+                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#D48D9B]"
               >
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-[#262522]/10 mb-6">
-                    <span className="font-editorial text-3xl font-medium text-[#E8A1B0]">
+                  <div className="flex items-center justify-between pb-4 border-b border-[#22211E]/10 mb-6">
+                    <span className="font-editorial text-3xl font-medium text-[#D48D9B]">
                       {step.number}
                     </span>
-                    <Icon className="w-4 h-4 text-[#786F63] group-hover:text-[#262522] transition-colors" />
+                    <Icon className="w-4 h-4 text-[#726A5F] group-hover:text-[#22211E] transition-colors" />
                   </div>
 
-                  <h3 className="font-editorial text-2xl font-normal text-[#262522] mb-1 group-hover:text-[#E8A1B0] transition-colors">
+                  <h3 className="font-editorial text-2xl font-normal text-[#22211E] mb-1 group-hover:text-[#D48D9B] transition-colors">
                     {step.title}
                   </h3>
 
-                  <div className="text-[10px] font-mono text-[#AD8B59] uppercase tracking-wider mb-3">
+                  <div className="text-[10px] font-mono text-[#A68550] uppercase tracking-wider mb-3">
                     {step.subtitle}
                   </div>
 
-                  <p className="text-xs text-[#786F63] font-sans leading-relaxed">
+                  <p className="text-xs text-[#726A5F] font-sans leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-[#262522]/10 flex items-center justify-between text-[10.5px] font-mono text-[#9E9486]">
+                <div className="mt-6 pt-3 border-t border-[#22211E]/10 flex items-center justify-between text-[10.5px] font-mono text-[#9C9385]">
                   <span>{t.approach?.phase || "Phase"} {step.number}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E8A1B0] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B] opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </motion.div>
             );

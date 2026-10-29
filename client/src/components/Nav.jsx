@@ -76,7 +76,7 @@ const Nav = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 sm:py-3.5 bg-[#F5F0E7]/90 backdrop-blur-xl border-b border-[#262522]/10 shadow-[0_8px_30px_-12px_rgba(38,37,34,0.06)]"
+          ? "py-3 sm:py-3.5 bg-[#F6F2EB]/92 backdrop-blur-xl border-b border-[#22211E]/10 shadow-[0_8px_30px_-12px_rgba(34,33,30,0.06)]"
           : "py-5 sm:py-6 lg:py-7 bg-transparent border-b border-transparent"
       }`}
     >
@@ -98,14 +98,14 @@ const Nav = () => {
             </div>
 
             <div className="flex flex-col">
-              <span className="font-editorial text-lg sm:text-xl font-medium tracking-[0.06em] text-[#262522] flex items-center gap-2">
+              <span className="font-editorial text-lg sm:text-xl font-medium tracking-[0.06em] text-[#22211E] flex items-center gap-2">
                 IYED KHOUILDI
                 <span
-                  className="inline-block w-2 h-2 rounded-full bg-[#E8A1B0] animate-pulse"
+                  className="inline-block w-2 h-2 rounded-full bg-[#D48D9B] animate-pulse"
                   title="Available for select projects"
                 />
               </span>
-              <span className="font-mono text-[9.5px] text-[#786F63] tracking-[0.16em] uppercase">
+              <span className="font-mono text-[9.5px] text-[#726A5F] tracking-[0.16em] uppercase">
                 Full Stack &amp; Data Architect
               </span>
             </div>
@@ -117,7 +117,7 @@ const Nav = () => {
         {/* ========================================= */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E9E0D2]/75 border border-[#262522]/10 backdrop-blur-md shadow-[0_4px_20px_-8px_rgba(38,37,34,0.08)]"
+          className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EBE3D5]/80 border border-[#22211E]/10 backdrop-blur-md shadow-[0_4px_20px_-8px_rgba(34,33,30,0.06)]"
         >
           {navLinks.map((link) => {
             const sectionId = link.href.substring(1);
@@ -126,23 +126,23 @@ const Nav = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E8A1B0] ${
+                className={`relative px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B] ${
                   isActive
-                    ? "text-[#262522] font-semibold"
-                    : "text-[#786F63] hover:text-[#262522]"
+                    ? "text-[#22211E] font-semibold"
+                    : "text-[#726A5F] hover:text-[#22211E]"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicatorSakura"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[#F5F0E7] border border-[#262522]/15 shadow-sm rounded-full -z-0"
+                    className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/12 shadow-sm rounded-full -z-0"
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
                   {link.name}
                   {isActive && (
-                    <span className="w-1 h-1 rounded-full bg-[#E8A1B0]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B]" />
                   )}
                 </span>
               </a>
@@ -159,12 +159,12 @@ const Nav = () => {
           {/* Quick Copy Email with Tooltip Visual */}
           <button
             onClick={handleCopyEmail}
-            className="p-2.5 rounded-full text-[#786F63] hover:text-[#262522] bg-[#E9E0D2]/60 hover:bg-[#E9E0D2] border border-[#262522]/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E8A1B0]"
+            className="p-2.5 rounded-full text-[#726A5F] hover:text-[#22211E] bg-[#EBE3D5]/60 hover:bg-[#EBE3D5] border border-[#22211E]/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B]"
             title="Copy email address"
             aria-label="Copy email"
           >
             {copiedEmail ? (
-              <Check className="w-4 h-4 text-[#E8A1B0]" />
+              <Check className="w-4 h-4 text-[#D48D9B]" />
             ) : (
               <Copy className="w-4 h-4" />
             )}
@@ -174,7 +174,7 @@ const Nav = () => {
           <Magnetic strength={0.25}>
             <a
               href="#contact"
-              className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full shadow-sm hover:shadow-[0_8px_20px_-6px_rgba(232,161,176,0.4)]"
+              className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full shadow-sm hover:shadow-[0_8px_20px_-6px_rgba(34,33,30,0.25)]"
             >
               <span>{t.nav?.letsTalk || "Let's Talk"}</span>
               <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />

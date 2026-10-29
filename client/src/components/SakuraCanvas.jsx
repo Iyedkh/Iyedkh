@@ -55,8 +55,8 @@ const SakuraCanvas = () => {
         this.rotationSpeed = (Math.random() * 0.02 - 0.01);
         this.flip = Math.random() * Math.PI;
         this.flipSpeed = Math.random() * 0.03 + 0.01;
-        this.opacity = Math.random() * 0.5 + 0.4; // 0.4 to 0.9
-        this.color = Math.random() > 0.4 ? "#E8A1B0" : "#F4CCD5"; // Sakura pink / pale blossom
+        this.opacity = Math.random() * 0.45 + 0.35; // Gentle translucent washi opacity
+        this.color = Math.random() > 0.4 ? "#D48D9B" : "#F3D9DF"; // Sakura-nezumi & Usukō petal mist
       }
 
       update() {

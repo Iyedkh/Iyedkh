@@ -44,7 +44,7 @@ function PortfolioContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F0E7] text-[#262522] relative selection:bg-[#E8A1B0]/30 selection:text-[#262522] overflow-x-hidden">
+    <div className="min-h-screen bg-[#F6F2EB] text-[#22211E] relative selection:bg-[#D48D9B]/25 selection:text-[#22211E] overflow-x-hidden">
       {/* Toast Notification Provider */}
       <Toaster
         position="bottom-right"
@@ -53,12 +53,12 @@ function PortfolioContent() {
         closeButton
         toastOptions={{
           style: {
-            background: "#F5F0E7",
-            border: "1px solid rgba(38, 37, 34, 0.15)",
-            color: "#262522",
+            background: "#F6F2EB",
+            border: "1px solid rgba(34, 33, 30, 0.12)",
+            color: "#22211E",
             fontFamily: "var(--font-sans)",
             borderRadius: "16px",
-            boxShadow: "0 16px 36px -12px rgba(38, 37, 34, 0.12)",
+            boxShadow: "0 14px 32px -8px rgba(34, 33, 30, 0.08)",
           },
         }}
       />
@@ -72,7 +72,7 @@ function PortfolioContent() {
       {/* Japanese Japandi Scroll Progress Bar with Sakura Accent */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#262522] via-[#AD8B59] to-[#E8A1B0] origin-left z-50 pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#22211E] via-[#A68550] to-[#D48D9B] origin-left z-50 pointer-events-none"
       />
 
       {/* Desktop Custom Follower Cursor */}

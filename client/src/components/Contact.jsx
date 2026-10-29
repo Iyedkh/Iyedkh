@@ -135,27 +135,27 @@ const Contact = () => {
                 key={item.id}
                 onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
                 className={`japandi-card p-5 flex items-center justify-between group ${
-                  item.action === "copy" ? "cursor-pointer hover:border-[#E8A1B0]" : ""
+                  item.action === "copy" ? "cursor-pointer hover:border-[#D48D9B]" : ""
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#E9E0D2] border border-[#262522]/15 flex items-center justify-center text-[#262522] transition-transform duration-300 group-hover:scale-105 group-hover:border-[#E8A1B0]">
+                  <div className="w-10 h-10 rounded-full bg-[#EBE3D5] border border-[#22211E]/15 flex items-center justify-center text-[#22211E] transition-transform duration-300 group-hover:scale-105 group-hover:border-[#D48D9B]">
                     <item.icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#786F63] uppercase tracking-wider">
+                    <div className="text-[10px] font-mono text-[#726A5F] uppercase tracking-wider">
                       {item.label}
                     </div>
-                    <div className="text-sm font-medium text-[#262522] group-hover:text-[#E8A1B0] transition-colors mt-0.5" dir="ltr">
+                    <div className="text-sm font-medium text-[#22211E] group-hover:text-[#D48D9B] transition-colors mt-0.5" dir="ltr">
                       {item.value}
                     </div>
                   </div>
                 </div>
 
                 {item.action === "copy" && (
-                  <div className="text-[#786F63] group-hover:text-[#262522] transition-colors p-2">
+                  <div className="text-[#726A5F] group-hover:text-[#22211E] transition-colors p-2">
                     {copiedKey === item.id ? (
-                      <Check className="w-4 h-4 text-[#E8A1B0]" />
+                      <Check className="w-4 h-4 text-[#D48D9B]" />
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}
@@ -166,7 +166,7 @@ const Contact = () => {
 
             {/* Social Channels Card */}
             <div className="japandi-card p-5">
-              <div className="text-[10px] font-mono text-[#786F63] uppercase tracking-wider mb-3">
+              <div className="text-[10px] font-mono text-[#726A5F] uppercase tracking-wider mb-3">
                 {t.contact?.labels?.connectOnline || "Connect Online"}
               </div>
               <div className="flex flex-col gap-2">
@@ -176,13 +176,13 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded-xl hover:bg-[#E9E0D2] transition-colors group text-xs font-mono"
+                    className="flex items-center justify-between p-2 rounded-xl hover:bg-[#EBE3D5] transition-colors group text-xs font-mono"
                   >
-                    <div className="flex items-center gap-2.5 text-[#262522]">
-                      <social.icon className="w-4 h-4 text-[#786F63] group-hover:text-[#262522]" />
+                    <div className="flex items-center gap-2.5 text-[#22211E]">
+                      <social.icon className="w-4 h-4 text-[#726A5F] group-hover:text-[#22211E]" />
                       <span>{social.name}</span>
                     </div>
-                    <span className="text-[#786F63] group-hover:text-[#262522] transition-colors">
+                    <span className="text-[#726A5F] group-hover:text-[#22211E] transition-colors">
                       {social.handle} →
                     </span>
                   </a>
@@ -191,12 +191,12 @@ const Contact = () => {
             </div>
 
             {/* Curriculum Vitae Modal Trigger */}
-            <div className="p-5 rounded-2xl bg-[#E9E0D2] border border-[#262522]/15 flex items-center justify-between">
+            <div className="p-5 rounded-2xl bg-[#EBE3D5] border border-[#22211E]/15 flex items-center justify-between">
               <div>
-                <span className="font-editorial text-lg text-[#262522] block">
+                <span className="font-editorial text-lg text-[#22211E] block">
                   {t.cvModal?.pill || "Curriculum Vitae"}
                 </span>
-                <span className="text-xs font-mono text-[#786F63]">EN &amp; FR PDF Formats</span>
+                <span className="text-xs font-mono text-[#726A5F]">EN &amp; FR PDF Formats</span>
               </div>
               <Magnetic strength={0.25}>
                 <button
