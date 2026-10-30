@@ -305,6 +305,139 @@
   color: var(--sakura-pink);
 }
 
+/* ==========================================================================
+   Hero Landscape Japanese Atmosphere Animations (Fuji, Real Tree, Moving Clouds)
+   ========================================================================== */
+
+/* Seamless infinite horizontal cloud drift */
+@keyframes cloud-drift-track {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes cloud-drift-reverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Organic vertical floating bob */
+@keyframes cloud-bob-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes cloud-bob-mid {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+/* Natural tree sway in gentle spring breeze */
+@keyframes tree-gentle-sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0.9deg);
+  }
+}
+
+@keyframes branch-breeze-subtle {
+  0%, 100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-1.4deg) translate3d(-2px, -1px, 0);
+  }
+}
+
+@keyframes sun-radiance-pulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.98;
+    transform: scale(1.025);
+  }
+}
+
+@keyframes petal-flutter-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(60px, 90px, 0) rotate(260deg);
+    opacity: 0;
+  }
+}
+
+.animate-cloud-track-slow {
+  animation: cloud-drift-track 80s linear infinite;
+  will-change: transform;
+}
+
+.animate-cloud-track-mid {
+  animation: cloud-drift-reverse 55s linear infinite;
+  will-change: transform;
+}
+
+.animate-cloud-track-fast {
+  animation: cloud-drift-track 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-cloud-bob-1 {
+  animation: cloud-bob-slow 10s ease-in-out infinite;
+}
+
+.animate-cloud-bob-2 {
+  animation: cloud-bob-mid 14s ease-in-out infinite;
+}
+
+.animate-tree-sway {
+  transform-origin: 88% 98%;
+  animation: tree-gentle-sway 10s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-branch-breeze {
+  transform-origin: 70% 40%;
+  animation: branch-breeze-subtle 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-sun-radiance {
+  transform-origin: center;
+  animation: sun-radiance-pulse 8s ease-in-out infinite;
+}
+
+.animate-petal-flutter {
+  animation: petal-flutter-fall 6s ease-in-out infinite;
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

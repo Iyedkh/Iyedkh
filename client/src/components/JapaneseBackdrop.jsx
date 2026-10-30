@@ -1,14 +1,18 @@
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+import MountFuji from "./landscape/MountFuji";
+import MovingClouds from "./landscape/MovingClouds";
+import SakuraFoliage from "./landscape/SakuraFoliage";
 
 /**
- * JapaneseBackdrop: Japandi Editorial Atmosphere
+ * JapaneseBackdrop: Refined Japandi Landscape Atmosphere
  *
- * Visual layers:
- * - Subtle Sumi-e Mount Fuji silhouette at the horizon
- * - Soft morning sun / Enso mist aura with warm Japandi ambient tones
- * - Traditional Asanoha (hemp leaf) sacred geometry watermark in the corner
- * - Delicately blooming cherry blossom branch (Sakura)
+ * Visual Harmony:
+ * 1. Morning Dawn Aura & Enso Light (Warm ambient Japandi morning tones)
+ * 2. Corrected Mount Fuji (Serene background horizon scale, natural snow cap, sumi-e shading)
+ * 3. Multi-layer Animated Moving Clouds (Seamless gentle drift across sky & mountain)
+ * 4. Sakura Leaves with Flowers (Draped overhead from top-right, showcasing Katana in full glory)
+ * 5. Sacred Asanoha watermark in corner
  */
 const JapaneseBackdrop = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -18,37 +22,16 @@ const JapaneseBackdrop = () => {
       aria-hidden="true"
       className="absolute inset-0 pointer-events-none overflow-hidden select-none z-0"
     >
-      {/* 1. Distant Sumi-e Fuji Silhouette (Minimalist ink wash at base) */}
-      <svg
-        viewBox="0 0 1440 380"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-56 sm:h-72 lg:h-80 opacity-[0.06] object-bottom"
-        preserveAspectRatio="none"
-      >
-        {/* Fuji Mountain Silhouette */}
-        <path
-          d="M0 380 L520 170 C590 140 680 95 720 95 C760 95 850 140 920 170 L1440 380 H0 Z"
-          fill="#171714"
-        />
-        {/* Foreground rolling foothills */}
-        <path
-          d="M0 380 L380 270 C520 230 640 280 820 250 C980 220 1120 270 1440 380 H0 Z"
-          fill="#171714"
-          opacity="0.6"
-        />
-      </svg>
+      {/* 1. Soft Japandi Ambient Morning Aura / Enso Light */}
+      <div className="absolute top-10 left-1/3 w-[34rem] h-[34rem] rounded-full bg-gradient-to-br from-[#E05A47]/08 via-[#D48D9B]/10 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute top-24 right-20 w-80 h-80 rounded-full bg-[#EBE3D5]/35 blur-2xl pointer-events-none" />
 
-      {/* 2. Soft Japandi Ambient Morning Aura / Enso Light */}
-      <div className="absolute top-16 right-1/4 w-80 h-80 rounded-full bg-gradient-to-br from-[#D48D9B]/10 via-[#A68550]/08 to-transparent blur-3xl" />
-      <div className="absolute top-36 right-12 w-96 h-96 rounded-full bg-[#EBE3D5]/40 blur-2xl" />
-
-      {/* 3. Subtle Asanoha Geometry Watermark (Sacrual Japandi Motif in corner) */}
+      {/* 2. Traditional Asanoha Geometry Watermark (Sacred Japandi Motif in corner) */}
       <svg
-        width="280"
-        height="280"
+        width="260"
+        height="260"
         viewBox="0 0 100 100"
-        className="absolute top-8 left-6 sm:left-12 opacity-[0.035] pointer-events-none"
+        className="absolute top-6 left-6 sm:left-10 opacity-[0.035] pointer-events-none"
       >
         <pattern id="asanohaPattern" width="20" height="34.64" patternUnits="userSpaceOnUse">
           <path
@@ -61,90 +44,24 @@ const JapaneseBackdrop = () => {
         <rect width="100" height="100" fill="url(#asanohaPattern)" />
       </svg>
 
-      {/* 4. Elegant Cherry Blossom Branch (Entering subtly from Top-Right) */}
-      <svg
-        width="420"
-        height="320"
-        viewBox="0 0 420 320"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="absolute -top-4 -right-12 sm:right-0 w-72 sm:w-96 md:w-[26rem] h-auto opacity-70 overflow-visible"
-      >
-        <defs>
-          <linearGradient id="branchWoodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7E5F43" />
-            <stop offset="100%" stopColor="#4A3422" />
-          </linearGradient>
-        </defs>
+      {/* 3. Corrected Mount Fuji Base Horizon Layer (富士山) */}
+      {/* Positioned comfortably at the horizon so it does not overpower the hero text */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[40%] sm:h-[46%] lg:h-[50%] opacity-90 transition-opacity duration-1000">
+        <MountFuji className="w-full h-full" />
+      </div>
 
-        {/* Main Branch (Natural Wood stroke) */}
-        <motion.path
-          d="M420 -10 C360 30 310 70 250 100 C190 130 150 140 90 150 C50 156 10 185 -10 205"
-          stroke="url(#branchWoodGrad)"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          initial={{ pathLength: shouldReduceMotion ? 1 : 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.6, ease: "easeOut" }}
-        />
-        {/* Branch Splinter 1 */}
-        <motion.path
-          d="M270 90 C240 65 210 70 180 55"
-          stroke="url(#branchWoodGrad)"
-          strokeWidth="2"
-          strokeLinecap="round"
-          initial={{ pathLength: shouldReduceMotion ? 1 : 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.4, delay: 0.2 }}
-        />
-        {/* Branch Splinter 2 */}
-        <motion.path
-          d="M185 135 C155 170 115 185 95 215"
-          stroke="url(#branchWoodGrad)"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          initial={{ pathLength: shouldReduceMotion ? 1 : 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.4, delay: 0.3 }}
-        />
+      {/* 4. Multi-Layer Animated Moving Clouds (Seamless Drift & Gentle Floating) */}
+      <div className="absolute inset-0 z-[1]">
+        <MovingClouds />
+      </div>
 
-        {/* Blossom Clusters (Delicate Sakura Flowers with golden pistils) */}
-        {[
-          { cx: 230, cy: 98, r: 11, rot: 15 },
-          { cx: 255, cy: 80, r: 13, rot: 45 },
-          { cx: 185, cy: 56, r: 10, rot: -20 },
-          { cx: 162, cy: 68, r: 12, rot: 30 },
-          { cx: 130, cy: 146, r: 12, rot: 10 },
-          { cx: 90, cy: 155, r: 14, rot: 55 },
-          { cx: 78, cy: 210, r: 11, rot: -15 },
-          { cx: 135, cy: 182, r: 10, rot: 40 },
-          { cx: 200, cy: 125, r: 9, rot: 70 },
-        ].map((b, i) => (
-          <g
-            key={i}
-            transform={`translate(${b.cx}, ${b.cy}) rotate(${b.rot})`}
-            className="transition-transform duration-700"
-          >
-            {/* 5 Petal Cluster */}
-            {[0, 72, 144, 216, 288].map((angle, pi) => (
-              <ellipse
-                key={pi}
-                cx={Math.cos((angle * Math.PI) / 180) * (b.r * 0.45)}
-                cy={Math.sin((angle * Math.PI) / 180) * (b.r * 0.45)}
-                rx={b.r * 0.48}
-                ry={b.r * 0.32}
-                transform={`rotate(${angle})`}
-                fill="#F3D9DF"
-                opacity="0.85"
-              />
-            ))}
-            {/* Petal Core Highlight */}
-            <circle cx="0" cy="0" r={b.r * 0.32} fill="#D48D9B" opacity="0.9" />
-            {/* Stamen Pistil */}
-            <circle cx="0" cy="0" r={b.r * 0.14} fill="#A68550" />
-          </g>
-        ))}
-      </svg>
+      {/* 5. Editorial Typography Legibility Mask (Soft wash over left column) */}
+      <div className="absolute inset-y-0 left-0 w-full lg:w-[55%] bg-gradient-to-r from-[#F6F2EB]/85 via-[#F6F2EB]/40 to-transparent pointer-events-none z-[1]" />
+
+      {/* 6. Full-Width Overhead Sakura Leaves & Flowers (Spanning the entire top of the header) */}
+      <div className="absolute top-0 left-0 right-0 w-full h-44 sm:h-56 md:h-64 lg:h-72 pointer-events-none z-[2] overflow-hidden">
+        <SakuraFoliage className="w-full h-full" />
+      </div>
     </div>
   );
 };
