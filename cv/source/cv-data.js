@@ -169,4 +169,21 @@ const fr = {
   languages: "Arabe (langue maternelle)  ·  Français (professionnel)  ·  Anglais (professionnel)",
 };
 
-module.exports = { en, fr };
+// International variants: same content, no Gulf-specific header or relocation targets
+const enIntl = {
+  ...en,
+  file: "Iyed_Khouildi_Full_Stack_Developer_CV_EN_International",
+  infoLine: "Bizerte, Tunisia (UTC+1)  |  Available immediately  |  Open to remote, hybrid or on-site roles and relocation",
+  summary:
+    "Full Stack Developer with 2+ years of experience building and shipping production web applications with the MERN stack. Spent one year full-time in a 3-developer team delivering a complete e-commerce platform with JWT and Google authentication and an admin dashboard, and delivered 5 client websites remotely as a freelancer for companies in maritime, trading, industrial and food export. Currently building CARTHAGEOS, a multi-tenant SaaS ERP. Trilingual in Arabic, French and English. Available immediately for remote, hybrid or on-site roles, and open to relocation.",
+};
+
+const frIntl = {
+  ...fr,
+  file: "Iyed_Khouildi_Developpeur_Full_Stack_CV_FR_International",
+  infoLine: "Bizerte, Tunisie (UTC+1)  |  Disponible immédiatement  |  Ouvert au télétravail, à l'hybride, au présentiel et à la mobilité",
+  summary:
+    "Développeur Full Stack avec plus de 2 ans d'expérience dans la conception et la mise en production d'applications web avec la stack MERN. Un an à temps plein au sein d'une équipe de 3 développeurs sur une plateforme e-commerce complète (authentification JWT et Google, tableau de bord d'administration), et 5 sites web livrés à distance en freelance pour des entreprises des secteurs maritime, commercial, industriel et agroalimentaire. Développe actuellement CARTHAGEOS, un ERP SaaS multi-tenant. Trilingue arabe, français et anglais. Disponible immédiatement en télétravail, en hybride ou sur site, et ouvert à la mobilité internationale.",
+};
+
+module.exports = { en, fr, enIntl, frIntl };

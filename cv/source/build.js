@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 const { execFileSync } = require("child_process");
 const {
   Document, Packer, Paragraph, TextRun, ExternalHyperlink, AlignmentType,
@@ -115,12 +116,12 @@ function buildHtml(cv) {
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
-  for (const cv of [data.en, data.fr]) {
+  for (const cv of Object.values(data)) {
     fs.writeFileSync(path.join(OUT, `${cv.file}.docx`), await Packer.toBuffer(buildDocx(cv)));
     const html = path.join(OUT, `${cv.file}.html`);
     fs.writeFileSync(html, buildHtml(cv));
     const pdf = path.join(OUT, `${cv.file}.pdf`);
-    execFileSync(EDGE, ["--headless=new", "--disable-gpu", `--user-data-dir=${path.join(__dirname, "edge-profile")}`, "--no-pdf-header-footer", `--print-to-pdf=${pdf}`, `file:///${html.replace(/\\/g, "/")}`], { stdio: "inherit", timeout: 60000 });
-    fs.copyFileSync(html, path.join(__dirname, `${cv.file}.html`)); fs.unlinkSync(html); console.log("built", cv.file);
+    execFileSync(EDGE, ["--headless=new", "--disable-gpu", `--user-data-dir=${path.join(os.tmpdir(), "cv-edge-profile")}`, "--no-pdf-header-footer", `--print-to-pdf=${pdf}`, `file:///${html.replace(/\\/g, "/")}`], { stdio: "inherit", timeout: 60000 });
+    fs.unlinkSync(html); console.log("built", cv.file);
   }
 })();
