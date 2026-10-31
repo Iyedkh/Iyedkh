@@ -111,7 +111,7 @@ const KatanaGraphic = ({ className = "" }) => {
           viewBox="0 0 160 620"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="overflow-visible drop-shadow-[0_24px_38px_rgba(23,23,20,0.18)]"
+          className="h-[min(620px,60svh)] w-auto overflow-visible drop-shadow-[0_24px_38px_rgba(23,23,20,0.18)]"
         >
           <defs>
             {/* Blade Steel Metallic Gradient (Hi-Grade Tamahagane) */}

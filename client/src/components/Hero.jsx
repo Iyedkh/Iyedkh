@@ -73,7 +73,7 @@ const Hero = () => {
       id="home"
       aria-labelledby="hero-title"
       onPointerMove={handlePointerMove}
-      className="relative isolate flex min-h-[100svh] flex-col justify-between overflow-hidden pb-12 pt-32 sm:pt-36 lg:pt-40 washi-grain shoji-grid"
+      className="relative isolate flex h-[100svh] max-h-[100svh] flex-col justify-between overflow-hidden pb-5 pt-24 sm:pt-28 washi-grain shoji-grid"
     >
       {/* Background Japanese Editorial Art Layer */}
       <JapaneseBackdrop />
@@ -81,7 +81,7 @@ const Hero = () => {
       {/* Main 2-Column Hero Grid */}
       <motion.div
         style={{ opacity: shouldReduceMotion ? 1 : heroOpacity }}
-        className="relative z-10 flex flex-1 items-center py-6 sm:py-10 lg:py-14"
+        className="relative z-10 flex min-h-0 flex-1 items-center py-2"
       >
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
@@ -96,7 +96,7 @@ const Hero = () => {
               className="flex flex-col items-start lg:col-span-7 xl:col-span-7"
             >
               {/* Hanko Stamp & Status Pill */}
-              <motion.div variants={fadeUp} className="mb-6 flex flex-wrap items-center gap-3 sm:mb-8">
+              <motion.div variants={fadeUp} className="mb-[2.5svh] flex flex-wrap items-center gap-3">
                 <span className="hanko-stamp shrink-0" aria-label="Takumi Artisan Seal">
                   匠
                 </span>
@@ -112,7 +112,7 @@ const Hero = () => {
               {/* Editorial Title with disciplined line breaks */}
               <h1
                 id="hero-title"
-                className="mb-6 font-editorial text-[2.75rem] font-normal leading-[1.05] tracking-[-0.035em] text-[#22211E] sm:mb-7 sm:text-6xl md:text-7xl lg:text-[4.75rem]"
+                className="mb-[2.5svh] font-editorial text-[clamp(2.25rem,min(11vw,7.4svh),4.75rem)] font-normal leading-[1.05] tracking-[-0.035em] text-[#22211E]"
               >
                 <span className="block overflow-hidden pb-1">
                   <motion.span variants={lineReveal} className="block">
@@ -152,7 +152,7 @@ const Hero = () => {
               {/* Concise, elegant bio */}
               <motion.p
                 variants={fadeUp}
-                className="mb-8 max-w-[34rem] text-base leading-relaxed text-[#726A5F] sm:text-lg sm:leading-relaxed"
+                className="mb-[3svh] max-w-[34rem] text-[15px] leading-relaxed text-[#726A5F] sm:text-lg sm:leading-relaxed"
               >
                 I&apos;m <strong className="font-semibold text-[#22211E]">Iyed Khouildi</strong>, a Full
                 Stack Developer &amp; Data Analyst merging engineering discipline, business
@@ -160,7 +160,7 @@ const Hero = () => {
               </motion.p>
 
               {/* Expertise tags */}
-              <motion.div variants={fadeUp} className="mb-8 w-full max-w-xl sm:mb-10">
+              <motion.div variants={fadeUp} className="mb-[3.5svh] w-full max-w-xl [@media(max-height:760px)]:hidden">
                 <div className="mb-3 flex items-center gap-2">
                   <span className="h-px w-4 bg-[#A68550]" />
                   <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#726A5F]">
@@ -233,10 +233,10 @@ const Hero = () => {
                 delay: shouldReduceMotion ? 0 : 0.15,
                 ease: EASE,
               }}
-              className="relative flex items-center justify-center lg:col-span-5 xl:col-span-5"
+              className="relative hidden items-center justify-center lg:col-span-5 lg:flex xl:col-span-5"
             >
               {/* Architectural Frame & Minimalist Backdrop Ring */}
-              <div className="relative flex w-full max-w-[22rem] sm:max-w-[26rem] items-center justify-center py-6">
+              <div className="relative flex w-full max-w-[22rem] sm:max-w-[26rem] items-center justify-center py-2">
                 
                 {/* Traditional Japanese Enso / Zen Circle in Background */}
                 <motion.div
@@ -326,7 +326,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: shouldReduceMotion ? 0 : 0.8, duration: shouldReduceMotion ? 0 : 0.5 }}
-        className="relative z-10 mx-auto mt-4 w-full max-w-7xl px-5 sm:px-8 lg:px-12"
+        className="relative z-10 mx-auto mt-2 w-full max-w-7xl px-5 sm:px-8 lg:px-12"
       >
         <div className="flex items-center justify-between gap-4 border-t border-[#22211E]/10 pt-4 text-[10px] font-mono text-[#726A5F] sm:pt-5 sm:text-[11px]">
           <div className="flex items-center gap-3">
