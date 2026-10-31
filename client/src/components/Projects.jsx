@@ -29,7 +29,7 @@ const Projects = () => {
       description:
         "Comprehensive cloud ERP architecture engineered for enterprise operations, financial tracking, multi-warehouse inventory control, and automated invoicing with scalable role-based permissions.",
       caseStudy:
-        "Engineered the full multi-tenant database hierarchy using MongoDB aggregations and Node.js REST endpoints. Features real-time state synchronization, automated inventory alerts, and financial analytics visualizations with sub-second response times.",
+        "Engineered the full multi-tenant database hierarchy using MongoDB aggregations and Node.js REST endpoints. Features multi-warehouse inventory, automated invoicing, financial tracking and role-based access control. Currently in development.",
       role: "Founder & Lead Architect",
       impact: "Enterprise ERP System",
       tags: ["React 19", "Node.js", "Express", "MongoDB", "Tailwind CSS", "REST APIs", "Analytics"],
@@ -37,94 +37,112 @@ const Projects = () => {
       github: "https://github.com/Iyedkh",
     },
     {
-      id: "stockmaster",
-      title: "StockMaster",
-      subtitle: "Inventory Intelligence & Supply Chain Analytics",
-      category: "saas",
-      categoryLabel: "Analytics & Management",
-      year: "2026",
-      isFlagship: false,
-      description:
-        "Operational inventory control system integrating real-time stock turnover tracking, automated reorder thresholds, and interactive BI dashboards.",
-      caseStudy:
-        "Designed relational data schemas and time-series analytics dashboards to forecast inventory depletion and minimize stockouts for manufacturing and retail workflows.",
-      role: "Full Stack Developer & Analyst",
-      impact: "Automated Supply Thresholds",
-      tags: ["React", "Node.js", "MongoDB", "Power BI", "Data Modeling"],
-      link: "https://github.com/Iyedkh",
-      github: "https://github.com/Iyedkh",
-    },
-    {
-      id: "tanit-gold",
-      title: "Tanit Gold",
-      subtitle: "Precious Metals & Jewelry E-Commerce Platform",
+      id: "jcd-commerce",
+      title: "JCD Commerce",
+      subtitle: "Full-Stack MERN E-Commerce Platform",
       category: "mern",
-      categoryLabel: "Commercial Platform",
-      year: "2026",
+      categoryLabel: "E-Commerce",
+      year: "2025 – 2026",
       isFlagship: false,
       description:
-        "Modern luxury e-commerce platform with dynamic real-time metal price calculations, high-resolution product showcases, and a streamlined administrative catalog.",
+        "Production e-commerce platform with customer storefront, product catalog, cart, orders, user management, and an admin dashboard for catalog, inventory and order control.",
       caseStudy:
-        "Built responsive client storefront with fluid filtering, secure session carts, and custom currency/pricing calculators.",
-      role: "Full Stack Engineer",
-      impact: "Sub-second Catalog Filter",
-      tags: ["MERN Stack", "Express", "Tailwind CSS", "JWT Auth"],
-      link: "https://github.com/Iyedkh",
-      github: "https://github.com/Iyedkh",
+        "Built as a full-time developer in a 3-person team. Implemented authentication with JWT in HTTP-only cookies, bcrypt password hashing and Google Sign-In, Node.js/Express REST APIs with MongoDB data models, and deployed the app on cPanel.",
+      role: "Full-Stack Developer (team of 3)",
+      impact: "Live Production Store",
+      tags: ["MERN Stack", "JWT + Google Auth", "Admin Dashboard", "cPanel"],
+      link: "https://jcdcommerce.com",
+      github: null,
     },
     {
       id: "olivor",
       title: "Oliv'Or",
-      subtitle: "Mediterranean Luxury Olive Oil Export Vitrine",
-      category: "vitrine",
-      categoryLabel: "Brand Vitrine",
-      year: "2026",
-      isFlagship: false,
-      description:
-        "Sophisticated digital showcase representing authentic Mediterranean olive oil heritage, crafted with refined editorial typography and high-resolution asset optimization.",
-      caseStudy:
-        "Engineered with semantic React architecture, localized international routing, and high-performance WebP media delivery for overseas buyers.",
-      role: "UI/UX & Web Developer",
-      impact: "Global Export Brand Showcase",
-      tags: ["React", "Tailwind CSS", "Editorial UI", "i18n"],
-      link: "https://olivor.tn",
-      github: "https://github.com/Iyedkh",
-    },
-    {
-      id: "ms-smart-trading",
-      title: "MS Smart Trading",
-      subtitle: "International Commerce & Import-Export Platform",
-      category: "mern",
-      categoryLabel: "Corporate Platform",
-      year: "2025",
-      isFlagship: false,
-      description:
-        "High-performance corporate web platform engineered to establish an authoritative digital presence for international trade, commercial leads, and client onboarding.",
-      caseStudy:
-        "Delivered a complete brand-aligned digital presence with multi-language inquiry flows that increased qualified inbound leads by over 140%.",
-      role: "Lead Full Stack Developer",
-      impact: "+140% Qualified Inbound Inquiries",
-      tags: ["MERN Stack", "Responsive UI", "Commercial Web"],
-      link: "https://mssmarttrading.com",
-      github: "https://github.com/Iyedkh",
-    },
-    {
-      id: "jcd-commerce",
-      title: "JCD Commerce",
-      subtitle: "Full-Stack MERN E-Commerce Ecosystem",
+      subtitle: "Olive Oil Brand E-Commerce Website",
       category: "mern",
       categoryLabel: "E-Commerce",
       year: "2026",
       isFlagship: false,
       description:
-        "Comprehensive retail platform with customer storefront, persistent shopping cart, real-time inventory management, and an administrative control suite.",
+        "MERN e-commerce website for a Tunisian olive oil brand, with product catalog, orders and user management, and a fully responsive layout for mobile and desktop.",
       caseStudy:
-        "Implemented secure JWT user authentication, MongoDB transaction handling, and dynamic order tracking.",
-      role: "Architect & Developer",
-      impact: "Production Checkout & Inventory",
-      tags: ["MERN Stack", "Admin Suite", "REST APIs"],
-      link: "https://jcdcommerce.com",
-      github: "https://github.com/Iyedkh",
+        "Delivered end-to-end as a freelancer: requirements, UI design, React frontend, Node.js/Express API, MongoDB data models, deployment and hosting setup.",
+      role: "Freelance Full-Stack Developer",
+      impact: "Live E-Commerce Store",
+      tags: ["MERN Stack", "E-Commerce", "Responsive UI"],
+      link: "https://olivor.tn",
+      github: null,
+    },
+    {
+      id: "bv-tech-marine",
+      title: "BV Tech Marine",
+      subtitle: "Marine Technical Services Website",
+      category: "vitrine",
+      categoryLabel: "Corporate Website",
+      year: "2026",
+      isFlagship: false,
+      description:
+        "Responsive corporate website establishing the company's online presence, built with SEO and performance best practices.",
+      caseStudy:
+        "Designed and built with React and Tailwind CSS as a freelance project, from UI design to deployment.",
+      role: "Freelance Web Developer",
+      impact: "Live Corporate Website",
+      tags: ["React", "Tailwind CSS", "SEO"],
+      link: "https://bvtechmarine.com",
+      github: null,
+    },
+    {
+      id: "ms-smart-trading",
+      title: "MS Smart Trading",
+      subtitle: "Trading Company Corporate Website",
+      category: "vitrine",
+      categoryLabel: "Corporate Website",
+      year: "2025",
+      isFlagship: false,
+      description:
+        "Responsive, SEO-optimized corporate website aligned with the client's brand identity and built for international client acquisition.",
+      caseStudy:
+        "Built with React and Tailwind CSS as a freelance project, from UI design to deployment.",
+      role: "Freelance Web Developer",
+      impact: "Corporate Brand Presence",
+      tags: ["React", "Tailwind CSS", "SEO"],
+      link: null,
+      github: null,
+    },
+    {
+      id: "ms-equipements",
+      title: "MS Équipements et Services",
+      subtitle: "Industrial Equipment & Services Website",
+      category: "vitrine",
+      categoryLabel: "Corporate Website",
+      year: "2025",
+      isFlagship: false,
+      description:
+        "Responsive corporate website showcasing industrial equipment and support services, optimized for SEO and loading speed.",
+      caseStudy:
+        "Built with React and Tailwind CSS as a freelance project, with modular components and optimized media.",
+      role: "Freelance Web Developer",
+      impact: "Industrial Services Showcase",
+      tags: ["React", "Tailwind CSS", "SEO"],
+      link: null,
+      github: null,
+    },
+    {
+      id: "egt-naval",
+      title: "EGT Naval Services",
+      subtitle: "Naval Repair & Maintenance Website",
+      category: "vitrine",
+      categoryLabel: "Corporate Website",
+      year: "2024",
+      isFlagship: false,
+      description:
+        "Corporate website for a naval repair and maintenance company, with a structured service catalog and a lead-generation contact flow.",
+      caseStudy:
+        "Built with React and Tailwind CSS as a freelance project, from UI design to deployment.",
+      role: "Freelance Web Developer",
+      impact: "Live Corporate Website",
+      tags: ["React", "Tailwind CSS", "Lead Generation"],
+      link: "https://egtnavalservices.com",
+      github: null,
     },
   ];
 
@@ -294,15 +312,15 @@ const Projects = () => {
                       </div>
                       <div className="flex items-center justify-between pb-1 border-b border-[#22211E]/5">
                         <span className="text-[#9C9385]">REST SERVICES</span>
-                        <span className="text-[#22211E] font-medium">48 Modular Endpoints</span>
+                        <span className="text-[#22211E] font-medium">Modular REST API</span>
                       </div>
                       <div className="flex items-center justify-between pb-1 border-b border-[#22211E]/5">
                         <span className="text-[#9C9385]">INVENTORY ENGINE</span>
-                        <span className="text-[#22211E] font-medium">Predictive Auto-Reorder</span>
+                        <span className="text-[#22211E] font-medium">Multi-warehouse Stock</span>
                       </div>
                       <div className="pt-1 flex items-center justify-between">
                         <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#6B785D]/10 text-[#6B785D] text-[10px] font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#6B785D]" /> Sub-second Latency
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#6B785D]" /> In Development
                         </span>
                         <span className="text-[10px] text-[#A68550]">Multi-tenant Guard</span>
                       </div>

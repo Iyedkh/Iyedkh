@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Briefcase, GraduationCap, ExternalLink, Calendar, Award } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { translations } from "../i18n/translations";
 import SectionHeader from "./SectionHeader";
 
 const Experience = () => {
@@ -14,90 +15,12 @@ const Experience = () => {
     "المعهد العالي للتصرف ببنزرت (ISG Bizerte)": "https://isgbz.rnu.tn",
   };
 
-  const defaultWorkItems = [
-    {
-      period: "May 2026",
-      title: "Freelance Web Developer",
-      company: "Oliv'Or",
-      type: "Freelance",
-      description:
-        "Modern and responsive vitrine web platform built using React and Tailwind CSS to showcase premium olive oil products and Mediterranean heritage for international buyers.",
-    },
-    {
-      period: "Mar – Apr 2026",
-      title: "Freelance Web Developer",
-      company: "MS Équipements et Services",
-      type: "Freelance",
-      description:
-        "High-performance corporate platform to strengthen digital presence, showcase industrial machinery, and convert enterprise equipment inquiries.",
-    },
-    {
-      period: "Jan – May 2026",
-      title: "Freelance Full-Stack Developer",
-      company: "JCD Commerce",
-      type: "Freelance",
-      description:
-        "Engineered full e-commerce ecosystem with MERN stack, secure checkout, product catalog administration, and real-time inventory management.",
-    },
-    {
-      period: "Jun – Aug 2025",
-      title: "Freelance Web Developer",
-      company: "MS Smart Trading",
-      type: "Freelance",
-      description:
-        "Professional commercial web application aligned with brand identity and optimized for international commercial client acquisition.",
-    },
-    {
-      period: "Sep – Oct 2024",
-      title: "Freelance Web Developer",
-      company: "EGT Naval Services",
-      type: "Freelance",
-      description:
-        "Corporate website for naval repair & maintenance services with structured navigation to convert international maritime clients.",
-    },
-    {
-      period: "Feb – Jun 2024",
-      title: "Web Developer & Data Analyst",
-      company: "IT-Grow",
-      type: "Internship",
-      description:
-        "Engineered e-learning platform with interactive courseware, backend API integrations, and an analytical dashboard for learner progress metrics.",
-    },
-  ];
-
-  const defaultEducationItems = [
-    {
-      period: "Graduated 2024",
-      title: "Bachelor's Degree in Business Intelligence",
-      institution: "Higher Institute of Management (ISG Bizerte)",
-      type: "University Degree",
-      description:
-        "Rigorous foundation in data analysis, statistical modeling, database administration, business reporting, and decision-support information systems.",
-    },
-    {
-      period: "Certified 2024",
-      title: "Full-Stack Web Development Bootcamp",
-      institution: "GOMYCODE",
-      type: "Professional Certification",
-      description:
-        "Intensive software engineering training covering React, Node.js, Express, MongoDB, RESTful APIs, and modern frontend design systems.",
-    },
-    {
-      period: "Certified 2024",
-      title: "Data Science & Analytics Bootcamp",
-      institution: "GOMYCODE",
-      type: "Professional Certification",
-      description:
-        "Practical training in Python, Pandas, NumPy, Machine Learning algorithms, statistical evaluations, and exploratory data visualization.",
-    },
-  ];
-
   const timelineRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 75%", "end 60%"] });
   const inkProgress = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
 
-  const workItems = t.experience?.workItems || defaultWorkItems;
-  const educationItems = t.experience?.educationItems || defaultEducationItems;
+  const workItems = t.experience?.workItems || translations.en.experience.workItems;
+  const educationItems = t.experience?.educationItems || translations.en.experience.educationItems;
 
   return (
     <section id="experience" className="py-28 sm:py-32 scroll-mt-20 relative">

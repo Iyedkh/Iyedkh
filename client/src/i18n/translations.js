@@ -60,8 +60,8 @@ export const translations = {
           badge: "ANALYTICS",
           title: "Business Intelligence",
           description:
-            "Transforming raw datasets into actionable insights with Python, Pandas, Power BI, and Tableau. Bringing analytical rigor to digital products.",
-          highlight: "Python • Power BI • SQL • Tableau",
+            "Transforming raw datasets into actionable insights with Python, Pandas, and Power BI. Bringing analytical rigor to digital products.",
+          highlight: "Python • Power BI • SQL • Pandas",
         },
         {
           badge: "ACADEMIC FOUNDATION",
@@ -112,7 +112,7 @@ export const translations = {
         {
           tag: "02 • BUSINESS INTELLIGENCE",
           title: "Data Analytics & Insights",
-          desc: "Transforming multi-source business data into interactive Power BI and Tableau dashboards, with Python data pipelines for statistical modeling.",
+          desc: "Transforming multi-source business data into interactive Power BI dashboards, with Python data pipelines for statistical modeling.",
         },
         {
           tag: "03 • CRAFT & RELIABILITY",
@@ -202,52 +202,60 @@ export const translations = {
       verifyCert: "Verify Certificate Credential",
       workItems: [
         {
-          period: "May 2026",
+          period: "Sep – Oct 2026",
           title: "Freelance Web Developer",
+          company: "BV Tech Marine",
+          type: "Freelance",
+          description:
+            "Designed and built a responsive React & Tailwind CSS corporate website (bvtechmarine.com) with SEO best practices.",
+        },
+        {
+          period: "Jun – Aug 2026",
+          title: "Freelance Full-Stack Developer",
           company: "Oliv'Or",
           type: "Freelance",
           description:
-            "Modern and responsive vitrine web platform built using React and Tailwind CSS to showcase premium olive oil products and brand heritage.",
+            "Built a MERN e-commerce website (olivor.tn) for an olive oil brand, with product catalog, orders and user management.",
         },
         {
-          period: "Mar – Apr 2026",
-          title: "Freelance Web Developer",
-          company: "MS Équipements et Services",
-          type: "Freelance",
-          description:
-            "High-performance corporate website to strengthen digital presence, showcase industrial machinery, and drive client engagement.",
-        },
-        {
-          period: "Jan – May 2026",
-          title: "Freelance Full-Stack Developer",
+          period: "Sep 2025 – Aug 2026",
+          title: "Full-Stack Developer",
           company: "JCD Commerce",
-          type: "Freelance",
+          type: "Full-time",
           description:
-            "Engineered full e-commerce ecosystem with MERN stack, secure checkout, product catalog administration, and real-time inventory management.",
+            "Built and maintained a MERN e-commerce platform (jcdcommerce.com) in a 3-developer team: storefront, cart, orders, admin dashboard, JWT + Google authentication, deployed on cPanel.",
         },
         {
-          period: "Jun – Aug 2025",
+          period: "Jun 2025",
           title: "Freelance Web Developer",
           company: "MS Smart Trading",
           type: "Freelance",
           description:
-            "Professional commercial web application aligned with brand identity and optimized for international client acquisition.",
+            "Responsive, SEO-optimized React & Tailwind CSS corporate website aligned with the client's brand identity.",
         },
         {
-          period: "Sep – Oct 2024",
+          period: "Mar – Apr 2025",
+          title: "Freelance Web Developer",
+          company: "MS Équipements et Services",
+          type: "Freelance",
+          description:
+            "Responsive React & Tailwind CSS corporate website showcasing industrial equipment and services, optimized for SEO and speed.",
+        },
+        {
+          period: "Sep 2024",
           title: "Freelance Web Developer",
           company: "EGT Naval Services",
           type: "Freelance",
           description:
-            "Corporate website for naval repair & maintenance services with structured navigation to convert international maritime clients.",
+            "React & Tailwind CSS website (egtnavalservices.com) for a naval repair company, with a service catalog and lead-generation contact flow.",
         },
         {
           period: "Feb – Jun 2024",
-          title: "Web Developer & Data Analyst",
+          title: "Full-Stack Developer & BI Intern",
           company: "IT-Grow",
           type: "Internship",
           description:
-            "Engineered e-learning platform with interactive courseware, backend API integrations, and an analytical dashboard for learner progress metrics.",
+            "Developed features for a MERN e-learning platform (Node.js/Express REST APIs, React interfaces) and built a learner progress-tracking dashboard.",
         },
       ],
       educationItems: [
@@ -260,20 +268,20 @@ export const translations = {
             "Specialized in data analysis, statistical modeling, relational databases, decision-support systems, and enterprise BI tools.",
         },
         {
-          period: "Certified 2024",
-          title: "Data Scientist Bootcamp",
-          institution: "GOMYCODE",
-          type: "Professional Certification",
-          description:
-            "Intensive training in Python, Pandas, NumPy, Scikit-Learn, data visualization, and predictive machine learning algorithms.",
-        },
-        {
-          period: "Certified 2024",
+          period: "Certified 2025",
           title: "Software Developer Bootcamp",
           institution: "GOMYCODE",
           type: "Professional Certification",
           description:
-            "Comprehensive immersion in modern full-stack web architecture, React, Node.js, Express, MongoDB, and Git collaboration.",
+            "Full-stack JavaScript training: React, Node.js, Express, MongoDB, and Git collaboration.",
+        },
+        {
+          period: "Certified 2025",
+          title: "Data Scientist Bootcamp",
+          institution: "GOMYCODE",
+          type: "Professional Certification",
+          description:
+            "Python, Pandas, NumPy, machine learning, and data visualization.",
         },
       ],
     },
@@ -336,12 +344,12 @@ export const translations = {
         messageLabel: "Your Message *",
         messagePlaceholder: "Tell me about your project goals, timeline, and requirements...",
         chars: "chars",
-        sendBtn: "Send Message",
+        sendBtn: "Send via WhatsApp",
         validationError: "Please fill in all required fields.",
-        successToast: "Message dispatched successfully!",
-        successToastDesc: "Thank you {name}. I will get back to you shortly.",
-        successTitle: "Message Sent Successfully",
-        successDesc: "Thank you for reaching out. Your message has been received and I will reply within 24 hours.",
+        successToast: "Opening WhatsApp…",
+        successToastDesc: "Thank you {name}. Press send in WhatsApp to deliver your message.",
+        successTitle: "Almost Done!",
+        successDesc: "WhatsApp opened with your message ready. Press send there and I will reply within 24 hours.",
       },
     },
     // Footer
@@ -363,7 +371,7 @@ export const translations = {
         title: "English Version",
         langBadge: "English",
         role: "Full-Stack Developer & Data Analyst",
-        size: "PDF • 159 KB",
+        size: "PDF • 75 KB",
         download: "Download PDF",
         preview: "Preview",
         fileName: "Iyed_Khouildi_CV_EN.pdf",
@@ -372,7 +380,7 @@ export const translations = {
         title: "French Version",
         langBadge: "Français",
         role: "Développeur Full-Stack & Analyste de Données",
-        size: "PDF • 332 KB",
+        size: "PDF • 76 KB",
         download: "Download PDF",
         preview: "Preview",
         fileName: "Iyed_Khouildi_CV_FR.pdf",
@@ -444,8 +452,8 @@ export const translations = {
           badge: "ANALYSE",
           title: "Business Intelligence & Data",
           description:
-            "Transformation de données brutes en indicateurs stratégiques avec Python, Pandas, Power BI et Tableau. Apport d'une démarche analytique aux produits.",
-          highlight: "Python • Power BI • SQL • Tableau",
+            "Transformation de données brutes en indicateurs stratégiques avec Python, Pandas et Power BI. Apport d'une démarche analytique aux produits.",
+          highlight: "Python • Power BI • SQL • Pandas",
         },
         {
           badge: "FORMATION ACADÉMIQUE",
@@ -496,7 +504,7 @@ export const translations = {
         {
           tag: "02 • BUSINESS INTELLIGENCE",
           title: "Analyse de Données & Tableaux de Bord",
-          desc: "Modélisation de données multi-sources dans des dashboards interactifs Power BI et Tableau, avec scripts Python d'analyse.",
+          desc: "Modélisation de données multi-sources dans des dashboards interactifs Power BI, avec scripts Python d'analyse.",
         },
         {
           tag: "03 • EXCELLENCE TECHNIQUE",
@@ -586,78 +594,86 @@ export const translations = {
       verifyCert: "Vérifier le Certificat en Ligne",
       workItems: [
         {
-          period: "Mai 2026",
+          period: "Sept. – Oct. 2026",
           title: "Développeur Web Freelance",
+          company: "BV Tech Marine",
+          type: "Freelance",
+          description:
+            "Conception et développement d'un site vitrine responsive en React & Tailwind CSS (bvtechmarine.com), optimisé pour le SEO.",
+        },
+        {
+          period: "Juin – Août 2026",
+          title: "Développeur Full-Stack Freelance",
           company: "Oliv'Or",
           type: "Freelance",
           description:
-            "Site vitrine moderne et responsive développé en React et Tailwind CSS pour promouvoir les huiles d'olive haut de gamme et le savoir-faire de l'entreprise.",
+            "Site e-commerce MERN (olivor.tn) pour une marque d'huile d'olive : catalogue produits, commandes et gestion des utilisateurs.",
         },
         {
-          period: "Mars – Avr 2026",
-          title: "Développeur Web Freelance",
-          company: "MS Équipements et Services",
-          type: "Freelance",
-          description:
-            "Site d'entreprise à haute performance pour renforcer la présence en ligne, présenter les équipements industriels et capter de nouveaux clients.",
-        },
-        {
-          period: "Jan – Mai 2026",
-          title: "Développeur Full-Stack Freelance",
+          period: "Sept. 2025 – Août 2026",
+          title: "Développeur Full-Stack",
           company: "JCD Commerce",
-          type: "Freelance",
+          type: "Temps plein",
           description:
-            "Conception intégrale de la plateforme e-commerce en stack MERN avec panier intuitif, paiement sécurisé et tableau de bord de gestion des commandes.",
+            "Développement et maintenance d'une plateforme e-commerce MERN (jcdcommerce.com) en équipe de 3 développeurs : boutique, panier, commandes, tableau de bord admin, authentification JWT + Google, déploiement cPanel.",
         },
         {
-          period: "Juin – Août 2025",
+          period: "Juin 2025",
           title: "Développeur Web Freelance",
           company: "MS Smart Trading",
           type: "Freelance",
           description:
-            "Site web professionnel d'entreprise respectant l'identité visuelle et optimisé pour atteindre les objectifs commerciaux à l'international.",
+            "Site vitrine React & Tailwind CSS responsive et optimisé SEO, aligné sur l'identité de la marque.",
         },
         {
-          period: "Sep – Oct 2024",
+          period: "Mars – Avr. 2025",
+          title: "Développeur Web Freelance",
+          company: "MS Équipements et Services",
+          type: "Freelance",
+          description:
+            "Site vitrine React & Tailwind CSS présentant des équipements et services industriels, optimisé pour le SEO et la vitesse.",
+        },
+        {
+          period: "Sept. 2024",
           title: "Développeur Web Freelance",
           company: "EGT Naval Services",
           type: "Freelance",
           description:
-            "Plateforme corporative pour services de réparation navale, structurée pour convertir les compagnies maritimes internationales.",
+            "Site React & Tailwind CSS (egtnavalservices.com) pour une entreprise de réparation navale, avec catalogue de services et formulaire de contact.",
         },
         {
-          period: "Fév – Juin 2024",
-          title: "Développeur Web & Analyste BI (Stage)",
+          period: "Févr. – Juin 2024",
+          title: "Stagiaire Développeur Full-Stack & BI",
           company: "IT-Grow",
           type: "Stage",
           description:
-            "Conception d'une plateforme d'apprentissage complète — interface responsive, API backend et tableau de bord de suivi de la progression des apprenants.",
+            "Développement de fonctionnalités pour une plateforme e-learning MERN (API REST Node.js/Express, interfaces React) et d'un tableau de bord de suivi des apprenants.",
         },
       ],
       educationItems: [
         {
           period: "2021 – 2024",
-          title: "Licence en Business Intelligence (Informatique Décisionnelle)",
+          title: "Licence en Business Intelligence",
           institution: "Institut Supérieur de Gestion (ISG Bizerte)",
           type: "Diplôme Universitaire",
           description:
-            "Spécialisation en analyse de données, méthodes statistiques, modélisation de bases de données et systèmes d'aide à la décision.",
+            "Spécialisation en analyse de données, modélisation statistique, bases de données relationnelles, systèmes d'aide à la décision et outils BI.",
         },
         {
-          period: "Certifié 2024",
+          period: "Certifié 2025",
+          title: "Bootcamp Développeur Logiciel",
+          institution: "GOMYCODE",
+          type: "Certification Professionnelle",
+          description:
+            "Formation JavaScript full-stack : React, Node.js, Express, MongoDB et collaboration Git.",
+        },
+        {
+          period: "Certifié 2025",
           title: "Bootcamp Data Scientist",
           institution: "GOMYCODE",
           type: "Certification Professionnelle",
           description:
-            "Formation intensive en Python, Pandas, NumPy, Scikit-Learn, data visualization et algorithmes prédictifs de Machine Learning.",
-        },
-        {
-          period: "Certifié 2024",
-          title: "Bootcamp Développeur Logiciel Full-Stack",
-          institution: "GOMYCODE",
-          type: "Certification Professionnelle",
-          description:
-            "Immersion complète dans l'architecture web moderne : React, Node.js, Express, MongoDB et gestion collaborative Git.",
+            "Python, Pandas, NumPy, machine learning et visualisation de données.",
         },
       ],
     },
@@ -720,12 +736,12 @@ export const translations = {
         messageLabel: "Votre Message *",
         messagePlaceholder: "Décrivez les objectifs de votre projet, votre calendrier et vos besoins...",
         chars: "caractères",
-        sendBtn: "Envoyer le Message",
+        sendBtn: "Envoyer via WhatsApp",
         validationError: "Veuillez remplir tous les champs obligatoires.",
-        successToast: "Message envoyé avec succès !",
-        successToastDesc: "Merci {name}. Je vous répondrai dans les plus brefs délais.",
-        successTitle: "Message Envoyé avec Succès",
-        successDesc: "Merci pour votre message. Je vous répondrai sous 24 heures.",
+        successToast: "Ouverture de WhatsApp…",
+        successToastDesc: "Merci {name}. Appuyez sur envoyer dans WhatsApp pour transmettre votre message.",
+        successTitle: "Presque Terminé !",
+        successDesc: "WhatsApp s'est ouvert avec votre message prêt. Appuyez sur envoyer et je vous répondrai sous 24 heures.",
       },
     },
     // Footer
@@ -747,7 +763,7 @@ export const translations = {
         title: "Version Anglaise",
         langBadge: "English",
         role: "Full-Stack Developer & Data Analyst",
-        size: "PDF • 159 Ko",
+        size: "PDF • 75 Ko",
         download: "Télécharger PDF",
         preview: "Aperçu",
         fileName: "Iyed_Khouildi_CV_EN.pdf",
@@ -756,7 +772,7 @@ export const translations = {
         title: "Version Française",
         langBadge: "Français",
         role: "Développeur Full-Stack & Analyste de Données",
-        size: "PDF • 332 Ko",
+        size: "PDF • 76 Ko",
         download: "Télécharger PDF",
         preview: "Aperçu",
         fileName: "Iyed_Khouildi_CV_FR.pdf",
@@ -828,8 +844,8 @@ export const translations = {
           badge: "تحليل البيانات",
           title: "ذكاء الأعمال (Business Intelligence)",
           description:
-            "معالجة البيانات الضخمة وتحويلها إلى لوحات تحكم تفاعلية عبر Python و Power BI و Tableau لاستخراج مؤشرات الأداء الحيوية.",
-          highlight: "Python • Power BI • SQL • Tableau",
+            "معالجة البيانات الضخمة وتحويلها إلى لوحات تحكم تفاعلية عبر Python و Power BI لاستخراج مؤشرات الأداء الحيوية.",
+          highlight: "Python • Power BI • SQL • Pandas",
         },
         {
           badge: "المسار الأكاديمي",
@@ -880,7 +896,7 @@ export const translations = {
         {
           tag: "02 • ذكاء الأعمال وتحليل البيانات",
           title: "لوحات تحكم تفاعلية ورؤى ذكية",
-          desc: "ربط ومعالجة مصادر البيانات المختلفة وبناء لوحات Power BI و Tableau مع خطوط معالجة بلغة Python.",
+          desc: "ربط ومعالجة مصادر البيانات المختلفة وبناء لوحات Power BI مع خطوط معالجة بلغة Python.",
         },
         {
           tag: "03 • الإتقان والموثوقية",
@@ -970,52 +986,60 @@ export const translations = {
       verifyCert: "التحقق من الشهادة عبر الإنترنت",
       workItems: [
         {
-          period: "مايو 2026",
+          period: "سبتمبر – أكتوبر 2026",
           title: "مطور ويب حر",
+          company: "BV Tech Marine",
+          type: "عمل حر",
+          description:
+            "تصميم وتطوير موقع مؤسساتي متجاوب باستخدام React و Tailwind CSS (bvtechmarine.com) مع تحسين محركات البحث.",
+        },
+        {
+          period: "يونيو – أغسطس 2026",
+          title: "مطور ويب متكامل (عمل حر)",
           company: "Oliv'Or",
           type: "عمل حر",
           description:
-            "تطوير موقع تعريفي حديث ومتجاوب لعلامة زيت الزيتون الفاخرة باستخدام React و Tailwind CSS.",
+            "تطوير متجر إلكتروني بتقنية MERN (olivor.tn) لعلامة زيت زيتون، مع كتالوج المنتجات وإدارة الطلبات والمستخدمين.",
         },
         {
-          period: "مارس – أبريل 2026",
-          title: "مطور ويب حر",
-          company: "MS Équipements et Services",
-          type: "عمل حر",
-          description:
-            "بناء موقع مؤسساتي سريع ومحسّن لعرض المعدات الثقيلة والخدمات الصناعية واستقطاب العملاء.",
-        },
-        {
-          period: "يناير – مايو 2026",
+          period: "سبتمبر 2025 – أغسطس 2026",
           title: "مطور ويب متكامل",
           company: "JCD Commerce",
-          type: "عمل حر",
+          type: "دوام كامل",
           description:
-            "هندسة وتطوير متجر إلكتروني شامل عبر MERN Stack مع سلة تسوق وإدارة للمخزون ولوحة تحكم متكاملة.",
+            "تطوير وصيانة منصة تجارة إلكترونية بتقنية MERN (jcdcommerce.com) ضمن فريق من 3 مطورين: متجر، سلة، طلبات، لوحة تحكم، مصادقة JWT و Google، ونشر عبر cPanel.",
         },
         {
-          period: "يونيو – أغسطس 2025",
+          period: "يونيو 2025",
           title: "مطور ويب حر",
           company: "MS Smart Trading",
           type: "عمل حر",
           description:
-            "تطوير منصة رقمية تجارية تعكس الهوية المؤسساتية ومصممة لخدمة التوسع التجاري الدولي.",
+            "موقع مؤسساتي متجاوب ومحسّن لمحركات البحث باستخدام React و Tailwind CSS يعكس هوية العلامة التجارية.",
         },
         {
-          period: "سبتمبر – أكتوبر 2024",
+          period: "مارس – أبريل 2025",
+          title: "مطور ويب حر",
+          company: "MS Équipements et Services",
+          type: "عمل حر",
+          description:
+            "موقع مؤسساتي متجاوب باستخدام React و Tailwind CSS لعرض المعدات والخدمات الصناعية، محسّن للسرعة ومحركات البحث.",
+        },
+        {
+          period: "سبتمبر 2024",
           title: "مطور ويب حر",
           company: "EGT Naval Services",
           type: "عمل حر",
           description:
-            "بناء منصة متخصصة للخدمات والصيانة البحرية لاستقطاب الشركات الملاحية العالمية.",
+            "موقع باستخدام React و Tailwind CSS (egtnavalservices.com) لشركة إصلاح سفن، مع كتالوج الخدمات ونموذج تواصل لاستقطاب العملاء.",
         },
         {
           period: "فبراير – يونيو 2024",
-          title: "مطور ويب ومحلل بيانات (تدريب)",
+          title: "مطور ويب متكامل وذكاء أعمال (تدريب)",
           company: "IT-Grow",
           type: "تدريب مهني",
           description:
-            "تصميم وتطوير منصة تعليم إلكتروني كاملة تشمل واجهات تفاعلية وربط قواعد البيانات ولوحة تتبع تقدم المتعلمين.",
+            "تطوير ميزات لمنصة تعليم إلكتروني بتقنية MERN (واجهات REST بـ Node.js/Express وواجهات React) وبناء لوحة لتتبع تقدم المتعلمين.",
         },
       ],
       educationItems: [
@@ -1028,20 +1052,20 @@ export const translations = {
             "تخصص في تحليل البيانات، النمذجة الإحصائية، قواعد البيانات العلائقية ونظم دعم اتخاذ القرار.",
         },
         {
-          period: "معتمد 2024",
+          period: "معتمد 2025",
+          title: "تدريب مكثف في تطوير البرمجيات (Software Developer Bootcamp)",
+          institution: "GOMYCODE",
+          type: "شهادة مهنية معتمدة",
+          description:
+            "تدريب عملي على تطوير الويب المتكامل باستخدام React و Node.js و Express و MongoDB و Git.",
+        },
+        {
+          period: "معتمد 2025",
           title: "تدريب مكثف في علوم البيانات (Data Scientist Bootcamp)",
           institution: "GOMYCODE",
           type: "شهادة مهنية معتمدة",
           description:
-            "تدريب متقدم على لغة Python، و Pandas، و NumPy، وخوارزميات تعلم الآلة (Machine Learning).",
-        },
-        {
-          period: "معتمد 2024",
-          title: "تدريب مكثف في تطوير البرمجيات الشاملة (Software Developer)",
-          institution: "GOMYCODE",
-          type: "شهادة مهنية معتمدة",
-          description:
-            "تدريب عملي على بنية تطبيقات الويب الحديثة باستخدام React و Node.js و Express و MongoDB.",
+            "Python و Pandas و NumPy وتعلم الآلة وتصوير البيانات.",
         },
       ],
     },
@@ -1104,12 +1128,12 @@ export const translations = {
         messageLabel: "نص الرسالة *",
         messagePlaceholder: "أخبرني بتفاصيل مشروعك، أهدافك، والجدول الزمني المقترح...",
         chars: "حرف",
-        sendBtn: "إرسال الرسالة",
+        sendBtn: "إرسال عبر واتساب",
         validationError: "يرجى ملء جميع الحقول المطلوبة.",
-        successToast: "تم إرسال الرسالة بنجاح!",
-        successToastDesc: "شكراً لك {name}. سأقوم بالرد عليك في أقرب وقت.",
-        successTitle: "تم إرسال رسالتك بنجاح",
-        successDesc: "شكراً لتواصلك معي. سيتم الرد على رسالتك خلال 24 ساعة.",
+        successToast: "جارٍ فتح واتساب…",
+        successToastDesc: "شكراً لك {name}. اضغط على إرسال في واتساب لإيصال رسالتك.",
+        successTitle: "خطوة أخيرة!",
+        successDesc: "تم فتح واتساب ورسالتك جاهزة. اضغط على إرسال وسأرد عليك خلال 24 ساعة.",
       },
     },
     // Footer
@@ -1131,7 +1155,7 @@ export const translations = {
         title: "النسخة الإنجليزية",
         langBadge: "English",
         role: "مطور ويب متكامل ومحلل بيانات",
-        size: "PDF • 159 ك.ب",
+        size: "PDF • 75 ك.ب",
         download: "تحميل PDF",
         preview: "معاينة",
         fileName: "Iyed_Khouildi_CV_EN.pdf",
@@ -1140,7 +1164,7 @@ export const translations = {
         title: "النسخة الفرنسية",
         langBadge: "Français",
         role: "مطور ويب متكامل ومحلل بيانات",
-        size: "PDF • 332 ك.ب",
+        size: "PDF • 76 ك.ب",
         download: "تحميل PDF",
         preview: "معاينة",
         fileName: "Iyed_Khouildi_CV_FR.pdf",

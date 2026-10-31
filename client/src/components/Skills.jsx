@@ -28,7 +28,7 @@ const Skills = () => {
       items: [
         { name: "React 19", role: "Component architecture, hooks, state machines, performance" },
         { name: "JavaScript (ES6+)", role: "Async patterns, functional programming, DOM APIs" },
-        { name: "React Native", role: "Cross-platform mobile application development" },
+        { name: "Redux", role: "Global state management, async data flows" },
         { name: "Tailwind CSS", role: "Design systems, fluid utility tokens, responsive layouts" },
         { name: "HTML5 / Semantic Web", role: "Accessibility (a11y), clean DOM structure, SEO" },
         { name: "CSS3 / Modern Layouts", role: "Fluid CSS Grid, Flexbox, wabi-sabi animation" },
@@ -44,8 +44,9 @@ const Skills = () => {
         { name: "Node.js", role: "Asynchronous I/O, event-driven runtime, scalable backends" },
         { name: "Express.js", role: "RESTful architecture, custom middleware, API routes" },
         { name: "REST APIs", role: "Contract design, rate-limiting, error handling, validation" },
-        { name: "Authentication", role: "JWT, bcrypt hashing, session guards, RBAC permissions" },
-        { name: "API Integration", role: "Third-party payment gateways, webhooks, multi-tenant connectors" },
+        { name: "Authentication", role: "JWT in HTTP-only cookies, bcrypt hashing, Google Sign-In" },
+        { name: "Socket.io", role: "Real-time, event-based client-server communication" },
+        { name: "API Integration", role: "Google OAuth, Cloudinary media uploads, third-party APIs" },
       ],
     },
     {
@@ -56,7 +57,7 @@ const Skills = () => {
       icon: Database,
       items: [
         { name: "MongoDB", role: "Mongoose ODM, aggregation pipelines, document indexing" },
-        { name: "SQL (PostgreSQL / MySQL)", role: "Relational modeling, complex joins, subqueries, ACID" },
+        { name: "SQL (PostgreSQL)", role: "Relational modeling and queries" },
         { name: "Database Modeling", role: "Normalization, indexing strategies, audit logging" },
       ],
     },
@@ -83,9 +84,10 @@ const Skills = () => {
       icon: Wrench,
       items: [
         { name: "Git", role: "Branching strategies, semantic commits, rebase workflows" },
-        { name: "GitHub", role: "Collaborative code reviews, pull requests, CI/CD" },
+        { name: "GitHub", role: "Version control, collaboration, pull requests" },
         { name: "Vite", role: "Fast modern bundler configuration & asset pipelines" },
         { name: "Postman", role: "Endpoint testing, environment staging, documentation" },
+        { name: "cPanel", role: "Production deployment, domains & hosting setup" },
       ],
     },
   ];

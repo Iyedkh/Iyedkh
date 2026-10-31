@@ -19,6 +19,8 @@ import Reveal from "./Reveal";
 import { useCvModal } from "../context/CvModalContext";
 import Magnetic from "./Magnetic";
 
+const WHATSAPP_NUMBER = "21693117612";
+
 const Contact = () => {
   const { t, isRTL } = useLanguage();
   const { openCvModal } = useCvModal();
@@ -82,12 +84,27 @@ const Contact = () => {
       return;
     }
 
+    // No backend: hand the message to WhatsApp, prefilled for the visitor to send
+    const subject = formData.subject.trim();
+    const text = [
+      "New message from portfolio",
+      `Name: ${formData.name.trim()}`,
+      `Email: ${formData.email.trim()}`,
+      ...(subject ? [`Subject: ${subject}`] : []),
+      "",
+      formData.message.trim(),
+    ].join("\n");
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    const win = window.open(url, "_blank");
+    if (win) win.opener = null;
+    else window.location.href = url;
+
     setSubmitted(true);
-    const toastDesc = (t.contact?.form?.successToastDesc || "Thank you {name}. I will get back to you shortly.").replace(
+    const toastDesc = (t.contact?.form?.successToastDesc || "Thank you {name}. Press send in WhatsApp to deliver your message.").replace(
       "{name}",
       formData.name
     );
-    toast.success(t.contact?.form?.successToast || "Message dispatched successfully!", {
+    toast.success(t.contact?.form?.successToast || "Opening WhatsApp…", {
       description: toastDesc,
       duration: 4500,
     });
@@ -296,7 +313,7 @@ const Contact = () => {
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
                     <h3 className="font-editorial text-3xl font-normal text-[#22211E]">
-                      {t.contact?.form?.successTitle || "Message Sent Successfully"}
+                      {t.contact?.form?.successTitle || "Almost Done!"}
                     </h3>
                     <p className="text-sm text-[#726A5F] max-w-sm leading-relaxed font-sans">
                       {t.contact?.form?.successDesc ||

@@ -8,7 +8,7 @@ import KatanaGraphic from "./KatanaGraphic";
 import JapaneseBackdrop from "./JapaneseBackdrop";
 
 const EASE = [0.16, 1, 0.3, 1];
-const STACK = ["MERN Stack", "React Native", "Business Intelligence", "REST APIs", "TypeScript"];
+const STACK = ["MERN Stack", "Redux", "REST APIs", "Socket.io", "Business Intelligence"];
 
 const Hero = () => {
   const { isRTL, t } = useLanguage();

@@ -131,7 +131,7 @@ const About = () => {
             {/* Quick Metrics / Foundation Points */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4">
               <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10">
-                <div className="text-3xl font-editorial font-medium text-[#22211E]"><Counter target={3} suffix="+" /> <span className="text-xl">Years</span></div>
+                <div className="text-3xl font-editorial font-medium text-[#22211E]"><Counter target={2} suffix="+" /> <span className="text-xl">Years</span></div>
                 <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   {t.hero?.stats?.yearsExperience || "Software Engineering"}
                 </div>
