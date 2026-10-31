@@ -43,7 +43,7 @@ const ProjectModal = ({ project, onClose }) => {
           <button
             onClick={onClose}
             aria-label="Close case study modal"
-            className={`absolute top-6 ${isRTL ? "left-6" : "right-6"} p-2 rounded-full text-[#786F63] hover:text-[#252521] bg-[#EAE4D8] hover:bg-[#D8CBB8] transition-colors focus:outline-none`}
+            className={`absolute top-6 ${isRTL ? "left-6" : "right-6"} p-2 rounded-full text-[#726A5F] hover:text-[#252521] bg-[#EAE4D8] hover:bg-[#D8CBB8] transition-colors focus:outline-none`}
           >
             <X className="w-5 h-5" />
           </button>
@@ -54,13 +54,13 @@ const ProjectModal = ({ project, onClose }) => {
               <span className="font-mono text-xs text-[#8B5E3C] uppercase tracking-wider font-semibold">
                 {project.categoryLabel || "Selected Project"}
               </span>
-              <span className="text-[#786F63]">•</span>
-              <span className="font-mono text-xs text-[#786F63]">{project.year}</span>
+              <span className="text-[#726A5F]">•</span>
+              <span className="font-mono text-xs text-[#726A5F]">{project.year}</span>
             </div>
             <h3 className="font-editorial text-3xl sm:text-4xl font-normal text-[#252521] leading-tight">
               {project.title}
             </h3>
-            <p className="text-xs sm:text-sm font-mono text-[#786F63] uppercase tracking-wider mt-1">
+            <p className="text-xs sm:text-sm font-mono text-[#726A5F] uppercase tracking-wider mt-1">
               {project.subtitle}
             </p>
           </div>
@@ -68,7 +68,7 @@ const ProjectModal = ({ project, onClose }) => {
           <div className="japandi-divider my-4" />
 
           {/* Overview */}
-          <div className="space-y-6 text-sm text-[#786F63] font-sans leading-relaxed">
+          <div className="space-y-6 text-sm text-[#726A5F] font-sans leading-relaxed">
             <div>
               <h4 className="font-editorial text-lg text-[#252521] font-semibold mb-1">
                 Overview &amp; Architecture
@@ -88,13 +88,13 @@ const ProjectModal = ({ project, onClose }) => {
             {/* Role & Impact */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <div className="p-3.5 rounded-xl bg-[#EAE4D8] border border-[#252521]/10">
-                <div className="text-[11px] font-mono text-[#786F63] uppercase">
+                <div className="text-[11px] font-mono text-[#726A5F] uppercase">
                   {t.projects?.roleLabel || "Role:"}
                 </div>
                 <div className="text-sm font-medium text-[#252521] mt-0.5">{project.role}</div>
               </div>
               <div className="p-3.5 rounded-xl bg-[#EAE4D8] border border-[#252521]/10">
-                <div className="text-[11px] font-mono text-[#786F63] uppercase">
+                <div className="text-[11px] font-mono text-[#726A5F] uppercase">
                   Key Impact &amp; Deliverable
                 </div>
                 <div className="text-sm font-medium text-[#35483B] mt-0.5">{project.impact}</div>
@@ -103,7 +103,7 @@ const ProjectModal = ({ project, onClose }) => {
 
             {/* Technologies */}
             <div>
-              <div className="text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+              <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
                 Applied Technologies &amp; Tools
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -148,7 +148,7 @@ const ProjectModal = ({ project, onClose }) => {
 
             <button
               onClick={onClose}
-              className="text-xs font-mono text-[#786F63] hover:text-[#252521] transition-colors"
+              className="text-xs font-mono text-[#726A5F] hover:text-[#252521] transition-colors"
             >
               {t.cvModal?.close ? `${t.cvModal.close} [Esc]` : "Close [Esc]"}
             </button>

@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import SectionHeader from "./SectionHeader";
 
 const Skills = () => {
   const { t } = useLanguage();
@@ -124,31 +125,18 @@ const Skills = () => {
   return (
     <section id="skills" className="py-28 sm:py-32 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="mb-14 sm:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="hanko-stamp">技</span>
-            <div className="japandi-pill">
-              <span>{t.skills?.pill || "04 / Technical Discipline & Tools"}</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8">
-              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
-                {t.skills?.heading1 || "Architectural"}{" "}
-                <span className="editorial-accent">
-                  {t.skills?.headingHighlight || "capabilities"}
-                </span>.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 pb-2">
-              <p className="text-sm font-mono text-[#786F63] tracking-wide uppercase">
-                {t.skills?.description || "Zero arbitrary percentages. Verified production tools."}
-              </p>
-            </div>
-          </div>
-          <div className="katana-divider my-8" />
-        </div>
+        <SectionHeader
+          kanji="技"
+          index="04"
+          pill={t.skills?.pill || "Technical Discipline & Tools"}
+          heading={t.skills?.heading1 || "Architectural"}
+          highlight={t.skills?.headingHighlight || "capabilities"}
+          aside={
+            <p className="text-sm font-mono text-[#726A5F] tracking-wide uppercase leading-relaxed">
+              {t.skills?.description || "Zero arbitrary percentages. Verified production tools."}
+            </p>
+          }
+        />
 
         {/* Category Tabs & Filter Bar */}
         <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-5 mb-10 sm:mb-12">
@@ -210,7 +198,7 @@ const Skills = () => {
 
           {/* Search Box with Search Clear button */}
           <div className="relative w-full xl:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#786F63] pointer-events-none" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#726A5F] pointer-events-none" />
             <input
               type="text"
               placeholder={t.skills?.searchPlaceholder || "Search skill (e.g. React)..."}
@@ -222,7 +210,7 @@ const Skills = () => {
               <button
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear search query"
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#786F63] hover:text-[#262522] bg-[#E9E0D2] px-1.5 py-0.5 rounded-full"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#726A5F] hover:text-[#22211E] bg-[#EBE3D5] px-1.5 py-0.5 rounded-full"
               >
                 ✕
               </button>

@@ -88,7 +88,7 @@ const CustomCursor = () => {
           translateY: "-50%",
           width: cursorState.hovered ? 6 : 8,
           height: cursorState.hovered ? 6 : 8,
-          backgroundColor: cursorState.hovered ? "#E8A1B0" : "#262522",
+          backgroundColor: cursorState.hovered ? "#D48D9B" : "#22211E",
           opacity: cursorState.cardLabel ? 0 : 0.85,
         }}
       />
@@ -109,18 +109,18 @@ const CustomCursor = () => {
           backgroundColor: cursorState.cardLabel
             ? "rgba(23, 23, 20, 0.92)"
             : cursorState.hovered
-            ? "rgba(232, 161, 176, 0.15)"
+            ? "rgba(212, 141, 155, 0.15)"
             : "transparent",
           borderColor: cursorState.cardLabel
             ? "transparent"
             : cursorState.hovered
-            ? "rgba(232, 161, 176, 0.6)"
-            : "rgba(38, 37, 34, 0.22)",
+            ? "rgba(212, 141, 155, 0.6)"
+            : "rgba(34, 33, 30, 0.22)",
         }}
         transition={{ type: "spring", damping: 20, stiffness: 240 }}
       >
         {cursorState.cardLabel && (
-          <span className="text-[9.5px] font-mono tracking-[0.16em] text-[#F5F0E7] font-semibold select-none">
+          <span className="text-[9.5px] font-mono tracking-[0.16em] text-[#F6F2EB] font-semibold select-none">
             {cursorState.cardLabel}
           </span>
         )}

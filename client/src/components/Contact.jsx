@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 import { useCvModal } from "../context/CvModalContext";
 import Magnetic from "./Magnetic";
 
@@ -99,37 +101,24 @@ const Contact = () => {
   return (
     <section id="contact" className="py-28 sm:py-32 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Editorial Section Header */}
-        <div className="mb-14 sm:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="hanko-stamp">縁</span>
-            <div className="japandi-pill">
-              <span>{t.contact?.pill || "07 / Direct Dialogue"}</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8">
-              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
-                {t.contact?.heading1 || "Let's Start a"}{" "}
-                <span className="editorial-accent">
-                  {t.contact?.headingHighlight || "Conversation"}
-                </span>.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 pb-2">
-              <p className="text-sm sm:text-base text-[#786F63] font-sans leading-relaxed">
-                {t.contact?.description ||
-                  "Have an upcoming project, freelance inquiry, or full-time opportunity? Reach out directly or send a message below."}
-              </p>
-            </div>
-          </div>
-          <div className="katana-divider my-8" />
-        </div>
+        <SectionHeader
+          kanji="縁"
+          index="07"
+          pill={t.contact?.pill || "Direct Dialogue"}
+          heading={t.contact?.heading1 || "Let's Start a"}
+          highlight={t.contact?.headingHighlight || "Conversation"}
+          aside={
+            <p className="text-sm sm:text-base text-[#726A5F] font-sans leading-relaxed">
+              {t.contact?.description ||
+                "Have an upcoming project, freelance inquiry, or full-time opportunity? Reach out directly or send a message below."}
+            </p>
+          }
+        />
 
         {/* Contact Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Info Cards & Quick Actions */}
-          <div className="lg:col-span-5 space-y-4">
+          <Reveal className="lg:col-span-5 space-y-4">
             {contactItems.map((item) => (
               <div
                 key={item.id}
@@ -209,10 +198,10 @@ const Contact = () => {
                 </button>
               </Magnetic>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Column: Clean Wabi-Sabi Message Form */}
-          <div className="lg:col-span-7">
+          <Reveal delay={0.15} className="lg:col-span-7">
             <div className="japandi-card p-6 sm:p-8 min-h-[460px] flex flex-col justify-center">
               <AnimatePresence mode="wait">
                 {!submitted ? (
@@ -226,7 +215,7 @@ const Contact = () => {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                        <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
                           {t.contact?.form?.nameLabel || "Your Name *"}
                         </label>
                         <input
@@ -240,7 +229,7 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                        <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
                           {t.contact?.form?.emailLabel || "Email Address *"}
                         </label>
                         <input
@@ -256,7 +245,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                      <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
                         {t.contact?.form?.subjectLabel || "Subject"}
                       </label>
                       <input
@@ -269,7 +258,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-[#786F63] uppercase tracking-wider mb-2">
+                      <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
                         {t.contact?.form?.messageLabel || "Your Message *"}
                       </label>
                       <textarea
@@ -303,13 +292,13 @@ const Contact = () => {
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="flex flex-col items-center justify-center text-center p-8 space-y-4"
                   >
-                    <div className="w-16 h-16 rounded-full bg-[#171714] text-[#E8A1B0] flex items-center justify-center border border-[#E8A1B0]">
+                    <div className="w-16 h-16 rounded-full bg-[#151412] text-[#D48D9B] flex items-center justify-center border border-[#D48D9B]">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="font-editorial text-3xl font-normal text-[#262522]">
+                    <h3 className="font-editorial text-3xl font-normal text-[#22211E]">
                       {t.contact?.form?.successTitle || "Message Sent Successfully"}
                     </h3>
-                    <p className="text-sm text-[#786F63] max-w-sm leading-relaxed font-sans">
+                    <p className="text-sm text-[#726A5F] max-w-sm leading-relaxed font-sans">
                       {t.contact?.form?.successDesc ||
                         "Thank you for reaching out. Your message has been received and I will reply within 24 hours."}
                     </p>
@@ -317,7 +306,7 @@ const Contact = () => {
                 )}
               </AnimatePresence>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

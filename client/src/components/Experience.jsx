@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Briefcase, GraduationCap, ExternalLink, Calendar, Award } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import SectionHeader from "./SectionHeader";
 
 const Experience = () => {
   const { t, isRTL } = useLanguage();
@@ -90,67 +92,70 @@ const Experience = () => {
     },
   ];
 
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 75%", "end 60%"] });
+  const inkProgress = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
+
   const workItems = t.experience?.workItems || defaultWorkItems;
   const educationItems = t.experience?.educationItems || defaultEducationItems;
 
   return (
     <section id="experience" className="py-28 sm:py-32 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="mb-14 sm:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="hanko-stamp">歴</span>
-            <div className="japandi-pill">
-              <span>{t.experience?.pill || "05 / Trajectory & Credentials"}</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8">
-              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
-                {t.experience?.heading1 || "Experience &"}{" "}
-                <span className="editorial-accent">
-                  {t.experience?.headingHighlight || "education"}
-                </span>.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 pb-2">
-              <p className="text-sm font-mono text-[#786F63] tracking-wide uppercase">
-                {t.experience?.description || "Chronological timeline of verified production deliverables."}
-              </p>
-            </div>
-          </div>
-          <div className="katana-divider my-8" />
-        </div>
+        <SectionHeader
+          kanji="歴"
+          index="05"
+          pill={t.experience?.pill || "Trajectory & Credentials"}
+          heading={t.experience?.heading1 || "Experience &"}
+          highlight={t.experience?.headingHighlight || "education"}
+          aside={
+            <p className="text-sm font-mono text-[#726A5F] tracking-wide uppercase leading-relaxed">
+              {t.experience?.description || "Chronological timeline of verified production deliverables."}
+            </p>
+          }
+        />
 
         {/* Dual Timelines Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div ref={timelineRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Work History */}
           <div className="space-y-8">
-            <div className="flex items-center gap-3 pb-3 border-b border-[#262522]/15">
-              <div className="w-8 h-8 rounded-full bg-[#E9E0D2] border border-[#262522]/20 flex items-center justify-center text-[#262522]">
+            <div className="flex items-center gap-3 pb-3 border-b border-[#22211E]/15">
+              <div className="w-8 h-8 rounded-full bg-[#EBE3D5] border border-[#22211E]/20 flex items-center justify-center text-[#22211E]">
                 <Briefcase className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="font-editorial text-2xl font-normal text-[#262522]">
+                <h3 className="font-editorial text-2xl font-normal text-[#22211E]">
                   {t.experience?.workHistory || "Work History"}
                 </h3>
-                <p className="text-[10.5px] font-mono text-[#786F63] uppercase tracking-wider">
+                <p className="text-[10.5px] font-mono text-[#726A5F] uppercase tracking-wider">
                   {t.experience?.workSub || "Production & Freelance Software"}
                 </p>
               </div>
             </div>
 
             <div className={`relative ${isRTL ? "pr-6 border-r" : "pl-6 border-l"} border-[#22211E]/12 space-y-8`}>
-              {workItems.map((job) => (
-                <div key={job.company + job.period} className="relative group">
+              <motion.span
+                aria-hidden="true"
+                style={{ scaleY: inkProgress }}
+                className={`absolute top-0 bottom-0 ${isRTL ? "-right-px" : "-left-px"} w-[2px] origin-top bg-gradient-to-b from-[#22211E] via-[#D48D9B] to-[#A68550]`}
+              />
+              {workItems.map((job, idx) => (
+                <motion.div
+                  key={job.company + job.period}
+                  initial={{ opacity: 0, x: isRTL ? -24 : 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.8, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative group"
+                >
                   {/* Timeline Dot with Sakura Ring */}
                   <div
                     className={`absolute ${
                       isRTL ? "-right-[31px]" : "-left-[31px]"
-                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F6F2EB] border-2 border-[#22211E] group-hover:border-[#D48D9B] group-hover:bg-[#D48D9B] transition-colors`}
+                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F6F2EB] border-2 border-[#22211E] group-hover:border-[#D48D9B] group-hover:bg-[#D48D9B] group-hover:scale-125 transition-all duration-300 z-10`}
                   />
 
-                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#D48D9B] transition-all">
+                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#D48D9B]">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-1.5 text-xs font-mono text-[#726A5F]">
                         <Calendar className="w-3.5 h-3.5 text-[#D48D9B]" />
@@ -173,7 +178,7 @@ const Experience = () => {
                       {job.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -195,16 +200,28 @@ const Experience = () => {
             </div>
 
             <div className={`relative ${isRTL ? "pr-6 border-r" : "pl-6 border-l"} border-[#22211E]/12 space-y-8`}>
-              {educationItems.map((edu) => (
-                <div key={edu.title} className="relative group">
+              <motion.span
+                aria-hidden="true"
+                style={{ scaleY: inkProgress }}
+                className={`absolute top-0 bottom-0 ${isRTL ? "-right-px" : "-left-px"} w-[2px] origin-top bg-gradient-to-b from-[#6B785D] via-[#A68550] to-transparent`}
+              />
+              {educationItems.map((edu, idx) => (
+                <motion.div
+                  key={edu.title}
+                  initial={{ opacity: 0, x: isRTL ? -24 : 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.8, delay: (idx % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative group"
+                >
                   {/* Timeline Dot */}
                   <div
                     className={`absolute ${
                       isRTL ? "-right-[31px]" : "-left-[31px]"
-                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F6F2EB] border-2 border-[#6B785D] group-hover:bg-[#6B785D] transition-colors`}
+                    } top-2 w-3.5 h-3.5 rounded-full bg-[#F6F2EB] border-2 border-[#6B785D] group-hover:bg-[#6B785D] group-hover:scale-125 transition-all duration-300 z-10`}
                   />
 
-                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#6B785D] transition-all">
+                  <div className="japandi-card p-5 space-y-2 group-hover:border-[#6B785D]">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-1.5 text-xs font-mono text-[#726A5F]">
                         <Award className="w-3.5 h-3.5 text-[#6B785D]" />
@@ -241,7 +258,7 @@ const Experience = () => {
                       </div>
                     )}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

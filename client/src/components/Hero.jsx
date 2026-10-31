@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight, FileText } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { useCvModal } from "../context/CvModalContext";
@@ -19,6 +19,25 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0.15]);
   const katanaScrollY = useTransform(scrollY, [0, 600], [0, 80]);
+
+  // Cursor parallax: layers drift at different depths
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, { stiffness: 60, damping: 18 });
+  const smoothY = useSpring(pointerY, { stiffness: 60, damping: 18 });
+  const katanaX = useTransform(smoothX, (v) => v * 18);
+  const katanaRotate = useTransform(smoothX, (v) => v * 2.5);
+  const ringX = useTransform(smoothX, (v) => v * -26);
+  const ringY = useTransform(smoothY, (v) => v * -26);
+  const badgeX = useTransform(smoothX, (v) => v * 34);
+  const badgeY = useTransform(smoothY, (v) => v * 34);
+
+  const handlePointerMove = (e) => {
+    if (shouldReduceMotion) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    pointerX.set((e.clientX - rect.left) / rect.width - 0.5);
+    pointerY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
 
   // Motion variants
   const containerStagger = {
@@ -53,6 +72,7 @@ const Hero = () => {
     <section
       id="home"
       aria-labelledby="hero-title"
+      onPointerMove={handlePointerMove}
       className="relative isolate flex min-h-[100svh] flex-col justify-between overflow-hidden pb-12 pt-32 sm:pt-36 lg:pt-40 washi-grain shoji-grid"
     >
       {/* Background Japanese Editorial Art Layer */}
@@ -104,9 +124,27 @@ const Hero = () => {
                     experiences
                   </motion.span>
                 </span>
-                <span className="block overflow-hidden pb-2">
-                  <motion.span variants={lineReveal} className="block italic text-[#D48D9B]">
+                <span className="block overflow-hidden pb-4">
+                  <motion.span variants={lineReveal} className="relative inline-block italic text-[#D48D9B]">
                     with precision.
+                    {/* Sumi brush underline that paints itself */}
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 300 20"
+                      preserveAspectRatio="none"
+                      className="absolute -bottom-2 left-0 h-3 w-full overflow-visible"
+                    >
+                      <motion.path
+                        d="M2 14 C 60 4, 120 18, 180 9 S 270 6, 298 11"
+                        fill="none"
+                        stroke="#A68550"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 0.8 }}
+                        transition={{ duration: shouldReduceMotion ? 0 : 1.4, delay: shouldReduceMotion ? 0 : 1.1, ease: EASE }}
+                      />
+                    </svg>
                   </motion.span>
                 </span>
               </h1>
@@ -201,23 +239,25 @@ const Hero = () => {
               <div className="relative flex w-full max-w-[22rem] sm:max-w-[26rem] items-center justify-center py-6">
                 
                 {/* Traditional Japanese Enso / Zen Circle in Background */}
-                <div
+                <motion.div
                   aria-hidden="true"
-                  className="pointer-events-none absolute h-64 w-64 rounded-full border border-[#262522]/10 sm:h-80 sm:w-80"
+                  style={{ x: ringX, y: ringY }}
+                  className="pointer-events-none absolute h-64 w-64 rounded-full border border-[#22211E]/10 sm:h-80 sm:w-80"
                 >
-                  <div className="absolute inset-0 rounded-full border border-dashed border-[#AD8B59]/30 animate-[spin_120s_linear_infinite]" />
-                </div>
+                  <div className="absolute inset-0 rounded-full border border-dashed border-[#A68550]/30 animate-[spin_120s_linear_infinite]" />
+                  <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#D48D9B]/10 via-transparent to-[#A68550]/10 blur-xl" />
+                </motion.div>
 
                 {/* Vertical Decorative Typography Elements */}
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute -left-4 sm:left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3 select-none opacity-40 sm:opacity-60"
                 >
-                  <span className="font-editorial text-2xl text-[#262522] writing-mode-vertical">
+                  <span className="font-editorial text-2xl text-[#22211E] writing-mode-vertical">
                     刀魂
                   </span>
-                  <span className="h-8 w-px bg-[#262522]/20" />
-                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#786F63] [writing-mode:vertical-rl]">
+                  <span className="h-8 w-px bg-[#22211E]/20" />
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#726A5F] [writing-mode:vertical-rl]">
                     KATANA SPIRIT
                   </span>
                 </div>
@@ -227,16 +267,41 @@ const Hero = () => {
                   aria-hidden="true"
                   className="pointer-events-none absolute -right-2 sm:right-2 top-10 flex flex-col items-end select-none opacity-60"
                 >
-                  <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#786F63]">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#726A5F]">
                     37.27° N · 9.87° E
                   </span>
-                  <span className="font-mono text-[9px] tracking-[0.12em] text-[#AD8B59]">
+                  <span className="font-mono text-[9px] tracking-[0.12em] text-[#A68550]">
                     BI DEGREE &amp; MERN
                   </span>
                 </div>
 
                 {/* The Katana Graphic Masterpiece */}
-                <KatanaGraphic className="py-2" />
+                <motion.div style={{ x: katanaX, rotate: katanaRotate }}>
+                  <KatanaGraphic className="py-2" />
+                </motion.div>
+
+                {/* Rotating seal badge */}
+                <motion.a
+                  href="#contact"
+                  aria-label={t.hero?.contactMe || "Let's Talk"}
+                  style={{ x: badgeX, y: badgeY }}
+                  initial={{ opacity: 0, scale: 0.5, rotate: -40 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ delay: shouldReduceMotion ? 0 : 1, type: "spring", stiffness: 120, damping: 14 }}
+                  className="group absolute bottom-16 left-2 sm:left-6 z-20 hidden sm:flex h-28 w-28 items-center justify-center rounded-full bg-[#F6F2EB]/85 shadow-[0_12px_30px_-12px_rgba(34,33,30,0.3)] backdrop-blur-md"
+                >
+                  <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full animate-spin-slow group-hover:[animation-duration:6s]">
+                    <defs>
+                      <path id="sealCircle" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
+                    </defs>
+                    <text className="fill-[#22211E] font-mono" style={{ fontSize: "8.4px", letterSpacing: "2.4px" }}>
+                      <textPath href="#sealCircle">AVAILABLE FOR WORK · 2026 · 匠 ·</textPath>
+                    </text>
+                  </svg>
+                  <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-[#B8403A] font-kanji text-lg text-[#F6F2EB] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
+                    縁
+                  </span>
+                </motion.a>
 
                 {/* Floating Tactile Sub-Card (Featured Architecture) */}
                 <motion.div
@@ -263,7 +328,7 @@ const Hero = () => {
         transition={{ delay: shouldReduceMotion ? 0 : 0.8, duration: shouldReduceMotion ? 0 : 0.5 }}
         className="relative z-10 mx-auto mt-4 w-full max-w-7xl px-5 sm:px-8 lg:px-12"
       >
-        <div className="flex items-center justify-between gap-4 border-t border-[#262522]/10 pt-4 text-[10px] font-mono text-[#786F63] sm:pt-5 sm:text-[11px]">
+        <div className="flex items-center justify-between gap-4 border-t border-[#22211E]/10 pt-4 text-[10px] font-mono text-[#726A5F] sm:pt-5 sm:text-[11px]">
           <div className="flex items-center gap-3">
             <span className="hanko-stamp h-4 w-4 text-[8px]">道</span>
             <span className="hidden uppercase tracking-[0.18em] sm:inline">
@@ -273,7 +338,7 @@ const Hero = () => {
 
           <a
             href="#about"
-            className="group ml-auto inline-flex min-h-10 items-center gap-2 uppercase tracking-wider transition-colors hover:text-[#262522] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E8A1B0]"
+            className="group ml-auto inline-flex min-h-10 items-center gap-2 uppercase tracking-wider transition-colors hover:text-[#22211E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D48D9B]"
           >
             <span className="tracking-[0.16em]">Scroll to explore</span>
             <motion.span
@@ -282,7 +347,7 @@ const Hero = () => {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="inline-flex transition-transform group-hover:translate-y-0.5"
             >
-              <ArrowDown className="h-3.5 w-3.5 text-[#E8A1B0]" />
+              <ArrowDown className="h-3.5 w-3.5 text-[#D48D9B]" />
             </motion.span>
           </a>
         </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Search, Compass, Hammer, LineChart } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import SectionHeader from "./SectionHeader";
 
 const Approach = () => {
   const { t } = useLanguage();
@@ -40,34 +41,30 @@ const Approach = () => {
   return (
     <section id="approach" className="py-28 sm:py-32 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="mb-14 sm:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="hanko-stamp">方</span>
-            <div className="japandi-pill">
-              <span>{t.approach?.pill || "06 / Methodology & Process"}</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8">
-              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
-                {t.approach?.heading1 || "How I approach"}{" "}
-                <span className="editorial-accent">
-                  {t.approach?.headingHighlight || "software & data"}
-                </span>.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 pb-2">
-              <p className="text-sm font-mono text-[#786F63] tracking-wide uppercase">
-                {t.approach?.description || "A structured four-phase delivery cycle from idea to production."}
-              </p>
-            </div>
-          </div>
-          <div className="katana-divider my-8" />
-        </div>
+        <SectionHeader
+          kanji="方"
+          index="06"
+          pill={t.approach?.pill || "Methodology & Process"}
+          heading={t.approach?.heading1 || "How I approach"}
+          highlight={t.approach?.headingHighlight || "software & data"}
+          aside={
+            <p className="text-sm font-mono text-[#726A5F] tracking-wide uppercase leading-relaxed">
+              {t.approach?.description || "A structured four-phase delivery cycle from idea to production."}
+            </p>
+          }
+        />
 
         {/* 4 Steps Sequence */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Connector thread linking the four phases */}
+          <motion.span
+            aria-hidden="true"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute left-6 right-6 top-[3.1rem] hidden lg:block h-px origin-left rtl:origin-right bg-[repeating-linear-gradient(90deg,rgba(166,133,80,0.55)_0_6px,transparent_6px_12px)]"
+          />
           {steps.map((step, idx) => {
             const Icon = stepIcons[idx % stepIcons.length];
             return (
@@ -77,11 +74,11 @@ const Approach = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#D48D9B]"
+                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#D48D9B] overflow-hidden"
               >
                 <div>
                   <div className="flex items-center justify-between pb-4 border-b border-[#22211E]/10 mb-6">
-                    <span className="font-editorial text-3xl font-medium text-[#D48D9B]">
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-[#D48D9B]/40 bg-[#F6F2EB] font-editorial text-2xl font-medium text-[#D48D9B] transition-all duration-500 group-hover:bg-[#22211E] group-hover:text-[#F6F2EB] group-hover:border-[#22211E]">
                       {step.number}
                     </span>
                     <Icon className="w-4 h-4 text-[#726A5F] group-hover:text-[#22211E] transition-colors" />

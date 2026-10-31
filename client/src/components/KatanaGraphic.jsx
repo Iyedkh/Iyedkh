@@ -101,7 +101,7 @@ const KatanaGraphic = ({ className = "" }) => {
         {/* Soft Radial Ambient Backdrop Glow */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -m-16 rounded-full bg-gradient-to-tr from-[#E8A1B0]/15 via-[#AD8B59]/10 to-transparent blur-3xl pointer-events-none"
+          className="absolute inset-0 -m-16 rounded-full bg-gradient-to-tr from-[#D48D9B]/15 via-[#A68550]/10 to-transparent blur-3xl pointer-events-none"
         />
 
         {/* Master Katana Vector Artwork */}
@@ -132,7 +132,7 @@ const KatanaGraphic = ({ className = "" }) => {
             {/* Antique Brass / Gold Gradient for Fittings (Tsuba, Habaki, Kashira) */}
             <linearGradient id="antiqueGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#D8BA7D" />
-              <stop offset="35%" stopColor="#AD8B59" />
+              <stop offset="35%" stopColor="#A68550" />
               <stop offset="70%" stopColor="#E2CA96" />
               <stop offset="100%" stopColor="#7E6133" />
             </linearGradient>
@@ -161,7 +161,7 @@ const KatanaGraphic = ({ className = "" }) => {
 
             {/* Ambient drop shadow for Tsuba & Habaki */}
             <filter id="fittingShadow" x="-30%" y="-30%" width="160%" height="160%">
-              <feDropShadow dx="0" dy="3" stdDeviation="2.5" floodColor="#171714" floodOpacity="0.35" />
+              <feDropShadow dx="0" dy="3" stdDeviation="2.5" floodColor="#151412" floodOpacity="0.35" />
             </filter>
           </defs>
 
@@ -173,12 +173,12 @@ const KatanaGraphic = ({ className = "" }) => {
             <path
               d="M71 18 C71 13 89 13 89 18 L90 24 L70 24 Z"
               fill="url(#antiqueGoldGrad)"
-              stroke="#262522"
+              stroke="#22211E"
               strokeWidth="0.8"
             />
             {/* Shitodome cord eyelet */}
-            <ellipse cx="80" cy="18" rx="3.5" ry="2" fill="#262522" />
-            <ellipse cx="80" cy="18" rx="2" ry="1" fill="#AD8B59" />
+            <ellipse cx="80" cy="18" rx="3.5" ry="2" fill="#22211E" />
+            <ellipse cx="80" cy="18" rx="2" ry="1" fill="#A68550" />
           </g>
 
           {/* ==================================================== */}
@@ -193,7 +193,7 @@ const KatanaGraphic = ({ className = "" }) => {
               height="136"
               rx="4"
               fill="url(#samegawaPattern)"
-              stroke="#262522"
+              stroke="#22211E"
               strokeWidth="1"
             />
 
@@ -221,7 +221,7 @@ const KatanaGraphic = ({ className = "" }) => {
                   <polygon
                     points={`80,${y + 3} 84.5,${y + 7.5} 80,${y + 12} 75.5,${y + 7.5}`}
                     fill="url(#samegawaPattern)"
-                    stroke="#171714"
+                    stroke="#151412"
                     strokeWidth="0.6"
                   />
                   {/* Subtle antique gold Menuki ornament in center diamond on select tiers */}
@@ -240,7 +240,7 @@ const KatanaGraphic = ({ className = "" }) => {
               height="7"
               rx="1.5"
               fill="url(#antiqueGoldGrad)"
-              stroke="#262522"
+              stroke="#22211E"
               strokeWidth="0.8"
             />
           </g>
@@ -260,10 +260,10 @@ const KatanaGraphic = ({ className = "" }) => {
               strokeWidth="1.2"
             />
             {/* Tsuba openwork piercings (Sukashi - Traditional cherry blossom / crescent cutouts) */}
-            <ellipse cx="70" cy="168" rx="3.5" ry="1.6" fill="#F5F0E7" opacity="0.8" />
-            <ellipse cx="90" cy="168" rx="3.5" ry="1.6" fill="#F5F0E7" opacity="0.8" />
+            <ellipse cx="70" cy="168" rx="3.5" ry="1.6" fill="#F6F2EB" opacity="0.8" />
+            <ellipse cx="90" cy="168" rx="3.5" ry="1.6" fill="#F6F2EB" opacity="0.8" />
             {/* Rim rim gold accent */}
-            <ellipse cx="80" cy="168" rx="18.5" ry="5.8" stroke="#AD8B59" strokeWidth="0.6" fill="none" opacity="0.75" />
+            <ellipse cx="80" cy="168" rx="18.5" ry="5.8" stroke="#A68550" strokeWidth="0.6" fill="none" opacity="0.75" />
 
             {/* Lower Seppa */}
             <ellipse cx="80" cy="171.5" rx="15" ry="3" fill="#C8A668" stroke="#3A301E" strokeWidth="0.5" />

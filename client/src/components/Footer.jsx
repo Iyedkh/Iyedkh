@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, ArrowUp, Clock } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import Magnetic from "./Magnetic";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -65,6 +66,26 @@ const Footer = () => {
       </svg>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 relative z-10">
+        {/* Big closing CTA */}
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 pb-16 border-b border-[#22211E]/10">
+          <h2 className="font-editorial text-5xl sm:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.03em] text-[#22211E]">
+            Let&apos;s make
+            <br />
+            <span className="italic text-[#D48D9B]">something calm.</span>
+          </h2>
+          <Magnetic strength={0.35}>
+            <a
+              href="#contact"
+              className="group relative flex h-36 w-36 sm:h-44 sm:w-44 items-center justify-center rounded-full bg-[#22211E] text-[#F6F2EB] overflow-hidden shrink-0"
+            >
+              <span className="absolute inset-0 rounded-full bg-[#B8403A] scale-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-100" />
+              <span className="relative flex flex-col items-center gap-1">
+                <span className="font-kanji text-2xl">縁</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em]">{t.nav?.letsTalk || "Let's Talk"}</span>
+              </span>
+            </a>
+          </Magnetic>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start pb-16 border-b border-[#22211E]/10">
           {/* Brand Identity & Vision */}
           <div className="md:col-span-5 space-y-4">
@@ -145,6 +166,18 @@ const Footer = () => {
             </Magnetic>
           </div>
         </div>
+
+        {/* Monumental outlined signature */}
+        <motion.div
+          aria-hidden="true"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          className="pt-10 select-none text-center font-editorial text-[18vw] lg:text-[13rem] leading-[0.85] tracking-[-0.04em] text-outline"
+        >
+          Khouildi
+        </motion.div>
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#9C9385]">

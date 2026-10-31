@@ -98,14 +98,14 @@ const Nav = () => {
             </div>
 
             <div className="flex flex-col">
-              <span className="font-editorial text-lg sm:text-xl font-medium tracking-[0.06em] text-[#22211E] flex items-center gap-2">
+              <span className="font-editorial text-base sm:text-xl font-medium tracking-[0.06em] text-[#22211E] flex items-center gap-2 whitespace-nowrap">
                 IYED KHOUILDI
                 <span
                   className="inline-block w-2 h-2 rounded-full bg-[#D48D9B] animate-pulse"
                   title="Available for select projects"
                 />
               </span>
-              <span className="font-mono text-[9.5px] text-[#726A5F] tracking-[0.16em] uppercase">
+              <span className="hidden sm:block font-mono text-[9.5px] text-[#726A5F] tracking-[0.16em] uppercase">
                 Full Stack &amp; Data Architect
               </span>
             </div>
@@ -191,7 +191,7 @@ const Nav = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label="Toggle navigation menu"
-            className="p-2.5 rounded-full text-[#262522] bg-[#E9E0D2] border border-[#262522]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E8A1B0]"
+            className="p-2.5 rounded-full text-[#22211E] bg-[#EBE3D5] border border-[#22211E]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D48D9B]"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -208,7 +208,7 @@ const Nav = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden bg-[#F5F0E7]/98 backdrop-blur-2xl border-b border-[#262522]/10 px-6 py-6 shadow-2xl shoji-grid"
+            className="lg:hidden bg-[#F6F2EB]/98 backdrop-blur-2xl border-b border-[#22211E]/10 px-6 py-6 shadow-2xl shoji-grid"
           >
             <div className="flex flex-col gap-2 max-w-md mx-auto">
               {navLinks.map((link, i) => {
@@ -224,17 +224,17 @@ const Nav = () => {
                     transition={{ delay: i * 0.035 }}
                     className={`px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all flex items-center justify-between ${
                       isActive
-                        ? "bg-[#E8A1B0]/20 text-[#262522] border border-[#E8A1B0]/60 font-semibold"
-                        : "text-[#786F63] hover:bg-[#E9E0D2] hover:text-[#262522]"
+                        ? "bg-[#D48D9B]/20 text-[#22211E] border border-[#D48D9B]/60 font-semibold"
+                        : "text-[#726A5F] hover:bg-[#EBE3D5] hover:text-[#22211E]"
                     }`}
                   >
                     <span>{link.name}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#E8A1B0]" />}
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B]" />}
                   </motion.a>
                 );
               })}
 
-              <div className="pt-4 mt-3 border-t border-[#262522]/10 flex flex-col gap-3">
+              <div className="pt-4 mt-3 border-t border-[#22211E]/10 flex flex-col gap-3">
                 <a
                   href="#contact"
                   onClick={() => setMenuOpen(false)}

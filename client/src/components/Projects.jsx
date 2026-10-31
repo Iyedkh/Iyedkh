@@ -9,6 +9,8 @@ import {
 import ProjectModal from "./ProjectModal";
 import Magnetic from "./Magnetic";
 import { useLanguage } from "../i18n/LanguageContext";
+import SectionHeader from "./SectionHeader";
+import Spotlight from "./Spotlight";
 
 const Projects = () => {
   const { t, isRTL } = useLanguage();
@@ -141,41 +143,35 @@ const Projects = () => {
   return (
     <section id="work" className="py-28 sm:py-32 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-16 gap-6">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="hanko-stamp">作</span>
-              <div className="japandi-pill">
-                <span>{t.projects?.pill || "03 / Selected Architecture & Code"}</span>
-              </div>
+        <SectionHeader
+          kanji="作"
+          index="03"
+          pill={t.projects?.pill || "Selected Architecture & Code"}
+          heading={t.projects?.heading1 || "Selected"}
+          highlight={t.projects?.headingHighlight || "Works"}
+          className="mb-12"
+          aside={
+            <div className="space-y-4">
+              <p className="text-sm text-[#726A5F] font-sans leading-relaxed">
+                {t.projects?.description ||
+                  "Production platforms, SaaS enterprise software, and commercial digital systems built with performance and wabi-sabi precision."}
+              </p>
+              <a
+                href="https://github.com/Iyedkh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-japandi-secondary text-xs py-2 px-5 rounded-full group"
+              >
+                <Github className="w-3.5 h-3.5" />
+                <span>{t.projects?.viewGithub || "View All on GitHub"}</span>
+                <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
+              </a>
             </div>
-            <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-tight tracking-[-0.02em]">
-              {t.projects?.heading1 || "Selected"}{" "}
-              <span className="editorial-accent">
-                {t.projects?.headingHighlight || "Works"}
-              </span>.
-            </h2>
-            <p className="text-sm sm:text-base text-[#786F63] max-w-lg mt-3 font-sans">
-              {t.projects?.description ||
-                "Production platforms, SaaS enterprise software, and commercial digital systems built with performance and wabi-sabi precision."}
-            </p>
-          </div>
-
-          <a
-            href="https://github.com/Iyedkh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-japandi-secondary text-xs py-2 px-5 rounded-full self-start md:self-auto group"
-          >
-            <Github className="w-3.5 h-3.5" />
-            <span>{t.projects?.viewGithub || "View All on GitHub"}</span>
-            <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
-          </a>
-        </div>
+          }
+        />
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-2 p-1.5 rounded-full bg-[#E9E0D2]/80 border border-[#262522]/10 w-fit mb-12 overflow-x-auto max-w-full">
+        <div className="flex items-center gap-2 p-1.5 rounded-full bg-[#EBE3D5]/80 border border-[#22211E]/10 w-fit mb-12 overflow-x-auto max-w-full">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.id;
             return (
@@ -184,15 +180,15 @@ const Projects = () => {
                 onClick={() => setActiveFilter(tab.id)}
                 className={`relative px-4 py-2 rounded-full text-xs font-mono transition-all duration-200 whitespace-nowrap focus:outline-none ${
                   isActive
-                    ? "text-[#262522] font-semibold"
-                    : "text-[#786F63] hover:text-[#262522]"
+                    ? "text-[#22211E] font-semibold"
+                    : "text-[#726A5F] hover:text-[#22211E]"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeFilterPillSakura"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[#E8A1B0]/30 border border-[#E8A1B0] rounded-full -z-0"
+                    className="absolute inset-0 bg-[#D48D9B]/30 border border-[#D48D9B] rounded-full -z-0"
                   />
                 )}
                 <span className="relative z-10">{tab.label}</span>
@@ -205,48 +201,50 @@ const Projects = () => {
         <div className="space-y-12">
           {/* Flagship Feature: CARTHAGEOS */}
           {(activeFilter === "all" || activeFilter === "saas") && (
-            <motion.article
+            <Spotlight
+              as="article"
+              maxTilt={1.5}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               data-project-card
               onClick={() => setSelectedProject(projectList[0])}
-              className="p-8 sm:p-12 rounded-3xl bg-[#E9E0D2] border border-[#262522]/15 group cursor-pointer relative overflow-hidden transition-all duration-300 hover:border-[#E8A1B0] hover:shadow-xl"
+              className="p-8 sm:p-12 rounded-3xl bg-[#EBE3D5] border border-[#22211E]/15 group cursor-pointer relative overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-[#D48D9B] hover:shadow-[0_30px_60px_-20px_rgba(34,33,30,0.18)]"
             >
               {/* Subtle Sakura Blossom Silhouette in Background */}
-              <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-[#E8A1B0]/10 blur-2xl pointer-events-none" />
+              <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-[#D48D9B]/10 blur-2xl pointer-events-none" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
                 <div className="lg:col-span-7 space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 rounded-full bg-[#171714] text-[#F5F0E7] text-[11px] font-mono tracking-wider uppercase font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-[#151412] text-[#F6F2EB] text-[11px] font-mono tracking-wider uppercase font-semibold">
                       {t.projects?.featuredBadge || "Flagship SaaS ERP"}
                     </span>
-                    <span className="text-xs font-mono text-[#786F63]">2026</span>
+                    <span className="text-xs font-mono text-[#726A5F]">2026</span>
                   </div>
 
-                  <h3 className="font-editorial text-4xl sm:text-5xl text-[#262522] font-normal leading-tight group-hover:text-[#E8A1B0] transition-colors">
+                  <h3 className="font-editorial text-4xl sm:text-5xl text-[#22211E] font-normal leading-tight group-hover:text-[#D48D9B] transition-colors">
                     CARTHAGEOS
                   </h3>
 
-                  <p className="text-sm font-mono text-[#AD8B59] uppercase tracking-wider">
+                  <p className="text-sm font-mono text-[#A68550] uppercase tracking-wider">
                     Modular SaaS Enterprise Resource Planning Platform
                   </p>
 
-                  <p className="text-sm sm:text-base text-[#786F63] font-sans leading-relaxed">
+                  <p className="text-sm sm:text-base text-[#726A5F] font-sans leading-relaxed">
                     Designed and architected from scratch to streamline commercial operations, financial ledgers, inventory turnover, and multi-user team permissions for growing enterprises.
                   </p>
 
                   {/* Impact & Role */}
                   <div className="grid grid-cols-2 gap-3 pt-2">
-                    <div className="p-3 rounded-xl bg-[#F5F0E7]/80 border border-[#262522]/10 text-xs font-mono">
-                      <span className="text-[#786F63] block">{t.projects?.roleLabel || "ROLE"}</span>
-                      <span className="text-[#262522] font-medium">Founder &amp; Lead Architect</span>
+                    <div className="p-3 rounded-xl bg-[#F6F2EB]/80 border border-[#22211E]/10 text-xs font-mono">
+                      <span className="text-[#726A5F] block">{t.projects?.roleLabel || "ROLE"}</span>
+                      <span className="text-[#22211E] font-medium">Founder &amp; Lead Architect</span>
                     </div>
-                    <div className="p-3 rounded-xl bg-[#F5F0E7]/80 border border-[#262522]/10 text-xs font-mono">
-                      <span className="text-[#786F63] block">DELIVERABLE</span>
-                      <span className="text-[#78836A] font-medium">Multi-tenant ERP Engine</span>
+                    <div className="p-3 rounded-xl bg-[#F6F2EB]/80 border border-[#22211E]/10 text-xs font-mono">
+                      <span className="text-[#726A5F] block">DELIVERABLE</span>
+                      <span className="text-[#6B785D] font-medium">Multi-tenant ERP Engine</span>
                     </div>
                   </div>
 
@@ -254,7 +252,7 @@ const Projects = () => {
                     {projectList[0].tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-full bg-[#F5F0E7] border border-[#262522]/10 text-xs font-mono text-[#262522]"
+                        className="px-2.5 py-1 rounded-full bg-[#F6F2EB] border border-[#22211E]/10 text-xs font-mono text-[#22211E]"
                       >
                         {tag}
                       </span>
@@ -320,7 +318,7 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-            </motion.article>
+            </Spotlight>
           )}
 
           {/* Secondary Projects Grid (2 Columns) */}
@@ -328,7 +326,9 @@ const Projects = () => {
             {filteredProjects
               .filter((p) => !p.isFlagship)
               .map((project) => (
-                <motion.article
+                <Spotlight
+                  as="article"
+                  maxTilt={4}
                   key={project.id}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -336,40 +336,40 @@ const Projects = () => {
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   data-project-card
                   onClick={() => setSelectedProject(project)}
-                  className="japandi-card p-7 flex flex-col justify-between group cursor-pointer hover:border-[#E8A1B0]"
+                  className="japandi-card p-7 flex flex-col justify-between group cursor-pointer hover:border-[#D48D9B]"
                 >
                   <div>
                     {/* Top Meta Bar */}
-                    <div className="flex items-center justify-between pb-4 border-b border-[#262522]/10 mb-5">
+                    <div className="flex items-center justify-between pb-4 border-b border-[#22211E]/10 mb-5">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs text-[#AD8B59] font-semibold">
+                        <span className="font-mono text-xs text-[#A68550] font-semibold">
                           {project.categoryLabel}
                         </span>
                       </div>
-                      <span className="font-mono text-xs text-[#786F63]">{project.year}</span>
+                      <span className="font-mono text-xs text-[#726A5F]">{project.year}</span>
                     </div>
 
                     {/* Title & Subtitle */}
-                    <h3 className="font-editorial text-3xl text-[#262522] font-normal group-hover:text-[#E8A1B0] transition-colors mb-1">
+                    <h3 className="font-editorial text-3xl text-[#22211E] font-normal group-hover:text-[#D48D9B] transition-colors mb-1">
                       {project.title}
                     </h3>
-                    <p className="text-xs font-mono text-[#786F63] uppercase tracking-wider mb-4">
+                    <p className="text-xs font-mono text-[#726A5F] uppercase tracking-wider mb-4">
                       {project.subtitle}
                     </p>
 
-                    <p className="text-xs sm:text-sm text-[#786F63] font-sans leading-relaxed mb-6">
+                    <p className="text-xs sm:text-sm text-[#726A5F] font-sans leading-relaxed mb-6">
                       {project.description}
                     </p>
 
                     {/* Role & Impact */}
                     <div className="grid grid-cols-2 gap-2 mb-6">
-                      <div className="p-2.5 rounded-lg bg-[#E9E0D2]/50 border border-[#262522]/10 text-xs font-mono">
-                        <span className="text-[#786F63] text-[10px] block">{t.projects?.roleLabel || "ROLE"}</span>
-                        <span className="text-[#262522] text-[11px] font-medium">{project.role}</span>
+                      <div className="p-2.5 rounded-lg bg-[#EBE3D5]/50 border border-[#22211E]/10 text-xs font-mono">
+                        <span className="text-[#726A5F] text-[10px] block">{t.projects?.roleLabel || "ROLE"}</span>
+                        <span className="text-[#22211E] text-[11px] font-medium">{project.role}</span>
                       </div>
-                      <div className="p-2.5 rounded-lg bg-[#E9E0D2]/50 border border-[#262522]/10 text-xs font-mono">
-                        <span className="text-[#786F63] text-[10px] block">IMPACT</span>
-                        <span className="text-[#78836A] text-[11px] font-medium truncate block">{project.impact}</span>
+                      <div className="p-2.5 rounded-lg bg-[#EBE3D5]/50 border border-[#22211E]/10 text-xs font-mono">
+                        <span className="text-[#726A5F] text-[10px] block">IMPACT</span>
+                        <span className="text-[#6B785D] text-[11px] font-medium truncate block">{project.impact}</span>
                       </div>
                     </div>
 
@@ -378,7 +378,7 @@ const Projects = () => {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded-full bg-[#E9E0D2] border border-[#262522]/10 text-[11px] font-mono text-[#262522]"
+                          className="px-2 py-0.5 rounded-full bg-[#EBE3D5] border border-[#22211E]/10 text-[11px] font-mono text-[#22211E]"
                         >
                           {tag}
                         </span>
@@ -387,8 +387,8 @@ const Projects = () => {
                   </div>
 
                   {/* Bottom Action Footer */}
-                  <div className="pt-4 border-t border-[#262522]/10 flex items-center justify-between">
-                    <span className="text-xs font-mono text-[#262522] font-medium flex items-center gap-1 group-hover:text-[#E8A1B0] transition-colors">
+                  <div className="pt-4 border-t border-[#22211E]/10 flex items-center justify-between">
+                    <span className="text-xs font-mono text-[#22211E] font-medium flex items-center gap-1 group-hover:text-[#D48D9B] transition-colors">
                       Inspect Case Study
                       <ArrowUpRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
                     </span>
@@ -399,14 +399,14 @@ const Projects = () => {
                           e.stopPropagation();
                           window.open(project.link, "_blank");
                         }}
-                        className="text-xs font-mono text-[#786F63] hover:text-[#262522] flex items-center gap-1"
+                        className="text-xs font-mono text-[#726A5F] hover:text-[#22211E] flex items-center gap-1"
                       >
                         <Globe className="w-3.5 h-3.5" />
                         <span>Live</span>
                       </span>
                     )}
                   </div>
-                </motion.article>
+                </Spotlight>
               ))}
           </div>
         </div>

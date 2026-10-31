@@ -36,7 +36,7 @@ const JapaneseBackdrop = () => {
         <pattern id="asanohaPattern" width="20" height="34.64" patternUnits="userSpaceOnUse">
           <path
             d="M 10 0 L 0 5.77 L 0 17.32 L 10 23.09 L 20 17.32 L 20 5.77 Z M 10 0 L 10 23.09 M 0 5.77 L 20 17.32 M 0 17.32 L 20 5.77"
-            stroke="#262522"
+            stroke="#22211E"
             strokeWidth="0.5"
             fill="none"
           />
@@ -46,7 +46,7 @@ const JapaneseBackdrop = () => {
 
       {/* 3. Corrected Mount Fuji Base Horizon Layer (富士山) */}
       {/* Positioned comfortably at the horizon so it does not overpower the hero text */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[40%] sm:h-[46%] lg:h-[50%] opacity-90 transition-opacity duration-1000">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[34%] sm:h-[40%] opacity-60 lg:left-auto lg:right-[-6%] lg:translate-x-0 lg:w-[62%] lg:h-[46%] lg:opacity-80 transition-opacity duration-1000">
         <MountFuji className="w-full h-full" />
       </div>
 

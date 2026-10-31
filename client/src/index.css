@@ -54,7 +54,10 @@
     --border-focus: var(--sakura-border);
 
     /* Typography */
-    --font-editorial: 'Cormorant Garamond', 'DM Serif Display', Georgia, serif;
+    --font-editorial: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
+    --font-kanji: 'Noto Serif JP', 'Cormorant Garamond', serif;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --hanko-red: #B8403A;
     --font-sans: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   }
@@ -436,6 +439,199 @@
 
 .animate-petal-flutter {
   animation: petal-flutter-fall 6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Designer Layer — accessories, textures & interaction details
+   ========================================================================== */
+
+.font-kanji {
+  font-family: var(--font-kanji);
+}
+
+::selection {
+  background: rgba(212, 141, 155, 0.28);
+  color: var(--text-charcoal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--sakura-pink);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+}
+
+/* Washi fibre grain: fixed full-screen noise for tactile paper feel */
+.paper-grain {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.12 0 0 0 0 0.11 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(10) infinite;
+}
+
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+}
+
+/* Torii-arch portrait frame */
+.japandi-arch {
+  border-radius: 999px 999px 24px 24px;
+}
+
+/* Ink-fill sweep on primary buttons */
+.btn-japandi-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, #8C4A57 0%, var(--sakura-pink) 100%);
+  transform: translateY(101%);
+  border-radius: inherit;
+  transition: transform 0.5s var(--ease-out-expo);
+  z-index: 0;
+}
+.btn-japandi-primary:hover::before {
+  transform: translateY(0);
+}
+.btn-japandi-primary > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Secondary buttons: underline brush on hover */
+.btn-japandi-secondary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-japandi-secondary::after {
+  content: "";
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 7px;
+  height: 1px;
+  background: var(--sakura-pink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.btn-japandi-secondary:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Spotlight cards: radial light follows the cursor (set via --mx/--my) */
+.spotlight, .japandi-card {
+  --mx: 50%;
+  --my: 50%;
+  isolation: isolate;
+}
+.spotlight::before, .japandi-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(212, 141, 155, 0.16), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight::after, .japandi-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(166, 133, 80, 0.7), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight.japandi-card {
+  transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+}
+.spotlight:hover::before,
+.spotlight:hover::after,
+.japandi-card:hover::before,
+.japandi-card:hover::after {
+  opacity: 1;
+}
+.spotlight > :not(.absolute),
+.japandi-card > :not(.absolute) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Infinite marquee band */
+@keyframes marquee-x {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 42s linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(34, 33, 30, 0.35);
+}
+
+/* Rotating circular badge text */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+/* Kanji ghost watermark behind section titles */
+.ghost-kanji {
+  font-family: var(--font-kanji);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(34, 33, 30, 0.07);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Underline links that draw in */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.45s var(--ease-out-expo), color 0.2s ease;
+}
+.link-draw:hover {
+  background-size: 100% 1px;
 }
 
 /* Reduced Motion Override */

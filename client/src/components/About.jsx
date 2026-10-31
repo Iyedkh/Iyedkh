@@ -4,8 +4,11 @@ import { Download, Copy, Check, Compass, ShieldCheck, Database, Layers } from "l
 import { toast } from "sonner";
 import Me from "../assets/Me.png";
 import { useLanguage } from "../i18n/LanguageContext";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 import { useCvModal } from "../context/CvModalContext";
 import Magnetic from "./Magnetic";
+import Counter from "./Counter";
 
 const About = () => {
   const { t } = useLanguage();
@@ -29,43 +32,56 @@ const About = () => {
   return (
     <section id="about" className="py-28 sm:py-32 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        {/* Editorial Section Header */}
-        <div className="mb-14 sm:mb-16">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="hanko-stamp">道</span>
-            <div className="japandi-pill">
-              <span>{t.about?.pill || "02 / Philosophy & Biography"}</span>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-8">
-              <h2 className="font-editorial text-4xl sm:text-5xl md:text-6xl font-normal text-[#262522] leading-[1.1] tracking-[-0.02em]">
-                {t.about?.heading1 || "Building at the intersection of"}{" "}
-                <span className="editorial-accent">
-                  {t.about?.headingHighlight || "code, data & design"}
-                </span>.
-              </h2>
-            </div>
-            <div className="lg:col-span-4 pb-2">
-              <p className="text-sm font-mono text-[#786F63] tracking-wide uppercase">
-                Iyed Khouildi • ISG Bizerte Business Intelligence Graduate
-              </p>
-            </div>
-          </div>
-          <div className="katana-divider my-8" />
-        </div>
+        <SectionHeader
+          kanji="道"
+          index="02"
+          pill={t.about?.pill || "Philosophy & Biography"}
+          heading={t.about?.heading1 || "Building at the intersection of"}
+          highlight={t.about?.headingHighlight || "code, data & design"}
+          aside={
+            <p className="text-sm font-mono text-[#726A5F] tracking-wide uppercase leading-relaxed">
+              Iyed Khouildi • ISG Bizerte Business Intelligence Graduate
+            </p>
+          }
+        />
 
         {/* Editorial Split Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-20">
           {/* Left Column: Authentic Portrait with Organic Arch Framing */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <div className="relative w-full max-w-sm">
-              {/* Japandi Arch Frame */}
-              <div className="relative aspect-[3/4] japandi-arch overflow-hidden bg-[#EBE3D5] border border-[#22211E]/15 shadow-sm group">
-                <img
+              {/* Offset hairline frame & vertical caption */}
+              <motion.div
+                aria-hidden="true"
+                initial={{ opacity: 0, x: -14, y: 14 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 translate-x-4 translate-y-4 japandi-arch border border-[#A68550]/40"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute -left-10 top-1/2 -translate-y-1/2 hidden lg:block font-mono text-[9.5px] uppercase tracking-[0.3em] text-[#726A5F] [writing-mode:vertical-rl] rotate-180"
+              >
+                Portrait · 肖像 · Bizerte
+              </span>
+
+              {/* Japandi Arch Frame: opens like a shoji panel */}
+              <motion.div
+                initial={{ clipPath: "inset(100% 0% 0% 0% round 999px 999px 24px 24px)" }}
+                whileInView={{ clipPath: "inset(0% 0% 0% 0% round 999px 999px 24px 24px)" }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1] }}
+                className="relative aspect-[3/4] japandi-arch overflow-hidden bg-[#EBE3D5] border border-[#22211E]/15 shadow-[0_30px_60px_-30px_rgba(34,33,30,0.35)] group"
+              >
+                <motion.img
                   src={Me}
                   alt="Iyed Khouildi — Full Stack Developer & Data Analyst"
-                  className="w-full h-full object-cover object-top filter grayscale contrast-105 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  initial={{ scale: 1.25 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full h-full object-cover object-top grayscale contrast-105 transition-[filter] duration-700 ease-out group-hover:grayscale-0"
                   loading="lazy"
                 />
                 {/* Rice Paper Gradient Overlay */}
@@ -81,19 +97,26 @@ const About = () => {
                     📍 Bizerte, Tunisia • BI Degree &amp; Dual Bootcamp
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Decorative Japanese Character Stamp */}
-              <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-[#D48D9B] text-[#22211E] flex items-center justify-center font-editorial text-sm shadow-sm select-none border border-[#22211E]/20 font-bold">
+              {/* Decorative hanko seal that stamps down */}
+              <motion.div
+                aria-hidden="true"
+                initial={{ scale: 2.2, rotate: -25, opacity: 0 }}
+                whileInView={{ scale: 1, rotate: -8, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 300, damping: 15, delay: 1.2 }}
+                className="absolute -top-3 -right-3 w-12 h-12 rounded-lg bg-[#B8403A] text-[#F6F2EB] flex items-center justify-center font-kanji text-lg shadow-[0_8px_20px_-6px_rgba(184,64,58,0.5)] select-none"
+              >
                 匠
-              </div>
+              </motion.div>
             </div>
           </div>
 
           {/* Right Column: Biography & Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-4 text-base sm:text-lg text-[#726A5F] font-sans leading-relaxed">
-              <p>
+            <Reveal className="space-y-4 text-base sm:text-lg text-[#726A5F] font-sans leading-relaxed">
+              <p className="first-letter:font-editorial first-letter:text-6xl first-letter:float-left first-letter:me-3 first-letter:mt-1 first-letter:leading-[0.8] first-letter:text-[#22211E]">
                 {t.about?.description ||
                   "Based in Bizerte, Tunisia, I am a developer and data analyst who bridges engineering capability with statistical thinking to deliver scalable, intelligent software."}
               </p>
@@ -103,24 +126,24 @@ const About = () => {
               <p>
                 As the architect behind <strong className="text-[#D48D9B] font-medium">CARTHAGEOS</strong> (a modular SaaS ERP platform), I channel this multidisciplinary perspective into enterprise software: turning operational complexity into calm, dependable digital architecture.
               </p>
-            </div>
+            </Reveal>
 
             {/* Quick Metrics / Foundation Points */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-4">
               <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10">
-                <div className="text-xl font-editorial font-medium text-[#22211E]">3+ Years</div>
+                <div className="text-3xl font-editorial font-medium text-[#22211E]"><Counter target={3} suffix="+" /> <span className="text-xl">Years</span></div>
                 <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   {t.hero?.stats?.yearsExperience || "Software Engineering"}
                 </div>
               </div>
               <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10">
-                <div className="text-xl font-editorial font-medium text-[#A68550]">ISG Bizerte</div>
+                <div className="text-3xl font-editorial font-medium text-[#A68550]">ISG <span className="text-xl">Bizerte</span></div>
                 <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   {t.hero?.card?.degree || "BI Degree"}
                 </div>
               </div>
               <div className="p-3.5 rounded-xl bg-[#EBE3D5]/60 border border-[#22211E]/10 col-span-2 sm:col-span-1">
-                <div className="text-xl font-editorial font-medium text-[#6B785D]">Dual Bootcamp</div>
+                <div className="text-3xl font-editorial font-medium text-[#6B785D]"><Counter target={2} suffix="×" /> <span className="text-xl">Bootcamp</span></div>
                 <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mt-0.5">
                   Full Stack &amp; Data
                 </div>
@@ -131,17 +154,24 @@ const About = () => {
 
         {/* 4 Core Cards / Pillars Grid */}
         <div className="mb-20">
-          <div className="text-xs font-mono text-[#786F63] uppercase tracking-[0.2em] mb-6">
+          <div className="text-xs font-mono text-[#726A5F] uppercase tracking-[0.2em] mb-6">
             Guiding Principles &amp; Competencies
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {t.about?.cards?.map((card, idx) => {
               const Icon = principleIcons[idx % principleIcons.length];
               return (
-                <div
+                <motion.div
                   key={card.title}
-                  className="japandi-card p-6 flex flex-col justify-between group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="japandi-card p-6 flex flex-col justify-between group overflow-hidden"
                 >
+                  <span aria-hidden="true" className="absolute -right-3 -bottom-6 font-editorial text-[7rem] leading-none text-[#22211E]/[0.04] transition-all duration-700 group-hover:text-[#D48D9B]/15 group-hover:-translate-y-2">
+                    0{idx + 1}
+                  </span>
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <span className="font-mono text-xs text-[#D48D9B] font-semibold">
@@ -161,14 +191,15 @@ const About = () => {
                       {card.highlight}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
 
         {/* Action Callout Banner */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-[#EBE3D5] border border-[#22211E]/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <Reveal className="relative overflow-hidden p-8 sm:p-12 rounded-3xl bg-[#EBE3D5] border border-[#22211E]/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shoji-grid">
+          <span aria-hidden="true" className="ghost-kanji absolute -right-4 -top-10 text-[12rem]">和</span>
           <div className="space-y-1">
             <h3 className="font-editorial text-2xl sm:text-3xl font-normal text-[#22211E]">
               {t.about?.banner?.title || "Interested in collaborating or exploring architecture?"}
@@ -199,7 +230,7 @@ const About = () => {
               </button>
             </Magnetic>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
