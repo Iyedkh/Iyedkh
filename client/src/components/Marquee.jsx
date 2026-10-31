@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const DEFAULT_ITEMS = [
   "Full Stack Engineering",
@@ -16,13 +17,15 @@ const DEFAULT_ITEMS = [
 /**
  * Marquee: endless editorial ticker. Kanji glyphs become sakura-coloured separators.
  */
-const Marquee = ({ items = DEFAULT_ITEMS, reverse = false, outline = false }) => {
-  const sequence = [...items, ...items];
+const Marquee = ({ variant = "main", items, reverse = false, outline = false }) => {
+  const { t } = useLanguage();
+  const list = items || t.marquee?.[variant] || DEFAULT_ITEMS;
+  const sequence = [...list, ...list];
 
   return (
     <div
       aria-hidden="true"
-      className="marquee relative overflow-hidden border-y border-[#22211E]/10 bg-[#EBE3D5]/50 py-5 sm:py-6 select-none [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]"
+      className="marquee relative overflow-hidden border-y border-ink/10 bg-paper-2/50 py-5 sm:py-6 select-none [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]"
     >
       <div className={`marquee-track ${reverse ? "reverse" : ""}`}>
         {sequence.map((item, i) => {
@@ -30,11 +33,11 @@ const Marquee = ({ items = DEFAULT_ITEMS, reverse = false, outline = false }) =>
           return (
             <span key={i} className="flex items-center shrink-0 px-6 sm:px-10">
               {isKanji ? (
-                <span className="font-kanji text-xl sm:text-2xl text-[#D48D9B]">{item}</span>
+                <span className="font-kanji text-xl sm:text-2xl text-sakura">{item}</span>
               ) : (
                 <span
                   className={`font-editorial text-3xl sm:text-5xl tracking-[-0.02em] whitespace-nowrap ${
-                    outline ? "text-outline italic" : "text-[#22211E]"
+                    outline ? "text-outline italic" : "text-ink"
                   }`}
                 >
                   {item}

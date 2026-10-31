@@ -44,22 +44,22 @@ const SectionHeader = ({ kanji, index, pill, heading, highlight, aside, classNam
           {kanji}
         </motion.span>
         {index && (
-          <span className="font-mono text-[11px] tracking-[0.2em] text-[#A68550]">{index}</span>
+          <span className="font-mono text-[11px] tracking-[0.2em] text-gold">{index}</span>
         )}
-        <span className="h-px w-8 bg-[#22211E]/20" />
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#726A5F]">{String(pill || "").replace(/^\d+\s*\/\s*/, "")}</span>
+        <span className="h-px w-8 bg-ink/20" />
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-soft">{String(pill || "").replace(/^\d+\s*\/\s*/, "")}</span>
       </motion.div>
 
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
         <div className="lg:col-span-8">
-          <h2 className="font-editorial text-[2.6rem] sm:text-6xl md:text-7xl font-normal text-[#22211E] leading-[1.02] tracking-[-0.025em]">
+          <h2 className="font-editorial text-[2.6rem] sm:text-6xl md:text-7xl font-normal text-ink leading-[1.02] tracking-[-0.025em]">
             <WordReveal text={heading} />{" "}
             <WordReveal
               text={highlight}
               delay={headingWords * 0.06}
-              className="italic text-[#D48D9B]"
+              className="italic text-sakura"
             />
-            <span className="text-[#A68550]">.</span>
+            <span className="text-gold">.</span>
           </h2>
         </div>
         {aside && (
@@ -82,14 +82,14 @@ const SectionHeader = ({ kanji, index, pill, heading, highlight, aside, classNam
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
-          className="absolute inset-0 origin-left rtl:origin-right bg-gradient-to-r from-[#22211E]/40 via-[#A68550]/40 to-transparent"
+          className="absolute inset-0 origin-left rtl:origin-right bg-gradient-to-r from-ink/40 via-gold/40 to-transparent"
         />
         <motion.span
           initial={shouldReduceMotion ? false : { scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-          className="absolute -top-[3px] start-0 h-[7px] w-[7px] rounded-full bg-[#B8403A]"
+          className="absolute -top-[3px] start-0 h-[7px] w-[7px] rounded-full bg-hanko"
         />
       </div>
     </div>

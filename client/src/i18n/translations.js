@@ -1,4 +1,6 @@
-export const translations = {
+import { content } from "./content";
+
+const baseTranslations = {
   en: {
     // Nav
     nav: {
@@ -1229,3 +1231,17 @@ export const translations = {
     },
   },
 };
+
+// Deep-merge content strings (objects merge, arrays and strings replace)
+const mergeDeep = (base, extra) => {
+  const out = { ...base };
+  Object.entries(extra || {}).forEach(([key, value]) => {
+    const isObject = value && typeof value === "object" && !Array.isArray(value);
+    out[key] = isObject ? mergeDeep(base?.[key] || {}, value) : value;
+  });
+  return out;
+};
+
+export const translations = Object.fromEntries(
+  Object.entries(baseTranslations).map(([lang, dict]) => [lang, mergeDeep(dict, content[lang])])
+);

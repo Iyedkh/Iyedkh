@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const IntroLoader = ({ onComplete }) => {
+  const { t } = useLanguage();
   const [stage, setStage] = useState("drawing"); // "drawing" -> "katana" -> "letters" -> "exit"
   const nameLetters = "IYED KHOUILDI".split("");
 
@@ -39,10 +41,10 @@ const IntroLoader = ({ onComplete }) => {
             clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
             transition: { duration: 0.75, ease: [0.77, 0, 0.175, 1] },
           }}
-          className="fixed inset-0 z-[200] bg-[#F6F2EB] flex flex-col items-center justify-center select-none overflow-hidden washi-grain"
+          className="fixed inset-0 z-[200] bg-paper flex flex-col items-center justify-center select-none overflow-hidden washi-grain"
         >
           {/* Subtle Ambient Washi Grid */}
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#EBE3D5]/50 pointer-events-none" />
+          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-paper-2/50 pointer-events-none" />
 
           {/* Central Architectural & Katana Composition */}
           <div className="relative flex flex-col items-center justify-center z-10">
@@ -85,7 +87,7 @@ const IntroLoader = ({ onComplete }) => {
               initial={{ scaleX: 0 }}
               animate={stage !== "drawing" ? { scaleX: 1 } : { scaleX: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="w-48 h-[1.5px] bg-gradient-to-r from-transparent via-[#A68550] to-transparent mb-5 origin-center"
+              className="w-48 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent mb-5 origin-center"
             />
 
             {/* Sequential Typography Reveal */}
@@ -104,7 +106,7 @@ const IntroLoader = ({ onComplete }) => {
                     delay: idx * 0.035,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="font-editorial text-2xl sm:text-3xl font-medium tracking-[0.22em] text-[#22211E]"
+                  className="font-editorial text-2xl sm:text-3xl font-medium tracking-[0.22em] text-ink"
                 >
                   {letter === " " ? "\u00A0" : letter}
                 </motion.span>
@@ -116,9 +118,9 @@ const IntroLoader = ({ onComplete }) => {
               initial={{ opacity: 0 }}
               animate={stage === "letters" || stage === "exit" ? { opacity: 0.75 } : { opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="text-[11px] font-mono tracking-[0.24em] uppercase text-[#726A5F] mt-3"
+              className="text-[11px] font-mono tracking-[0.24em] uppercase text-ink-soft mt-3"
             >
-              Full Stack & Data Architecture
+              {t.ui?.introTagline || "Full Stack & Data Architecture"}
             </motion.p>
           </div>
 
@@ -126,9 +128,9 @@ const IntroLoader = ({ onComplete }) => {
           <button
             type="button"
             onClick={onComplete}
-            className="absolute bottom-8 right-8 text-[11px] font-mono tracking-widest text-[#9C9385] hover:text-[#22211E] uppercase transition-colors"
+            className="absolute bottom-8 right-8 text-[11px] font-mono tracking-widest text-ink-faint hover:text-ink uppercase transition-colors"
           >
-            Skip [Esc]
+            {t.ui?.skip || "Skip [Esc]"}
           </button>
         </motion.div>
       )}

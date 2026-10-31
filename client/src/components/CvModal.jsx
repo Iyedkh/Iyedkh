@@ -90,7 +90,7 @@ const CvModal = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={closeCvModal}
-            className="fixed inset-0 bg-[#151412]/60 backdrop-blur-md"
+            className="fixed inset-0 bg-ink/60 backdrop-blur-md"
             aria-hidden="true"
           />
 
@@ -212,7 +212,7 @@ const CvModal = () => {
             <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between text-xs text-[var(--text-secondary)]">
               <span className="flex items-center gap-1.5 font-mono text-[11px]">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent-teal)]" />
-                <span>Verified PDF • Ready for Download</span>
+                <span>{t.cvModal?.verifiedNote || "Verified PDF • Ready for Download"}</span>
               </span>
               <button
                 onClick={closeCvModal}

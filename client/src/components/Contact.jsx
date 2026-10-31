@@ -125,7 +125,7 @@ const Contact = () => {
           heading={t.contact?.heading1 || "Let's Start a"}
           highlight={t.contact?.headingHighlight || "Conversation"}
           aside={
-            <p className="text-sm sm:text-base text-[#726A5F] font-sans leading-relaxed">
+            <p className="text-sm sm:text-base text-ink-soft font-sans leading-relaxed">
               {t.contact?.description ||
                 "Have an upcoming project, freelance inquiry, or full-time opportunity? Reach out directly or send a message below."}
             </p>
@@ -141,27 +141,27 @@ const Contact = () => {
                 key={item.id}
                 onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
                 className={`japandi-card p-5 flex items-center justify-between group ${
-                  item.action === "copy" ? "cursor-pointer hover:border-[#D48D9B]" : ""
+                  item.action === "copy" ? "cursor-pointer hover:border-sakura" : ""
                 }`}
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#EBE3D5] border border-[#22211E]/15 flex items-center justify-center text-[#22211E] transition-transform duration-300 group-hover:scale-105 group-hover:border-[#D48D9B]">
+                  <div className="w-10 h-10 rounded-full bg-paper-2 border border-ink/15 flex items-center justify-center text-ink transition-transform duration-300 group-hover:scale-105 group-hover:border-sakura">
                     <item.icon className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#726A5F] uppercase tracking-wider">
+                    <div className="text-[10px] font-mono text-ink-soft uppercase tracking-wider">
                       {item.label}
                     </div>
-                    <div className="text-sm font-medium text-[#22211E] group-hover:text-[#D48D9B] transition-colors mt-0.5" dir="ltr">
+                    <div className="text-sm font-medium text-ink group-hover:text-sakura transition-colors mt-0.5" dir="ltr">
                       {item.value}
                     </div>
                   </div>
                 </div>
 
                 {item.action === "copy" && (
-                  <div className="text-[#726A5F] group-hover:text-[#22211E] transition-colors p-2">
+                  <div className="text-ink-soft group-hover:text-ink transition-colors p-2">
                     {copiedKey === item.id ? (
-                      <Check className="w-4 h-4 text-[#D48D9B]" />
+                      <Check className="w-4 h-4 text-sakura" />
                     ) : (
                       <Copy className="w-4 h-4" />
                     )}
@@ -172,7 +172,7 @@ const Contact = () => {
 
             {/* Social Channels Card */}
             <div className="japandi-card p-5">
-              <div className="text-[10px] font-mono text-[#726A5F] uppercase tracking-wider mb-3">
+              <div className="text-[10px] font-mono text-ink-soft uppercase tracking-wider mb-3">
                 {t.contact?.labels?.connectOnline || "Connect Online"}
               </div>
               <div className="flex flex-col gap-2">
@@ -182,13 +182,13 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded-xl hover:bg-[#EBE3D5] transition-colors group text-xs font-mono"
+                    className="flex items-center justify-between p-2 rounded-xl hover:bg-paper-2 transition-colors group text-xs font-mono"
                   >
-                    <div className="flex items-center gap-2.5 text-[#22211E]">
-                      <social.icon className="w-4 h-4 text-[#726A5F] group-hover:text-[#22211E]" />
+                    <div className="flex items-center gap-2.5 text-ink">
+                      <social.icon className="w-4 h-4 text-ink-soft group-hover:text-ink" />
                       <span>{social.name}</span>
                     </div>
-                    <span className="text-[#726A5F] group-hover:text-[#22211E] transition-colors">
+                    <span className="text-ink-soft group-hover:text-ink transition-colors">
                       {social.handle} →
                     </span>
                   </a>
@@ -197,12 +197,12 @@ const Contact = () => {
             </div>
 
             {/* Curriculum Vitae Modal Trigger */}
-            <div className="p-5 rounded-2xl bg-[#EBE3D5] border border-[#22211E]/15 flex items-center justify-between">
+            <div className="p-5 rounded-2xl bg-paper-2 border border-ink/15 flex items-center justify-between">
               <div>
-                <span className="font-editorial text-lg text-[#22211E] block">
+                <span className="font-editorial text-lg text-ink block">
                   {t.cvModal?.pill || "Curriculum Vitae"}
                 </span>
-                <span className="text-xs font-mono text-[#726A5F]">EN &amp; FR PDF Formats</span>
+                <span className="text-xs font-mono text-ink-soft">{t.contact?.cvFormats || "EN & FR PDF Formats"}</span>
               </div>
               <Magnetic strength={0.25}>
                 <button
@@ -232,7 +232,7 @@ const Contact = () => {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
+                        <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                           {t.contact?.form?.nameLabel || "Your Name *"}
                         </label>
                         <input
@@ -246,7 +246,7 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
+                        <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                           {t.contact?.form?.emailLabel || "Email Address *"}
                         </label>
                         <input
@@ -262,7 +262,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
+                      <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                         {t.contact?.form?.subjectLabel || "Subject"}
                       </label>
                       <input
@@ -275,7 +275,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
+                      <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                         {t.contact?.form?.messageLabel || "Your Message *"}
                       </label>
                       <textarea
@@ -309,13 +309,13 @@ const Contact = () => {
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="flex flex-col items-center justify-center text-center p-8 space-y-4"
                   >
-                    <div className="w-16 h-16 rounded-full bg-[#151412] text-[#D48D9B] flex items-center justify-center border border-[#D48D9B]">
+                    <div className="w-16 h-16 rounded-full bg-ink text-sakura flex items-center justify-center border border-sakura">
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
-                    <h3 className="font-editorial text-3xl font-normal text-[#22211E]">
+                    <h3 className="font-editorial text-3xl font-normal text-ink">
                       {t.contact?.form?.successTitle || "Almost Done!"}
                     </h3>
-                    <p className="text-sm text-[#726A5F] max-w-sm leading-relaxed font-sans">
+                    <p className="text-sm text-ink-soft max-w-sm leading-relaxed font-sans">
                       {t.contact?.form?.successDesc ||
                         "Thank you for reaching out. Your message has been received and I will reply within 24 hours."}
                     </p>

@@ -1,7 +1,61 @@
 @import "tailwindcss";
 
+/* Theme colour names for utilities (bg-paper, text-ink/70…); values switch with data-theme */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-ink: var(--ink);
+  --color-ink-mid: var(--ink-mid);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-sakura: var(--sakura);
+  --color-sakura-deep: var(--sakura-deep);
+  --color-gold: var(--gold);
+  --color-bamboo: var(--bamboo);
+  --color-hanko: var(--hanko);
+}
+
 @layer base {
   :root {
+    /* Day palette (washi paper & sumi ink) */
+    --paper: #F6F2EB;
+    --paper-2: #EBE3D5;
+    --paper-3: #E4DAC9;
+    --ink: #22211E;
+    --ink-rgb: 34 33 30;
+    --ink-mid: #5F584E;
+    --ink-soft: #726A5F;
+    --ink-faint: #9C9385;
+    --sakura: #D48D9B;
+    --sakura-deep: #8C4A57;
+    --gold: #A68550;
+    --bamboo: #6B785D;
+    --hanko: #B8403A;
+    --glow-1: rgba(243, 217, 223, 0.4);
+    --glow-2: rgba(246, 226, 214, 0.18);
+    --card-sheen: rgba(255, 255, 255, 0.55);
+
+    /* Landscape: rising sun, warm-lit slopes, ivory clouds */
+    --sun-core: #EA6B5A;
+    --sun-mid: #D95343;
+    --sun-edge: #C44333;
+    --sun-aura-1: #DE5D4E;
+    --sun-aura-2: #E28779;
+    --sun-aura-3: #EFA882;
+    --fuji-1: #3C424E;
+    --fuji-2: #2D323C;
+    --fuji-3: #1E2128;
+    --fuji-4: #17191F;
+    --fuji-w1: #252A34;
+    --fuji-w2: #1B1E26;
+    --fuji-w3: #13151A;
+    --fuji-light: #F2C4B4;
+    --fuji-light-2: #D9A08F;
+    --cloud-hi: #FFFFFF;
+    --cloud-mid: #F8F3EC;
+    --cloud-lo: #EBE3D5;
+
     /* 
       AUTHENTIC JAPANDI × JAPANESE DENTŌ-IRO PALETTE:
       - Torinoko Washi (warm unbleached paper): #F6F2EB
@@ -15,25 +69,25 @@
       - Rikyū-cha (Kyoto tea master green): #6B785D
       - Sugi / Natural cedar wood: #8C6747
     */
-    --bg-rice-paper: #F6F2EB;
-    --bg-soft-cream: #EBE3D5;
-    --bg-cream-elevated: #E4DAC9;
-    --border-sand: rgba(34, 33, 30, 0.10);
-    --border-sand-strong: rgba(34, 33, 30, 0.20);
+    --bg-rice-paper: var(--paper);
+    --bg-soft-cream: var(--paper-2);
+    --bg-cream-elevated: var(--paper-3);
+    --border-sand: rgb(var(--ink-rgb) / 0.10);
+    --border-sand-strong: rgb(var(--ink-rgb) / 0.20);
 
-    --text-charcoal: #22211E;
-    --text-taupe: #726A5F;
-    --text-muted: #9C9385;
+    --text-charcoal: var(--ink);
+    --text-taupe: var(--ink-soft);
+    --text-muted: var(--ink-faint);
 
-    --sakura-pink: #D48D9B;
+    --sakura-pink: var(--sakura);
     --sakura-pale: #F3D9DF;
     --sakura-dim: rgba(212, 141, 155, 0.12);
     --sakura-border: rgba(212, 141, 155, 0.35);
 
     --sumi-black: #151412;
-    --bamboo-green: #6B785D;
+    --bamboo-green: var(--bamboo);
     --natural-wood: #8C6747;
-    --antique-gold: #A68550;
+    --antique-gold: var(--gold);
 
     /* Semantic Compatibility Tokens */
     --bg-primary: var(--bg-rice-paper);
@@ -42,7 +96,7 @@
     --text-primary: var(--text-charcoal);
     --text-secondary: var(--text-taupe);
     --accent-primary: var(--text-charcoal);
-    --accent-primary-dim: rgba(34, 33, 30, 0.08);
+    --accent-primary-dim: rgb(var(--ink-rgb) / 0.08);
     --accent-secondary: var(--sakura-pink);
     --accent-amber: var(--antique-gold);
     --accent-amber-dim: rgba(166, 133, 80, 0.12);
@@ -62,9 +116,56 @@
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   }
 
+  /* Night palette: sumi-ink night, moonlit Fuji, lantern-warm text */
+  :root[data-theme="dark"] {
+    --paper: #131210;
+    --paper-2: #1C1A17;
+    --paper-3: #26231F;
+    --ink: #EDE5D8;
+    --ink-rgb: 237 229 216;
+    --ink-mid: #CFC5B5;
+    --ink-soft: #B3A998;
+    --ink-faint: #877E71;
+    --sakura: #E6A2AF;
+    --sakura-deep: #B66677;
+    --gold: #CDAE72;
+    --bamboo: #9CAD8A;
+    --hanko: #D2564D;
+    --sakura-pale: #3B2A2F;
+    --sumi-black: #EDE5D8;
+    --glow-1: rgba(196, 208, 236, 0.12);
+    --glow-2: rgba(230, 162, 175, 0.05);
+    --card-sheen: rgba(255, 255, 255, 0.04);
+
+    /* Full moon in place of the sun; cool moonlight on the slopes */
+    --sun-core: #F6F0E2;
+    --sun-mid: #E7DFCC;
+    --sun-edge: #CBC2AD;
+    --sun-aura-1: #E9E3D4;
+    --sun-aura-2: #C9D2E6;
+    --sun-aura-3: #9AA8C4;
+    --fuji-1: #5D6780;
+    --fuji-2: #4A5268;
+    --fuji-3: #363D4F;
+    --fuji-4: #2B3040;
+    --fuji-w1: #3B4256;
+    --fuji-w2: #2F3546;
+    --fuji-w3: #252A38;
+    --fuji-light: #C9D3EA;
+    --fuji-light-2: #8E9BBA;
+    --cloud-hi: rgba(176, 186, 210, 0.32);
+    --cloud-mid: rgba(120, 128, 150, 0.16);
+    --cloud-lo: rgba(19, 18, 16, 0);
+  }
+
   html {
     scroll-behavior: smooth;
     color-scheme: light;
+  }
+  html[data-theme="dark"] {
+    color-scheme: dark;
+  }
+  html {
     background-color: var(--bg-rice-paper);
   }
 
@@ -117,7 +218,7 @@
 .washi-grain {
   background-color: var(--bg-rice-paper);
   background-image: 
-    radial-gradient(rgba(34, 33, 30, 0.035) 1px, transparent 1px),
+    radial-gradient(rgb(var(--ink-rgb) / 0.035) 1px, transparent 1px),
     radial-gradient(rgba(166, 133, 80, 0.02) 1px, transparent 1px);
   background-size: 24px 24px, 36px 36px;
   background-position: 0 0, 12px 18px;
@@ -127,8 +228,8 @@
 .shoji-grid {
   background-size: 48px 48px;
   background-image: 
-    linear-gradient(to right, rgba(34, 33, 30, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(34, 33, 30, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--ink-rgb) / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--ink-rgb) / 0.03) 1px, transparent 1px);
 }
 
 /* Tactile Architectural Cards & Surfaces: Wabi-sabi calmness */
@@ -155,9 +256,9 @@
   background: linear-gradient(
     90deg, 
     transparent 0%, 
-    rgba(34, 33, 30, 0.08) 18%, 
+    rgb(var(--ink-rgb) / 0.08) 18%, 
     rgba(166, 133, 80, 0.35) 50%, 
-    rgba(34, 33, 30, 0.08) 82%, 
+    rgb(var(--ink-rgb) / 0.08) 82%, 
     transparent 100%
   );
   margin: 72px 0;
@@ -275,7 +376,7 @@
 
 .apple-input:focus, .japandi-input:focus {
   border-color: var(--sakura-pink);
-  background-color: #FFF;
+  background-color: var(--paper);
   box-shadow: 0 0 0 3px rgba(232, 161, 176, 0.2);
 }
 
@@ -601,7 +702,7 @@
 }
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(34, 33, 30, 0.35);
+  -webkit-text-stroke: 1px rgb(var(--ink-rgb) / 0.35);
 }
 
 /* Rotating circular badge text */
@@ -616,7 +717,7 @@
 .ghost-kanji {
   font-family: var(--font-kanji);
   color: transparent;
-  -webkit-text-stroke: 1px rgba(34, 33, 30, 0.07);
+  -webkit-text-stroke: 1px rgb(var(--ink-rgb) / 0.07);
   line-height: 1;
   user-select: none;
   pointer-events: none;
@@ -679,7 +780,7 @@ section[id] {
 .japandi-card, .console-card, .apple-card {
   border-radius: 22px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 1px 0 var(--card-sheen),
     0 1px 2px rgba(34, 33, 30, 0.03),
     0 6px 18px -10px rgba(34, 33, 30, 0.08);
   transition:
@@ -690,7 +791,7 @@ section[id] {
 }
 .japandi-card:hover, .console-card:hover, .apple-card:hover {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 1px 0 var(--card-sheen),
     0 2px 4px rgba(34, 33, 30, 0.03),
     0 28px 48px -24px rgba(34, 33, 30, 0.2);
   transform: translateY(-4px);
@@ -718,7 +819,7 @@ section[id] {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 28px -12px rgba(140, 74, 87, 0.55);
 }
 .btn-japandi-secondary {
-  background-color: rgba(246, 242, 235, 0.6);
+  background-color: color-mix(in srgb, var(--paper) 60%, transparent);
   backdrop-filter: blur(6px);
 }
 .btn-japandi-primary:active, .btn-japandi-secondary:active {
@@ -754,7 +855,7 @@ section[id] {
   right: 0;
   bottom: -1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(166, 133, 80, 0.35) 20%, rgba(34, 33, 30, 0.12) 50%, rgba(212, 141, 155, 0.4) 80%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(166, 133, 80, 0.35) 20%, rgb(var(--ink-rgb) / 0.12) 50%, rgba(212, 141, 155, 0.4) 80%, transparent);
   pointer-events: none;
 }
 
@@ -773,6 +874,25 @@ section[id] {
 .group:hover .card-ordinal {
   -webkit-text-stroke-color: rgba(212, 141, 155, 0.7);
   transform: translateY(-4px);
+}
+
+/* Night mode: paper grain glows faintly instead of darkening */
+:root[data-theme="dark"] .paper-grain {
+  mix-blend-mode: screen;
+  opacity: 0.05;
+  filter: invert(1);
+}
+
+/* Night clouds become thin moonlit mist */
+:root[data-theme="dark"] .mist-fade {
+  opacity: 0.4;
+}
+
+/* Day ↔ night ink-wash crossfade (View Transitions) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.7s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Reduced Motion Override */

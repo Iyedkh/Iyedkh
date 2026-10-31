@@ -35,9 +35,9 @@ const MovingClouds = ({ className = "" }) => {
             >
               <defs>
                 <linearGradient id="highCloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
-                  <stop offset="60%" stopColor="#F8F3EC" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#EBE3D5" stopOpacity="0" />
+                  <stop offset="0%" stopColor="var(--cloud-hi, #FFFFFF)" stopOpacity="0.85" />
+                  <stop offset="60%" stopColor="var(--cloud-mid, #F8F3EC)" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="var(--cloud-lo, #EBE3D5)" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
@@ -98,9 +98,9 @@ const MovingClouds = ({ className = "" }) => {
             >
               <defs>
                 <linearGradient id="kumogataGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.82" />
-                  <stop offset="65%" stopColor="#F6F2EB" stopOpacity="0.75" />
-                  <stop offset="100%" stopColor="#EBE3D5" stopOpacity="0.1" />
+                  <stop offset="0%" stopColor="var(--cloud-hi, #FFFFFF)" stopOpacity="0.82" />
+                  <stop offset="65%" stopColor="var(--cloud-mid, #F6F2EB)" stopOpacity="0.75" />
+                  <stop offset="100%" stopColor="var(--cloud-lo, #EBE3D5)" stopOpacity="0.1" />
                 </linearGradient>
 
                 <linearGradient id="kumogataGoldTint" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -245,9 +245,9 @@ const MovingClouds = ({ className = "" }) => {
             >
               <defs>
                 <linearGradient id="valleyMistGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.7" />
-                  <stop offset="60%" stopColor="#F6F2EB" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0" />
+                  <stop offset="0%" stopColor="var(--cloud-hi, #FFFFFF)" stopOpacity="0.7" />
+                  <stop offset="60%" stopColor="var(--cloud-mid, #F6F2EB)" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="var(--cloud-mid, #F6F2EB)" stopOpacity="0" />
                 </linearGradient>
               </defs>
 

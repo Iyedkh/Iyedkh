@@ -92,15 +92,30 @@ const Skills = () => {
     },
   ];
 
+  // Localize group titles, skill names and descriptions (English stays the fallback)
+  const groupNames = t.skills?.groups || {};
+  const skillNames = t.skills?.names || {};
+  const skillRoles = t.skills?.roles || {};
+  skillCategories.forEach((c) => {
+    c.fullName = groupNames[c.id] || c.fullName;
+  });
+
   const allSkills = skillCategories.flatMap((c) =>
-    c.items.map((item) => ({ ...item, categoryId: c.id, categoryName: c.fullName }))
+    c.items.map((item) => ({
+      ...item,
+      key: item.name,
+      name: skillNames[item.name] || item.name,
+      role: skillRoles[item.name] || item.role,
+      categoryId: c.id,
+      categoryName: c.fullName,
+    }))
   );
 
   const categoryTabs = [
     {
       id: "all",
       name: t.skills?.categories?.all || "All Stack",
-      fullName: "All Capabilities",
+      fullName: groupNames.all || "All Capabilities",
       kanji: "全",
       icon: Sparkles,
       count: allSkills.length,
@@ -134,7 +149,7 @@ const Skills = () => {
           heading={t.skills?.heading1 || "Architectural"}
           highlight={t.skills?.headingHighlight || "capabilities"}
           aside={
-            <p className="text-sm font-mono text-[#726A5F] tracking-wide uppercase leading-relaxed">
+            <p className="text-sm font-mono text-ink-soft tracking-wide uppercase leading-relaxed">
               {t.skills?.description || "Zero arbitrary percentages. Verified production tools."}
             </p>
           }
@@ -147,7 +162,7 @@ const Skills = () => {
             <div
               role="tablist"
               aria-label="Skill categories"
-              className="flex items-center gap-1.5 p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#EBE3D5]/80 border border-[#22211E]/10 backdrop-blur-md overflow-x-auto no-scrollbar shadow-[0_4px_20px_-8px_rgba(34,33,30,0.05)]"
+              className="flex items-center gap-1.5 p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-paper-2/80 border border-ink/10 backdrop-blur-md overflow-x-auto no-scrollbar shadow-[0_4px_20px_-8px_rgba(34,33,30,0.05)]"
             >
               {categoryTabs.map((tab) => {
                 const isActive = activeTab === tab.id;
@@ -161,23 +176,23 @@ const Skills = () => {
                     aria-selected={isActive}
                     aria-controls="skills-panel"
                     onClick={() => setActiveTab(tab.id)}
-                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-all duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D48D9B] ${
+                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-all duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura ${
                       isActive
-                        ? "text-[#22211E] font-semibold"
-                        : "text-[#726A5F] hover:text-[#22211E] hover:bg-[#EBE3D5]/50"
+                        ? "text-ink font-semibold"
+                        : "text-ink-soft hover:text-ink hover:bg-paper-2/50"
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeSkillTabPill"
                         transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                        className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/12 shadow-[0_2px_8px_rgba(34,33,30,0.06)] rounded-xl sm:rounded-full -z-0"
+                        className="absolute inset-0 bg-paper border border-ink/12 shadow-[0_2px_8px_rgba(34,33,30,0.06)] rounded-xl sm:rounded-full -z-0"
                       />
                     )}
 
                     <IconComponent
                       className={`relative z-10 w-3.5 h-3.5 transition-colors ${
-                        isActive ? "text-[#C24545]" : "text-[#9C9385] group-hover:text-[#22211E]"
+                        isActive ? "text-hanko" : "text-ink-faint group-hover:text-ink"
                       }`}
                     />
 
@@ -186,8 +201,8 @@ const Skills = () => {
                     <span
                       className={`relative z-10 text-[10px] font-mono px-1.5 py-0.2 rounded-full transition-colors ${
                         isActive
-                          ? "bg-[#D48D9B]/20 text-[#8C4A57] font-bold"
-                          : "bg-[#22211E]/5 text-[#9C9385] group-hover:bg-[#22211E]/10"
+                          ? "bg-sakura/20 text-sakura-deep font-bold"
+                          : "bg-ink/5 text-ink-faint group-hover:bg-ink/10"
                       }`}
                     >
                       {tab.count}
@@ -200,7 +215,7 @@ const Skills = () => {
 
           {/* Search Box with Search Clear button */}
           <div className="relative w-full xl:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#726A5F] pointer-events-none" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-soft pointer-events-none" />
             <input
               type="text"
               placeholder={t.skills?.searchPlaceholder || "Search skill (e.g. React)..."}
@@ -212,7 +227,7 @@ const Skills = () => {
               <button
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear search query"
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-[#726A5F] hover:text-[#22211E] bg-[#EBE3D5] px-1.5 py-0.5 rounded-full"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-ink-soft hover:text-ink bg-paper-2 px-1.5 py-0.5 rounded-full"
               >
                 ✕
               </button>
@@ -232,34 +247,34 @@ const Skills = () => {
             {filteredSkills.map((skill) => (
               <motion.div
                 layout
-                key={skill.name}
+                key={skill.key}
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25 }}
-                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#D48D9B]"
+                className="japandi-card p-6 flex flex-col justify-between group hover:border-sakura"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-[#22211E]/10">
-                    <span className="text-[10px] font-mono text-[#A68550] uppercase tracking-wider font-semibold">
+                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-ink/10">
+                    <span className="text-[10px] font-mono text-gold uppercase tracking-wider font-semibold">
                       {skill.categoryName}
                     </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-sakura" />
                   </div>
 
-                  <h3 className="font-editorial text-2xl font-normal text-[#22211E] group-hover:text-[#D48D9B] transition-colors mb-1.5">
+                  <h3 className="font-editorial text-2xl font-normal text-ink group-hover:text-sakura transition-colors mb-1.5">
                     {skill.name}
                   </h3>
 
-                  <p className="text-xs text-[#726A5F] font-sans leading-relaxed">
+                  <p className="text-xs text-ink-soft font-sans leading-relaxed">
                     {skill.role}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-[#22211E]/10 flex items-center justify-between text-[10px] font-mono text-[#9C9385]">
+                <div className="mt-5 pt-3 border-t border-ink/10 flex items-center justify-between text-[10px] font-mono text-ink-faint">
                   <span>{t.skills?.verified || "Verified Stack"}</span>
-                  <span className="text-[#6B785D] flex items-center gap-1 font-medium">
-                    <CheckCircle2 className="w-3 h-3 text-[#D48D9B]" /> Production Ready
+                  <span className="text-bamboo flex items-center gap-1 font-medium">
+                    <CheckCircle2 className="w-3 h-3 text-sakura" /> {t.skills?.productionReady || "Production Ready"}
                   </span>
                 </div>
               </motion.div>

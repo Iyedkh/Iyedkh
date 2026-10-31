@@ -97,13 +97,13 @@ const Hero = () => {
             >
               {/* Hanko Stamp & Status Pill */}
               <motion.div variants={fadeUp} className="mb-[2.5svh] flex flex-wrap items-center gap-3">
-                <span className="hanko-stamp shrink-0" aria-label="Takumi Artisan Seal">
+                <span className="hanko-stamp shrink-0" aria-label={t.hero?.sealAria || "Takumi Artisan Seal"}>
                   匠
                 </span>
                 <div className="japandi-pill" role="status">
                   <span aria-hidden="true" className="relative flex h-2 w-2 shrink-0">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D48D9B] opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D48D9B]" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sakura opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-sakura" />
                   </span>
                   <span>{t.hero?.statusBadge || "Available for Select Projects & Architecture"}</span>
                 </div>
@@ -112,21 +112,21 @@ const Hero = () => {
               {/* Editorial Title with disciplined line breaks */}
               <h1
                 id="hero-title"
-                className="mb-[2.5svh] font-editorial text-[clamp(2.4rem,min(11vw,8svh),5.25rem)] font-normal leading-[1.02] tracking-[-0.035em] text-[#22211E]"
+                className="mb-[2.5svh] font-editorial text-[clamp(2.4rem,min(11vw,8svh),5.25rem)] font-normal leading-[1.02] tracking-[-0.035em] text-ink"
               >
                 <span className="block overflow-hidden pb-1">
                   <motion.span variants={lineReveal} className="block">
-                    Crafting digital
+                    {t.hero?.headline1 || "Crafting digital"}
                   </motion.span>
                 </span>
                 <span className="block overflow-hidden pb-1">
                   <motion.span variants={lineReveal} className="block">
-                    experiences
+                    {t.hero?.headline2 || "experiences"}
                   </motion.span>
                 </span>
                 <span className="block overflow-hidden pb-4">
-                  <motion.span variants={lineReveal} className="relative inline-block italic text-[#D48D9B]">
-                    with precision.
+                  <motion.span variants={lineReveal} className="relative inline-block italic text-sakura">
+                    {t.hero?.headline3 || "with precision."}
                     {/* Sumi brush underline that paints itself */}
                     <svg
                       aria-hidden="true"
@@ -152,26 +152,27 @@ const Hero = () => {
               {/* Concise, elegant bio */}
               <motion.p
                 variants={fadeUp}
-                className="mb-[3.5svh] max-w-[33rem] text-[15px] leading-[1.7] text-[#5F584E] sm:text-[17px] sm:leading-[1.7]"
+                className="mb-[3.5svh] max-w-[33rem] text-[15px] leading-[1.7] text-ink-mid sm:text-[17px] sm:leading-[1.7]"
               >
-                I&apos;m <strong className="font-semibold text-[#22211E]">Iyed Khouildi</strong>, a Full
-                Stack Developer &amp; Data Analyst merging engineering discipline, business
-                intelligence, and Japanese architectural minimalism into resilient, calm software.
+                {t.hero?.introBefore ?? "I'm "}
+                <strong className="font-semibold text-ink">Iyed Khouildi</strong>
+                {t.hero?.introAfter ||
+                  ", a Full Stack Developer & Data Analyst merging engineering discipline, business intelligence, and Japanese architectural minimalism into resilient, calm software."}
               </motion.p>
 
               {/* Expertise tags */}
               <motion.div variants={fadeUp} className="mb-[3.5svh] w-full max-w-xl [@media(max-height:820px)]:hidden">
                 <div className="mb-3 flex items-center gap-2">
-                  <span className="h-px w-4 bg-[#A68550]" />
-                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#726A5F]">
+                  <span className="h-px w-4 bg-gold" />
+                  <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-ink-soft">
                     {t.hero?.techStack || "Core Expertise"}
                   </p>
                 </div>
-                <ul aria-label="Areas of expertise" className="m-0 flex list-none flex-wrap gap-2 p-0">
-                  {STACK.map((item) => (
+                <ul aria-label={t.hero?.expertiseAria || "Areas of expertise"} className="m-0 flex list-none flex-wrap gap-2 p-0">
+                  {(t.hero?.stackItems || STACK).map((item) => (
                     <li
                       key={item}
-                      className="rounded-full border border-[#22211E]/10 bg-[#F6F2EB]/90 px-3.5 py-1.5 text-[11px] font-mono tracking-wide text-[#726A5F] shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_1px_2px_rgba(34,33,30,0.03)] backdrop-blur-sm transition-[color,border-color,transform] duration-300 hover:-translate-y-px hover:border-[#D48D9B]/60 hover:text-[#22211E] sm:text-xs"
+                      className="rounded-full border border-ink/10 bg-paper/90 px-3.5 py-1.5 text-[11px] font-mono tracking-wide text-ink-soft shadow-[inset_0_1px_0_var(--card-sheen),0_1px_2px_rgba(34,33,30,0.03)] backdrop-blur-sm transition-[color,border-color,transform] duration-300 hover:-translate-y-px hover:border-sakura/60 hover:text-ink sm:text-xs"
                     >
                       {item}
                     </li>
@@ -187,7 +188,7 @@ const Hero = () => {
                 <Magnetic strength={0.2}>
                   <a
                     href="#work"
-                    className="btn-japandi-primary group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D48D9B] sm:px-7"
+                    className="btn-japandi-primary group inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sakura sm:px-7"
                   >
                     <span>{t.hero?.exploreProjects || "Explore My Work"}</span>
                     <ArrowUpRight
@@ -202,7 +203,7 @@ const Hero = () => {
                 <Magnetic strength={0.2}>
                   <a
                     href="#contact"
-                    className="btn-japandi-secondary inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D48D9B] sm:px-7"
+                    className="btn-japandi-secondary inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sakura sm:px-7"
                   >
                     <span>{t.hero?.contactMe || "Let's Talk"}</span>
                   </a>
@@ -212,9 +213,9 @@ const Hero = () => {
                   <button
                     type="button"
                     onClick={openCvModal}
-                    className="group/cv inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-dashed border-[#A68550]/40 bg-[#EBE3D5]/50 px-5 py-3 text-sm font-sans text-[#5F584E] transition-all duration-300 hover:-translate-y-0.5 hover:border-solid hover:border-[#D48D9B]/60 hover:bg-[#EBE3D5] hover:text-[#22211E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D48D9B]"
+                    className="group/cv inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-dashed border-gold/40 bg-paper-2/50 px-5 py-3 text-sm font-sans text-ink-mid transition-all duration-300 hover:-translate-y-0.5 hover:border-solid hover:border-sakura/60 hover:bg-paper-2 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sakura"
                   >
-                    <FileText className="h-4 w-4 text-[#A68550] transition-transform duration-300 group-hover/cv:-rotate-6" />
+                    <FileText className="h-4 w-4 text-gold transition-transform duration-300 group-hover/cv:-rotate-6" />
                     <span>{t.hero?.downloadCv || "Curriculum Vitae"}</span>
                   </button>
                 </Magnetic>
@@ -242,10 +243,10 @@ const Hero = () => {
                 <motion.div
                   aria-hidden="true"
                   style={{ x: ringX, y: ringY }}
-                  className="pointer-events-none absolute h-64 w-64 rounded-full border border-[#22211E]/10 sm:h-80 sm:w-80"
+                  className="pointer-events-none absolute h-64 w-64 rounded-full border border-ink/10 sm:h-80 sm:w-80"
                 >
-                  <div className="absolute inset-0 rounded-full border border-dashed border-[#A68550]/30 animate-[spin_120s_linear_infinite]" />
-                  <div className="absolute inset-6 rounded-full bg-gradient-to-br from-[#D48D9B]/10 via-transparent to-[#A68550]/10 blur-xl" />
+                  <div className="absolute inset-0 rounded-full border border-dashed border-gold/30 animate-[spin_120s_linear_infinite]" />
+                  <div className="absolute inset-6 rounded-full bg-gradient-to-br from-sakura/10 via-transparent to-gold/10 blur-xl" />
                 </motion.div>
 
                 {/* Vertical Decorative Typography Elements */}
@@ -253,12 +254,12 @@ const Hero = () => {
                   aria-hidden="true"
                   className="pointer-events-none absolute -left-4 sm:left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3 select-none opacity-40 sm:opacity-60"
                 >
-                  <span className="font-editorial text-2xl text-[#22211E] writing-mode-vertical">
+                  <span className="font-editorial text-2xl text-ink writing-mode-vertical">
                     刀魂
                   </span>
-                  <span className="h-8 w-px bg-[#22211E]/20" />
-                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#726A5F] [writing-mode:vertical-rl]">
-                    KATANA SPIRIT
+                  <span className="h-8 w-px bg-ink/20" />
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ink-soft [writing-mode:vertical-rl]">
+                    {t.hero?.katanaSpirit || "KATANA SPIRIT"}
                   </span>
                 </div>
 
@@ -267,17 +268,17 @@ const Hero = () => {
                   aria-hidden="true"
                   className="pointer-events-none absolute -right-2 sm:right-2 top-10 flex flex-col items-end select-none opacity-60"
                 >
-                  <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#726A5F]">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-ink-soft">
                     37.27° N · 9.87° E
                   </span>
-                  <span className="font-mono text-[9px] tracking-[0.12em] text-[#A68550]">
-                    BI DEGREE &amp; MERN
+                  <span className="font-mono text-[9px] tracking-[0.12em] text-gold">
+                    {t.hero?.coordsSub || "BI DEGREE & MERN"}
                   </span>
                 </div>
 
                 {/* The Katana Graphic Masterpiece */}
                 <motion.div style={{ x: katanaX, rotate: katanaRotate }}>
-                  <KatanaGraphic className="py-2" />
+                  <KatanaGraphic className="py-2" label={t.hero?.precisionCraft} ariaLabel={t.hero?.katanaAria} />
                 </motion.div>
 
                 {/* Rotating seal badge */}
@@ -288,17 +289,17 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.5, rotate: -40 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ delay: shouldReduceMotion ? 0 : 1, type: "spring", stiffness: 120, damping: 14 }}
-                  className="group absolute bottom-16 left-2 sm:left-6 z-20 hidden sm:flex h-28 w-28 items-center justify-center rounded-full bg-[#F6F2EB]/85 shadow-[0_12px_30px_-12px_rgba(34,33,30,0.3)] backdrop-blur-md"
+                  className="group absolute bottom-16 left-2 sm:left-6 z-20 hidden sm:flex h-28 w-28 items-center justify-center rounded-full bg-paper/85 shadow-[0_12px_30px_-12px_rgba(34,33,30,0.3)] backdrop-blur-md"
                 >
                   <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full animate-spin-slow group-hover:[animation-duration:6s]">
                     <defs>
                       <path id="sealCircle" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" />
                     </defs>
-                    <text className="fill-[#22211E] font-mono" style={{ fontSize: "8.4px", letterSpacing: "2.4px" }}>
-                      <textPath href="#sealCircle">AVAILABLE FOR WORK · 2026 · 匠 ·</textPath>
+                    <text className="fill-ink font-mono" style={{ fontSize: "8.4px", letterSpacing: isRTL ? "0px" : "2.4px" }}>
+                      <textPath href="#sealCircle">{t.hero?.sealText || "AVAILABLE FOR WORK · 2026 · 匠 ·"}</textPath>
                     </text>
                   </svg>
-                  <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-[#B8403A] font-kanji text-lg text-[#F6F2EB] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
+                  <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-hanko font-kanji text-lg text-paper transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
                     縁
                   </span>
                 </motion.a>
@@ -328,26 +329,26 @@ const Hero = () => {
         transition={{ delay: shouldReduceMotion ? 0 : 0.8, duration: shouldReduceMotion ? 0 : 0.5 }}
         className="relative z-10 mx-auto mt-2 w-full max-w-7xl px-5 sm:px-8 lg:px-12"
       >
-        <div className="flex items-center justify-between gap-4 border-t border-[#22211E]/10 pt-4 text-[10px] font-mono text-[#726A5F] sm:pt-5 sm:text-[11px]">
+        <div className="flex items-center justify-between gap-4 border-t border-ink/10 pt-4 text-[10px] font-mono text-ink-soft sm:pt-5 sm:text-[11px]">
           <div className="flex items-center gap-3">
             <span className="hanko-stamp h-4 w-4 text-[8px]">道</span>
             <span className="hidden uppercase tracking-[0.18em] sm:inline">
-              Kyoto Spirit <span aria-hidden="true">·</span> Modern Full Stack &amp; Data
+              {t.hero?.kyotoSpirit || "Kyoto Spirit"} <span aria-hidden="true">·</span> {t.hero?.modernStack || "Modern Full Stack & Data"}
             </span>
           </div>
 
           <a
             href="#about"
-            className="group ml-auto inline-flex min-h-10 items-center gap-2 uppercase tracking-wider transition-colors hover:text-[#22211E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D48D9B]"
+            className="group ml-auto inline-flex min-h-10 items-center gap-2 uppercase tracking-wider transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sakura"
           >
-            <span className="tracking-[0.16em]">Scroll to explore</span>
+            <span className="tracking-[0.16em]">{t.hero?.scroll || "Scroll to explore"}</span>
             <motion.span
               aria-hidden="true"
               animate={shouldReduceMotion ? undefined : { y: [0, 4, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="inline-flex transition-transform group-hover:translate-y-0.5"
             >
-              <ArrowDown className="h-3.5 w-3.5 text-[#D48D9B]" />
+              <ArrowDown className="h-3.5 w-3.5 text-sakura" />
             </motion.span>
           </a>
         </div>

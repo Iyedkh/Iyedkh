@@ -26,7 +26,7 @@ const ProjectModal = ({ project, onClose }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#252521]/75 backdrop-blur-md"
+          className="fixed inset-0 bg-ink/75 backdrop-blur-md"
         />
 
         {/* Modal Window */}
@@ -37,13 +37,13 @@ const ProjectModal = ({ project, onClose }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 16 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-2xl rounded-3xl bg-[#F5F2EA] border border-[#252521]/15 shadow-2xl p-6 sm:p-8 z-10 max-h-[90vh] overflow-y-auto washi-grain"
+          className="relative w-full max-w-2xl rounded-3xl bg-paper border border-ink/15 shadow-2xl p-6 sm:p-8 z-10 max-h-[90vh] overflow-y-auto washi-grain"
         >
           {/* Close button */}
           <button
             onClick={onClose}
-            aria-label="Close case study modal"
-            className={`absolute top-6 ${isRTL ? "left-6" : "right-6"} p-2 rounded-full text-[#726A5F] hover:text-[#252521] bg-[#EAE4D8] hover:bg-[#D8CBB8] transition-colors focus:outline-none`}
+            aria-label={t.ui?.closeModal || "Close case study modal"}
+            className={`absolute top-6 ${isRTL ? "left-6" : "right-6"} p-2 rounded-full text-ink-soft hover:text-ink bg-paper-2 hover:bg-paper-3 transition-colors focus:outline-none`}
           >
             <X className="w-5 h-5" />
           </button>
@@ -51,16 +51,16 @@ const ProjectModal = ({ project, onClose }) => {
           {/* Header */}
           <div className={`mb-6 ${isRTL ? "pl-10" : "pr-10"}`}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="font-mono text-xs text-[#8B5E3C] uppercase tracking-wider font-semibold">
-                {project.categoryLabel || "Selected Project"}
+              <span className="font-mono text-xs text-gold uppercase tracking-wider font-semibold">
+                {project.categoryLabel || t.projects?.ui?.selectedProject || "Selected Project"}
               </span>
-              <span className="text-[#726A5F]">•</span>
-              <span className="font-mono text-xs text-[#726A5F]">{project.year}</span>
+              <span className="text-ink-soft">•</span>
+              <span className="font-mono text-xs text-ink-soft">{project.year}</span>
             </div>
-            <h3 className="font-editorial text-3xl sm:text-4xl font-normal text-[#252521] leading-tight">
+            <h3 className="font-editorial text-3xl sm:text-4xl font-normal text-ink leading-tight">
               {project.title}
             </h3>
-            <p className="text-xs sm:text-sm font-mono text-[#726A5F] uppercase tracking-wider mt-1">
+            <p className="text-xs sm:text-sm font-mono text-ink-soft uppercase tracking-wider mt-1">
               {project.subtitle}
             </p>
           </div>
@@ -68,18 +68,18 @@ const ProjectModal = ({ project, onClose }) => {
           <div className="japandi-divider my-4" />
 
           {/* Overview */}
-          <div className="space-y-6 text-sm text-[#726A5F] font-sans leading-relaxed">
+          <div className="space-y-6 text-sm text-ink-soft font-sans leading-relaxed">
             <div>
-              <h4 className="font-editorial text-lg text-[#252521] font-semibold mb-1">
-                Overview &amp; Architecture
+              <h4 className="font-editorial text-lg text-ink font-semibold mb-1">
+                {t.projects?.ui?.overview || "Overview & Architecture"}
               </h4>
               <p>{project.description}</p>
             </div>
 
             {project.caseStudy && (
               <div>
-                <h4 className="font-editorial text-lg text-[#252521] font-semibold mb-1">
-                  Core Implementation &amp; Problem Solved
+                <h4 className="font-editorial text-lg text-ink font-semibold mb-1">
+                  {t.projects?.ui?.coreImplementation || "Core Implementation & Problem Solved"}
                 </h4>
                 <p>{project.caseStudy}</p>
               </div>
@@ -87,30 +87,30 @@ const ProjectModal = ({ project, onClose }) => {
 
             {/* Role & Impact */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <div className="p-3.5 rounded-xl bg-[#EAE4D8] border border-[#252521]/10">
-                <div className="text-[11px] font-mono text-[#726A5F] uppercase">
+              <div className="p-3.5 rounded-xl bg-paper-2 border border-ink/10">
+                <div className="text-[11px] font-mono text-ink-soft uppercase">
                   {t.projects?.roleLabel || "Role:"}
                 </div>
-                <div className="text-sm font-medium text-[#252521] mt-0.5">{project.role}</div>
+                <div className="text-sm font-medium text-ink mt-0.5">{project.role}</div>
               </div>
-              <div className="p-3.5 rounded-xl bg-[#EAE4D8] border border-[#252521]/10">
-                <div className="text-[11px] font-mono text-[#726A5F] uppercase">
-                  Key Impact &amp; Deliverable
+              <div className="p-3.5 rounded-xl bg-paper-2 border border-ink/10">
+                <div className="text-[11px] font-mono text-ink-soft uppercase">
+                  {t.projects?.ui?.keyImpact || "Key Impact & Deliverable"}
                 </div>
-                <div className="text-sm font-medium text-[#35483B] mt-0.5">{project.impact}</div>
+                <div className="text-sm font-medium text-bamboo mt-0.5">{project.impact}</div>
               </div>
             </div>
 
             {/* Technologies */}
             <div>
-              <div className="text-[11px] font-mono text-[#726A5F] uppercase tracking-wider mb-2">
-                Applied Technologies &amp; Tools
+              <div className="text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
+                {t.projects?.ui?.appliedTech || "Applied Technologies & Tools"}
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 rounded-full bg-[#EAE4D8] border border-[#252521]/10 text-xs font-mono text-[#252521]"
+                    className="px-2.5 py-1 rounded-full bg-paper-2 border border-ink/10 text-xs font-mono text-ink"
                   >
                     {tag}
                   </span>
@@ -120,7 +120,7 @@ const ProjectModal = ({ project, onClose }) => {
           </div>
 
           {/* Modal Footer Actions */}
-          <div className="mt-8 pt-6 border-t border-[#252521]/10 flex flex-wrap items-center justify-between gap-3">
+          <div className="mt-8 pt-6 border-t border-ink/10 flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               {project.link && (
                 <a
@@ -148,7 +148,7 @@ const ProjectModal = ({ project, onClose }) => {
 
             <button
               onClick={onClose}
-              className="text-xs font-mono text-[#726A5F] hover:text-[#252521] transition-colors"
+              className="text-xs font-mono text-ink-soft hover:text-ink transition-colors"
             >
               {t.cvModal?.close ? `${t.cvModal.close} [Esc]` : "Close [Esc]"}
             </button>

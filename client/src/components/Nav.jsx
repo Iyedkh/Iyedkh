@@ -4,6 +4,7 @@ import { Menu, X, ArrowUpRight, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useLanguage } from "../i18n/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import Magnetic from "./Magnetic";
 
 const Nav = () => {
@@ -65,7 +66,7 @@ const Nav = () => {
     e.preventDefault();
     navigator.clipboard.writeText(email);
     setCopiedEmail(true);
-    toast.success("Email copied to clipboard", {
+    toast.success(t.nav?.emailCopied || "Email copied to clipboard", {
       description: email,
       duration: 3000,
     });
@@ -76,7 +77,7 @@ const Nav = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-2.5 sm:py-3 bg-[#F6F2EB]/85 backdrop-blur-xl backdrop-saturate-150 shadow-[0_10px_30px_-18px_rgba(34,33,30,0.18)]"
+          ? "py-2.5 sm:py-3 bg-paper/85 backdrop-blur-xl backdrop-saturate-150 shadow-[0_10px_30px_-18px_rgba(34,33,30,0.18)]"
           : "py-4 sm:py-5 lg:py-6 bg-transparent"
       }`}
     >
@@ -96,22 +97,22 @@ const Nav = () => {
             className="flex items-center gap-3.5 group focus:outline-none rounded-xl p-1"
           >
             {/* Red Hanko Artisan Stamp */}
-            <div className="relative w-9 h-9 rounded-xl border border-[#C24545]/30 flex items-center justify-center bg-[#C24545]/5 transition-all duration-300 group-hover:border-[#C24545] group-hover:bg-[#C24545]/10 group-hover:scale-105 shadow-sm">
-              <span className="font-editorial text-base font-bold text-[#C24545] leading-none">
+            <div className="relative w-9 h-9 rounded-xl border border-hanko/30 flex items-center justify-center bg-hanko/5 transition-all duration-300 group-hover:border-hanko group-hover:bg-hanko/10 group-hover:scale-105 shadow-sm">
+              <span className="font-editorial text-base font-bold text-hanko leading-none">
                 匠
               </span>
             </div>
 
             <div className="flex flex-col">
-              <span className="font-editorial text-base sm:text-xl font-medium tracking-[0.06em] text-[#22211E] flex items-center gap-2 whitespace-nowrap">
+              <span className="font-editorial text-base sm:text-xl font-medium tracking-[0.06em] text-ink flex items-center gap-2 whitespace-nowrap">
                 IYED KHOUILDI
                 <span
-                  className="inline-block w-2 h-2 rounded-full bg-[#D48D9B] animate-pulse"
-                  title="Available for select projects"
+                  className="inline-block w-2 h-2 rounded-full bg-sakura animate-pulse"
+                  title={t.ui?.availableTitle || "Available for select projects"}
                 />
               </span>
-              <span className="hidden sm:block whitespace-nowrap font-mono text-[9.5px] text-[#726A5F] tracking-[0.16em] uppercase">
-                Full Stack &amp; Data Architect
+              <span className="hidden sm:block whitespace-nowrap font-mono text-[9.5px] text-ink-soft tracking-[0.16em] uppercase">
+                {t.ui?.brandRole || "Full Stack & Data Architect"}
               </span>
             </div>
           </a>
@@ -122,7 +123,7 @@ const Nav = () => {
         {/* ========================================= */}
         <nav
           aria-label="Main Navigation"
-          className="hidden xl:flex items-center gap-0.5 px-1.5 py-1.5 rounded-full bg-[#EBE3D5]/75 border border-[#22211E]/10 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_8px_24px_-14px_rgba(34,33,30,0.18)]"
+          className="hidden xl:flex items-center gap-0.5 px-1.5 py-1.5 rounded-full bg-paper-2/75 border border-ink/10 backdrop-blur-md shadow-[inset_0_1px_0_var(--card-sheen),0_8px_24px_-14px_rgba(34,33,30,0.18)]"
         >
           {navLinks.map((link) => {
             const sectionId = link.href.substring(1);
@@ -132,23 +133,23 @@ const Nav = () => {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? "true" : undefined}
-                className={`relative whitespace-nowrap px-3.5 2xl:px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-300 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B] ${
+                className={`relative whitespace-nowrap px-3.5 2xl:px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-300 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-sakura ${
                   isActive
-                    ? "text-[#22211E] font-semibold"
-                    : "nav-link-brush text-[#726A5F] hover:text-[#22211E] hover:bg-[#F6F2EB]/45"
+                    ? "text-ink font-semibold"
+                    : "nav-link-brush text-ink-soft hover:text-ink hover:bg-paper/45"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicatorSakura"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_8px_-3px_rgba(34,33,30,0.14)] rounded-full -z-0"
+                    className="absolute inset-0 bg-paper border border-ink/10 shadow-[inset_0_1px_0_var(--card-sheen),0_2px_8px_-3px_rgba(34,33,30,0.14)] rounded-full -z-0"
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
                   {link.name}
                   {isActive && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-sakura" />
                   )}
                 </span>
               </a>
@@ -162,15 +163,17 @@ const Nav = () => {
         <div className="hidden md:flex items-center gap-3.5">
           <LanguageSwitcher />
 
+          <ThemeToggle />
+
           {/* Quick Copy Email with Tooltip Visual */}
           <button
             onClick={handleCopyEmail}
-            className="p-2.5 rounded-full text-[#726A5F] hover:text-[#22211E] bg-[#EBE3D5]/60 hover:bg-[#EBE3D5] border border-[#22211E]/10 hover:border-[#D48D9B]/50 transition-all duration-300 hover:-translate-y-px focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B]"
-            title="Copy email address"
-            aria-label="Copy email"
+            className="p-2.5 rounded-full text-ink-soft hover:text-ink bg-paper-2/60 hover:bg-paper-2 border border-ink/10 hover:border-sakura/50 transition-all duration-300 hover:-translate-y-px focus:outline-none focus-visible:ring-1 focus-visible:ring-sakura"
+            title={t.ui?.copyEmailTitle || "Copy email address"}
+            aria-label={t.ui?.copyEmailAria || "Copy email"}
           >
             {copiedEmail ? (
-              <Check className="w-4 h-4 text-[#D48D9B]" />
+              <Check className="w-4 h-4 text-sakura" />
             ) : (
               <Copy className="w-4 h-4" />
             )}
@@ -195,11 +198,12 @@ const Nav = () => {
           <div className="md:hidden">
             <LanguageSwitcher />
           </div>
+          <ThemeToggle className="md:hidden" />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
-            aria-label="Toggle navigation menu"
-            className="p-2.5 rounded-full text-[#22211E] bg-[#EBE3D5] border border-[#22211E]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D48D9B]"
+            aria-label={t.ui?.toggleMenu || "Toggle navigation menu"}
+            className="p-2.5 rounded-full text-ink bg-paper-2 border border-ink/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -216,7 +220,7 @@ const Nav = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="xl:hidden bg-[#F6F2EB]/98 backdrop-blur-2xl border-b border-[#22211E]/10 px-6 py-6 shadow-2xl shoji-grid"
+            className="xl:hidden bg-paper/98 backdrop-blur-2xl border-b border-ink/10 px-6 py-6 shadow-2xl shoji-grid"
           >
             <div className="flex flex-col gap-2 max-w-md mx-auto">
               {navLinks.map((link, i) => {
@@ -232,17 +236,17 @@ const Nav = () => {
                     transition={{ delay: i * 0.035 }}
                     className={`min-h-12 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all duration-300 flex items-center justify-between border ${
                       isActive
-                        ? "bg-[#EBE3D5] text-[#22211E] border-[#D48D9B]/45 font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]"
-                        : "border-transparent text-[#726A5F] hover:bg-[#EBE3D5]/70 hover:text-[#22211E] hover:ps-5"
+                        ? "bg-paper-2 text-ink border-sakura/45 font-semibold shadow-[inset_0_1px_0_var(--card-sheen)]"
+                        : "border-transparent text-ink-soft hover:bg-paper-2/70 hover:text-ink hover:ps-5"
                     }`}
                   >
                     <span>{link.name}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B]" />}
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-sakura" />}
                   </motion.a>
                 );
               })}
 
-              <div className="pt-4 mt-3 border-t border-[#22211E]/10 flex flex-col gap-3">
+              <div className="pt-4 mt-3 border-t border-ink/10 flex flex-col gap-3">
                 <a
                   href="#contact"
                   onClick={() => setMenuOpen(false)}

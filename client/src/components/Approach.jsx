@@ -48,7 +48,7 @@ const Approach = () => {
           heading={t.approach?.heading1 || "How I approach"}
           highlight={t.approach?.headingHighlight || "software & data"}
           aside={
-            <p className="text-sm font-mono text-[#726A5F] tracking-wide uppercase leading-relaxed">
+            <p className="text-sm font-mono text-ink-soft tracking-wide uppercase leading-relaxed">
               {t.approach?.description || "A structured four-phase delivery cycle from idea to production."}
             </p>
           }
@@ -74,32 +74,32 @@ const Approach = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="japandi-card p-6 flex flex-col justify-between group hover:border-[#D48D9B] overflow-hidden"
+                className="japandi-card p-6 flex flex-col justify-between group hover:border-sakura overflow-hidden"
               >
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-[#22211E]/10 mb-6">
-                    <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-[#D48D9B]/40 bg-[#F6F2EB] font-editorial text-2xl font-medium text-[#D48D9B] transition-all duration-500 group-hover:bg-[#22211E] group-hover:text-[#F6F2EB] group-hover:border-[#22211E]">
+                  <div className="flex items-center justify-between pb-4 border-b border-ink/10 mb-6">
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-sakura/40 bg-paper font-editorial text-2xl font-medium text-sakura transition-all duration-500 group-hover:bg-ink group-hover:text-paper group-hover:border-ink">
                       {step.number}
                     </span>
-                    <Icon className="w-4 h-4 text-[#726A5F] group-hover:text-[#22211E] transition-colors" />
+                    <Icon className="w-4 h-4 text-ink-soft group-hover:text-ink transition-colors" />
                   </div>
 
-                  <h3 className="font-editorial text-2xl font-normal text-[#22211E] mb-1 group-hover:text-[#D48D9B] transition-colors">
+                  <h3 className="font-editorial text-2xl font-normal text-ink mb-1 group-hover:text-sakura transition-colors">
                     {step.title}
                   </h3>
 
-                  <div className="text-[10px] font-mono text-[#A68550] uppercase tracking-wider mb-3">
+                  <div className="text-[10px] font-mono text-gold uppercase tracking-wider mb-3">
                     {step.subtitle}
                   </div>
 
-                  <p className="text-xs text-[#726A5F] font-sans leading-relaxed">
+                  <p className="text-xs text-ink-soft font-sans leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-3 border-t border-[#22211E]/10 flex items-center justify-between text-[10.5px] font-mono text-[#9C9385]">
+                <div className="mt-6 pt-3 border-t border-ink/10 flex items-center justify-between text-[10.5px] font-mono text-ink-faint">
                   <span>{t.approach?.phase || "Phase"} {step.number}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#D48D9B] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-sakura opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </motion.div>
             );

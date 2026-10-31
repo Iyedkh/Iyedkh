@@ -120,7 +120,7 @@ const CustomCursor = () => {
         transition={{ type: "spring", damping: 20, stiffness: 240 }}
       >
         {cursorState.cardLabel && (
-          <span className="text-[9.5px] font-mono tracking-[0.16em] text-[#F6F2EB] font-semibold select-none">
+          <span className="text-[9.5px] font-mono tracking-[0.16em] text-paper font-semibold select-none">
             {cursorState.cardLabel}
           </span>
         )}

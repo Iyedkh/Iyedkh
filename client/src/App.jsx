@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { CvModalProvider } from "./context/CvModalContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 
 import IntroLoader from "./components/IntroLoader";
 import CustomCursor from "./components/CustomCursor";
@@ -35,6 +36,7 @@ function InkDivider() {
 }
 
 function PortfolioContent() {
+  const { theme } = useTheme();
   const [introFinished, setIntroFinished] = useState(() => {
     try {
       return sessionStorage.getItem("iyed_intro_viewed") === "true";
@@ -73,18 +75,18 @@ function PortfolioContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F6F2EB] text-[#22211E] relative selection:bg-[#D48D9B]/25 selection:text-[#22211E] overflow-x-hidden">
+    <div className="min-h-screen bg-paper text-ink relative selection:bg-sakura/25 selection:text-ink overflow-x-hidden">
       {/* Toast Notification Provider */}
       <Toaster
         position="bottom-right"
-        theme="light"
+        theme={theme}
         richColors
         closeButton
         toastOptions={{
           style: {
-            background: "#F6F2EB",
-            border: "1px solid rgba(34, 33, 30, 0.12)",
-            color: "#22211E",
+            background: "var(--paper)",
+            border: "1px solid rgb(var(--ink-rgb) / 0.12)",
+            color: "var(--ink)",
             fontFamily: "var(--font-sans)",
             borderRadius: "16px",
             boxShadow: "0 14px 32px -8px rgba(34, 33, 30, 0.08)",
@@ -101,7 +103,7 @@ function PortfolioContent() {
       {/* Japanese Japandi Scroll Progress Bar with Sakura Accent */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#22211E] via-[#A68550] to-[#D48D9B] origin-left z-50 pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-ink via-gold to-sakura origin-left z-50 pointer-events-none"
       />
 
       {/* Washi paper grain overlay */}
@@ -143,7 +145,7 @@ function PortfolioContent() {
         <Marquee
           reverse
           outline
-          items={["Let's build something calm", "縁", "Available for new projects", "匠", "Freelance & Full-time", "和"]}
+          variant="closing"
         />
 
         <Contact />
@@ -160,10 +162,12 @@ function PortfolioContent() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <CvModalProvider>
-        <PortfolioContent />
-      </CvModalProvider>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <CvModalProvider>
+          <PortfolioContent />
+        </CvModalProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

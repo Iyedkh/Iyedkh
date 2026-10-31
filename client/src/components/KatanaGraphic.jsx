@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useReducedMotion, useSpring, useMotionValue } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 /**
  * Premium Katana Graphic & Interactive Experience
@@ -20,8 +21,11 @@ import { motion, useReducedMotion, useSpring, useMotionValue } from "framer-moti
  * - Smooth, damped cursor-tracking tilt and depth parallax.
  * - Honors prefers-reduced-motion.
  */
-const KatanaGraphic = ({ className = "" }) => {
+const KatanaGraphic = ({ className = "", label = "刀 · PRECISION CRAFT", ariaLabel = "Katana - Japanese Art of Precision" }) => {
   const shouldReduceMotion = useReducedMotion();
+  // Mirror the blade tilt in RTL so the tip still points at Fuji's summit
+  const { isRTL } = useLanguage();
+  const tilt = isRTL ? -1 : 1;
   const containerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -72,7 +76,7 @@ const KatanaGraphic = ({ className = "" }) => {
         transformStyle: "preserve-3d",
       }}
       className={`relative select-none flex items-center justify-center ${className}`}
-      aria-label="Katana - Japanese Art of Precision"
+      aria-label={ariaLabel}
     >
       {/* Dynamic 3D tilt & gentle float wrapper */}
       <motion.div
@@ -88,7 +92,7 @@ const KatanaGraphic = ({ className = "" }) => {
             ? undefined
             : {
                 y: [0, -8, 0],
-                rotateZ: [-22, -20.5, -22],
+                rotateZ: [-22 * tilt, -20.5 * tilt, -22 * tilt],
               }
         }
         transition={{
@@ -101,7 +105,7 @@ const KatanaGraphic = ({ className = "" }) => {
         {/* Soft Radial Ambient Backdrop Glow */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -m-16 rounded-full bg-gradient-to-tr from-[#D48D9B]/15 via-[#A68550]/10 to-transparent blur-3xl pointer-events-none"
+          className="absolute inset-0 -m-16 rounded-full bg-gradient-to-tr from-sakura/15 via-gold/10 to-transparent blur-3xl pointer-events-none"
         />
 
         {/* Master Katana Vector Artwork */}
@@ -267,8 +271,8 @@ const KatanaGraphic = ({ className = "" }) => {
               strokeWidth="1.2"
             />
             {/* Tsuba openwork piercings (Sukashi - Traditional cherry blossom / crescent cutouts) */}
-            <ellipse cx="70" cy="168" rx="3.5" ry="1.6" fill="#F6F2EB" opacity="0.8" />
-            <ellipse cx="90" cy="168" rx="3.5" ry="1.6" fill="#F6F2EB" opacity="0.8" />
+            <ellipse cx="70" cy="168" rx="3.5" ry="1.6" fill="var(--paper)" opacity="0.8" />
+            <ellipse cx="90" cy="168" rx="3.5" ry="1.6" fill="var(--paper)" opacity="0.8" />
             {/* Rim rim gold accent */}
             <ellipse cx="80" cy="168" rx="18.5" ry="5.8" stroke="#A68550" strokeWidth="0.6" fill="none" opacity="0.75" />
 
@@ -476,12 +480,12 @@ const KatanaGraphic = ({ className = "" }) => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="absolute top-[22%] left-[56%] flex flex-col items-center gap-1.5 pointer-events-none"
+          className="absolute top-[22%] start-[56%] flex flex-col items-center gap-1.5 pointer-events-none"
         >
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F2EB]/85 backdrop-blur-sm border border-[#A68550]/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_6px_16px_-8px_rgba(34,33,30,0.25)]">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-paper/85 backdrop-blur-sm border border-gold/25 shadow-[inset_0_1px_0_var(--card-sheen),0_6px_16px_-8px_rgba(34,33,30,0.25)]">
             <span className="hanko-stamp text-[10px] w-5 h-5">匠</span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-[#726A5F]">
-              刀 · PRECISION CRAFT
+            <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-ink-soft">
+              {label}
             </span>
           </div>
         </motion.div>

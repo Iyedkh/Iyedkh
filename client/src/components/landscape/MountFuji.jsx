@@ -24,30 +24,30 @@ const MountFuji = ({ className = "" }) => {
         <defs>
           {/* Morning Sun (Asahi) Radiant Gradient */}
           <radialGradient id="fujiSunAura" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#DE5D4E" stopOpacity="0.75" />
-            <stop offset="40%" stopColor="#E28779" stopOpacity="0.45" />
-            <stop offset="75%" stopColor="#EFA882" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--sun-aura-1, #DE5D4E)" stopOpacity="0.75" />
+            <stop offset="40%" stopColor="var(--sun-aura-2, #E28779)" stopOpacity="0.45" />
+            <stop offset="75%" stopColor="var(--sun-aura-3, #EFA882)" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="var(--paper)" stopOpacity="0" />
           </radialGradient>
 
           <radialGradient id="fujiSunDisc" cx="45%" cy="40%" r="55%">
-            <stop offset="0%" stopColor="#EA6B5A" />
-            <stop offset="70%" stopColor="#D95343" />
-            <stop offset="100%" stopColor="#C44333" />
+            <stop offset="0%" stopColor="var(--sun-core, #EA6B5A)" />
+            <stop offset="70%" stopColor="var(--sun-mid, #D95343)" />
+            <stop offset="100%" stopColor="var(--sun-edge, #C44333)" />
           </radialGradient>
 
           {/* Sumi-e Mountain Cone Gradients (Soft Japandi Ink Wash) */}
           <linearGradient id="fujiSumiEast" x1="15%" y1="10%" x2="85%" y2="90%">
-            <stop offset="0%" stopColor="#3C424E" stopOpacity="0.9" />
-            <stop offset="45%" stopColor="#2D323C" stopOpacity="0.88" />
-            <stop offset="85%" stopColor="#1E2128" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#17191F" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="var(--fuji-1, #3C424E)" stopOpacity="0.9" />
+            <stop offset="45%" stopColor="var(--fuji-2, #2D323C)" stopOpacity="0.88" />
+            <stop offset="85%" stopColor="var(--fuji-3, #1E2128)" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="var(--fuji-4, #17191F)" stopOpacity="0.8" />
           </linearGradient>
 
           <linearGradient id="fujiSumiWest" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#252A34" stopOpacity="0.7" />
-            <stop offset="60%" stopColor="#1B1E26" stopOpacity="0.75" />
-            <stop offset="100%" stopColor="#13151A" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="var(--fuji-w1, #252A34)" stopOpacity="0.7" />
+            <stop offset="60%" stopColor="var(--fuji-w2, #1B1E26)" stopOpacity="0.75" />
+            <stop offset="100%" stopColor="var(--fuji-w3, #13151A)" stopOpacity="0.8" />
           </linearGradient>
 
           {/* Realistic Snow Cap (Fuji Yuki) */}
@@ -77,23 +77,23 @@ const MountFuji = ({ className = "" }) => {
 
           {/* Horizon Base Mist Fader (Seamless blend into rice paper) */}
           <linearGradient id="horizonMistBlend" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#F6F2EB" stopOpacity="0.95" />
-            <stop offset="45%" stopColor="#F6F2EB" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--paper)" stopOpacity="0.95" />
+            <stop offset="45%" stopColor="var(--paper)" stopOpacity="0.65" />
+            <stop offset="100%" stopColor="var(--paper)" stopOpacity="0" />
           </linearGradient>
 
           {/* Morning light washing the sun-facing (left) slope */}
           <linearGradient id="fujiSunKiss" x1="0" y1="128" x2="0" y2="480" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#F2C4B4" stopOpacity="0.32" />
-            <stop offset="45%" stopColor="#D9A08F" stopOpacity="0.12" />
-            <stop offset="100%" stopColor="#D9A08F" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--fuji-light, #F2C4B4)" stopOpacity="0.32" />
+            <stop offset="45%" stopColor="var(--fuji-light-2, #D9A08F)" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="var(--fuji-light-2, #D9A08F)" stopOpacity="0" />
           </linearGradient>
 
           {/* Atmospheric perspective: the base dissolves into warm haze */}
           <linearGradient id="fujiAtmosHaze" x1="0" y1="128" x2="0" y2="480" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#F6F2EB" stopOpacity="0" />
-            <stop offset="50%" stopColor="#EFE7DC" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="var(--paper)" stopOpacity="0" />
+            <stop offset="50%" stopColor="var(--paper-2)" stopOpacity="0.16" />
+            <stop offset="100%" stopColor="var(--paper)" stopOpacity="0.6" />
           </linearGradient>
 
           {/* Far range haze */}
@@ -104,9 +104,9 @@ const MountFuji = ({ className = "" }) => {
 
           {/* Soft mist band */}
           <radialGradient id="fujiMistBand" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#F8F4EE" stopOpacity="0.95" />
-            <stop offset="60%" stopColor="#F6F2EB" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--paper)" stopOpacity="0.95" />
+            <stop offset="60%" stopColor="var(--paper)" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="var(--paper)" stopOpacity="0" />
           </radialGradient>
 
           {/* Feathered shadow beneath the snow line */}
@@ -126,7 +126,7 @@ const MountFuji = ({ className = "" }) => {
             cx="620"
             cy="180"
             r="185"
-            stroke="#E28779"
+            stroke="var(--sun-aura-2, #E28779)"
             strokeWidth="0.75"
             strokeOpacity="0.25"
             fill="none"
