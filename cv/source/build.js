@@ -59,6 +59,7 @@ function buildDocx(cv) {
     new Paragraph({ alignment: AlignmentType.JUSTIFIED, spacing: { after: 40 }, children: runs(cv.summary) }),
     heading(cv.labels.skills),
     ...cv.skills.map(([k, v]) => new Paragraph({ spacing: { after: 30 }, children: [new TextRun({ text: `${k}: `, bold: true, size: 20, font: FONT }), ...runs(v)] })),
+    ...(cv.training ? [heading(cv.labels.training), ...cv.training.flatMap(job)] : []),
     heading(cv.labels.experience),
     ...cv.experience.flatMap(job),
     heading(cv.labels.projects),
@@ -107,6 +108,7 @@ function buildHtml(cv) {
   <div class="info">${esc(cv.infoLine)}</div>
   <h2>${cv.labels.summary.toUpperCase()}</h2><p>${md(cv.summary)}</p>
   <h2>${cv.labels.skills.toUpperCase()}</h2>${cv.skills.map(([k, v]) => `<div class="skill"><b>${esc(k)}:</b> ${md(v)}</div>`).join("")}
+  ${cv.training ? `<h2>${cv.labels.training.toUpperCase()}</h2>${cv.training.map(jobHtml).join("")}` : ""}
   <h2>${cv.labels.experience.toUpperCase()}</h2>${cv.experience.map(jobHtml).join("")}
   <h2>${cv.labels.projects.toUpperCase()}</h2>${cv.projects.map(jobHtml).join("")}
   <h2>${cv.labels.education.toUpperCase()}</h2>${cv.education.map(([l, d]) => `<div class="row" style="margin-top:2px"><span>${md(l)}</span><span class="date">${d}</span></div>`).join("")}

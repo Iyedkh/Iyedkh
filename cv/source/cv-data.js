@@ -186,4 +186,153 @@ const frIntl = {
     "Développeur Full Stack avec plus de 2 ans d'expérience dans la conception et la mise en production d'applications web avec la stack MERN. Un an à temps plein au sein d'une équipe de 3 développeurs sur une plateforme e-commerce complète (authentification JWT et Google, tableau de bord d'administration), et 5 sites web livrés à distance en freelance pour des entreprises des secteurs maritime, commercial, industriel et agroalimentaire. Développe actuellement CARTHAGEOS, un ERP SaaS multi-tenant. Trilingue arabe, français et anglais. Disponible immédiatement en télétravail, en hybride ou sur site, et ouvert à la mobilité internationale.",
 };
 
-module.exports = { en, fr, enIntl, frIntl };
+// Data science variants: same facts, data/ML positioning, with a training section
+const dsEn = {
+  ...enIntl,
+  file: "Iyed_Khouildi_Data_Scientist_CV_EN",
+  title: "Junior Data Scientist | Machine Learning · AI · Data Analysis",
+  labels: { ...en.labels, training: "Machine Learning & AI Training" },
+  summary:
+    "Business Intelligence graduate and Full Stack Developer with 2+ years of experience building data-driven web applications, dashboards and REST APIs on MongoDB and SQL databases. Trained in data science through a BI degree and the GOMYCODE Data Scientist Bootcamp: Python data analysis, statistics and probability, machine learning, neural networks, NLP and generative AI. Combines analytical skills with the engineering ability to ship data products to production. Looking for entry-level or junior roles in Data Science, Machine Learning, AI Engineering or Data Analysis. Trilingual in Arabic, French and English.",
+  skills: [
+    ["Programming & Data", "Python, SQL, Pandas, NumPy, data cleaning"],
+    ["Statistics & Visualization", "Statistics & probability, Matplotlib, Seaborn, data visualization"],
+    ["Machine Learning & AI", "Scikit-learn, machine learning algorithms, deep learning & neural networks, NLP, LLMs, generative AI"],
+    ["BI & Databases", "Power BI, Tableau, Excel, PostgreSQL, MongoDB (aggregation pipelines)"],
+    ["Tools", "Jupyter Notebook, Git, GitHub"],
+    ["Software & APIs", "JavaScript, Node.js, Express.js, React.js, RESTful APIs, Agile/Scrum"],
+  ],
+  training: [
+    {
+      role: "Data Scientist Bootcamp",
+      org: "GOMYCODE",
+      meta: "Certification",
+      dates: "2025",
+      bullets: [
+        "Python data analysis with Pandas and NumPy, data cleaning and exploratory analysis in Jupyter Notebook.",
+        "Statistics and probability; data visualization with Matplotlib and Seaborn.",
+        "Machine learning with Scikit-learn, deep learning and neural networks, NLP, LLMs and generative AI.",
+      ],
+    },
+  ],
+  experience: [
+    {
+      role: "Full Stack Developer",
+      org: "JCD Commerce",
+      meta: "Full-time · Tunisia",
+      dates: "Sep 2025 – Aug 2026",
+      bullets: [
+        "Designed and managed **MongoDB data models** for products, orders and users on a production e-commerce platform (jcdcommerce.com), in a 3-developer team.",
+        "Built Node.js/Express **REST APIs** and an **admin dashboard** for catalog, inventory and order management.",
+        "Implemented secure authentication with JWT, bcrypt and Google Sign-In.",
+      ],
+    },
+    {
+      role: "Freelance Full Stack Developer",
+      org: "Self-employed",
+      meta: "Remote",
+      dates: "Sep 2024 – Oct 2026",
+      bullets: [
+        "**Oliv'Or** (olivor.tn) · Jun – Aug 2026: MERN e-commerce website with product, order and user data management.",
+        "Corporate websites for **BV Tech Marine** (2026), **MS Smart Trading** (2025), **MS Équipements et Services** (2025) and **EGT Naval Services** (2024), with SEO and performance optimization.",
+      ],
+    },
+    {
+      role: "Full Stack Developer & BI Intern",
+      org: "IT-Grow",
+      meta: "Internship · Tunisia",
+      dates: "Feb 2024 – Jun 2024",
+      bullets: [
+        "Built an interactive **progress-tracking dashboard** visualizing learner activity and course progress for a MERN e-learning platform.",
+        "Developed REST APIs and data models for user activity and learning progress.",
+      ],
+    },
+  ],
+  projects: [
+    {
+      role: "CARTHAGEOS — Multi-tenant SaaS ERP",
+      org: "github.com/Iyedkh",
+      meta: "Personal project · In development",
+      dates: "2026",
+      bullets: [
+        "Building a cloud ERP with **MongoDB aggregation pipelines** for multi-warehouse inventory, invoicing and financial tracking, with role-based access control.",
+      ],
+    },
+  ],
+};
+
+const dsFr = {
+  ...frIntl,
+  file: "Iyed_Khouildi_Data_Scientist_CV_FR",
+  title: "Data Scientist Junior | Machine Learning · IA · Analyse de données",
+  labels: { ...fr.labels, training: "Formation en Machine Learning & IA" },
+  summary:
+    "Diplômé en Business Intelligence et Développeur Full Stack avec plus de 2 ans d'expérience dans la création d'applications web orientées données, de tableaux de bord et d'API REST sur des bases MongoDB et SQL. Formé à la data science par une licence en BI et le Bootcamp Data Scientist de GOMYCODE : analyse de données avec Python, statistiques et probabilités, machine learning, réseaux de neurones, NLP et IA générative. Allie compétences analytiques et capacité d'ingénierie pour mettre des produits data en production. Recherche un poste débutant ou junior en Data Science, Machine Learning, ingénierie IA ou analyse de données. Trilingue arabe, français et anglais.",
+  skills: [
+    ["Programmation & données", "Python, SQL, Pandas, NumPy, nettoyage de données"],
+    ["Statistiques & visualisation", "Statistiques & probabilités, Matplotlib, Seaborn, visualisation de données"],
+    ["Machine Learning & IA", "Scikit-learn, algorithmes de machine learning, deep learning & réseaux de neurones, NLP, LLM, IA générative"],
+    ["BI & bases de données", "Power BI, Tableau, Excel, PostgreSQL, MongoDB (pipelines d'agrégation)"],
+    ["Outils", "Jupyter Notebook, Git, GitHub"],
+    ["Logiciel & API", "JavaScript, Node.js, Express.js, React.js, API REST, Agile/Scrum"],
+  ],
+  training: [
+    {
+      role: "Bootcamp Data Scientist",
+      org: "GOMYCODE",
+      meta: "Certification",
+      dates: "2025",
+      bullets: [
+        "Analyse de données avec Python, Pandas et NumPy, nettoyage de données et analyse exploratoire sous Jupyter Notebook.",
+        "Statistiques et probabilités ; visualisation de données avec Matplotlib et Seaborn.",
+        "Machine learning avec Scikit-learn, deep learning et réseaux de neurones, NLP, LLM et IA générative.",
+      ],
+    },
+  ],
+  experience: [
+    {
+      role: "Développeur Full Stack",
+      org: "JCD Commerce",
+      meta: "Temps plein · Tunisie",
+      dates: "Sept. 2025 – Août 2026",
+      bullets: [
+        "Conception et gestion des **modèles de données MongoDB** (produits, commandes, utilisateurs) d'une plateforme e-commerce en production (jcdcommerce.com), au sein d'une équipe de 3 développeurs.",
+        "Développement d'**API REST** Node.js/Express et d'un **tableau de bord d'administration** pour le catalogue, le stock et les commandes.",
+        "Mise en place d'une authentification sécurisée avec JWT, bcrypt et connexion Google.",
+      ],
+    },
+    {
+      role: "Développeur Full Stack Freelance",
+      org: "Indépendant",
+      meta: "À distance",
+      dates: "Sept. 2024 – Oct. 2026",
+      bullets: [
+        "**Oliv'Or** (olivor.tn) · Juin – Août 2026 : site e-commerce MERN avec gestion des données produits, commandes et utilisateurs.",
+        "Sites vitrines pour **BV Tech Marine** (2026), **MS Smart Trading** (2025), **MS Équipements et Services** (2025) et **EGT Naval Services** (2024), avec optimisation SEO et performance.",
+      ],
+    },
+    {
+      role: "Stagiaire Développeur Full Stack & BI",
+      org: "IT-Grow",
+      meta: "Stage · Tunisie",
+      dates: "Févr. 2024 – Juin 2024",
+      bullets: [
+        "Réalisation d'un **tableau de bord interactif** de suivi de l'activité et de la progression des apprenants pour une plateforme e-learning MERN.",
+        "Développement d'API REST et de modèles de données pour l'activité des utilisateurs et la progression pédagogique.",
+      ],
+    },
+  ],
+  projects: [
+    {
+      role: "CARTHAGEOS — ERP SaaS multi-tenant",
+      org: "github.com/Iyedkh",
+      meta: "Projet personnel · En cours",
+      dates: "2026",
+      bullets: [
+        "Développement d'un ERP cloud reposant sur des **pipelines d'agrégation MongoDB** pour la gestion de stock multi-entrepôts, la facturation et le suivi financier, avec contrôle d'accès par rôles.",
+      ],
+    },
+  ],
+};
+
+module.exports = { en, fr, enIntl, frIntl, dsEn, dsFr };

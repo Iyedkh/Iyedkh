@@ -25,14 +25,9 @@ const CvModal = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closeCvModal]);
 
-  const handleDownload = (langKey, fileName) => {
-    const langName =
-      langKey === "en"
-        ? t.cvModal.en.langBadge
-        : t.cvModal.fr.langBadge;
-
+  const handleDownload = (opt) => {
     toast.success(t.cvModal.downloadToastTitle, {
-      description: t.cvModal.downloadToastDesc.replace("{lang}", langName),
+      description: t.cvModal.downloadToastDesc.replace("{lang}", opt.data.title),
       duration: 3500,
     });
   };
@@ -55,6 +50,28 @@ const CvModal = () => {
       data: t.cvModal.fr,
       fileUrl: "/Iyed_Khouildi_CV_FR.pdf",
       fileName: "Iyed_Khouildi_CV_FR.pdf",
+      accentColor: "var(--accent-teal)",
+      accentDim: "var(--accent-teal-dim)",
+      accentBorder: "var(--accent-teal-border)",
+      isHighlighted: false,
+    },
+    {
+      key: "ds-en",
+      flag: "🇬🇧",
+      data: t.cvModal.dsEn,
+      fileUrl: "/Iyed_Khouildi_CV_Data_Science_EN.pdf",
+      fileName: "Iyed_Khouildi_CV_Data_Science_EN.pdf",
+      accentColor: "var(--accent-amber)",
+      accentDim: "var(--accent-amber-dim)",
+      accentBorder: "var(--border-focus)",
+      isHighlighted: false,
+    },
+    {
+      key: "ds-fr",
+      flag: "🇫🇷",
+      data: t.cvModal.dsFr,
+      fileUrl: "/Iyed_Khouildi_CV_Data_Science_FR.pdf",
+      fileName: "Iyed_Khouildi_CV_Data_Science_FR.pdf",
       accentColor: "var(--accent-teal)",
       accentDim: "var(--accent-teal-dim)",
       accentBorder: "var(--accent-teal-border)",
@@ -86,7 +103,7 @@ const CvModal = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 16 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-xl rounded-3xl bg-[var(--bg-rice-paper)] border border-[var(--border-sand-strong)] shadow-2xl p-6 sm:p-8 z-10 overflow-hidden washi-grain"
+            className="relative w-full max-w-xl rounded-3xl bg-[var(--bg-rice-paper)] border border-[var(--border-sand-strong)] shadow-2xl p-6 sm:p-8 z-10 max-h-[calc(100dvh-2rem)] overflow-y-auto washi-grain"
           >
             {/* Ambient Subtle Sun Aura */}
             <div
@@ -179,7 +196,7 @@ const CvModal = () => {
                     <a
                       href={opt.fileUrl}
                       download={opt.fileName}
-                      onClick={() => handleDownload(opt.key, opt.fileName)}
+                      onClick={() => handleDownload(opt)}
                       className="btn-primary-action text-xs py-2 px-3.5 rounded-xl flex-1 sm:flex-initial justify-center"
                       title={opt.data.download}
                     >
