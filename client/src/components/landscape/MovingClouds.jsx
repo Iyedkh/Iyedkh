@@ -23,7 +23,7 @@ const MovingClouds = ({ className = "" }) => {
       {/* ========================================================= */}
       {/* LAYER 1: HIGH SKY CUMULUS & CIRRUS CLOUDS (High Elevation) */}
       {/* ========================================================= */}
-      <div className="absolute top-6 left-0 w-full h-44 overflow-hidden opacity-60">
+      <div className="mist-fade absolute top-6 left-0 w-full h-44 overflow-hidden opacity-55 [filter:drop-shadow(0_8px_10px_rgba(166,133,80,0.10))]">
         <div className="flex w-[200%] h-full animate-cloud-track-slow">
           {/* Track Segment A */}
           <div className="w-1/2 h-full relative shrink-0 animate-cloud-bob-1">
@@ -86,7 +86,7 @@ const MovingClouds = ({ className = "" }) => {
       {/* LAYER 2: TRADITIONAL JAPANESE KUMOGATA (Waist Mist Ribbon) */}
       {/* ========================================================= */}
       {/* Floating across Mount Fuji's midsection (approx. 40%-65% down) */}
-      <div className="absolute top-[32%] sm:top-[36%] left-0 w-full h-40 overflow-hidden opacity-75">
+      <div className="mist-fade absolute top-[32%] sm:top-[36%] left-0 w-full h-40 overflow-hidden opacity-65 [filter:drop-shadow(0_10px_12px_rgba(140,103,71,0.10))]">
         <div className="flex w-[200%] h-full animate-cloud-track-mid">
           {/* Track Segment A */}
           <div className="w-1/2 h-full relative shrink-0 animate-cloud-bob-2">
@@ -233,7 +233,7 @@ const MovingClouds = ({ className = "" }) => {
       {/* ========================================================= */}
       {/* LAYER 3: LOW VALLEY MIST & DRIFTING HORIZON CLOUDS        */}
       {/* ========================================================= */}
-      <div className="absolute bottom-6 sm:bottom-12 left-0 w-full h-32 overflow-hidden opacity-50">
+      <div className="mist-fade absolute bottom-6 sm:bottom-12 left-0 w-full h-32 overflow-hidden opacity-50">
         <div className="flex w-[200%] h-full animate-cloud-track-fast">
           {/* Track Segment A */}
           <div className="w-1/2 h-full relative shrink-0">

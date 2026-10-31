@@ -634,6 +634,147 @@
   background-size: 100% 1px;
 }
 
+/* ==========================================================================
+   Editorial Polish Layer — typography rhythm, depth & refined interactions
+   ========================================================================== */
+
+/* Balanced headlines and orphan-free paragraphs */
+h1, h2, h3 {
+  text-wrap: balance;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "dlig";
+}
+p, li {
+  text-wrap: pretty;
+}
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Anchored sections clear the fixed navigation */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Hero landscape masks: soften hard SVG edges into the washi paper */
+@utility fuji-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+}
+@utility fuji-fade-left {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 100%);
+}
+@utility mist-fade {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
+}
+@utility foliage-fade {
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+/* Cards: layered paper depth with a hairline highlight on the top edge */
+.japandi-card, .console-card, .apple-card {
+  border-radius: 22px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 1px 2px rgba(34, 33, 30, 0.03),
+    0 6px 18px -10px rgba(34, 33, 30, 0.08);
+  transition:
+    transform 0.6s var(--ease-out-expo),
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.6s var(--ease-out-expo);
+}
+.japandi-card:hover, .console-card:hover, .apple-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(34, 33, 30, 0.03),
+    0 28px 48px -24px rgba(34, 33, 30, 0.2);
+  transform: translateY(-4px);
+}
+
+/* Buttons: consistent touch targets, tactile press and inner sheen */
+@layer components {
+  .btn-japandi-primary, .btn-japandi-secondary {
+    min-height: 44px;
+    justify-content: center;
+  }
+}
+.btn-japandi-primary, .btn-japandi-secondary {
+  transition:
+    transform 0.4s var(--ease-out-expo),
+    box-shadow 0.4s var(--ease-out-expo),
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.btn-japandi-primary {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 6px 16px -10px rgba(21, 20, 18, 0.5);
+}
+.btn-japandi-primary:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 28px -12px rgba(140, 74, 87, 0.55);
+}
+.btn-japandi-secondary {
+  background-color: rgba(246, 242, 235, 0.6);
+  backdrop-filter: blur(6px);
+}
+.btn-japandi-primary:active, .btn-japandi-secondary:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.12s;
+}
+
+/* Dividers breathe with the viewport */
+.katana-divider, .japandi-divider, .apple-divider {
+  margin: clamp(48px, 7vw, 88px) 0;
+}
+
+/* Navigation link: brush stroke that draws in beneath the label */
+.nav-link-brush::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 14px;
+  height: 1px;
+  background: var(--sakura-pink);
+  transform: translateX(-50%) scaleX(0);
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.nav-link-brush:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Header hairline: gold ink fading at both ends */
+.nav-hairline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(166, 133, 80, 0.35) 20%, rgba(34, 33, 30, 0.12) 50%, rgba(212, 141, 155, 0.4) 80%, transparent);
+  pointer-events: none;
+}
+
+/* Project card ordinal numeral */
+.card-ordinal {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-variant-numeric: lining-nums;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(166, 133, 80, 0.35);
+  transition: -webkit-text-stroke-color 0.5s ease, transform 0.6s var(--ease-out-expo);
+  user-select: none;
+  pointer-events: none;
+}
+.group:hover .card-ordinal {
+  -webkit-text-stroke-color: rgba(212, 141, 155, 0.7);
+  transform: translateY(-4px);
+}
+
 /* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -641,5 +782,12 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .japandi-card:hover, .console-card:hover, .apple-card:hover,
+  .btn-japandi-primary:hover, .btn-japandi-secondary:hover {
+    transform: none;
+  }
+  .paper-grain {
+    animation: none;
   }
 }

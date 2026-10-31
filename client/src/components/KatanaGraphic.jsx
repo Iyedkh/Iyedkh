@@ -111,7 +111,7 @@ const KatanaGraphic = ({ className = "" }) => {
           viewBox="0 0 160 620"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-[min(620px,60svh)] w-auto overflow-visible drop-shadow-[0_24px_38px_rgba(23,23,20,0.18)]"
+          className="h-[min(620px,60svh)] w-auto overflow-visible [filter:drop-shadow(0_2px_3px_rgba(23,23,20,0.18))_drop-shadow(16px_34px_28px_rgba(23,23,20,0.13))]"
         >
           <defs>
             {/* Blade Steel Metallic Gradient (Hi-Grade Tamahagane) */}
@@ -158,6 +158,13 @@ const KatanaGraphic = ({ className = "" }) => {
               <stop offset="70%" stopColor="#FFFFFF" stopOpacity="0.2" />
               <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
             </linearGradient>
+
+            {/* Sun glare caught on the kissaki */}
+            <radialGradient id="kissakiGlare" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
+              <stop offset="35%" stopColor="#FBE3DA" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#F3D9DF" stopOpacity="0" />
+            </radialGradient>
 
             {/* Ambient drop shadow for Tsuba & Habaki */}
             <filter id="fittingShadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -427,6 +434,16 @@ const KatanaGraphic = ({ className = "" }) => {
             )}
           </g>
 
+          {/* Morning sun catching the blade tip, tying the sword to the rising sun behind Fuji */}
+          <motion.g
+            style={{ transformOrigin: "65px 590px", transformBox: "view-box" }}
+            animate={shouldReduceMotion ? undefined : { opacity: [0.55, 1, 0.55], scale: [0.9, 1.08, 0.9] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <circle cx="65" cy="590" r="16" fill="url(#kissakiGlare)" />
+            <path d="M 65 579 L 65.6 589.4 L 76 590 L 65.6 590.6 L 65 601 L 64.4 590.6 L 54 590 L 64.4 589.4 Z" fill="#FFFFFF" opacity="0.85" />
+          </motion.g>
+
           {/* Drifting Petal tied to Katana Blade Tip */}
           <motion.g
             animate={
@@ -459,9 +476,9 @@ const KatanaGraphic = ({ className = "" }) => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="absolute -bottom-8 flex flex-col items-center gap-1.5 pointer-events-none"
+          className="absolute top-[22%] left-[56%] flex flex-col items-center gap-1.5 pointer-events-none"
         >
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#EBE3D5]/80 backdrop-blur-sm border border-[#22211E]/10 shadow-sm">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#F6F2EB]/85 backdrop-blur-sm border border-[#A68550]/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_6px_16px_-8px_rgba(34,33,30,0.25)]">
             <span className="hanko-stamp text-[10px] w-5 h-5">匠</span>
             <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-[#726A5F]">
               刀 · PRECISION CRAFT

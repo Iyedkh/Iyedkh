@@ -189,14 +189,15 @@ const Projects = () => {
         />
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-2 p-1.5 rounded-full bg-[#EBE3D5]/80 border border-[#22211E]/10 w-fit mb-12 overflow-x-auto max-w-full">
+        <div className="flex items-center gap-1 p-1.5 rounded-full bg-[#EBE3D5]/75 border border-[#22211E]/10 w-fit mb-12 sm:mb-14 overflow-x-auto no-scrollbar max-w-full shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_8px_24px_-16px_rgba(34,33,30,0.2)]">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveFilter(tab.id)}
-                className={`relative px-4 py-2 rounded-full text-xs font-mono transition-all duration-200 whitespace-nowrap focus:outline-none ${
+                aria-pressed={isActive}
+                className={`relative min-h-10 px-4 py-2 rounded-full text-xs font-mono tracking-wide transition-colors duration-300 whitespace-nowrap focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B] ${
                   isActive
                     ? "text-[#22211E] font-semibold"
                     : "text-[#726A5F] hover:text-[#22211E]"
@@ -206,7 +207,7 @@ const Projects = () => {
                   <motion.div
                     layoutId="activeFilterPillSakura"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[#D48D9B]/30 border border-[#D48D9B] rounded-full -z-0"
+                    className="absolute inset-0 bg-[#F6F2EB] border border-[#D48D9B]/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_8px_-3px_rgba(212,141,155,0.45)] rounded-full -z-0"
                   />
                 )}
                 <span className="relative z-10">{tab.label}</span>
@@ -228,10 +229,14 @@ const Projects = () => {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               data-project-card
               onClick={() => setSelectedProject(projectList[0])}
-              className="p-8 sm:p-12 rounded-3xl bg-[#EBE3D5] border border-[#22211E]/15 group cursor-pointer relative overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-[#D48D9B] hover:shadow-[0_30px_60px_-20px_rgba(34,33,30,0.18)]"
+              className="p-7 sm:p-12 rounded-[28px] bg-gradient-to-br from-[#EBE3D5] via-[#EBE3D5] to-[#E4DAC9] border border-[#22211E]/12 group cursor-pointer relative overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_18px_40px_-28px_rgba(34,33,30,0.3)] transition-[border-color,box-shadow] duration-700 hover:border-[#D48D9B]/70 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_40px_80px_-36px_rgba(34,33,30,0.35)]"
             >
               {/* Subtle Sakura Blossom Silhouette in Background */}
-              <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-[#D48D9B]/10 blur-2xl pointer-events-none" />
+              <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-[#D48D9B]/10 blur-2xl pointer-events-none transition-transform duration-1000 group-hover:scale-125" />
+              {/* Ghost ordinal & gold corner ticks */}
+              <span aria-hidden="true" className="card-ordinal absolute -top-6 end-6 text-[9rem] sm:text-[12rem] hidden sm:block">01</span>
+              <span aria-hidden="true" className="absolute top-5 start-5 h-4 w-4 border-t border-s border-[#A68550]/40 rounded-tl-sm pointer-events-none" />
+              <span aria-hidden="true" className="absolute bottom-5 end-5 h-4 w-4 border-b border-e border-[#A68550]/40 rounded-br-sm pointer-events-none" />
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
                 <div className="lg:col-span-7 space-y-4">
@@ -242,7 +247,7 @@ const Projects = () => {
                     <span className="text-xs font-mono text-[#726A5F]">2026</span>
                   </div>
 
-                  <h3 className="font-editorial text-4xl sm:text-5xl text-[#22211E] font-normal leading-tight group-hover:text-[#D48D9B] transition-colors">
+                  <h3 className="font-editorial text-[2.6rem] sm:text-6xl text-[#22211E] font-normal leading-[1.02] tracking-[-0.02em] group-hover:text-[#D48D9B] transition-colors duration-500">
                     CARTHAGEOS
                   </h3>
 
@@ -290,7 +295,7 @@ const Projects = () => {
 
                 {/* Right Visual Representation: Japandi Architectural Blueprint Spec Sheet */}
                 <div className="lg:col-span-5">
-                  <div className="relative aspect-[4/3] rounded-2xl bg-[#F6F2EB] border border-[#22211E]/15 p-5 text-[#22211E] font-mono text-xs flex flex-col justify-between shadow-[0_4px_20px_-4px_rgba(34,33,30,0.06)] washi-grain">
+                  <div className="relative aspect-[4/3] rounded-2xl bg-[#F6F2EB] border border-[#22211E]/12 p-5 text-[#22211E] font-mono text-xs flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_24px_40px_-24px_rgba(34,33,30,0.3)] washi-grain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-hover:rotate-[-0.6deg]">
                     {/* Architectural Header */}
                     <div className="flex items-center justify-between pb-3 border-b border-[#22211E]/10">
                       <div className="flex items-center gap-2">
@@ -340,7 +345,7 @@ const Projects = () => {
           )}
 
           {/* Secondary Projects Grid (2 Columns) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {filteredProjects
               .filter((p) => !p.isFlagship)
               .map((project) => (
@@ -354,12 +359,16 @@ const Projects = () => {
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   data-project-card
                   onClick={() => setSelectedProject(project)}
-                  className="japandi-card p-7 flex flex-col justify-between group cursor-pointer hover:border-[#D48D9B]"
+                  className="japandi-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-[#D48D9B]/70"
                 >
                   <div>
                     {/* Top Meta Bar */}
                     <div className="flex items-center justify-between pb-4 border-b border-[#22211E]/10 mb-5">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <span aria-hidden="true" className="font-editorial italic text-lg leading-none [font-variant-numeric:lining-nums] text-[#A68550]/70 transition-colors duration-500 group-hover:text-[#D48D9B]">
+                          {String(projectList.indexOf(project) + 1).padStart(2, "0")}
+                        </span>
+                        <span aria-hidden="true" className="h-px w-5 bg-[#A68550]/40 transition-all duration-500 group-hover:w-8 group-hover:bg-[#D48D9B]/60" />
                         <span className="font-mono text-xs text-[#A68550] font-semibold">
                           {project.categoryLabel}
                         </span>
@@ -368,14 +377,14 @@ const Projects = () => {
                     </div>
 
                     {/* Title & Subtitle */}
-                    <h3 className="font-editorial text-3xl text-[#22211E] font-normal group-hover:text-[#D48D9B] transition-colors mb-1">
+                    <h3 className="font-editorial text-3xl sm:text-[2.1rem] leading-[1.1] tracking-[-0.015em] text-[#22211E] font-normal group-hover:text-[#D48D9B] transition-colors duration-500 mb-1.5">
                       {project.title}
                     </h3>
                     <p className="text-xs font-mono text-[#726A5F] uppercase tracking-wider mb-4">
                       {project.subtitle}
                     </p>
 
-                    <p className="text-xs sm:text-sm text-[#726A5F] font-sans leading-relaxed mb-6">
+                    <p className="text-sm text-[#5F584E] font-sans leading-[1.7] mb-6">
                       {project.description}
                     </p>
 
@@ -396,7 +405,7 @@ const Projects = () => {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 rounded-full bg-[#EBE3D5] border border-[#22211E]/10 text-[11px] font-mono text-[#22211E]"
+                          className="px-2.5 py-0.5 rounded-full bg-[#F6F2EB]/70 border border-[#22211E]/10 text-[11px] font-mono text-[#22211E] transition-colors duration-300 group-hover:border-[#D48D9B]/30"
                         >
                           {tag}
                         </span>
@@ -417,7 +426,7 @@ const Projects = () => {
                           e.stopPropagation();
                           window.open(project.link, "_blank");
                         }}
-                        className="text-xs font-mono text-[#726A5F] hover:text-[#22211E] flex items-center gap-1"
+                        className="text-xs font-mono text-[#726A5F] hover:text-[#22211E] flex items-center gap-1 rounded-full px-2.5 py-1 -me-2.5 transition-colors hover:bg-[#F6F2EB]/80"
                       >
                         <Globe className="w-3.5 h-3.5" />
                         <span>Live</span>

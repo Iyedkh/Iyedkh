@@ -81,6 +81,38 @@ const MountFuji = ({ className = "" }) => {
             <stop offset="45%" stopColor="#F6F2EB" stopOpacity="0.65" />
             <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0" />
           </linearGradient>
+
+          {/* Morning light washing the sun-facing (left) slope */}
+          <linearGradient id="fujiSunKiss" x1="0" y1="128" x2="0" y2="480" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#F2C4B4" stopOpacity="0.32" />
+            <stop offset="45%" stopColor="#D9A08F" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#D9A08F" stopOpacity="0" />
+          </linearGradient>
+
+          {/* Atmospheric perspective: the base dissolves into warm haze */}
+          <linearGradient id="fujiAtmosHaze" x1="0" y1="128" x2="0" y2="480" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#F6F2EB" stopOpacity="0" />
+            <stop offset="50%" stopColor="#EFE7DC" stopOpacity="0.16" />
+            <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0.6" />
+          </linearGradient>
+
+          {/* Far range haze */}
+          <linearGradient id="fujiFarRange" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#8D94A0" stopOpacity="0.22" />
+            <stop offset="100%" stopColor="#8D94A0" stopOpacity="0.04" />
+          </linearGradient>
+
+          {/* Soft mist band */}
+          <radialGradient id="fujiMistBand" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#F8F4EE" stopOpacity="0.95" />
+            <stop offset="60%" stopColor="#F6F2EB" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#F6F2EB" stopOpacity="0" />
+          </radialGradient>
+
+          {/* Feathered shadow beneath the snow line */}
+          <filter id="fujiSoftBlur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" />
+          </filter>
         </defs>
 
         {/* ========================================================= */}
@@ -108,6 +140,12 @@ const MountFuji = ({ className = "" }) => {
             fillOpacity="0.65"
           />
         </g>
+
+        {/* Farthest ridgelines, fading into morning haze */}
+        <path
+          d="M 0 432 L 90 398 L 170 418 L 260 384 L 350 410 L 430 392 L 520 420 L 900 418 L 980 386 L 1070 404 L 1160 372 L 1250 398 L 1340 380 L 1440 402 L 1440 480 L 0 480 Z"
+          fill="url(#fujiFarRange)"
+        />
 
         {/* Distant Mountain Range (Atmospheric Horizon Depth) */}
         <path
@@ -173,6 +211,48 @@ const MountFuji = ({ className = "" }) => {
           strokeLinecap="round"
         />
 
+        {/* Additional fine sumi-e brushwork for volcanic texture */}
+        <g strokeLinecap="round" fill="none">
+          <path d="M 585 230 C 560 300, 500 380, 400 455" stroke="#1F232B" strokeWidth="0.9" strokeOpacity="0.18" />
+          <path d="M 603 240 C 596 320, 565 400, 505 462" stroke="#1F232B" strokeWidth="0.7" strokeOpacity="0.15" />
+          <path d="M 620 250 C 622 330, 615 400, 600 466" stroke="#12141A" strokeWidth="0.8" strokeOpacity="0.2" />
+          <path d="M 640 240 C 655 320, 690 395, 760 458" stroke="#12141A" strokeWidth="1" strokeOpacity="0.24" />
+          <path d="M 660 230 C 690 300, 760 380, 860 450" stroke="#12141A" strokeWidth="0.9" strokeOpacity="0.2" />
+          <path d="M 568 215 C 530 280, 455 360, 330 450" stroke="#2A2F38" strokeWidth="0.7" strokeOpacity="0.14" />
+        </g>
+
+        {/* Warm morning light on the sun-facing slope */}
+        <path
+          d="M 575 128 C 530 195, 415 325, 160 480 L 560 480 C 585 380, 600 260, 610 133 Z"
+          fill="url(#fujiSunKiss)"
+        />
+
+        {/* Backlit silhouette rims */}
+        <path
+          d="M 575 128 C 530 195, 415 325, 160 480"
+          stroke="#F3D9DF"
+          strokeWidth="1.2"
+          strokeOpacity="0.4"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 648 126 C 690 195, 805 325, 1060 480"
+          stroke="#0E1014"
+          strokeWidth="1.4"
+          strokeOpacity="0.25"
+          strokeLinecap="round"
+        />
+
+        {/* Feathered shadow cast by the snow mantle */}
+        <path
+          d="M 522 216 C 532 228, 540 222, 546 240 C 553 226, 561 236, 569 258 C 577 238, 586 246, 593 274 C 601 244, 609 251, 617 286 C 626 248, 635 256, 643 278 C 651 241, 659 248, 667 266 C 675 234, 683 241, 691 254 C 699 226, 707 221, 713 216"
+          stroke="#0E1014"
+          strokeWidth="5"
+          strokeOpacity="0.28"
+          fill="none"
+          filter="url(#fujiSoftBlur)"
+        />
+
         {/* ========================================================= */}
         {/* 3. REFINED NATURAL SNOW CAP (Fuji Yuki)                   */}
         {/* ========================================================= */}
@@ -224,6 +304,22 @@ const MountFuji = ({ className = "" }) => {
             strokeLinecap="round"
           />
 
+          {/* Lingering snow in the upper gullies */}
+          <g fill="#F4EEF0" fillOpacity="0.55">
+            <path d="M 560 262 C 556 280, 552 296, 546 312 C 552 300, 558 284, 563 266 Z" />
+            <path d="M 582 288 C 580 306, 577 322, 573 338 C 579 324, 583 306, 585 290 Z" />
+            <path d="M 606 300 C 606 322, 605 342, 603 360 C 608 342, 610 322, 609 302 Z" />
+            <path d="M 632 292 C 634 312, 636 330, 640 346 C 640 328, 637 310, 635 293 Z" />
+            <path d="M 656 280 C 660 298, 665 314, 672 328 C 670 312, 664 296, 659 281 Z" />
+            <path d="M 682 262 C 690 278, 698 292, 708 304 C 702 290, 694 276, 685 263 Z" />
+          </g>
+          <g fill="#FFFFFF" fillOpacity="0.8">
+            <circle cx="548" cy="244" r="1.2" />
+            <circle cx="596" cy="285" r="1" />
+            <circle cx="651" cy="262" r="1.1" />
+            <circle cx="697" cy="236" r="0.9" />
+          </g>
+
           {/* Summit Rim Glow Line */}
           <path
             d="M 575 128 Q 610 133, 648 126"
@@ -232,6 +328,25 @@ const MountFuji = ({ className = "" }) => {
             strokeOpacity="0.9"
             strokeLinecap="round"
           />
+        </g>
+
+        {/* Atmospheric perspective over the whole cone */}
+        <path
+          d="M 575 128
+             C 530 195, 415 325, 160 480
+             L 1060 480
+             C 805 325, 690 195, 648 126
+             Q 610 133, 575 128 Z"
+          fill="url(#fujiAtmosHaze)"
+        />
+
+        {/* Drifting mist bands wrapping the mid-slopes */}
+        <g className="animate-cloud-bob-1">
+          <ellipse cx="470" cy="388" rx="230" ry="16" fill="url(#fujiMistBand)" opacity="0.75" />
+          <ellipse cx="800" cy="372" rx="190" ry="12" fill="url(#fujiMistBand)" opacity="0.6" />
+        </g>
+        <g className="animate-cloud-bob-2">
+          <ellipse cx="640" cy="428" rx="360" ry="20" fill="url(#fujiMistBand)" opacity="0.85" />
         </g>
 
         {/* ========================================================= */}

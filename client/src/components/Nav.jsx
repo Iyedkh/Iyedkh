@@ -76,10 +76,15 @@ const Nav = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "py-3 sm:py-3.5 bg-[#F6F2EB]/92 backdrop-blur-xl border-b border-[#22211E]/10 shadow-[0_8px_30px_-12px_rgba(34,33,30,0.06)]"
-          : "py-5 sm:py-6 lg:py-7 bg-transparent border-b border-transparent"
+          ? "py-2.5 sm:py-3 bg-[#F6F2EB]/85 backdrop-blur-xl backdrop-saturate-150 shadow-[0_10px_30px_-18px_rgba(34,33,30,0.18)]"
+          : "py-4 sm:py-5 lg:py-6 bg-transparent"
       }`}
     >
+      {/* Gold-ink hairline that appears once the page scrolls */}
+      <span
+        aria-hidden="true"
+        className={`nav-hairline transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}
+      />
       <div className="w-full mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
         
         {/* ========================================= */}
@@ -105,7 +110,7 @@ const Nav = () => {
                   title="Available for select projects"
                 />
               </span>
-              <span className="hidden sm:block font-mono text-[9.5px] text-[#726A5F] tracking-[0.16em] uppercase">
+              <span className="hidden sm:block whitespace-nowrap font-mono text-[9.5px] text-[#726A5F] tracking-[0.16em] uppercase">
                 Full Stack &amp; Data Architect
               </span>
             </div>
@@ -117,7 +122,7 @@ const Nav = () => {
         {/* ========================================= */}
         <nav
           aria-label="Main Navigation"
-          className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EBE3D5]/80 border border-[#22211E]/10 backdrop-blur-md shadow-[0_4px_20px_-8px_rgba(34,33,30,0.06)]"
+          className="hidden xl:flex items-center gap-0.5 px-1.5 py-1.5 rounded-full bg-[#EBE3D5]/75 border border-[#22211E]/10 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_8px_24px_-14px_rgba(34,33,30,0.18)]"
         >
           {navLinks.map((link) => {
             const sectionId = link.href.substring(1);
@@ -126,17 +131,18 @@ const Nav = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-200 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B] ${
+                aria-current={isActive ? "true" : undefined}
+                className={`relative whitespace-nowrap px-3.5 2xl:px-4 py-2 text-xs font-mono tracking-wider transition-colors duration-300 rounded-full focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B] ${
                   isActive
                     ? "text-[#22211E] font-semibold"
-                    : "text-[#726A5F] hover:text-[#22211E]"
+                    : "nav-link-brush text-[#726A5F] hover:text-[#22211E] hover:bg-[#F6F2EB]/45"
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicatorSakura"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/12 shadow-sm rounded-full -z-0"
+                    className="absolute inset-0 bg-[#F6F2EB] border border-[#22211E]/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_8px_-3px_rgba(34,33,30,0.14)] rounded-full -z-0"
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
@@ -159,7 +165,7 @@ const Nav = () => {
           {/* Quick Copy Email with Tooltip Visual */}
           <button
             onClick={handleCopyEmail}
-            className="p-2.5 rounded-full text-[#726A5F] hover:text-[#22211E] bg-[#EBE3D5]/60 hover:bg-[#EBE3D5] border border-[#22211E]/10 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B]"
+            className="p-2.5 rounded-full text-[#726A5F] hover:text-[#22211E] bg-[#EBE3D5]/60 hover:bg-[#EBE3D5] border border-[#22211E]/10 hover:border-[#D48D9B]/50 transition-all duration-300 hover:-translate-y-px focus:outline-none focus-visible:ring-1 focus-visible:ring-[#D48D9B]"
             title="Copy email address"
             aria-label="Copy email"
           >
@@ -185,8 +191,10 @@ const Nav = () => {
         {/* ========================================= */}
         {/* MOBILE MENU CONTROLS                      */}
         {/* ========================================= */}
-        <div className="flex items-center gap-2.5 lg:hidden">
-          <LanguageSwitcher />
+        <div className="flex items-center gap-2.5 xl:hidden">
+          <div className="md:hidden">
+            <LanguageSwitcher />
+          </div>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
@@ -208,7 +216,7 @@ const Nav = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden bg-[#F6F2EB]/98 backdrop-blur-2xl border-b border-[#22211E]/10 px-6 py-6 shadow-2xl shoji-grid"
+            className="xl:hidden bg-[#F6F2EB]/98 backdrop-blur-2xl border-b border-[#22211E]/10 px-6 py-6 shadow-2xl shoji-grid"
           >
             <div className="flex flex-col gap-2 max-w-md mx-auto">
               {navLinks.map((link, i) => {
@@ -222,10 +230,10 @@ const Nav = () => {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.035 }}
-                    className={`px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all flex items-center justify-between ${
+                    className={`min-h-12 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all duration-300 flex items-center justify-between border ${
                       isActive
-                        ? "bg-[#D48D9B]/20 text-[#22211E] border border-[#D48D9B]/60 font-semibold"
-                        : "text-[#726A5F] hover:bg-[#EBE3D5] hover:text-[#22211E]"
+                        ? "bg-[#EBE3D5] text-[#22211E] border-[#D48D9B]/45 font-semibold shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]"
+                        : "border-transparent text-[#726A5F] hover:bg-[#EBE3D5]/70 hover:text-[#22211E] hover:ps-5"
                     }`}
                   >
                     <span>{link.name}</span>

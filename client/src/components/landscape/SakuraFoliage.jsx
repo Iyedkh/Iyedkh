@@ -17,7 +17,7 @@ const SakuraFoliage = ({ className = "" }) => {
   return (
     <div
       aria-hidden="true"
-      className={`relative w-full h-full top-20 select-none pointer-events-none ${className}`}
+      className={`relative w-full h-full select-none pointer-events-none ${className}`}
     >
       <svg
         viewBox="0 0 1440 320"
@@ -72,12 +72,38 @@ const SakuraFoliage = ({ className = "" }) => {
             <stop offset="50%" stopColor="#D48D9B" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#D48D9B" stopOpacity="0" />
           </radialGradient>
+
+          {/* Depth of field for the out-of-focus back layer */}
+          <filter id="foliageDof" x="-10%" y="-30%" width="120%" height="160%">
+            <feGaussianBlur stdDeviation="2.4" />
+          </filter>
+          <filter id="foliageBokeh" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3.5" />
+          </filter>
         </defs>
+
+        {/* Out-of-focus echo of the bough, set further back for depth */}
+        <use
+          href="#sakuraBough"
+          transform="translate(60 -22) scale(1 0.92)"
+          filter="url(#foliageDof)"
+          opacity="0.18"
+        />
+
+        {/* Soft blossom bokeh drifting in the far layer */}
+        <g filter="url(#foliageBokeh)" opacity="0.55">
+          <circle cx="215" cy="18" r="9" fill="#F3D9DF" />
+          <circle cx="505" cy="88" r="7" fill="#EFC6D0" />
+          <circle cx="690" cy="14" r="10" fill="#F3D9DF" />
+          <circle cx="1000" cy="96" r="7" fill="#EFC6D0" />
+          <circle cx="1185" cy="14" r="9" fill="#F3D9DF" />
+          <circle cx="1335" cy="92" r="6" fill="#EFC6D0" />
+        </g>
 
         {/* ========================================================= */}
         {/* FULL-WIDTH CONTINUOUS OVERHEAD WOOD BOUGH SKELETON        */}
         {/* ========================================================= */}
-        <g className="animate-branch-breeze">
+        <g id="sakuraBough" className="animate-branch-breeze">
           {/* --- LEFT SECTION: Bough entering from Top-Left --- */}
           <path
             d="M -20 -15 
@@ -271,7 +297,7 @@ const SakuraFoliage = ({ className = "" }) => {
                 fill={leaf.grad}
                 stroke="#35402D"
                 strokeWidth="0.5"
-                opacity="0.94"
+                opacity={[0.94, 0.82, 0.9, 0.74][li % 4]}
               />
               {/* Delicate Leaf Spine */}
               <line
@@ -332,10 +358,20 @@ const SakuraFoliage = ({ className = "" }) => {
             { cx: 1285, cy: 32, r: 17, rot: 10 },
             { cx: 1350, cy: 22, r: 16, rot: 45 },
             { cx: 1410, cy: 18, r: 15, rot: -35 },
+
+            // Smaller companion blossoms for natural clustering
+            { cx: 102, cy: 42, r: 9, rot: 22 },
+            { cx: 300, cy: 70, r: 10, rot: -12 },
+            { cx: 552, cy: 64, r: 9, rot: 48 },
+            { cx: 752, cy: 70, r: 10, rot: 5 },
+            { cx: 975, cy: 66, r: 9, rot: -40 },
+            { cx: 1165, cy: 66, r: 10, rot: 28 },
+            { cx: 1312, cy: 48, r: 9, rot: -8 },
           ].map((flower, fi) => (
             <g
               key={`full-fl-${fi}`}
-              transform={`translate(${flower.cx}, ${flower.cy}) rotate(${flower.rot})`}
+              transform={`translate(${flower.cx}, ${flower.cy}) rotate(${flower.rot}) scale(${[1, 0.86, 1.08, 0.94][fi % 4]})`}
+              opacity={flower.r < 12 ? 0.82 : [1, 0.93, 1, 0.88][fi % 4]}
               className="filter drop-shadow-[0_1px_2px_rgba(34,33,30,0.10)]"
             >
               {/* 5 Distinct Petals with Indented Tips */}
