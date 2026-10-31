@@ -195,10 +195,6 @@ const Nav = () => {
         {/* MOBILE MENU CONTROLS                      */}
         {/* ========================================= */}
         <div className="flex items-center gap-2.5 xl:hidden">
-          <div className="md:hidden">
-            <LanguageSwitcher />
-          </div>
-          <ThemeToggle className="md:hidden" />
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
@@ -220,7 +216,7 @@ const Nav = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="xl:hidden bg-paper/98 backdrop-blur-2xl border-b border-ink/10 px-6 py-6 shadow-2xl shoji-grid"
+            className="xl:hidden max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain bg-paper/98 backdrop-blur-2xl border-b border-ink/10 px-6 py-6 shadow-2xl shoji-grid"
           >
             <div className="flex flex-col gap-2 max-w-md mx-auto">
               {navLinks.map((link, i) => {
@@ -247,6 +243,22 @@ const Nav = () => {
               })}
 
               <div className="pt-4 mt-3 border-t border-ink/10 flex flex-col gap-3">
+                {/* On phones, language and theme live here instead of the top bar */}
+                <div className="md:hidden flex flex-col gap-2">
+                  <div className="flex min-h-12 items-center justify-between gap-3 px-4 rounded-xl bg-paper-2/60 border border-ink/10">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">
+                      {t.ui?.languageLabel || "Language"}
+                    </span>
+                    <LanguageSwitcher />
+                  </div>
+                  <div className="flex min-h-12 items-center justify-between gap-3 px-4 rounded-xl bg-paper-2/60 border border-ink/10">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft">
+                      {t.ui?.themeLabel || "Theme"}
+                    </span>
+                    <ThemeToggle />
+                  </div>
+                </div>
+
                 <a
                   href="#contact"
                   onClick={() => setMenuOpen(false)}

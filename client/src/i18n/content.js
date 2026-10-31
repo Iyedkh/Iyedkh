@@ -19,6 +19,7 @@ export const content = {
       toNight: "Switch to night mode",
       toDay: "Switch to day mode",
       themeLabel: "Theme",
+      languageLabel: "Language",
     },
     hero: {
       headline1: "Crafting digital",
@@ -230,6 +231,7 @@ export const content = {
       toNight: "Passer en mode nuit",
       toDay: "Passer en mode jour",
       themeLabel: "Thème",
+      languageLabel: "Langue",
     },
     hero: {
       headline1: "Concevoir des",
@@ -449,6 +451,7 @@ export const content = {
       toNight: "التبديل إلى الوضع الليلي",
       toDay: "التبديل إلى الوضع النهاري",
       themeLabel: "المظهر",
+      languageLabel: "اللغة",
     },
     hero: {
       headline1: "أصنع تجارب",
