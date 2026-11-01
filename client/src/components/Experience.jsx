@@ -75,7 +75,7 @@ const Experience = () => {
                   <div
                     className={`absolute ${
                       isRTL ? "-right-[31px]" : "-left-[31px]"
-                    } top-2 w-3.5 h-3.5 rounded-full bg-paper border-2 border-ink group-hover:border-sakura group-hover:bg-sakura group-hover:scale-125 transition-all duration-300 z-10`}
+                    } top-2 w-3.5 h-3.5 rounded-full bg-paper border-2 border-ink group-hover:border-sakura group-hover:bg-sakura group-hover:scale-125 transition-[background-color,border-color,transform] duration-200 z-10`}
                   />
 
                   <div className="japandi-card p-5 space-y-2 group-hover:border-sakura">
@@ -141,7 +141,7 @@ const Experience = () => {
                   <div
                     className={`absolute ${
                       isRTL ? "-right-[31px]" : "-left-[31px]"
-                    } top-2 w-3.5 h-3.5 rounded-full bg-paper border-2 border-bamboo group-hover:bg-bamboo group-hover:scale-125 transition-all duration-300 z-10`}
+                    } top-2 w-3.5 h-3.5 rounded-full bg-paper border-2 border-bamboo group-hover:bg-bamboo group-hover:scale-125 transition-[background-color,border-color,transform] duration-200 z-10`}
                   />
 
                   <div className="japandi-card p-5 space-y-2 group-hover:border-bamboo">

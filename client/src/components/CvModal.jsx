@@ -25,6 +25,16 @@ const CvModal = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closeCvModal]);
 
+  // Keep the page behind the dialog still while it is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
   const handleDownload = (opt) => {
     toast.success(t.cvModal.downloadToastTitle, {
       description: t.cvModal.downloadToastDesc.replace("{lang}", opt.data.title),
@@ -87,7 +97,7 @@ const CvModal = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.18 } }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={closeCvModal}
             className="fixed inset-0 bg-ink/60 backdrop-blur-md"
@@ -99,10 +109,10 @@ const CvModal = () => {
             role="dialog"
             aria-modal="true"
             aria-labelledby="cv-modal-title"
-            initial={{ opacity: 0, scale: 0.94, y: 16 }}
+            initial={{ opacity: 0, scale: 0.96, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 16 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.98, y: 8, transition: { duration: 0.16, ease: [0.23, 1, 0.32, 1] } }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="relative w-full max-w-xl rounded-3xl bg-[var(--bg-rice-paper)] border border-[var(--border-sand-strong)] shadow-2xl p-6 sm:p-8 z-10 max-h-[calc(100dvh-2rem)] overflow-y-auto washi-grain"
           >
             {/* Ambient Subtle Sun Aura */}
@@ -114,10 +124,11 @@ const CvModal = () => {
             {/* Close Button */}
             <button
               onClick={closeCvModal}
+              autoFocus
               aria-label={t.cvModal.close}
               className={`absolute top-5 ${
                 isRTL ? "left-5" : "right-5"
-              } p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-soft-cream)] border border-transparent hover:border-[var(--border-sand)] transition-all focus:outline-none`}
+              } p-2 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-soft-cream)] border border-transparent hover:border-[var(--border-sand)] transition-[color,background-color,border-color,transform] duration-150 active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-sakura`}
             >
               <X className="w-5 h-5" />
             </button>
@@ -144,7 +155,7 @@ const CvModal = () => {
               {cvOptions.map((opt) => (
                 <div
                   key={opt.key}
-                  className="p-4 sm:p-5 rounded-2xl bg-[var(--bg-primary)]/80 hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--border-strong)] transition-all duration-200 group flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  className="p-4 sm:p-5 rounded-2xl bg-[var(--bg-primary)]/80 hover:bg-[var(--bg-surface-elevated)] border border-[var(--border)] hover:border-[var(--border-strong)] transition-[background-color,border-color] duration-200 group flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                 >
                   {/* Left info */}
                   <div className="flex items-start gap-3.5">

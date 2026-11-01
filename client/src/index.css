@@ -111,6 +111,10 @@
     --font-editorial: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
     --font-kanji: 'Noto Serif JP', 'Cormorant Garamond', serif;
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    /* Motion tokens: strong ease-out for UI responses, ease-in-out for on-screen movement */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
     --hanko-red: #B8403A;
     --font-sans: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
@@ -176,6 +180,18 @@
     overflow-x: hidden;
     letter-spacing: -0.012em;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Taps respond immediately (no double-tap-zoom wait) */
+  a, button, input, textarea, select, label, [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Long-press on controls shouldn't select their labels */
+  button, [role="button"] {
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   [dir="rtl"], [lang="ar"] {
@@ -237,7 +253,6 @@
   background-color: var(--bg-soft-cream);
   border: 1px solid var(--border-sand);
   border-radius: 20px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   box-shadow: 0 2px 8px -2px rgba(34, 33, 30, 0.03);
 }
@@ -246,7 +261,6 @@
   border-color: rgba(212, 141, 155, 0.45);
   background-color: var(--bg-cream-elevated);
   box-shadow: 0 14px 32px -8px rgba(34, 33, 30, 0.07), 0 2px 6px -1px rgba(34, 33, 30, 0.04);
-  transform: translateY(-2px);
 }
 
 /* Authentic Japanese Joinery / Fude Brush Line Divider */
@@ -291,7 +305,12 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 200ms var(--ease-out),
+    border-color 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
   text-decoration: none;
   position: relative;
   overflow: hidden;
@@ -301,12 +320,11 @@
   background-color: var(--sumi-black);
   border-color: var(--sakura-pink);
   color: var(--bg-rice-paper);
-  transform: translateY(-1.5px);
   box-shadow: 0 8px 20px -6px rgba(34, 33, 30, 0.25);
 }
 
 .btn-japandi-primary:active, .btn-primary-action:active, .btn-apple-primary:active {
-  transform: translateY(0);
+  transform: scale(0.97);
 }
 
 .btn-japandi-secondary, .btn-secondary-action, .btn-apple-secondary {
@@ -323,7 +341,11 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    transform 160ms var(--ease-out),
+    border-color 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
   text-decoration: none;
 }
 
@@ -331,11 +353,10 @@
   background-color: var(--bg-cream-elevated);
   border-color: var(--sakura-pink);
   color: var(--text-charcoal);
-  transform: translateY(-1.5px);
 }
 
 .btn-japandi-secondary:active, .btn-secondary-action:active, .btn-apple-secondary:active {
-  transform: translateY(0);
+  transform: scale(0.97);
 }
 
 /* Wabi-sabi status pill */
@@ -351,7 +372,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.2s ease;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 .tech-pill:hover {
@@ -371,7 +392,14 @@
   font-family: var(--font-sans);
   font-size: 14px;
   outline: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 200ms ease, background-color 200ms ease, box-shadow 200ms var(--ease-out);
+}
+
+/* iOS zooms the page when a focused field is under 16px */
+@media (pointer: coarse) {
+  .apple-input, .japandi-input {
+    font-size: 16px;
+  }
 }
 
 .apple-input:focus, .japandi-input:focus {
@@ -579,15 +607,7 @@
   opacity: 0.07;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.13 0 0 0 0 0.12 0 0 0 0 0.11 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain-shift 8s steps(10) infinite;
-}
-
-@keyframes grain-shift {
-  0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-3%, 2%); }
-  40% { transform: translate(2%, -3%); }
-  60% { transform: translate(-2%, -1%); }
-  80% { transform: translate(3%, 3%); }
+  /* Static on purpose: shifting a full-screen blended layer repaints the whole page every step */
 }
 
 /* Torii-arch portrait frame */
@@ -603,11 +623,13 @@
   background: linear-gradient(110deg, #8C4A57 0%, var(--sakura-pink) 100%);
   transform: translateY(101%);
   border-radius: inherit;
-  transition: transform 0.5s var(--ease-out-expo);
+  transition: transform 0.35s var(--ease-out);
   z-index: 0;
 }
-.btn-japandi-primary:hover::before {
-  transform: translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .btn-japandi-primary:hover::before {
+    transform: translateY(0);
+  }
 }
 .btn-japandi-primary > * {
   position: relative;
@@ -629,11 +651,13 @@
   background: var(--sakura-pink);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.45s var(--ease-out-expo);
+  transition: transform 0.3s var(--ease-out);
 }
-.btn-japandi-secondary:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+@media (hover: hover) and (pointer: fine) {
+  .btn-japandi-secondary:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 /* Spotlight cards: radial light follows the cursor (set via --mx/--my) */
@@ -649,7 +673,7 @@
   border-radius: inherit;
   background: radial-gradient(420px circle at var(--mx) var(--my), rgba(212, 141, 155, 0.16), transparent 45%);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.25s ease;
   pointer-events: none;
   z-index: 0;
 }
@@ -664,7 +688,7 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.25s ease;
   pointer-events: none;
   z-index: 0;
 }
@@ -672,11 +696,13 @@
   transition: border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
   transform-style: preserve-3d;
 }
-.spotlight:hover::before,
-.spotlight:hover::after,
-.japandi-card:hover::before,
-.japandi-card:hover::after {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .spotlight:hover::before,
+  .spotlight:hover::after,
+  .japandi-card:hover::before,
+  .japandi-card:hover::after {
+    opacity: 1;
+  }
 }
 .spotlight > :not(.absolute),
 .japandi-card > :not(.absolute) {
@@ -729,7 +755,7 @@
   background-size: 0% 1px;
   background-repeat: no-repeat;
   background-position: 0 100%;
-  transition: background-size 0.45s var(--ease-out-expo), color 0.2s ease;
+  transition: background-size 0.3s var(--ease-out), color 0.2s ease;
 }
 .link-draw:hover {
   background-size: 100% 1px;
@@ -784,17 +810,19 @@ section[id] {
     0 1px 2px rgba(34, 33, 30, 0.03),
     0 6px 18px -10px rgba(34, 33, 30, 0.08);
   transition:
-    transform 0.6s var(--ease-out-expo),
-    border-color 0.4s ease,
-    background-color 0.4s ease,
-    box-shadow 0.6s var(--ease-out-expo);
+    transform 0.3s var(--ease-out),
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.3s var(--ease-out);
 }
-.japandi-card:hover, .console-card:hover, .apple-card:hover {
-  box-shadow:
-    inset 0 1px 0 var(--card-sheen),
-    0 2px 4px rgba(34, 33, 30, 0.03),
-    0 28px 48px -24px rgba(34, 33, 30, 0.2);
-  transform: translateY(-4px);
+@media (hover: hover) and (pointer: fine) {
+  .japandi-card:hover, .console-card:hover, .apple-card:hover {
+    box-shadow:
+      inset 0 1px 0 var(--card-sheen),
+      0 2px 4px rgba(34, 33, 30, 0.03),
+      0 28px 48px -24px rgba(34, 33, 30, 0.2);
+    transform: translateY(-4px);
+  }
 }
 
 /* Buttons: consistent touch targets, tactile press and inner sheen */
@@ -806,11 +834,18 @@ section[id] {
 }
 .btn-japandi-primary, .btn-japandi-secondary {
   transition:
-    transform 0.4s var(--ease-out-expo),
-    box-shadow 0.4s var(--ease-out-expo),
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    color 0.3s ease;
+    transform 0.2s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+/* Hover lift only where a real pointer can hover; on touch it would stick after a tap */
+@media (hover: hover) and (pointer: fine) {
+  .btn-japandi-primary:hover, .btn-japandi-secondary:hover,
+  .btn-primary-action:hover, .btn-secondary-action:hover {
+    transform: translateY(-1.5px);
+  }
 }
 .btn-japandi-primary {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 6px 16px -10px rgba(21, 20, 18, 0.5);
@@ -822,9 +857,10 @@ section[id] {
   background-color: color-mix(in srgb, var(--paper) 60%, transparent);
   backdrop-filter: blur(6px);
 }
-.btn-japandi-primary:active, .btn-japandi-secondary:active {
-  transform: translateY(0) scale(0.98);
-  transition-duration: 0.12s;
+.btn-japandi-primary:active, .btn-japandi-secondary:active,
+.btn-primary-action:active, .btn-secondary-action:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
 }
 
 /* Dividers breathe with the viewport */
@@ -842,7 +878,7 @@ section[id] {
   height: 1px;
   background: var(--sakura-pink);
   transform: translateX(-50%) scaleX(0);
-  transition: transform 0.45s var(--ease-out-expo);
+  transition: transform 0.25s var(--ease-out);
 }
 .nav-link-brush:hover::after {
   transform: translateX(-50%) scaleX(1);
@@ -906,8 +942,5 @@ section[id] {
   .japandi-card:hover, .console-card:hover, .apple-card:hover,
   .btn-japandi-primary:hover, .btn-japandi-secondary:hover {
     transform: none;
-  }
-  .paper-grain {
-    animation: none;
   }
 }

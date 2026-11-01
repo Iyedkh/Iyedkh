@@ -173,7 +173,7 @@ const About = () => {
                   transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="japandi-card p-6 flex flex-col justify-between group overflow-hidden"
                 >
-                  <span aria-hidden="true" className="absolute -right-3 -bottom-6 font-editorial text-[7rem] leading-none text-ink/[0.04] transition-all duration-700 group-hover:text-sakura/15 group-hover:-translate-y-2">
+                  <span aria-hidden="true" className="absolute -right-3 -bottom-6 font-editorial text-[7rem] leading-none text-ink/[0.04] transition-[color,transform] duration-500 group-hover:text-sakura/15 group-hover:-translate-y-2">
                     0{idx + 1}
                   </span>
                   <div>

@@ -158,6 +158,15 @@ const Projects = () => {
     { id: "vitrine", label: t.projects?.filters?.reactTailwind || "Brand Vitrine" },
   ];
 
+  // Cards open the case study from the keyboard too
+  const openOnKey = (project) => (e) => {
+    if (e.target !== e.currentTarget) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setSelectedProject(project);
+    }
+  };
+
   const filteredProjects = projectList.filter((p) => {
     if (activeFilter === "all") return true;
     return p.category === activeFilter;
@@ -233,7 +242,11 @@ const Projects = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               data-project-card
+              role="button"
+              tabIndex={0}
+              aria-haspopup="dialog"
               onClick={() => setSelectedProject(projectList[0])}
+              onKeyDown={openOnKey(projectList[0])}
               className="p-7 sm:p-12 rounded-[28px] bg-gradient-to-br from-paper-2 via-paper-2 to-paper-3 border border-ink/12 group cursor-pointer relative overflow-hidden shadow-[inset_0_1px_0_var(--card-sheen),0_18px_40px_-28px_rgba(34,33,30,0.3)] transition-[border-color,box-shadow] duration-700 hover:border-sakura/70 hover:shadow-[inset_0_1px_0_var(--card-sheen),0_40px_80px_-36px_rgba(34,33,30,0.35)]"
             >
               {/* Subtle Sakura Blossom Silhouette in Background */}
@@ -289,13 +302,11 @@ const Projects = () => {
                   </div>
 
                   <div className="pt-4 flex items-center gap-3">
-                    <button
-                      type="button"
-                      className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full"
-                    >
+                    {/* Visual cue only: the whole card is the control */}
+                    <span className="btn-japandi-primary text-xs py-2.5 px-6 rounded-full">
                       <span>{ui.readCaseStudy || "Read Case Study"}</span>
                       <ArrowUpRight className={`w-3.5 h-3.5 ${isRTL ? "rotate-[-90deg]" : ""}`} />
-                    </button>
+                    </span>
                   </div>
                 </div>
 
@@ -364,7 +375,11 @@ const Projects = () => {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   data-project-card
+                  role="button"
+                  tabIndex={0}
+                  aria-haspopup="dialog"
                   onClick={() => setSelectedProject(project)}
+                  onKeyDown={openOnKey(project)}
                   className="japandi-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer hover:border-sakura/70"
                 >
                   <div>
@@ -427,16 +442,16 @@ const Projects = () => {
                     </span>
 
                     {project.link && (
-                      <span
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.link, "_blank");
-                        }}
-                        className="text-xs font-mono text-ink-soft hover:text-ink flex items-center gap-1 rounded-full px-2.5 py-1 -me-2.5 transition-colors hover:bg-paper/80"
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-xs font-mono text-ink-soft hover:text-ink flex items-center gap-1 rounded-full px-2.5 py-1 -me-2.5 transition-colors hover:bg-paper/80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-sakura"
                       >
                         <Globe className="w-3.5 h-3.5" />
                         <span>{ui.live || "Live"}</span>
-                      </span>
+                      </a>
                     )}
                   </div>
                 </Spotlight>
@@ -446,10 +461,15 @@ const Projects = () => {
       </div>
 
       {/* Case Study Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            key={selectedProject.id}
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };

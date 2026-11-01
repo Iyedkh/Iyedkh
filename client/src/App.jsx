@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { CvModalProvider } from "./context/CvModalContext";
@@ -95,7 +95,9 @@ function PortfolioContent() {
       />
 
       {/* First-visit Intro Loading Experience */}
-      {!introFinished && <IntroLoader onComplete={handleIntroComplete} />}
+      <AnimatePresence>
+        {!introFinished && <IntroLoader onComplete={handleIntroComplete} />}
+      </AnimatePresence>
 
       {/* Interactive 60fps Sakura Cherry Blossom Petal Particle System */}
       <SakuraCanvas />

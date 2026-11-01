@@ -87,7 +87,7 @@ const SideRails = () => {
               className="group relative flex h-8 w-8 items-center justify-center"
             >
               <span
-                className={`font-kanji text-[13px] transition-all duration-500 ${
+                className={`font-kanji text-[13px] transition-[color,transform] duration-300 ${
                   isActive ? "text-hanko scale-110" : "text-ink/25 group-hover:text-ink/70"
                 }`}
               >
@@ -100,7 +100,7 @@ const SideRails = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 28 }}
                 />
               )}
-              <span className="pointer-events-none absolute left-11 whitespace-nowrap rounded-full border border-ink/10 bg-paper/95 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink opacity-0 -translate-x-2 shadow-sm backdrop-blur transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+              <span className="pointer-events-none absolute left-11 whitespace-nowrap rounded-full border border-ink/10 bg-paper/95 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink opacity-0 -translate-x-2 shadow-sm backdrop-blur transition-[opacity,transform] duration-200 ease-out group-hover:opacity-100 group-hover:translate-x-0">
                 0{i + 1} · {labels[id]}
               </span>
             </a>
@@ -118,7 +118,7 @@ const SideRails = () => {
             target={url.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
             aria-label={label}
-            className="text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:text-hanko"
+            className="text-ink-soft transition-[color,transform] duration-200 hover:-translate-y-0.5 hover:text-hanko"
           >
             <Icon className="h-4 w-4" />
           </a>
@@ -136,20 +136,21 @@ const SideRails = () => {
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label={t.footer?.backToTop || "Back to top"}
-            initial={{ opacity: 0, scale: 0.6, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.6, y: 20 }}
-            transition={{ type: "spring", stiffness: 260, damping: 22 }}
+            exit={{ opacity: 0, scale: 0.9, y: 12, transition: { duration: 0.15 } }}
+            transition={{ type: "spring", duration: 0.4, bounce: 0.15 }}
+            whileTap={{ scale: 0.95 }}
             className="group fixed bottom-6 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-paper/90 shadow-[0_10px_30px_-10px_rgba(34,33,30,0.25)] backdrop-blur-md"
           >
-            <svg viewBox="0 0 56 56" className="absolute inset-0 h-full w-full -rotate-90">
-              <circle cx="28" cy="28" r="25" fill="none" stroke="rgba(34,33,30,0.08)" strokeWidth="2" />
+            <svg viewBox="0 0 56 56" className="absolute inset-0 h-full w-full -rotate-90 text-ink">
+              <circle cx="28" cy="28" r="25" fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="2" />
               <motion.circle
                 cx="28"
                 cy="28"
                 r="25"
                 fill="none"
-                stroke="#22211E"
+                stroke="currentColor"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 style={{ pathLength: dash }}

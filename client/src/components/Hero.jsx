@@ -33,7 +33,7 @@ const Hero = () => {
   const badgeY = useTransform(smoothY, (v) => v * 34);
 
   const handlePointerMove = (e) => {
-    if (shouldReduceMotion) return;
+    if (shouldReduceMotion || e.pointerType !== "mouse") return;
     const rect = e.currentTarget.getBoundingClientRect();
     pointerX.set((e.clientX - rect.left) / rect.width - 0.5);
     pointerY.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -213,7 +213,7 @@ const Hero = () => {
                   <button
                     type="button"
                     onClick={openCvModal}
-                    className="group/cv inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-dashed border-gold/40 bg-paper-2/50 px-5 py-3 text-sm font-sans text-ink-mid transition-all duration-300 hover:-translate-y-0.5 hover:border-solid hover:border-sakura/60 hover:bg-paper-2 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sakura"
+                    className="group/cv inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-dashed border-gold/40 bg-paper-2/50 px-5 py-3 text-sm font-sans text-ink-mid transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-0.5 active:scale-[0.97] hover:border-solid hover:border-sakura/60 hover:bg-paper-2 hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sakura"
                   >
                     <FileText className="h-4 w-4 text-gold transition-transform duration-300 group-hover/cv:-rotate-6" />
                     <span>{t.hero?.downloadCv || "Curriculum Vitae"}</span>
@@ -286,9 +286,9 @@ const Hero = () => {
                   href="#contact"
                   aria-label={t.hero?.contactMe || "Let's Talk"}
                   style={{ x: badgeX, y: badgeY }}
-                  initial={{ opacity: 0, scale: 0.5, rotate: -40 }}
+                  initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.85, rotate: shouldReduceMotion ? 0 : -20 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  transition={{ delay: shouldReduceMotion ? 0 : 1, type: "spring", stiffness: 120, damping: 14 }}
+                  transition={{ delay: shouldReduceMotion ? 0 : 1, type: "spring", duration: 0.6, bounce: 0.2 }}
                   className="group absolute bottom-16 left-2 sm:left-6 z-20 hidden sm:flex h-28 w-28 items-center justify-center rounded-full bg-paper/85 shadow-[0_12px_30px_-12px_rgba(34,33,30,0.3)] backdrop-blur-md"
                 >
                   <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full animate-spin-slow group-hover:[animation-duration:6s]">
@@ -303,16 +303,6 @@ const Hero = () => {
                     縁
                   </span>
                 </motion.a>
-
-                {/* Floating Tactile Sub-Card (Featured Architecture) */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.7 }}
-                  className="absolute -bottom-6 sm:-bottom-8 right-2 sm:right-4 z-20"
-                >
-
-                </motion.div>
               </div>
             </motion.div>
 

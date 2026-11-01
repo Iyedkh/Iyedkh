@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { X, ExternalLink, Github } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -11,20 +11,25 @@ const ProjectModal = ({ project, onClose }) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    // Keep the page behind the dialog still while it is open
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
   }, [onClose]);
 
   if (!project) return null;
 
   return (
-    <AnimatePresence>
       <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          exit={{ opacity: 0, transition: { duration: 0.18 } }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           onClick={onClose}
           className="fixed inset-0 bg-ink/75 backdrop-blur-md"
         />
@@ -33,17 +38,19 @@ const ProjectModal = ({ project, onClose }) => {
         <motion.div
           role="dialog"
           aria-modal="true"
-          initial={{ opacity: 0, scale: 0.95, y: 16 }}
+          aria-labelledby="project-modal-title"
+          initial={{ opacity: 0, scale: 0.96, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 16 }}
-          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ opacity: 0, scale: 0.98, y: 8, transition: { duration: 0.16, ease: [0.23, 1, 0.32, 1] } }}
+          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
           className="relative w-full max-w-2xl rounded-3xl bg-paper border border-ink/15 shadow-2xl p-6 sm:p-8 z-10 max-h-[90vh] overflow-y-auto washi-grain"
         >
           {/* Close button */}
           <button
             onClick={onClose}
+            autoFocus
             aria-label={t.ui?.closeModal || "Close case study modal"}
-            className={`absolute top-6 ${isRTL ? "left-6" : "right-6"} p-2 rounded-full text-ink-soft hover:text-ink bg-paper-2 hover:bg-paper-3 transition-colors focus:outline-none`}
+            className={`absolute top-6 ${isRTL ? "left-6" : "right-6"} p-2 rounded-full text-ink-soft hover:text-ink bg-paper-2 hover:bg-paper-3 transition-[color,background-color,transform] duration-150 active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-sakura`}
           >
             <X className="w-5 h-5" />
           </button>
@@ -57,7 +64,7 @@ const ProjectModal = ({ project, onClose }) => {
               <span className="text-ink-soft">•</span>
               <span className="font-mono text-xs text-ink-soft">{project.year}</span>
             </div>
-            <h3 className="font-editorial text-3xl sm:text-4xl font-normal text-ink leading-tight">
+            <h3 id="project-modal-title" className="font-editorial text-3xl sm:text-4xl font-normal text-ink leading-tight">
               {project.title}
             </h3>
             <p className="text-xs sm:text-sm font-mono text-ink-soft uppercase tracking-wider mt-1">
@@ -155,7 +162,6 @@ const ProjectModal = ({ project, onClose }) => {
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
   );
 };
 

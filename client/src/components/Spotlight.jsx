@@ -15,6 +15,7 @@ const Spotlight = ({ children, className = "", tilt = true, maxTilt = 5, as = "d
   const Component = motion[as] || motion.div;
 
   const handleMove = (e) => {
+    if (e.pointerType !== "mouse") return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -36,8 +37,8 @@ const Spotlight = ({ children, className = "", tilt = true, maxTilt = 5, as = "d
   return (
     <Component
       ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
+      onPointerMove={handleMove}
+      onPointerLeave={handleLeave}
       style={enableTilt ? { rotateX, rotateY, transformPerspective: 1000 } : undefined}
       className={`spotlight ${className}`}
       {...rest}

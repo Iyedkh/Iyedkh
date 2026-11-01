@@ -176,7 +176,7 @@ const Skills = () => {
                     aria-selected={isActive}
                     aria-controls="skills-panel"
                     onClick={() => setActiveTab(tab.id)}
-                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-all duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura ${
+                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-[color,background-color,border-color,box-shadow] duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura ${
                       isActive
                         ? "text-ink font-semibold"
                         : "text-ink-soft hover:text-ink hover:bg-paper-2/50"

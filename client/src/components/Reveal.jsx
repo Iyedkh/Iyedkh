@@ -6,16 +6,16 @@ const EASE = [0.16, 1, 0.3, 1];
 /**
  * Reveal: soft ink-bleed entrance (fade + rise + de-blur) when scrolled into view.
  */
-const Reveal = ({ children, delay = 0, y = 28, className = "", as = "div", once = true }) => {
+const Reveal = ({ children, delay = 0, y = 20, className = "", as = "div", once = true }) => {
   const shouldReduceMotion = useReducedMotion();
   const Component = motion[as] || motion.div;
 
   return (
     <Component
-      initial={shouldReduceMotion ? false : { opacity: 0, y, filter: "blur(6px)" }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y, filter: "blur(4px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once, margin: "-60px" }}
-      transition={{ duration: 0.9, delay, ease: EASE }}
+      transition={{ duration: 0.7, delay, ease: EASE }}
       className={className}
     >
       {children}

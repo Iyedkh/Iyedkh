@@ -85,8 +85,8 @@ const SectionHeader = ({ kanji, index, pill, heading, highlight, aside, classNam
           className="absolute inset-0 origin-left rtl:origin-right bg-gradient-to-r from-ink/40 via-gold/40 to-transparent"
         />
         <motion.span
-          initial={shouldReduceMotion ? false : { scale: 0 }}
-          whileInView={{ scale: 1 }}
+          initial={shouldReduceMotion ? false : { scale: 0.4, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
           className="absolute -top-[3px] start-0 h-[7px] w-[7px] rounded-full bg-hanko"

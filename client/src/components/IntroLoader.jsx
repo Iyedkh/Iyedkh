@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLanguage } from "../i18n/LanguageContext";
 
 const IntroLoader = ({ onComplete }) => {
   const { t } = useLanguage();
-  const [stage, setStage] = useState("drawing"); // "drawing" -> "katana" -> "letters" -> "exit"
+  const [stage, setStage] = useState("drawing"); // "drawing" -> "katana" -> "letters"
   const nameLetters = "IYED KHOUILDI".split("");
 
   useEffect(() => {
-    const t1 = setTimeout(() => setStage("katana"), 500);
-    const t2 = setTimeout(() => setStage("letters"), 1000);
-    const t3 = setTimeout(() => {
-      setStage("exit");
-      setTimeout(() => {
-        onComplete();
-      }, 700);
-    }, 2200);
+    const t1 = setTimeout(() => setStage("katana"), 450);
+    const t2 = setTimeout(() => setStage("letters"), 900);
+    // Unmounting plays the exit wipe (App wraps the loader in AnimatePresence)
+    const t3 = setTimeout(onComplete, 2000);
 
     const handleKeyDown = (e) => {
       if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
@@ -33,108 +29,104 @@ const IntroLoader = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <AnimatePresence>
-      {stage !== "done" && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{
-            clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
-            transition: { duration: 0.75, ease: [0.77, 0, 0.175, 1] },
-          }}
-          className="fixed inset-0 z-[200] bg-paper flex flex-col items-center justify-center select-none overflow-hidden washi-grain"
+    <motion.div
+      initial={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+      exit={{
+        clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
+        transition: { duration: 0.75, ease: [0.77, 0, 0.175, 1] },
+      }}
+      className="fixed inset-0 z-[200] bg-paper flex flex-col items-center justify-center select-none overflow-hidden washi-grain"
+    >
+      {/* Subtle Ambient Washi Grid */}
+      <div className="absolute inset-0 bg-radial from-transparent via-transparent to-paper-2/50 pointer-events-none" />
+
+      {/* Central Architectural & Katana Composition */}
+      <div className="relative flex flex-col items-center justify-center z-10">
+        {/* Minimalist Ensō Circle (Sumi-e ink brush style) */}
+        <motion.svg
+          width="80"
+          height="80"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="mb-6 text-ink"
         >
-          {/* Subtle Ambient Washi Grid */}
-          <div className="absolute inset-0 bg-radial from-transparent via-transparent to-paper-2/50 pointer-events-none" />
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="38"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeDasharray="239"
+            strokeDashoffset="239"
+            strokeLinecap="round"
+            initial={{ strokeDashoffset: 239 }}
+            animate={{ strokeDashoffset: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          />
+          {/* Inner Sakura Accent Petal in Center */}
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="5"
+            fill="#D48D9B"
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+          />
+        </motion.svg>
 
-          {/* Central Architectural & Katana Composition */}
-          <div className="relative flex flex-col items-center justify-center z-10">
-            {/* Minimalist Ensō Circle (Sumi-e ink brush style) */}
-            <motion.svg
-              width="80"
-              height="80"
-              viewBox="0 0 100 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mb-6"
+        {/* Katana-inspired Blade Line Drawing Across the Screen */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={stage !== "drawing" ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="w-48 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent mb-5 origin-center"
+        />
+
+        {/* Sequential Typography Reveal */}
+        <div className="flex items-center gap-[0.2em] overflow-hidden">
+          {nameLetters.map((letter, idx) => (
+            <motion.span
+              key={idx}
+              initial={{ y: "110%", opacity: 0 }}
+              animate={
+                stage === "letters"
+                  ? { y: 0, opacity: 1 }
+                  : { y: "110%", opacity: 0 }
+              }
+              transition={{
+                duration: 0.5,
+                delay: idx * 0.035,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="font-editorial text-2xl sm:text-3xl font-medium tracking-[0.22em] text-ink"
             >
-              <motion.circle
-                cx="50"
-                cy="50"
-                r="38"
-                stroke="#22211E"
-                strokeWidth="2"
-                strokeDasharray="239"
-                strokeDashoffset="239"
-                strokeLinecap="round"
-                initial={{ strokeDashoffset: 239 }}
-                animate={{ strokeDashoffset: 0 }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              />
-              {/* Inner Sakura Accent Petal in Center */}
-              <motion.circle
-                cx="50"
-                cy="50"
-                r="5"
-                fill="#D48D9B"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.4 }}
-              />
-            </motion.svg>
+              {letter === " " ? "\u00A0" : letter}
+            </motion.span>
+          ))}
+        </div>
 
-            {/* Katana-inspired Blade Line Drawing Across the Screen */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={stage !== "drawing" ? { scaleX: 1 } : { scaleX: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="w-48 h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent mb-5 origin-center"
-            />
+        {/* Subtitle Telemetry */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={stage === "letters" ? { opacity: 0.75 } : { opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-[11px] font-mono tracking-[0.24em] uppercase text-ink-soft mt-3"
+        >
+          {t.ui?.introTagline || "Full Stack & Data Architecture"}
+        </motion.p>
+      </div>
 
-            {/* Sequential Typography Reveal */}
-            <div className="flex items-center gap-[0.2em] overflow-hidden">
-              {nameLetters.map((letter, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ y: "110%", opacity: 0 }}
-                  animate={
-                    stage === "letters" || stage === "exit"
-                      ? { y: 0, opacity: 1 }
-                      : { y: "110%", opacity: 0 }
-                  }
-                  transition={{
-                    duration: 0.5,
-                    delay: idx * 0.035,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="font-editorial text-2xl sm:text-3xl font-medium tracking-[0.22em] text-ink"
-                >
-                  {letter === " " ? "\u00A0" : letter}
-                </motion.span>
-              ))}
-            </div>
-
-            {/* Subtitle Telemetry */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={stage === "letters" || stage === "exit" ? { opacity: 0.75 } : { opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="text-[11px] font-mono tracking-[0.24em] uppercase text-ink-soft mt-3"
-            >
-              {t.ui?.introTagline || "Full Stack & Data Architecture"}
-            </motion.p>
-          </div>
-
-          {/* Skip Button */}
-          <button
-            type="button"
-            onClick={onComplete}
-            className="absolute bottom-8 right-8 text-[11px] font-mono tracking-widest text-ink-faint hover:text-ink uppercase transition-colors"
-          >
-            {t.ui?.skip || "Skip [Esc]"}
-          </button>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      {/* Skip Button */}
+      <button
+        type="button"
+        onClick={onComplete}
+        className="absolute bottom-8 right-8 text-[11px] font-mono tracking-widest text-ink-faint hover:text-ink uppercase transition-colors"
+      >
+        {t.ui?.skip || "Skip [Esc]"}
+      </button>
+    </motion.div>
   );
 };
 

@@ -11,7 +11,7 @@ const Magnetic = ({ children, strength = 0.25, className = "" }) => {
   const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
 
   const handleMouseMove = (e) => {
-    if (!ref.current) return;
+    if (!ref.current || e.pointerType !== "mouse") return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
@@ -28,8 +28,8 @@ const Magnetic = ({ children, strength = 0.25, className = "" }) => {
   return (
     <motion.div
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onPointerMove={handleMouseMove}
+      onPointerLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
       className={`inline-block ${className}`}
     >

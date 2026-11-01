@@ -16,6 +16,14 @@ const Nav = () => {
 
   const email = "iyedkhouildi12@gmail.com";
 
+  // Escape closes the mobile menu
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -75,7 +83,7 @@ const Nav = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-[padding,background-color,box-shadow] duration-300 ${
         scrolled
           ? "py-2.5 sm:py-3 bg-paper/85 backdrop-blur-xl backdrop-saturate-150 shadow-[0_10px_30px_-18px_rgba(34,33,30,0.18)]"
           : "py-4 sm:py-5 lg:py-6 bg-transparent"
@@ -107,7 +115,7 @@ const Nav = () => {
               <span className="font-editorial text-base sm:text-xl font-medium tracking-[0.06em] text-ink flex items-center gap-2 whitespace-nowrap">
                 IYED KHOUILDI
                 <span
-                  className="inline-block w-2 h-2 rounded-full bg-sakura animate-pulse"
+                  className="inline-block w-2 h-2 rounded-full bg-sakura"
                   title={t.ui?.availableTitle || "Available for select projects"}
                 />
               </span>
@@ -168,7 +176,7 @@ const Nav = () => {
           {/* Quick Copy Email with Tooltip Visual */}
           <button
             onClick={handleCopyEmail}
-            className="p-2.5 rounded-full text-ink-soft hover:text-ink bg-paper-2/60 hover:bg-paper-2 border border-ink/10 hover:border-sakura/50 transition-all duration-300 hover:-translate-y-px focus:outline-none focus-visible:ring-1 focus-visible:ring-sakura"
+            className="p-2.5 rounded-full text-ink-soft hover:text-ink bg-paper-2/60 hover:bg-paper-2 border border-ink/10 hover:border-sakura/50 transition-[color,background-color,border-color,transform] duration-200 hover:-translate-y-px active:scale-95 focus:outline-none focus-visible:ring-1 focus-visible:ring-sakura"
             title={t.ui?.copyEmailTitle || "Copy email address"}
             aria-label={t.ui?.copyEmailAria || "Copy email"}
           >
@@ -199,7 +207,7 @@ const Nav = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={t.ui?.toggleMenu || "Toggle navigation menu"}
-            className="p-2.5 rounded-full text-ink bg-paper-2 border border-ink/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura"
+            className="p-2.5 rounded-full text-ink bg-paper-2 border border-ink/10 transition-transform duration-150 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura"
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -214,8 +222,8 @@ const Nav = () => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.16, ease: [0.23, 1, 0.32, 1] } }}
+            transition={{ duration: 0.26, ease: [0.23, 1, 0.32, 1] }}
             className="xl:hidden max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain bg-paper/98 backdrop-blur-2xl border-b border-ink/10 px-6 py-6 shadow-2xl shoji-grid"
           >
             <div className="flex flex-col gap-2 max-w-md mx-auto">
@@ -230,7 +238,7 @@ const Nav = () => {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.035 }}
-                    className={`min-h-12 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-all duration-300 flex items-center justify-between border ${
+                    className={`min-h-12 px-4 py-3 rounded-xl font-mono text-xs tracking-wider transition-[color,background-color,border-color,padding] duration-200 flex items-center justify-between border ${
                       isActive
                         ? "bg-paper-2 text-ink border-sakura/45 font-semibold shadow-[inset_0_1px_0_var(--card-sheen)]"
                         : "border-transparent text-ink-soft hover:bg-paper-2/70 hover:text-ink hover:ps-5"

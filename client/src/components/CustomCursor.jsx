@@ -18,20 +18,24 @@ const CustomCursor = () => {
   const ringY = useSpring(mouseY, { damping: 25, stiffness: 220 });
 
   useEffect(() => {
-    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (isTouch || prefersReducedMotion) {
+    if (!hasFinePointer || prefersReducedMotion) {
       return;
     }
 
     const onMouseMove = (e) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!cursorState.visible) {
-        setCursorState((prev) => ({ ...prev, visible: true }));
-      }
+      // Returning the same object skips the re-render on every move
+      setCursorState((prev) => (prev.visible ? prev : { ...prev, visible: true }));
     };
+
+    const setIfChanged = (next) =>
+      setCursorState((prev) =>
+        prev.visible === next.visible && prev.hovered === next.hovered && prev.cardLabel === next.cardLabel ? prev : next
+      );
 
     const onMouseLeave = () => {
       setCursorState((prev) => ({ ...prev, visible: false }));
@@ -42,19 +46,19 @@ const CustomCursor = () => {
       const projectCard = e.target.closest("[data-project-card]");
 
       if (projectCard) {
-        setCursorState({
+        setIfChanged({
           visible: true,
           hovered: true,
           cardLabel: "EXPLORE",
         });
       } else if (target) {
-        setCursorState({
+        setIfChanged({
           visible: true,
           hovered: true,
           cardLabel: null,
         });
       } else {
-        setCursorState({
+        setIfChanged({
           visible: true,
           hovered: false,
           cardLabel: null,
@@ -71,7 +75,7 @@ const CustomCursor = () => {
       document.removeEventListener("mouseleave", onMouseLeave);
       document.removeEventListener("mouseover", onMouseOver);
     };
-  }, [mouseX, mouseY, cursorState.visible]);
+  }, [mouseX, mouseY]);
 
   if (!cursorState.visible) return null;
 
@@ -80,7 +84,9 @@ const CustomCursor = () => {
       {/* Central Ink / Blossom Dot */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-[150] rounded-full will-change-transform"
+        className={`pointer-events-none fixed top-0 left-0 z-[150] rounded-full will-change-transform ${
+          cursorState.hovered ? "bg-sakura" : "bg-ink"
+        }`}
         style={{
           x: dotX,
           y: dotY,
@@ -88,7 +94,6 @@ const CustomCursor = () => {
           translateY: "-50%",
           width: cursorState.hovered ? 6 : 8,
           height: cursorState.hovered ? 6 : 8,
-          backgroundColor: cursorState.hovered ? "#D48D9B" : "#22211E",
           opacity: cursorState.cardLabel ? 0 : 0.85,
         }}
       />
@@ -96,7 +101,13 @@ const CustomCursor = () => {
       {/* Outer Organic Follower Ring with Sakura Glow */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-[149] rounded-full will-change-transform flex items-center justify-center border"
+        className={`pointer-events-none fixed top-0 left-0 z-[149] rounded-full will-change-transform flex items-center justify-center border transition-[background-color,border-color] duration-200 ${
+          cursorState.cardLabel
+            ? "bg-ink/90 border-transparent"
+            : cursorState.hovered
+            ? "bg-sakura/15 border-sakura/60"
+            : "bg-transparent border-ink/25"
+        }`}
         style={{
           x: ringX,
           y: ringY,
@@ -106,16 +117,6 @@ const CustomCursor = () => {
         animate={{
           width: cursorState.cardLabel ? 76 : cursorState.hovered ? 44 : 26,
           height: cursorState.cardLabel ? 76 : cursorState.hovered ? 44 : 26,
-          backgroundColor: cursorState.cardLabel
-            ? "rgba(23, 23, 20, 0.92)"
-            : cursorState.hovered
-            ? "rgba(212, 141, 155, 0.15)"
-            : "transparent",
-          borderColor: cursorState.cardLabel
-            ? "transparent"
-            : cursorState.hovered
-            ? "rgba(212, 141, 155, 0.6)"
-            : "rgba(34, 33, 30, 0.22)",
         }}
         transition={{ type: "spring", damping: 20, stiffness: 240 }}
       >

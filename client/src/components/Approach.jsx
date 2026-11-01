@@ -78,7 +78,7 @@ const Approach = () => {
               >
                 <div>
                   <div className="flex items-center justify-between pb-4 border-b border-ink/10 mb-6">
-                    <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-sakura/40 bg-paper font-editorial text-2xl font-medium text-sakura transition-all duration-500 group-hover:bg-ink group-hover:text-paper group-hover:border-ink">
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-full border border-sakura/40 bg-paper font-editorial text-2xl font-medium text-sakura transition-[color,background-color,border-color] duration-300 group-hover:bg-ink group-hover:text-paper group-hover:border-ink">
                       {step.number}
                     </span>
                     <Icon className="w-4 h-4 text-ink-soft group-hover:text-ink transition-colors" />

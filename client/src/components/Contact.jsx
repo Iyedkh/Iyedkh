@@ -140,6 +140,16 @@ const Contact = () => {
               <div
                 key={item.id}
                 onClick={() => item.action === "copy" && handleCopy(item.id, item.value, item.label)}
+                {...(item.action === "copy" && {
+                  role: "button",
+                  tabIndex: 0,
+                  onKeyDown: (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleCopy(item.id, item.value, item.label);
+                    }
+                  },
+                })}
                 className={`japandi-card p-5 flex items-center justify-between group ${
                   item.action === "copy" ? "cursor-pointer hover:border-sakura" : ""
                 }`}
@@ -232,11 +242,13 @@ const Contact = () => {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
+                        <label htmlFor="contact-name" className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                           {t.contact?.form?.nameLabel || "Your Name *"}
                         </label>
                         <input
+                          id="contact-name"
                           type="text"
+                          autoComplete="name"
                           required
                           placeholder={t.contact?.form?.namePlaceholder || "John Doe"}
                           value={formData.name}
@@ -246,11 +258,16 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
+                        <label htmlFor="contact-email" className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                           {t.contact?.form?.emailLabel || "Email Address *"}
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
+                          inputMode="email"
+                          autoComplete="email"
+                          autoCapitalize="off"
+                          spellCheck={false}
                           required
                           placeholder={t.contact?.form?.emailPlaceholder || "john@company.com"}
                           value={formData.email}
@@ -262,10 +279,11 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
+                      <label htmlFor="contact-subject" className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                         {t.contact?.form?.subjectLabel || "Subject"}
                       </label>
                       <input
+                        id="contact-subject"
                         type="text"
                         placeholder={t.contact?.form?.subjectPlaceholder || "Project Inquiry / Opportunity"}
                         value={formData.subject}
@@ -275,10 +293,11 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
+                      <label htmlFor="contact-message" className="block text-[11px] font-mono text-ink-soft uppercase tracking-wider mb-2">
                         {t.contact?.form?.messageLabel || "Your Message *"}
                       </label>
                       <textarea
+                        id="contact-message"
                         required
                         rows={5}
                         placeholder={
