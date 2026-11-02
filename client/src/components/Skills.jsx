@@ -1,143 +1,230 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Layers,
   Cpu,
   Database,
   BarChart3,
   Wrench,
-  Search,
-  CheckCircle2,
-  Sparkles,
+  Atom,
+  Braces,
+  Boxes,
+  Wind,
+  FileCode2,
+  Palette,
+  Terminal,
+  Server,
+  Workflow,
+  KeyRound,
+  Radio,
+  Plug,
+  Leaf,
+  Table2,
+  Network,
+  Calculator,
+  TrendingUp,
+  Lightbulb,
+  GitBranch,
+  FolderGit2,
+  Zap,
+  Send,
+  Cloud,
 } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import SectionHeader from "./SectionHeader";
 
+const EASE = [0.16, 1, 0.3, 1];
+
+// Full class strings so Tailwind can see them
+const ACCENTS = {
+  sakura: { text: "text-sakura", bg: "bg-sakura", soft: "bg-sakura/12", ring: "border-sakura/40" },
+  gold: { text: "text-gold", bg: "bg-gold", soft: "bg-gold/12", ring: "border-gold/40" },
+  bamboo: { text: "text-bamboo", bg: "bg-bamboo", soft: "bg-bamboo/12", ring: "border-bamboo/40" },
+  hanko: { text: "text-hanko", bg: "bg-hanko", soft: "bg-hanko/10", ring: "border-hanko/40" },
+  ink: { text: "text-ink-soft", bg: "bg-ink-soft", soft: "bg-ink/8", ring: "border-ink/25" },
+};
+
+const SkillCard = ({ category, index, toolsLabel }) => {
+  const [selected, setSelected] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
+  const accent = ACCENTS[category.accent];
+  const Icon = category.icon;
+  const active = category.items[selected];
+
+  return (
+    <motion.article
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.7, delay: (index % 3) * 0.08, ease: EASE }}
+      className={`japandi-card overflow-hidden p-5 sm:p-6 flex flex-col ${category.span}`}
+    >
+      <span
+        aria-hidden="true"
+        className="absolute -right-2 -top-4 font-editorial text-[6.5rem] sm:text-[8rem] leading-none text-ink/[0.04] select-none pointer-events-none"
+      >
+        {category.kanji}
+      </span>
+
+      <header className="flex items-center gap-3 mb-5">
+        <span className={`grid place-items-center w-10 h-10 rounded-xl border ${accent.ring} ${accent.soft}`}>
+          <Icon className={`w-[18px] h-[18px] ${accent.text}`} />
+        </span>
+        <div className="min-w-0">
+          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+            0{index + 1} · {category.items.length} {toolsLabel}
+          </div>
+          <h3 className="font-editorial text-2xl leading-tight text-ink truncate">{category.name}</h3>
+        </div>
+      </header>
+
+      <div className="flex flex-wrap gap-2" role="group" aria-label={category.name}>
+        {category.items.map((item, i) => {
+          const isActive = i === selected;
+          const ItemIcon = item.icon;
+          return (
+            <button
+              key={item.key}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => setSelected(i)}
+              className={`relative flex items-center gap-1.5 px-3 py-2 rounded-full border text-xs font-medium transition-[color,border-color] duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura ${
+                isActive ? `${accent.ring} text-ink` : "border-ink/10 text-ink-soft hover:text-ink hover:border-ink/25"
+              }`}
+            >
+              {isActive && (
+                <motion.span
+                  layoutId={`skill-chip-${category.id}`}
+                  transition={{ type: "spring", stiffness: 480, damping: 36 }}
+                  className={`absolute inset-0 rounded-full ${accent.soft}`}
+                />
+              )}
+              <ItemIcon className={`relative w-3.5 h-3.5 ${isActive ? accent.text : "text-ink-faint"}`} />
+              <span className="relative whitespace-nowrap">{item.name}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-auto pt-5">
+        <div className="flex gap-3 items-start pt-4 border-t border-ink/10 min-h-[4.5rem]" aria-live="polite">
+          <span className={`mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full ${accent.bg}`} />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.p
+              key={active.key}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={shouldReduceMotion ? undefined : { opacity: 0, y: -6 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              className="text-sm text-ink-soft leading-relaxed"
+            >
+              <span className="text-ink font-medium">{active.name}</span>
+              <span className="text-ink-faint"> · </span>
+              {active.role}
+            </motion.p>
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.article>
+  );
+};
+
 const Skills = () => {
   const { t } = useLanguage();
-  const [activeTab, setActiveTab] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
 
   const skillCategories = [
     {
       id: "frontend",
       name: t.skills?.categories?.frontend || "Frontend",
-      fullName: "Frontend Architecture",
       kanji: "表",
       icon: Layers,
+      accent: "sakura",
+      span: "lg:col-span-3",
       items: [
-        { name: "React 19", role: "Component architecture, hooks, state machines, performance" },
-        { name: "JavaScript (ES6+)", role: "Async patterns, functional programming, DOM APIs" },
-        { name: "Redux", role: "Global state management, async data flows" },
-        { name: "Tailwind CSS", role: "Design systems, fluid utility tokens, responsive layouts" },
-        { name: "HTML5 / Semantic Web", role: "Accessibility (a11y), clean DOM structure, SEO" },
-        { name: "CSS3 / Modern Layouts", role: "Fluid CSS Grid, Flexbox, wabi-sabi animation" },
+        { name: "React 19", icon: Atom, role: "Component architecture, hooks, state machines, performance" },
+        { name: "JavaScript (ES6+)", icon: Braces, role: "Async patterns, functional programming, DOM APIs" },
+        { name: "Redux", icon: Boxes, role: "Global state management, async data flows" },
+        { name: "Tailwind CSS", icon: Wind, role: "Design systems, fluid utility tokens, responsive layouts" },
+        { name: "HTML5 / Semantic Web", icon: FileCode2, role: "Accessibility (a11y), clean DOM structure, SEO" },
+        { name: "CSS3 / Modern Layouts", icon: Palette, role: "Fluid CSS Grid, Flexbox, wabi-sabi animation" },
       ],
     },
     {
       id: "backend",
       name: t.skills?.categories?.backend || "Backend",
-      fullName: "Backend & Systems",
       kanji: "裏",
       icon: Cpu,
+      accent: "gold",
+      span: "lg:col-span-3",
       items: [
-        { name: "Node.js", role: "Asynchronous I/O, event-driven runtime, scalable backends" },
-        { name: "Express.js", role: "RESTful architecture, custom middleware, API routes" },
-        { name: "REST APIs", role: "Contract design, rate-limiting, error handling, validation" },
-        { name: "Authentication", role: "JWT in HTTP-only cookies, bcrypt hashing, Google Sign-In" },
-        { name: "Socket.io", role: "Real-time, event-based client-server communication" },
-        { name: "API Integration", role: "Google OAuth, Cloudinary media uploads, third-party APIs" },
+        { name: "Node.js", icon: Terminal, role: "Asynchronous I/O, event-driven runtime, scalable backends" },
+        { name: "Express.js", icon: Server, role: "RESTful architecture, custom middleware, API routes" },
+        { name: "REST APIs", icon: Workflow, role: "Contract design, rate-limiting, error handling, validation" },
+        { name: "Authentication", icon: KeyRound, role: "JWT in HTTP-only cookies, bcrypt hashing, Google Sign-In" },
+        { name: "Socket.io", icon: Radio, role: "Real-time, event-based client-server communication" },
+        { name: "API Integration", icon: Plug, role: "Google OAuth, Cloudinary media uploads, third-party APIs" },
       ],
     },
     {
       id: "database",
       name: t.skills?.categories?.databases || "Databases",
-      fullName: "Databases & Modeling",
       kanji: "基",
       icon: Database,
+      accent: "bamboo",
+      span: "lg:col-span-2",
       items: [
-        { name: "MongoDB", role: "Mongoose ODM, aggregation pipelines, document indexing" },
-        { name: "SQL (PostgreSQL)", role: "Relational modeling and queries" },
-        { name: "Database Modeling", role: "Normalization, indexing strategies, audit logging" },
+        { name: "MongoDB", icon: Leaf, role: "Mongoose ODM, aggregation pipelines, document indexing" },
+        { name: "SQL (PostgreSQL)", icon: Table2, role: "Relational modeling and queries" },
+        { name: "Database Modeling", icon: Network, role: "Normalization, indexing strategies, audit logging" },
       ],
     },
     {
       id: "dataAnalytics",
       name: t.skills?.categories?.dataBi || "Data & BI",
-      fullName: "Data & Business Intelligence",
       kanji: "知",
       icon: BarChart3,
+      accent: "hanko",
+      span: "lg:col-span-2",
       items: [
-        { name: "Power BI", role: "DAX formulas, dimensional modeling, KPI dashboards" },
-        { name: "Python", role: "Data wrangling, analytical scripting, statistical automation" },
-        { name: "Pandas & NumPy", role: "Tabular data cleansing, transformations, time-series" },
-        { name: "SQL Analytics", role: "Analytical aggregations, cohorts, revenue attribution" },
-        { name: "Data Visualization", role: "Executive telemetry, trend detection, interactive reporting" },
-        { name: "Business Intelligence", role: "ISG Bizerte degree foundation, statistical decision-making" },
+        { name: "Power BI", icon: BarChart3, role: "DAX formulas, dimensional modeling, KPI dashboards" },
+        { name: "Python", icon: Terminal, role: "Data wrangling, analytical scripting, statistical automation" },
+        { name: "Pandas & NumPy", icon: Calculator, role: "Tabular data cleansing, transformations, time-series" },
+        { name: "SQL Analytics", icon: Table2, role: "Analytical aggregations, cohorts, revenue attribution" },
+        { name: "Data Visualization", icon: TrendingUp, role: "Executive telemetry, trend detection, interactive reporting" },
+        { name: "Business Intelligence", icon: Lightbulb, role: "ISG Bizerte degree foundation, statistical decision-making" },
       ],
     },
     {
       id: "tools",
       name: t.skills?.categories?.tools || "Workflow",
-      fullName: "Tools & Workflow",
       kanji: "器",
       icon: Wrench,
+      accent: "ink",
+      span: "md:col-span-2 lg:col-span-2",
       items: [
-        { name: "Git", role: "Branching strategies, semantic commits, rebase workflows" },
-        { name: "GitHub", role: "Version control, collaboration, pull requests" },
-        { name: "Vite", role: "Fast modern bundler configuration & asset pipelines" },
-        { name: "Postman", role: "Endpoint testing, environment staging, documentation" },
-        { name: "cPanel", role: "Production deployment, domains & hosting setup" },
+        { name: "Git", icon: GitBranch, role: "Branching strategies, semantic commits, rebase workflows" },
+        { name: "GitHub", icon: FolderGit2, role: "Version control, collaboration, pull requests" },
+        { name: "Vite", icon: Zap, role: "Fast modern bundler configuration & asset pipelines" },
+        { name: "Postman", icon: Send, role: "Endpoint testing, environment staging, documentation" },
+        { name: "cPanel", icon: Cloud, role: "Production deployment, domains & hosting setup" },
       ],
     },
   ];
 
-  // Localize group titles, skill names and descriptions (English stays the fallback)
-  const groupNames = t.skills?.groups || {};
+  // Localize skill names and descriptions (English stays the fallback)
   const skillNames = t.skills?.names || {};
   const skillRoles = t.skills?.roles || {};
   skillCategories.forEach((c) => {
-    c.fullName = groupNames[c.id] || c.fullName;
-  });
-
-  const allSkills = skillCategories.flatMap((c) =>
-    c.items.map((item) => ({
+    c.items = c.items.map((item) => ({
       ...item,
       key: item.name,
       name: skillNames[item.name] || item.name,
       role: skillRoles[item.name] || item.role,
-      categoryId: c.id,
-      categoryName: c.fullName,
-    }))
-  );
-
-  const categoryTabs = [
-    {
-      id: "all",
-      name: t.skills?.categories?.all || "All Stack",
-      fullName: groupNames.all || "All Capabilities",
-      kanji: "全",
-      icon: Sparkles,
-      count: allSkills.length,
-    },
-    ...skillCategories.map((c) => ({
-      id: c.id,
-      name: c.name,
-      fullName: c.fullName,
-      kanji: c.kanji,
-      icon: c.icon,
-      count: c.items.length,
-    })),
-  ];
-
-  const filteredSkills = allSkills.filter((s) => {
-    const matchesTab = activeTab === "all" || s.categoryId === activeTab;
-    const matchesSearch =
-      s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      s.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      s.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesTab && matchesSearch;
+    }));
   });
+
+  const total = skillCategories.reduce((sum, c) => sum + c.items.length, 0);
+  const toolsLabel = t.skills?.toolsLabel || "tools";
 
   return (
     <section id="skills" className="py-28 sm:py-32 scroll-mt-20 relative">
@@ -155,132 +242,46 @@ const Skills = () => {
           }
         />
 
-        {/* Category Tabs & Filter Bar */}
-        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-5 mb-10 sm:mb-12">
-          {/* Scrollable / Responsive Japandi Tab Strip */}
-          <div className="relative">
-            <div
-              role="tablist"
-              aria-label="Skill categories"
-              className="flex items-center gap-1.5 p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-paper-2/80 border border-ink/10 backdrop-blur-md overflow-x-auto no-scrollbar shadow-[0_4px_20px_-8px_rgba(34,33,30,0.05)]"
-            >
-              {categoryTabs.map((tab) => {
-                const isActive = activeTab === tab.id;
-                const IconComponent = tab.icon;
-
-                return (
-                  <button
-                    key={tab.id}
-                    role="tab"
-                    id={`tab-${tab.id}`}
-                    aria-selected={isActive}
-                    aria-controls="skills-panel"
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-mono tracking-wider transition-[color,background-color,border-color,box-shadow] duration-200 whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-sakura ${
-                      isActive
-                        ? "text-ink font-semibold"
-                        : "text-ink-soft hover:text-ink hover:bg-paper-2/50"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeSkillTabPill"
-                        transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                        className="absolute inset-0 bg-paper border border-ink/12 shadow-[0_2px_8px_rgba(34,33,30,0.06)] rounded-xl sm:rounded-full -z-0"
-                      />
-                    )}
-
-                    <IconComponent
-                      className={`relative z-10 w-3.5 h-3.5 transition-colors ${
-                        isActive ? "text-hanko" : "text-ink-faint group-hover:text-ink"
-                      }`}
-                    />
-
-                    <span className="relative z-10">{tab.name}</span>
-
-                    <span
-                      className={`relative z-10 text-[10px] font-mono px-1.5 py-0.2 rounded-full transition-colors ${
-                        isActive
-                          ? "bg-sakura/20 text-sakura-deep font-bold"
-                          : "bg-ink/5 text-ink-faint group-hover:bg-ink/10"
-                      }`}
-                    >
-                      {tab.count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+        {/* Stack spectrum: share of the toolkit per discipline */}
+        <div className="mb-8 sm:mb-10">
+          <div className="flex items-baseline justify-between mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+            <span>
+              <span className="text-ink font-semibold">{total}</span> {toolsLabel}
+            </span>
+            <span>
+              <span className="text-ink font-semibold">{skillCategories.length}</span>{" "}
+              {t.skills?.disciplinesLabel || "disciplines"}
+            </span>
           </div>
-
-          {/* Search Box with Search Clear button */}
-          <div className="relative w-full xl:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-soft pointer-events-none" />
-            <input
-              type="text"
-              placeholder={t.skills?.searchPlaceholder || "Search skill (e.g. React)..."}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="japandi-input pl-10 pr-10 py-2.5 text-xs rounded-full font-mono shadow-sm"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                aria-label="Clear search query"
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-ink-soft hover:text-ink bg-paper-2 px-1.5 py-0.5 rounded-full"
-              >
-                ✕
-              </button>
-            )}
+          <div className="flex h-1.5 gap-1 rounded-full overflow-hidden" aria-hidden="true">
+            {skillCategories.map((c, i) => (
+              <motion.span
+                key={c.id}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1 + i * 0.08, ease: EASE }}
+                style={{ flexGrow: c.items.length, transformOrigin: "left" }}
+                className={`basis-0 rounded-full ${ACCENTS[c.accent].bg}`}
+              />
+            ))}
           </div>
+          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-ink-soft">
+            {skillCategories.map((c) => (
+              <li key={c.id} className="flex items-center gap-1.5">
+                <span className={`w-1.5 h-1.5 rounded-full ${ACCENTS[c.accent].bg}`} />
+                {c.name}
+                <span className="font-mono text-ink-faint">{c.items.length}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Skills Grid */}
-        <motion.div
-          id="skills-panel"
-          role="tabpanel"
-          aria-labelledby={`tab-${activeTab}`}
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredSkills.map((skill) => (
-              <motion.div
-                layout
-                key={skill.key}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.25 }}
-                className="japandi-card p-6 flex flex-col justify-between group hover:border-sakura"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3 pb-3 border-b border-ink/10">
-                    <span className="text-[10px] font-mono text-gold uppercase tracking-wider font-semibold">
-                      {skill.categoryName}
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-sakura" />
-                  </div>
-
-                  <h3 className="font-editorial text-2xl font-normal text-ink group-hover:text-sakura transition-colors mb-1.5">
-                    {skill.name}
-                  </h3>
-
-                  <p className="text-xs text-ink-soft font-sans leading-relaxed">
-                    {skill.role}
-                  </p>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-ink/10 flex items-center justify-between text-[10px] font-mono text-ink-faint">
-                  <span>{t.skills?.verified || "Verified Stack"}</span>
-                  <span className="text-bamboo flex items-center gap-1 font-medium">
-                    <CheckCircle2 className="w-3 h-3 text-sakura" /> {t.skills?.productionReady || "Production Ready"}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 sm:gap-5">
+          {skillCategories.map((c, i) => (
+            <SkillCard key={c.id} category={c} index={i} toolsLabel={toolsLabel} />
+          ))}
+        </div>
       </div>
     </section>
   );

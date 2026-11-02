@@ -75,7 +75,7 @@ function PortfolioContent() {
   };
 
   return (
-    <div className="min-h-screen bg-paper text-ink relative selection:bg-sakura/25 selection:text-ink overflow-x-hidden">
+    <div className="min-h-screen bg-paper text-ink relative selection:bg-sakura/25 selection:text-ink overflow-x-clip">
       {/* Toast Notification Provider */}
       <Toaster
         position="bottom-right"

@@ -105,6 +105,8 @@ const baseTranslations = {
       },
       searchPlaceholder: "Search skill (e.g. React)...",
       verified: "Verified",
+      toolsLabel: "tools",
+      disciplinesLabel: "disciplines",
       matrix: [
         {
           tag: "01 • FULL-STACK ARCHITECTURE",
@@ -515,6 +517,8 @@ const baseTranslations = {
       },
       searchPlaceholder: "Rechercher une compétence (ex: React)...",
       verified: "Vérifié",
+      toolsLabel: "outils",
+      disciplinesLabel: "disciplines",
       matrix: [
         {
           tag: "01 • ARCHITECTURE FULL-STACK",
@@ -925,6 +929,8 @@ const baseTranslations = {
       },
       searchPlaceholder: "ابحث عن مهارة (مثال: React)...",
       verified: "معتمد",
+      toolsLabel: "أدوات",
+      disciplinesLabel: "مجالات",
       matrix: [
         {
           tag: "01 • بنية التطبيقات المتكاملة",
