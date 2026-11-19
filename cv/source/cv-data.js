@@ -23,12 +23,13 @@ const en = {
     languages: "Languages",
   },
   summary:
-    "Full Stack Developer with 2+ years of experience building and shipping production web applications with the MERN stack. Spent one year full-time in a 3-developer team delivering a complete e-commerce platform with JWT and Google authentication and an admin dashboard, and delivered 5 client websites as a freelancer for companies in maritime, trading, industrial and food export. Currently building CARTHAGEOS, a multi-tenant SaaS ERP. Trilingual in Arabic, French and English. Available immediately and open to relocation to the UAE, Saudi Arabia or Qatar.",
+    "Full Stack Developer (MERN) with 2+ years of shipping production web applications: one year full-time in a 3-developer e-commerce team and 5 freelance client websites. Currently building CARTHAGEOS, a multi-tenant SaaS ERP with 840+ automated tests, Docker and a CI/CD pipeline. Trilingual in Arabic, French and English.",
   skills: [
-    ["Frontend", "React.js, Redux, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Responsive Design"],
-    ["Backend", "Node.js, Express.js, RESTful APIs, Socket.io (real-time), JWT, bcrypt, Google OAuth"],
+    ["Frontend", "React.js, Redux, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Vite, Responsive Design"],
+    ["Backend", "Node.js, Express.js, RESTful APIs, Socket.io (real-time), JWT, bcrypt, Google OAuth, RBAC"],
     ["Database & Media", "MongoDB (schema design, aggregation pipelines), Cloudinary"],
-    ["Tools & Delivery", "Git, GitHub, cPanel deployment, SEO & performance optimization, Agile/Scrum"],
+    ["Testing & DevOps", "Jest, Supertest, Vitest, Playwright (E2E), Docker / Docker Compose, GitHub Actions CI/CD"],
+    ["Tools & Delivery", "Git, GitHub, cPanel hosting, SEO & performance optimization, Agile/Scrum"],
     ["Familiar with", "TypeScript, Next.js, PostgreSQL, SQL, Python (Pandas), Power BI"],
   ],
   experience: [
@@ -47,14 +48,17 @@ const en = {
     {
       role: "Freelance Full Stack Developer",
       org: "Self-employed",
-      meta: "Remote",
+      meta: "Remote · Part-time",
       dates: "Sep 2024 – Oct 2026",
       bullets: [
-        "**Oliv'Or** (olivor.tn) · Jun – Aug 2026: built a MERN e-commerce website for an olive oil brand, with product catalog, orders and user management.",
-        "**BV Tech Marine** (bvtechmarine.com) · Sep – Oct 2026: designed and built a responsive React/Tailwind corporate website with SEO best practices.",
-        "**EGT Naval Services** (egtnavalservices.com) · Sep 2024: React/Tailwind website for a naval repair company, with a service catalog and lead-generation contact flow.",
-        "**MS Smart Trading** · Jun 2025 and **MS Équipements et Services** · Mar – Apr 2025: responsive, SEO-optimized React/Tailwind corporate websites.",
-        "Managed the full client cycle on every project: requirements, UI design, development, deployment and hosting setup.",
+        "Delivered 5 responsive, SEO-optimized production websites end to end (requirements, UI design, development, deployment, hosting) for maritime, trading, industrial and food-export clients.",
+      ],
+      clients: [
+        { name: "BV Tech Marine", detail: "React.js / Tailwind CSS corporate website · bvtechmarine.com", dates: "Sep 2026 – Oct 2026", bullets: [] },
+        { name: "Oliv'Or", detail: "MERN e-commerce website: catalog, orders, user accounts · olivor.tn", dates: "Jun 2026 – Aug 2026", bullets: [] },
+        { name: "MS Smart Trading", detail: "React.js / Tailwind CSS corporate website", dates: "Jun 2025", bullets: [] },
+        { name: "MS Équipements et Services", detail: "React.js / Tailwind CSS corporate website", dates: "Mar 2025 – Apr 2025", bullets: [] },
+        { name: "EGT Naval Services", detail: "React.js / Tailwind CSS corporate website · egtnavalservices.com", dates: "Sep 2024", bullets: [] },
       ],
     },
     {
@@ -71,12 +75,13 @@ const en = {
   projects: [
     {
       role: "CARTHAGEOS — Multi-tenant SaaS ERP",
-      org: "github.com/Iyedkh",
-      meta: "Personal project · In development",
+      org: "Personal project",
+      meta: "In development · code on request",
       dates: "2026",
       bullets: [
-        "Designing and building a multi-tenant cloud ERP covering multi-warehouse inventory, automated invoicing, financial tracking and role-based access control.",
-        "Stack: React 19, Node.js, Express, MongoDB aggregation pipelines, Tailwind CSS, REST APIs.",
+        "Multi-tenant cloud ERP (inventory, invoicing, accounting, CRM, HR) with **tenant-isolation middleware**, **role-based access control**, rate limiting and subscription plans; 87 MongoDB data models and 68 REST route modules.",
+        "**840+ automated backend tests** (Jest, Supertest, in-memory MongoDB), Vitest frontend tests and **Playwright** E2E tests, run on every push by a **GitHub Actions CI/CD** pipeline (lint, tests, production build).",
+        "Containerized with **Docker Compose** (MongoDB, Redis, API, frontend). Stack: React 19, Vite, Node.js, Express, MongoDB aggregation pipelines, Tailwind CSS.",
       ],
     },
   ],
@@ -104,12 +109,13 @@ const fr = {
     languages: "Langues",
   },
   summary:
-    "Développeur Full Stack avec plus de 2 ans d'expérience dans la conception et la mise en production d'applications web avec la stack MERN. Un an à temps plein au sein d'une équipe de 3 développeurs sur une plateforme e-commerce complète (authentification JWT et Google, tableau de bord d'administration), et 5 sites web livrés en freelance pour des entreprises des secteurs maritime, commercial, industriel et agroalimentaire. Développe actuellement CARTHAGEOS, un ERP SaaS multi-tenant. Trilingue arabe, français et anglais. Disponible immédiatement et ouvert à une relocalisation aux Émirats, en Arabie saoudite ou au Qatar.",
+    "Développeur Full Stack (MERN) avec plus de 2 ans d'expérience en mise en production d'applications web : un an à temps plein dans une équipe e-commerce de 3 développeurs et 5 sites clients livrés en freelance. Développe actuellement CARTHAGEOS, un ERP SaaS multi-tenant avec plus de 840 tests automatisés, Docker et un pipeline CI/CD. Trilingue arabe, français et anglais.",
   skills: [
-    ["Frontend", "React.js, Redux, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Responsive Design"],
-    ["Backend", "Node.js, Express.js, API REST, Socket.io (temps réel), JWT, bcrypt, Google OAuth"],
+    ["Frontend", "React.js, Redux, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Vite, Responsive Design"],
+    ["Backend", "Node.js, Express.js, API REST, Socket.io (temps réel), JWT, bcrypt, Google OAuth, RBAC"],
     ["Base de données & médias", "MongoDB (modélisation, pipelines d'agrégation), Cloudinary"],
-    ["Outils & livraison", "Git, GitHub, déploiement cPanel, optimisation SEO & performance, Agile/Scrum"],
+    ["Tests & DevOps", "Jest, Supertest, Vitest, Playwright (E2E), Docker / Docker Compose, CI/CD GitHub Actions"],
+    ["Outils & livraison", "Git, GitHub, hébergement cPanel, optimisation SEO & performance, Agile/Scrum"],
     ["Notions", "TypeScript, Next.js, PostgreSQL, SQL, Python (Pandas), Power BI"],
   ],
   experience: [
@@ -128,14 +134,17 @@ const fr = {
     {
       role: "Développeur Full Stack Freelance",
       org: "Indépendant",
-      meta: "À distance",
+      meta: "À distance · Temps partiel",
       dates: "Sept. 2024 – Oct. 2026",
       bullets: [
-        "**Oliv'Or** (olivor.tn) · Juin – Août 2026 : site e-commerce MERN pour une marque d'huile d'olive, avec catalogue produits, commandes et gestion des utilisateurs.",
-        "**BV Tech Marine** (bvtechmarine.com) · Sept. – Oct. 2026 : conception et développement d'un site vitrine responsive en React/Tailwind, optimisé pour le SEO.",
-        "**EGT Naval Services** (egtnavalservices.com) · Sept. 2024 : site React/Tailwind pour une entreprise de réparation navale, avec catalogue de services et formulaire de prise de contact.",
-        "**MS Smart Trading** · Juin 2025 et **MS Équipements et Services** · Mars – Avr. 2025 : sites vitrines React/Tailwind responsives et optimisés pour le SEO.",
-        "Gestion complète du cycle client sur chaque projet : recueil du besoin, design UI, développement, déploiement et hébergement.",
+        "5 sites responsives et optimisés SEO livrés de bout en bout (besoin, UI, développement, déploiement, hébergement) : maritime, négoce, industrie, agroalimentaire.",
+      ],
+      clients: [
+        { name: "BV Tech Marine", detail: "Site vitrine React.js / Tailwind CSS · bvtechmarine.com", dates: "Sept. 2026 – Oct. 2026", bullets: [] },
+        { name: "Oliv'Or", detail: "Site e-commerce MERN : catalogue, commandes, comptes clients · olivor.tn", dates: "Juin 2026 – Août 2026", bullets: [] },
+        { name: "MS Smart Trading", detail: "Site vitrine React.js / Tailwind CSS", dates: "Juin 2025", bullets: [] },
+        { name: "MS Équipements et Services", detail: "Site vitrine React.js / Tailwind CSS", dates: "Mars 2025 – Avr. 2025", bullets: [] },
+        { name: "EGT Naval Services", detail: "Site vitrine React.js / Tailwind CSS · egtnavalservices.com", dates: "Sept. 2024", bullets: [] },
       ],
     },
     {
@@ -145,19 +154,20 @@ const fr = {
       dates: "Févr. 2024 – Juin 2024",
       bullets: [
         "Développement de fonctionnalités pour une plateforme e-learning MERN : API REST Node.js/Express et interfaces React.js pour les cours et contenus pédagogiques.",
-        "Réalisation d'un tableau de bord de suivi de la progression des apprenants, alliant développement full stack et business intelligence.",
+        "Tableau de bord de suivi de la progression des apprenants, alliant développement full stack et BI.",
       ],
     },
   ],
   projects: [
     {
       role: "CARTHAGEOS — ERP SaaS multi-tenant",
-      org: "github.com/Iyedkh",
-      meta: "Projet personnel · En cours",
+      org: "Projet personnel",
+      meta: "En cours · code sur demande",
       dates: "2026",
       bullets: [
-        "Conception et développement d'un ERP cloud multi-tenant : gestion de stock multi-entrepôts, facturation automatisée, suivi financier et contrôle d'accès par rôles.",
-        "Stack : React 19, Node.js, Express, pipelines d'agrégation MongoDB, Tailwind CSS, API REST.",
+        "ERP cloud multi-tenant (stock, facturation, comptabilité, CRM, RH) avec **middleware d'isolation des tenants**, **contrôle d'accès par rôles**, limitation de débit et offres d'abonnement ; 87 modèles de données MongoDB et 68 modules de routes REST.",
+        "**Plus de 840 tests backend automatisés** (Jest, Supertest, MongoDB en mémoire), tests frontend Vitest et tests E2E **Playwright**, exécutés à chaque push par un pipeline **CI/CD GitHub Actions** (lint, tests, build de production).",
+        "Conteneurisé avec **Docker Compose** (MongoDB, Redis, API, frontend). Stack : React 19, Vite, Node.js, Express, pipelines d'agrégation MongoDB, Tailwind CSS.",
       ],
     },
   ],
@@ -174,16 +184,12 @@ const enIntl = {
   ...en,
   file: "Iyed_Khouildi_Full_Stack_Developer_CV_EN_International",
   infoLine: "Bizerte, Tunisia (UTC+1)  |  Available immediately  |  Open to remote, hybrid or on-site roles and relocation",
-  summary:
-    "Full Stack Developer with 2+ years of experience building and shipping production web applications with the MERN stack. Spent one year full-time in a 3-developer team delivering a complete e-commerce platform with JWT and Google authentication and an admin dashboard, and delivered 5 client websites remotely as a freelancer for companies in maritime, trading, industrial and food export. Currently building CARTHAGEOS, a multi-tenant SaaS ERP. Trilingual in Arabic, French and English. Available immediately for remote, hybrid or on-site roles, and open to relocation.",
 };
 
 const frIntl = {
   ...fr,
   file: "Iyed_Khouildi_Developpeur_Full_Stack_CV_FR_International",
   infoLine: "Bizerte, Tunisie (UTC+1)  |  Disponible immédiatement  |  Ouvert au télétravail, à l'hybride, au présentiel et à la mobilité",
-  summary:
-    "Développeur Full Stack avec plus de 2 ans d'expérience dans la conception et la mise en production d'applications web avec la stack MERN. Un an à temps plein au sein d'une équipe de 3 développeurs sur une plateforme e-commerce complète (authentification JWT et Google, tableau de bord d'administration), et 5 sites web livrés à distance en freelance pour des entreprises des secteurs maritime, commercial, industriel et agroalimentaire. Développe actuellement CARTHAGEOS, un ERP SaaS multi-tenant. Trilingue arabe, français et anglais. Disponible immédiatement en télétravail, en hybride ou sur site, et ouvert à la mobilité internationale.",
 };
 
 // Data science variants: same facts, data/ML positioning, with a training section
@@ -230,11 +236,17 @@ const dsEn = {
     {
       role: "Freelance Full Stack Developer",
       org: "Self-employed",
-      meta: "Remote",
+      meta: "Remote · Part-time",
       dates: "Sep 2024 – Oct 2026",
       bullets: [
-        "**Oliv'Or** (olivor.tn) · Jun – Aug 2026: MERN e-commerce website with product, order and user data management.",
-        "Corporate websites for **BV Tech Marine** (2026), **MS Smart Trading** (2025), **MS Équipements et Services** (2025) and **EGT Naval Services** (2024), with SEO and performance optimization.",
+        "Delivered 5 responsive, SEO-optimized production websites end to end (requirements, UI design, development, deployment, hosting) for maritime, trading, industrial and food-export clients.",
+      ],
+      clients: [
+        { name: "BV Tech Marine", detail: "React.js / Tailwind CSS corporate website · bvtechmarine.com", dates: "Sep 2026 – Oct 2026", bullets: [] },
+        { name: "Oliv'Or", detail: "MERN e-commerce website: catalog, orders, user accounts · olivor.tn", dates: "Jun 2026 – Aug 2026", bullets: [] },
+        { name: "MS Smart Trading", detail: "React.js / Tailwind CSS corporate website", dates: "Jun 2025", bullets: [] },
+        { name: "MS Équipements et Services", detail: "React.js / Tailwind CSS corporate website", dates: "Mar 2025 – Apr 2025", bullets: [] },
+        { name: "EGT Naval Services", detail: "React.js / Tailwind CSS corporate website · egtnavalservices.com", dates: "Sep 2024", bullets: [] },
       ],
     },
     {
@@ -251,8 +263,8 @@ const dsEn = {
   projects: [
     {
       role: "CARTHAGEOS — Multi-tenant SaaS ERP",
-      org: "github.com/Iyedkh",
-      meta: "Personal project · In development",
+      org: "Personal project",
+      meta: "In development · code on request",
       dates: "2026",
       bullets: [
         "Building a cloud ERP with **MongoDB aggregation pipelines** for multi-warehouse inventory, invoicing and financial tracking, with role-based access control.",
@@ -304,11 +316,17 @@ const dsFr = {
     {
       role: "Développeur Full Stack Freelance",
       org: "Indépendant",
-      meta: "À distance",
+      meta: "À distance · Temps partiel",
       dates: "Sept. 2024 – Oct. 2026",
       bullets: [
-        "**Oliv'Or** (olivor.tn) · Juin – Août 2026 : site e-commerce MERN avec gestion des données produits, commandes et utilisateurs.",
-        "Sites vitrines pour **BV Tech Marine** (2026), **MS Smart Trading** (2025), **MS Équipements et Services** (2025) et **EGT Naval Services** (2024), avec optimisation SEO et performance.",
+        "5 sites responsives et optimisés SEO livrés de bout en bout (besoin, UI, développement, déploiement, hébergement) : maritime, négoce, industrie, agroalimentaire.",
+      ],
+      clients: [
+        { name: "BV Tech Marine", detail: "Site vitrine React.js / Tailwind CSS · bvtechmarine.com", dates: "Sept. 2026 – Oct. 2026", bullets: [] },
+        { name: "Oliv'Or", detail: "Site e-commerce MERN : catalogue, commandes, comptes clients · olivor.tn", dates: "Juin 2026 – Août 2026", bullets: [] },
+        { name: "MS Smart Trading", detail: "Site vitrine React.js / Tailwind CSS", dates: "Juin 2025", bullets: [] },
+        { name: "MS Équipements et Services", detail: "Site vitrine React.js / Tailwind CSS", dates: "Mars 2025 – Avr. 2025", bullets: [] },
+        { name: "EGT Naval Services", detail: "Site vitrine React.js / Tailwind CSS · egtnavalservices.com", dates: "Sept. 2024", bullets: [] },
       ],
     },
     {
@@ -325,8 +343,8 @@ const dsFr = {
   projects: [
     {
       role: "CARTHAGEOS — ERP SaaS multi-tenant",
-      org: "github.com/Iyedkh",
-      meta: "Projet personnel · En cours",
+      org: "Projet personnel",
+      meta: "En cours · code sur demande",
       dates: "2026",
       bullets: [
         "Développement d'un ERP cloud reposant sur des **pipelines d'agrégation MongoDB** pour la gestion de stock multi-entrepôts, la facturation et le suivi financier, avec contrôle d'accès par rôles.",

@@ -42,6 +42,19 @@ const job = (j) => [
     new TextRun({ text: `  ·  ${j.meta}`, size: 19, color: GREY, font: FONT }),
   ], j.dates),
   ...j.bullets.map(bullet),
+  ...(j.clients || []).flatMap((cl) => [
+    new Paragraph({
+      spacing: { before: 50, after: 20 },
+      indent: { left: 360 },
+      tabStops: [{ type: TabStopType.RIGHT, position: RIGHT - 360 }],
+      children: [
+        new TextRun({ text: cl.name, bold: true, size: 20, color: NAVY, font: FONT }),
+        new TextRun({ text: ` — ${cl.detail}`, size: 19, color: GREY, font: FONT }),
+        new TextRun({ text: `\t${cl.dates}`, size: 19, color: GREY, font: FONT }),
+      ],
+    }),
+    ...cl.bullets.map((b) => new Paragraph({ numbering: { reference: "b", level: 1 }, spacing: { after: 20 }, children: runs(b) })),
+  ]),
 ];
 
 function buildDocx(cv) {
@@ -73,7 +86,7 @@ function buildDocx(cv) {
     creator: "Iyed Khouildi",
     title: `${cv.name} — CV`,
     styles: { default: { document: { run: { font: FONT, size: 20 } } } },
-    numbering: { config: [{ reference: "b", levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 240 } } } }] }] },
+    numbering: { config: [{ reference: "b", levels: [{ level: 0, format: LevelFormat.BULLET, text: "•", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 360, hanging: 240 } } } }, { level: 1, format: LevelFormat.BULLET, text: "◦", alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 720, hanging: 240 } } } }] }] },
     sections: [{ properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 640, bottom: 640, left: 720, right: 720 } } }, children }],
   });
 }
@@ -83,7 +96,9 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const md = (s) => parts(s).map((p) => (p.bold ? `<b>${esc(p.text)}</b>` : esc(p.text))).join("");
 const jobHtml = (j) => `
   <div class="job"><div class="row"><span><b>${esc(j.role)}</b> <b class="org">— ${esc(j.org)}</b> <span class="meta">· ${esc(j.meta)}</span></span><span class="date">${esc(j.dates)}</span></div>
-  <ul>${j.bullets.map((b) => `<li>${md(b)}</li>`).join("")}</ul></div>`;
+  <ul>${j.bullets.map((b) => `<li>${md(b)}</li>`).join("")}</ul>${(j.clients || []).map((cl) => `
+  <div class="client"><div class="row"><span><b class="org">${esc(cl.name)}</b> <span class="meta">— ${esc(cl.detail)}</span></span><span class="date">${esc(cl.dates)}</span></div>
+  <ul>${cl.bullets.map((b) => `<li>${md(b)}</li>`).join("")}</ul></div>`).join("")}</div>`;
 
 function buildHtml(cv) {
   const c = cv.contact;
@@ -94,13 +109,15 @@ function buildHtml(cv) {
   .title { text-align: center; font-weight: bold; font-size: 11pt; margin: 2px 0 4px; }
   .contact, .info { text-align: center; font-size: 8.8pt; color: #${GREY}; margin: 1px 0; }
   .contact a { color: #1155CC; text-decoration: none; }
-  h2 { color: #${NAVY}; font-size: 11pt; border-bottom: 1.2px solid #${NAVY}; margin: 9px 0 4px; padding-bottom: 1px; }
+  h2 { color: #${NAVY}; font-size: 11pt; border-bottom: 1.2px solid #${NAVY}; margin: 8px 0 3px; padding-bottom: 1px; }
   p { margin: 0; text-align: justify; }
   .skill { margin: 1.5px 0; }
   .row { display: flex; justify-content: space-between; gap: 12px; margin-top: 5px; }
   .org { color: #${NAVY}; } .meta, .date { color: #${GREY}; font-size: 9.5pt; } .date { white-space: nowrap; }
   ul { margin: 2px 0 0; padding-left: 16px; } li { margin: 1.5px 0; }
   .job { break-inside: avoid; }
+  .client { margin-left: 16px; } .client .row { margin-top: 1px; } .client ul { list-style: circle; margin-top: 0; } .client li { margin: 0; }
+  table.edu { width: 100%; border-collapse: collapse; } table.edu td { padding: 1px 0; vertical-align: top; } table.edu td.date { text-align: right; padding-left: 12px; }
   </style></head><body>
   <h1>${cv.name}</h1>
   <div class="title">${esc(cv.title)}</div>
@@ -111,7 +128,7 @@ function buildHtml(cv) {
   ${cv.training ? `<h2>${cv.labels.training.toUpperCase()}</h2>${cv.training.map(jobHtml).join("")}` : ""}
   <h2>${cv.labels.experience.toUpperCase()}</h2>${cv.experience.map(jobHtml).join("")}
   <h2>${cv.labels.projects.toUpperCase()}</h2>${cv.projects.map(jobHtml).join("")}
-  <h2>${cv.labels.education.toUpperCase()}</h2>${cv.education.map(([l, d]) => `<div class="row" style="margin-top:2px"><span>${md(l)}</span><span class="date">${d}</span></div>`).join("")}
+  <h2>${cv.labels.education.toUpperCase()}</h2><table class="edu">${cv.education.map(([l, d]) => `<tr><td>${md(l)}</td><td class="date">${esc(d)}</td></tr>`).join("")}</table>
   <h2>${cv.labels.languages.toUpperCase()}</h2><p>${md(cv.languages)}</p>
   </body></html>`;
 }
